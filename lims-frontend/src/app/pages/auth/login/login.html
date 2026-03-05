@@ -1,0 +1,80 @@
+<div class="min-h-screen flex items-center justify-center bg-theme-bg dark:bg-slate-900 p-6 relative overflow-hidden">
+  <!-- Fluid background animations -->
+  <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/20 rounded-full blur-[120px] animate-pulse">
+  </div>
+  <div
+    class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-500/10 rounded-full blur-[120px] animate-pulse transition-duration-3000">
+  </div>
+
+  <div class="w-full max-w-md relative z-10 animate-in fade-in zoom-in-95 duration-700">
+    <!-- Logo node -->
+    <div class="text-center mb-10">
+      <a routerLink="/" class="inline-flex items-center gap-3 transition-transform hover:scale-105 duration-300">
+        <span class="text-4xl">🏦</span>
+        <span class="text-3xl font-black text-gradient tracking-tighter uppercase">NexaLife</span>
+      </a>
+    </div>
+
+    <!-- Auth container -->
+    <div class="premium-card p-10 border border-white/10 shadow-2xl backdrop-blur-3xl">
+      <div class="text-center mb-8">
+        <h1 class="text-2xl font-black text-text-primary dark:text-white mb-2 tracking-tight uppercase">Sign In
+        </h1>
+        <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50 italic">Sign in to
+          access your dashboard</p>
+      </div>
+
+      <form (ngSubmit)="onSubmit()" class="space-y-6">
+        <div class="space-y-1.5">
+          <label class="text-[9px] font-black uppercase tracking-[0.3em] text-text-secondary opacity-60 ml-1">Email
+            Address</label>
+          <div class="relative group">
+            <span
+              class="absolute left-5 top-1/2 -translate-y-1/2 text-primary opacity-50 group-focus-within:opacity-100 transition-opacity"></span>
+            <input type="email" name="email" [(ngModel)]="form.email" required placeholder="protocol@nexalife.net"
+              class="input-premium pl-14 py-4 font-bold text-xs tracking-wide">
+          </div>
+        </div>
+
+        <div class="space-y-1.5">
+          <div class="flex justify-between items-center px-1">
+            <label
+              class="text-[9px] font-black uppercase tracking-[0.3em] text-text-secondary opacity-60">Password</label>
+            <a routerLink="/forgot-password"
+              class="text-[9px] font-black uppercase tracking-widest text-primary hover:underline transition-all">Forgot
+              Password</a>
+          </div>
+          <div class="relative group">
+            <span
+              class="absolute left-5 top-1/2 -translate-y-1/2 text-primary opacity-50 group-focus-within:opacity-100 transition-opacity"></span>
+            <input type="password" name="password" [(ngModel)]="form.password" required placeholder="••••••••"
+              class="input-premium pl-14 py-4 font-bold tracking-[0.3em]">
+          </div>
+        </div>
+
+        <button type="submit" [disabled]="loading"
+          class="btn-premium w-full h-14 mt-4 font-black text-[11px] tracking-[0.2em] shadow-[0_8px_30px_rgb(59,130,246,0.3)]">
+          <span *ngIf="!loading" class="flex items-center justify-center gap-2">SIGN IN <span
+              class="text-lg">→</span></span>
+          <span *ngIf="loading" class="flex items-center justify-center gap-2 italic">
+            <span class="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+            SIGNING IN...
+          </span>
+        </button>
+      </form>
+
+      <!-- Secondary actions -->
+      <div class="mt-10 pt-8 border-t border-theme-border/5 text-center">
+        <p class="text-[10px] font-bold text-text-secondary opacity-60 uppercase tracking-widest">
+          Don't have an account?
+          <a routerLink="/register" class="text-primary font-black ml-1 hover:underline">Create Account</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- Footer metadata -->
+    <p class="mt-8 text-center text-[9px] font-black uppercase tracking-[0.4em] text-text-secondary opacity-30">
+      &copy; 2026 NEXALIFE CORE · ALL RIGHTS RESERVED
+    </p>
+  </div>
+</div>

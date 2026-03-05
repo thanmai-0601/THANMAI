@@ -1,0 +1,109 @@
+<div class="animate-in fade-in duration-700">
+    <div class="flex justify-between items-center mb-10">
+        <div>
+            <h1 class="text-3xl font-black text-text-primary dark:text-white tracking-tighter uppercase">My Payments
+            </h1>
+            <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50 mt-1 italic">
+                Manage your transaction history and download invoices
+            </p>
+        </div>
+    </div>
+
+    <app-loading-spinner *ngIf="loading"></app-loading-spinner>
+
+    <div *ngIf="!loading" class="premium-card p-0 overflow-hidden">
+        <div class="p-6 bg-primary/[0.03] border-b border-theme-border/10 flex justify-between items-center">
+            <h2 class="text-[10px] font-black text-primary uppercase tracking-[0.3em] flex items-center gap-3">
+                <span class="text-lg">💳</span> Transaction History
+            </h2>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="bg-primary/[0.01]">
+                        <th
+                            class="px-8 py-5 text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40 border-b border-theme-border/5">
+                            Policy Number
+                        </th>
+                        <th
+                            class="px-8 py-5 text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40 border-b border-theme-border/5">
+                            Transaction Ref
+                        </th>
+                        <th
+                            class="px-8 py-5 text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40 border-b border-theme-border/5">
+                            Amount Paid
+                        </th>
+                        <th
+                            class="px-8 py-5 text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40 border-b border-theme-border/5">
+                            Payment Date
+                        </th>
+                        <th
+                            class="px-8 py-5 text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40 border-b border-theme-border/5">
+                            Method
+                        </th>
+                        <th
+                            class="px-8 py-5 text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40 border-b border-theme-border/5">
+                            Status
+                        </th>
+                        <th
+                            class="px-8 py-5 text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40 border-b border-theme-border/5 text-right">
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-theme-border/5">
+                    <tr *ngFor="let pay of payments; trackBy: trackByPaymentId"
+                        class="group hover:bg-primary/[0.01] transition-all duration-300">
+                        <td class="px-8 py-6">
+                            <p
+                                class="text-[11px] font-black text-text-primary dark:text-white tracking-widest italic group-hover:text-primary transition-colors">
+                                {{ pay.policyNumber }}
+                            </p>
+                        </td>
+                        <td class="px-8 py-6">
+                            <p class="text-[10px] font-bold text-text-secondary opacity-60">
+                                {{ pay.transactionReference || 'N/A' }}
+                            </p>
+                        </td>
+                        <td class="px-8 py-6">
+                            <p class="text-xs font-black text-primary tracking-tighter italic">
+                                ₹{{ pay.amountPaid | number }}
+                            </p>
+                        </td>
+                        <td class="px-8 py-6">
+                            <p
+                                class="text-[10px] font-black text-text-secondary opacity-60 uppercase tracking-widest italic">
+                                {{ pay.paymentDate | date:'mediumDate' }}
+                            </p>
+                        </td>
+                        <td class="px-8 py-6">
+                            <p
+                                class="text-[9px] font-black text-text-secondary opacity-40 uppercase tracking-widest group-hover:opacity-80 transition-opacity">
+                                {{ pay.paymentMethod }}
+                            </p>
+                        </td>
+                        <td class="px-8 py-6">
+                            <app-status-badge [status]="pay.status" />
+                        </td>
+                        <td class="px-8 py-6 text-right">
+                            <button (click)="downloadInvoice(pay)"
+                                class="px-4 py-2 bg-primary/5 hover:bg-primary text-primary hover:text-white text-[8px] font-black uppercase tracking-widest rounded-xl transition-all duration-300 border border-primary/10 hover:shadow-lg hover:shadow-primary/20">
+                                Download Invoice
+                            </button>
+                        </td>
+                    </tr>
+                    <tr *ngIf="payments.length === 0">
+                        <td colspan="7" class="px-8 py-20 text-center">
+                            <div class="flex flex-col items-center gap-3 opacity-20 group">
+                                <span class="text-4xl group-hover:scale-110 transition-transform duration-500">💳</span>
+                                <p class="text-[10px] font-black uppercase tracking-[0.3em] text-text-secondary italic">
+                                    No transaction history found
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

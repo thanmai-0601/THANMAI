@@ -1,0 +1,29 @@
+<div
+  class="premium-card p-6 flex items-center gap-6 group relative overflow-hidden transition-all duration-500 hover:-translate-y-1">
+  <!-- Decorative background element -->
+  <div
+    class="absolute -right-4 -bottom-4 w-24 h-24 rounded-full opacity-[0.03] group-hover:opacity-[0.08] transition-opacity duration-700"
+    [style.background-color]="color"></div>
+
+  <div
+    class="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl shadow-sm group-hover:scale-110 group-hover:rotate-3 transition-all duration-500"
+    [style.background-color]="color + '15'" [style.color]="color">
+    {{ icon }}
+  </div>
+
+  <div class="flex flex-col gap-0.5 relative z-10">
+    <span
+      class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50 group-hover:opacity-100 transition-opacity">{{
+      label }}</span>
+    <div class="flex items-baseline gap-1">
+      <span class="text-xs font-black text-text-secondary opacity-40">{{ prefix }}</span>
+      <span
+        class="text-3xl font-black text-text-primary dark:text-white tracking-tightest group-hover:text-primary transition-colors duration-300">{{
+        value }}</span>
+    </div>
+  </div>
+
+  <!-- Subtle accent line -->
+  <div class="absolute bottom-0 left-0 h-1 w-0 group-hover:w-full transition-all duration-700 opacity-50"
+    [style.background-color]="color"></div>
+</div>

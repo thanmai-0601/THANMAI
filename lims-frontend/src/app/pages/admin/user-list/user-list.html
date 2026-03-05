@@ -1,0 +1,126 @@
+<div class="animate-in fade-in slide-in-from-bottom-8 duration-1000">
+    <!-- Operational Header -->
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-8 mb-12">
+        <div>
+            <div class="flex items-center gap-3 mb-2">
+                <span
+                    class="px-2 py-0.5 rounded bg-primary/10 text-primary text-[9px] font-black uppercase tracking-[0.2em]">Admin</span>
+                <span class="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            </div>
+            <h1 class="text-4xl font-black text-text-primary dark:text-white tracking-tightest uppercase">
+                Manage <span class="text-gradient">Users</span>
+            </h1>
+            <p class="text-[10px] font-bold text-text-secondary mt-2 opacity-50 uppercase tracking-[0.1em]">
+                View and manage system users
+            </p>
+        </div>
+        <a routerLink="/app/admin/users/create"
+            class="btn-premium px-8 h-12 flex items-center gap-3 font-black text-[10px] tracking-widest uppercase shadow-xl shadow-primary/20">
+            <span class="text-lg">⊕</span> Add User
+        </a>
+    </div>
+
+    <app-loading-spinner *ngIf="loading"></app-loading-spinner>
+
+    <div *ngIf="!loading" class="animate-in fade-in slide-in-from-bottom-4 duration-700">
+        <div class="premium-card p-0 overflow-hidden border-white/5">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse whitespace-nowrap">
+                    <thead>
+                        <tr
+                            class="bg-theme-bg dark:bg-slate-800/40 text-text-secondary text-[9px] font-black uppercase tracking-[0.25em] border-b border-theme-border/5">
+                            <th class="px-8 py-6">User</th>
+                            <th class="px-8 py-6 text-center">Email</th>
+                            <th class="px-8 py-6 text-center">Role</th>
+                            <th class="px-8 py-6 text-center">Status</th>
+                            <th class="px-8 py-6 text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-theme-border/5">
+                        <tr *ngFor="let u of users" class="group hover:bg-primary/[0.02] transition-colors">
+                            <td class="px-8 py-6">
+                                <div class="flex items-center gap-5">
+                                    <div
+                                        class="h-12 w-12 rounded-2xl bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 flex items-center justify-center font-black text-slate-500 dark:text-slate-400 border border-theme-border/10 group-hover:scale-110 group-hover:rotate-3 transition-transform">
+                                        {{ u.fullName.charAt(0) | uppercase }}
+                                    </div>
+                                    <div>
+                                        <a [routerLink]="['/app/admin/users', u.userId]"
+                                            class="text-sm font-black text-text-primary dark:text-white hover:text-primary transition-colors flex items-center gap-2">
+                                            {{ u.fullName }}
+                                            <svg class="opacity-0 group-hover:opacity-100 transition-all w-4 h-4 text-primary -translate-x-2 group-hover:translate-x-0"
+                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
+                                                    d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                                            </svg>
+                                        </a>
+                                        <p
+                                            class="text-[9px] font-bold text-text-secondary opacity-40 uppercase tracking-widest mt-1 italic">
+                                            Joined {{ u.createdAt | date:'mediumDate' }}</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-8 py-6 text-center">
+                                <span
+                                    class="text-[11px] font-bold text-text-secondary hover:text-primary transition-colors cursor-pointer truncate max-w-[150px] inline-block">{{
+                                    u.email }}</span>
+                            </td>
+                            <td class="px-8 py-6 text-center">
+                                <span
+                                    class="inline-flex px-3 py-1.5 rounded-xl text-[9px] font-black uppercase tracking-[0.15em] border"
+                                    [ngClass]="{
+                                        'bg-purple-500/10 text-purple-600 border-purple-500/20': u.role === 'Admin',
+                                        'bg-blue-500/10 text-blue-600 border-blue-500/20': u.role === 'Agent',
+                                        'bg-amber-500/10 text-amber-600 border-amber-500/20': u.role === 'ClaimsOfficer',
+                                        'bg-slate-500/10 text-slate-500 border-slate-500/20': u.role === 'Customer'
+                                    }">{{ u.role }}</span>
+                            </td>
+                            <td class="px-8 py-6 text-center">
+                                <span
+                                    class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest border transition-all"
+                                    [ngClass]="u.isActive ? 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20' : 'bg-red-500/10 text-red-600 border-red-500/20'">
+                                    <span class="w-1.5 h-1.5 rounded-full"
+                                        [ngClass]="u.isActive ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]' : 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.5)]'"></span>
+                                    {{ u.isActive ? 'Active' : 'Inactive' }}
+                                </span>
+                            </td>
+                            <td class="px-8 py-6">
+                                <div class="flex gap-3 justify-end items-center">
+                                    <button (click)="toggleStatus(u)"
+                                        class="h-9 px-4 rounded-xl text-[9px] font-black uppercase tracking-widest border border-theme-border/10 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all active:scale-95">
+                                        {{ u.isActive ? 'Deactivate' : 'Restore' }}
+                                    </button>
+                                    <a [routerLink]="['/app/admin/users/edit', u.userId]"
+                                        class="h-9 w-9 flex items-center justify-center rounded-xl bg-primary/10 text-primary border border-primary/20 hover:bg-primary hover:text-white transition-all active:scale-95 shadow-sm">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M12 20h9"></path>
+                                            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Empty State -->
+            <div *ngIf="users.length === 0" class="py-32 text-center bg-theme-bg dark:bg-slate-900/30">
+                <div
+                    class="inline-flex h-20 w-20 items-center justify-center rounded-3xl bg-slate-50 dark:bg-slate-800 text-4xl mb-6 shadow-inner">
+                    🔍</div>
+                <h3 class="text-xl font-black text-text-primary dark:text-white uppercase tracking-tight">No Users Found
+                </h3>
+                <p class="text-[10px] font-bold text-text-secondary opacity-40 uppercase tracking-[0.2em] mt-2">There
+                    are currently no users matching your criteria.</p>
+                <div class="mt-10">
+                    <a routerLink="/app/admin/users/create"
+                        class="text-[10px] font-black text-primary uppercase tracking-widest hover:underline italic">Create
+                        New User</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

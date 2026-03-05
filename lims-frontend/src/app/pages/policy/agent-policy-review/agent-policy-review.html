@@ -1,0 +1,208 @@
+<div class="max-w-5xl mx-auto pt-8 transition-all duration-500 animate-in fade-in slide-in-from-bottom-8">
+    <div class="flex items-center gap-6 mb-12">
+        <button routerLink="/app/agent/policies"
+            class="h-12 w-12 flex items-center justify-center text-text-secondary hover:text-primary transition-all rounded-2xl bg-white dark:bg-slate-900 border border-theme-border/20 dark:border-slate-800 shadow-sm hover:shadow-md active:scale-90">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18">
+                </path>
+            </svg>
+        </button>
+        <div>
+            <h1 class="text-4xl font-black text-text-primary dark:text-white tracking-tightest">Review <span
+                    class="text-gradient">Application</span></h1>
+            <p class="text-sm font-medium text-text-secondary mt-1 opacity-70">Review and approve customer insurance
+                applications</p>
+        </div>
+    </div>
+
+    @if (loading) {
+    <app-loading-spinner></app-loading-spinner>
+    } @else if (policy) {
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-10">
+        <div>
+            <div class="flex items-center gap-3 mb-2 opacity-60">
+                <span class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary">Application
+                    Details</span>
+                <div class="h-px w-8 bg-text-secondary opacity-30"></div>
+            </div>
+            <h2 class="text-2xl font-black text-text-primary dark:text-white tracking-tight">Reviewing <span
+                    class="text-primary font-mono">{{ policy.policyNumber || 'NEW_NODE' }}</span></h2>
+        </div>
+        <app-status-badge [status]="policy.status" class="scale-110" />
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+        <div class="lg:col-span-2 flex flex-col gap-10">
+            <!-- Applicant Information -->
+            <div class="premium-card p-0 overflow-hidden group">
+                <div class="px-10 py-6 border-b border-theme-border/10 dark:border-slate-800 bg-primary/[0.02]">
+                    <h2 class="text-[10px] font-black text-primary uppercase tracking-[0.3em] flex items-center gap-3">
+                        <span class="text-lg">👤</span> Applicant Info
+                    </h2>
+                </div>
+                <div class="p-10 grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-10 relative">
+                    <div class="flex flex-col gap-2">
+                        <span class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary
+                        opacity-50">Customer Name</span>
+                        <span class="text-base font-black text-text-primary dark:text-white uppercase tracking-tight">{{
+                            policy.customerName }}</span>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <span class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary
+                        opacity-50">Selected Plan</span>
+                        <span class="text-base font-black text-text-primary dark:text-white uppercase tracking-tight">{{
+                            policy.planName }}</span>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <span
+                            class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50">Total
+                            Cover Amount</span>
+                        <span class="text-xl font-black text-primary tracking-tight">₹{{ policy.sumAssured | number
+                            }}</span>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <span
+                            class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50">Number
+                            of Years</span>
+                        <span class="text-base font-black text-text-primary dark:text-white tracking-tight">{{
+                            policy.tenureYears }} <span
+                                class="text-xs opacity-40 uppercase tracking-widest ml-1">Years</span></span>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <span class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary
+                        opacity-50">Customer Age</span>
+                        <span class="text-base font-black text-text-primary dark:text-white tracking-tight">{{
+                            policy.customerAge }} <span
+                                class="text-xs opacity-40 uppercase tracking-widest ml-1">Years</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="premium-card p-10 border-dashed flex flex-col items-center justify-center gap-4 text-center">
+                <div class="text-3xl opacity-20">📂</div>
+                <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-40">Customer
+                    Documents (Coming Soon)</p>
+            </div>
+        </div>
+
+        <!-- Risk Calibration Terminal -->
+        <div class="flex flex-col gap-6">
+            <div class="premium-card p-0 overflow-hidden shadow-2xl !bg-primary/[0.04] border-primary/20">
+                <div class="px-8 py-6 border-b border-primary/10 bg-primary/10">
+                    <h2 class="text-[10px] font-black text-primary uppercase tracking-[0.3em] flex items-center gap-3">
+                        <span class="text-lg">⚖️</span> Evaluate Risk
+                    </h2>
+                </div>
+                <div class="p-8">
+                    <form (ngSubmit)="calculatePremium()" class="flex flex-col gap-8">
+                        <div class="flex flex-col gap-3">
+                            <label
+                                class="text-[10px] font-black uppercase tracking-[0.2em] text-primary opacity-60 ml-1">Risk
+                                Category</label>
+                            <div class="relative group/select">
+                                <select [(ngModel)]="calcForm.riskCategory" name="rc" required
+                                    class="input-premium pl-4 pr-10 appearance-none !bg-white/50 dark:!bg-slate-900/50">
+                                    <option value="Low">Low Risk</option>
+                                    <option value="Standard">Standard Risk</option>
+                                    <option value="High">High Risk</option>
+                                </select>
+                                <div
+                                    class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-primary/40">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
+                                        viewBox="0 0 16 16">
+                                        <path
+                                            d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col gap-3">
+                            <label
+                                class="text-[10px] font-black uppercase tracking-[0.2em] text-primary opacity-60 ml-1">Agent
+                                Comments</label>
+                            <textarea [(ngModel)]="calcForm.remarks" name="rm" required rows="3"
+                                class="input-premium resize-none min-h-[100px] !bg-white/50 dark:!bg-slate-900/50"
+                                placeholder="Add notes about medical history or other important details"></textarea>
+                        </div>
+
+                        <button type="submit" [disabled]="calculating || policy.status !== 'Submitted'"
+                            class="btn-premium w-full !py-4 text-[10px] uppercase tracking-[0.2em] shadow-lg shadow-primary/10">
+                            {{ calculating ? 'Calculating...' : (calcResult ? 'Recalculate Premium' : 'Calculate
+                            Premium') }}
+                        </button>
+
+                        @if (calcResult) {
+                        <div
+                            class="premium-card p-0 overflow-hidden !bg-white dark:!bg-slate-900 border-2 border-primary/20 animate-in zoom-in-95 duration-500">
+                            <div class="p-6 bg-primary/[0.03] border-b border-theme-border/10">
+                                <p class="text-[10px] font-black uppercase tracking-[0.2em] text-primary">Calculation
+                                    Summary</p>
+                            </div>
+                            <div class="p-8 space-y-6">
+                                <div class="flex justify-between items-end">
+                                    <div class="flex flex-col gap-1">
+                                        <span
+                                            class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-40">Annual
+                                            Premium</span>
+                                        <span class="text-3xl font-black text-primary tracking-tightest">₹{{
+                                            calcResult.annualPremium | number }}</span>
+                                    </div>
+                                    <div class="text-right">
+                                        <span
+                                            class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-40">Risk
+                                            Multiplier</span>
+                                        <p class="text-sm font-black text-text-primary tracking-tight">x{{
+                                            calcResult.riskMultiplierApplied }}</p>
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-4 py-4 border-y border-theme-border/5">
+                                    <div>
+                                        <p
+                                            class="text-[9px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-30 mb-1">
+                                            Monthly</p>
+                                        <p class="text-xs font-black text-text-primary uppercase tracking-tight">₹{{
+                                            calcResult.monthlyPremium | number }}</p>
+                                    </div>
+                                    <div>
+                                        <p
+                                            class="text-[9px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-30 mb-1">
+                                            Quarterly</p>
+                                        <p class="text-xs font-black text-text-primary uppercase tracking-tight">₹{{
+                                            calcResult.quarterlyPremium | number }}</p>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="flex justify-between items-center text-[10px] font-black uppercase tracking-[0.2em] text-emerald-500">
+                                    <span>Agent Commission</span>
+                                    <span>₹{{ calcResult.commissionAmount | number }} ({{
+                                        calcResult.commissionPercentage }}%)</span>
+                                </div>
+                            </div>
+                        </div>
+                        }
+
+                        <div class="grid grid-cols-2 gap-4 mt-6 pt-10 border-t border-primary/20">
+                            <button type="button" (click)="submitDecision('Reject')"
+                                [disabled]="submittingDecision || policy.status !== 'Submitted'"
+                                class="h-14 px-6 rounded-2xl bg-white border border-red-100 text-red-500 font-black text-[10px] uppercase tracking-widest hover:bg-red-500 hover:text-white hover:shadow-lg hover:shadow-red-500/20 transition-all flex items-center justify-center gap-2">
+                                <span class="text-lg">×</span> Reject Application
+                            </button>
+                            <button type="button" (click)="submitDecision('Approve')"
+                                [disabled]="submittingDecision || policy.status !== 'Submitted' || !calcResult"
+                                class="h-14 px-6 rounded-2xl bg-primary text-white font-black text-[10px] uppercase tracking-widest hover:bg-primary-hover hover:scale-105 hover:shadow-lg hover:shadow-primary/20 transition-all flex items-center justify-center gap-2">
+                                <span class="text-sm">✓</span> Approve Application
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <p class="text-[9px] font-bold text-text-secondary/40 text-center uppercase tracking-widest">
+                Approving this application will allow the customer to pay their premium.</p>
+        </div>
+    </div>
+    }
+</div>

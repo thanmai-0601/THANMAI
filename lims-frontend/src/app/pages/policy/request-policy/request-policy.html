@@ -1,0 +1,193 @@
+<div class="max-w-4xl mx-auto pt-8 transition-all duration-500 animate-in fade-in slide-in-from-bottom-8">
+    <div class="flex items-center gap-6 mb-12">
+        <button routerLink="/app/plans"
+            class="h-12 w-12 flex items-center justify-center text-text-secondary hover:text-primary transition-all rounded-2xl bg-white dark:bg-slate-900 border border-theme-border/20 dark:border-slate-800 shadow-sm hover:shadow-md active:scale-90">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18">
+                </path>
+            </svg>
+        </button>
+        <div>
+            <h1 class="text-4xl font-black text-text-primary dark:text-white tracking-tightest">Get <span
+                    class="text-gradient">Insurance</span></h1>
+            <p class="text-sm font-medium text-text-secondary mt-1 opacity-70">Secure your future with our life
+                insurance plans</p>
+        </div>
+    </div>
+
+    @if (loading) {
+    <div class="premium-card p-24 flex flex-col items-center justify-center gap-6">
+        <div class="relative">
+            <div class="w-16 h-16 border-4 border-primary/10 border-t-primary rounded-full animate-spin"></div>
+            <div
+                class="absolute inset-0 flex items-center justify-center text-xs font-black text-primary animate-pulse">
+                LIMS</div>
+        </div>
+        <p class="text-[10px] font-black uppercase tracking-[0.3em] text-text-secondary animate-pulse">Loading Form...
+        </p>
+    </div>
+    } @else if (plan) {
+    <div class="premium-card p-10 md:p-14 relative overflow-hidden group">
+        <div
+            class="absolute top-0 left-0 w-64 h-64 bg-primary/5 rounded-full -ml-32 -mt-32 blur-3xl group-hover:bg-primary/10 transition-all duration-700">
+        </div>
+
+        <div
+            class="mb-12 p-8 bg-gradient-to-br from-primary/5 to-transparent dark:from-primary/10 rounded-3xl border border-primary/10 relative z-10">
+            <div class="flex items-center gap-4 mb-3">
+                <div class="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center text-xl shadow-sm">🛡️
+                </div>
+                <h2 class="text-2xl font-black text-text-primary dark:text-white tracking-tight">{{ plan.planName }}
+                </h2>
+            </div>
+            <p class="text-sm font-medium text-text-secondary opacity-70 leading-relaxed max-w-2xl">Choose your cover
+                amount and years. We'll crunch the numbers to build your personal insurance plan.</p>
+        </div>
+
+        <form (ngSubmit)="submit()" #reqForm="ngForm"
+            class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8 relative z-10">
+
+            <div class="flex flex-col gap-2.5 md:col-span-2">
+                <label
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Total
+                    Cover Amount (Sum Assured)</label>
+                <div class="relative group/input">
+                    <span
+                        class="absolute left-4 top-1/2 -translate-y-1/2 font-black text-lg grayscale opacity-40 group-focus-within/input:opacity-100 group-focus-within/input:text-primary transition-all">₹</span>
+                    <input type="number" [(ngModel)]="form.sumAssured" name="sumAssured" required
+                        [min]="plan.minSumAssured" [max]="plan.maxSumAssured"
+                        class="input-premium pl-10 text-xl font-black tracking-tight">
+                </div>
+                <div class="flex justify-between items-center mt-1 px-1">
+                    <span
+                        class="text-[10px] font-bold text-text-secondary opacity-40 uppercase tracking-widest leading-relaxed">Allowed
+                        Range: ₹{{ plan.minSumAssured | number }} — ₹{{ plan.maxSumAssured | number }}</span>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-2.5">
+                <label
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Number
+                    of Years (Tenure)</label>
+                <div class="relative group/input">
+                    <span
+                        class="absolute left-4 top-1/2 -translate-y-1/2 text-lg grayscale opacity-40 group-focus-within/input:opacity-100 group-focus-within/input:grayscale-0 transition-all"></span>
+                    <select [(ngModel)]="form.tenureYears" name="tenureYears" required
+                        class="input-premium pl-12 appearance-none">
+                        @for (t of plan.tenureOptions; track t) {
+                        <option [ngValue]="t">{{ t }} Years</option>
+                        }
+                    </select>
+                    <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-2.5">
+                <label
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Your
+                    Age</label>
+                <div class="relative group/input">
+                    <span
+                        class="absolute left-4 top-1/2 -translate-y-1/2 text-lg grayscale opacity-40 group-focus-within/input:opacity-100 group-focus-within/input:grayscale-0 transition-all"></span>
+                    <input type="number" [(ngModel)]="form.customerAge" name="customerAge" required
+                        [min]="plan.minEntryAge" [max]="plan.maxEntryAge" class="input-premium pl-12">
+                </div>
+                <span
+                    class="text-[10px] font-bold text-text-secondary opacity-40 uppercase tracking-widest mt-1 ml-1">Age
+                    Allowed:
+                    {{ plan.minEntryAge }} - {{ plan.maxEntryAge }} Years</span>
+            </div>
+
+            <div class="flex flex-col gap-2.5">
+                <label
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60"> ₹ Annual
+                    Income</label>
+                <div class="relative group/input">
+                    <span
+                        class="absolute left-4 top-1/2 -translate-y-1/2 font-black text-text-secondary opacity-40 group-focus-within/input:opacity-100 group-focus-within/input:text-primary transition-all"></span>
+                    <input type="number" [(ngModel)]="form.annualIncome" name="annualIncome" required
+                        [min]="plan.minAnnualIncome" class="input-premium pl-10">
+                </div>
+                <span class="text-[10px] font-bold text-text-secondary opacity-40 uppercase tracking-widest mt-1
+                ml-1">Minimum:
+                    ₹{{ plan.minAnnualIncome | number }}</span>
+            </div>
+
+            <div class="flex flex-col gap-2.5">
+                <label class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Job
+                    / Occupation</label>
+                <div class="relative group/input">
+                    <span
+                        class="absolute left-4 top-1/2 -translate-y-1/2 text-lg grayscale opacity-40 group-focus-within/input:opacity-100 group-focus-within/input:grayscale-0 transition-all"></span>
+                    <input type="text" [(ngModel)]="form.occupation" name="occupation" required
+                        class="input-premium pl-12" placeholder="e.g. Systems Engineer">
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-2.5 md:col-span-2">
+                <label
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Your
+                    Address</label>
+                <div class="relative group/input">
+                    <span
+                        class="absolute left-4 top-1/2 -translate-y-1/2 text-lg grayscale opacity-40 group-focus-within/input:opacity-100 group-focus-within/input:grayscale-0 transition-all"></span>
+                    <input type="text" [(ngModel)]="form.address" name="address" required minlength="10"
+                        class="input-premium pl-12" placeholder="Verified street address">
+                </div>
+                <p class="text-[10px] font-bold text-text-secondary opacity-40 uppercase tracking-widest mt-1 ml-1
+                leading-relaxed">
+                    Please provide your full address</p>
+            </div>
+
+            @if (availableRidersList.length > 0) {
+            <div class="flex flex-col gap-4 md:col-span-2 mt-4">
+                <label
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Extra
+                    Benefits (Optional Riders)</label>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    @for (rider of availableRidersList; track rider) {
+                    <label
+                        class="flex items-center gap-4 p-4 rounded-2xl border border-theme-border/20 dark:border-slate-800 bg-white dark:bg-slate-900/50 cursor-pointer hover:border-primary group/rider transition-all duration-300">
+                        <div class="relative flex items-center justify-center">
+                            <input type="checkbox" [value]="rider" (change)="toggleRider(rider, $event)"
+                                class="peer h-5 w-5 cursor-pointer appearance-none rounded-lg border border-slate-300 dark:border-slate-700 checked:bg-primary checked:border-primary transition-all duration-300 shadow-sm">
+                            <svg class="absolute h-3 w-3 text-white opacity-0 peer-checked:opacity-100 transition-opacity pointer-events-none"
+                                fill="none" stroke="currentColor" stroke-width="4" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                        <span
+                            class="text-xs font-black text-text-primary dark:text-slate-300 uppercase tracking-wider group-hover/rider:text-primary transition-colors">{{
+                            rider }}</span>
+                    </label>
+                    }
+                </div>
+            </div>
+            }
+
+            <div class="md:col-span-2 pt-10 border-t border-theme-border/10 dark:border-slate-800">
+                <button type="submit" [disabled]="submitting || !reqForm.form.valid"
+                    class="btn-premium w-full !py-5 uppercase tracking-[0.3em] flex justify-center items-center gap-4 text-sm">
+                    {{ submitting ? 'Submitting...' : 'Submit Application' }}
+                </button>
+                <p class="text-[9px] font-black text-text-secondary/40 text-center uppercase tracking-[0.2em] mt-6">
+                    By submitting, you agree to our terms and conditions</p>
+            </div>
+        </form>
+    </div>
+    } @else {
+    <div class="premium-card p-24 text-center">
+        <div class="text-4xl mb-6">📉</div>
+        <p class="text-xl font-black text-text-primary dark:text-white uppercase tracking-tightest">Plan Not Found</p>
+        <p class="text-sm font-medium text-text-secondary mt-2 opacity-60">We couldn't find the plan you're looking for.
+        </p>
+        <button routerLink="/app/plans" class="mt-10 btn-premium px-10">Back to Plans</button>
+    </div>
+    }
+</div>

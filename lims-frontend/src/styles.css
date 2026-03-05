@@ -1,0 +1,76 @@
+@import "tailwindcss";
+@source "./app";
+@source "./index.html";
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-primary: #F97316;
+  --color-primary-hover: #EA580C;
+  --color-accent: #FB923C;
+  --color-theme-bg: #FFFBF7;
+  --color-theme-sidebar: #1E1B4B;
+  --color-theme-card: #FFFFFF;
+  --color-theme-border: #FED7AA;
+  --color-text-primary: #18181B;
+  --color-text-secondary: #52525B;
+
+  --color-success: #15803d;
+  --color-warning: #d97706;
+  --color-error: #b91c1c;
+  --color-info: #0e7490;
+
+  /* Premium Design Tokens */
+  --shadow-premium: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+  --shadow-premium-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -6px rgba(0, 0, 0, 0.05);
+  --radius-premium: 24px;
+  --radius-button: 12px;
+}
+
+@layer base {
+  body {
+    @apply bg-theme-bg text-text-primary font-sans antialiased transition-colors duration-300;
+    font-family: 'Inter', system-ui, sans-serif;
+    letter-spacing: -0.011em;
+  }
+
+  /* Custom scrollbar matched to custom theme colors */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-theme-border/50 rounded-full hover:bg-theme-border transition-colors;
+  }
+}
+
+/* Custom UI Utilities for NexaLife Theme */
+@layer utilities {
+  .glass-panel {
+    @apply bg-white/70 backdrop-blur-xl border border-white shadow-premium rounded-[var(--radius-premium)];
+  }
+
+  .glass-panel-dark {
+    @apply bg-slate-900/70 backdrop-blur-xl border border-slate-700/30 shadow-2xl rounded-[var(--radius-premium)];
+  }
+
+  .premium-card {
+    @apply bg-white dark:bg-slate-900 border border-theme-border/30 dark:border-slate-800 shadow-premium hover:shadow-premium-hover rounded-[var(--radius-premium)] transition-all duration-300;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-accent to-primary-hover;
+  }
+
+  .btn-premium {
+    @apply px-6 py-2.5 bg-primary hover:bg-primary-hover text-white rounded-[var(--radius-button)] font-semibold shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200;
+  }
+
+  .input-premium {
+    @apply w-full px-4 py-3 bg-white dark:bg-slate-900 border border-theme-border dark:border-slate-800 rounded-[var(--radius-button)] focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all;
+  }
+}

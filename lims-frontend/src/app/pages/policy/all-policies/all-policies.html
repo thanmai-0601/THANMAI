@@ -1,0 +1,105 @@
+<div class="max-w-6xl mx-auto pt-8 transition-all duration-500 animate-in fade-in slide-in-from-bottom-8">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12">
+        <div>
+            <div class="flex items-center gap-3 mb-2 opacity-60">
+                <span class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary">Admin
+                    Dashboard</span>
+                <div class="h-px w-8 bg-text-secondary opacity-30"></div>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-black text-text-primary dark:text-white tracking-tightest">
+                All <span class="text-gradient">Policies</span>
+            </h1>
+            <p class="text-xs font-bold text-text-secondary uppercase tracking-[0.2em] opacity-50 mt-2">View all active
+                and pending policies</p>
+        </div>
+        <div class="flex gap-4">
+            <div
+                class="px-6 py-3 rounded-2xl bg-white dark:bg-slate-900 border border-theme-border/10 flex items-center gap-3 shadow-sm">
+                <span class="text-xl">📋</span>
+                <div class="flex flex-col">
+                    <span class="text-[10px] font-black uppercase tracking-wider text-text-secondary opacity-40">Total
+                        Policies</span>
+                    <span class="text-sm font-black text-text-primary dark:text-white">{{ policies.length }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (loading) {
+    <app-loading-spinner></app-loading-spinner>
+    }
+    @else {
+    <div class="premium-card !p-0 overflow-hidden shadow-xl shadow-primary/[0.02]">
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse whitespace-nowrap">
+                <thead>
+                    <tr class="bg-primary/[0.02] border-b border-theme-border/5 dark:border-slate-800/50">
+                        <th
+                            class="px-8 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60">
+                            Policy Number</th>
+                        <th
+                            class="px-8 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60">
+                            Customer</th>
+                        <th
+                            class="px-8 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60">
+                            Plan Name</th>
+                        <th
+                            class="px-8 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60">
+                            Sum Assured</th>
+                        <th
+                            class="px-8 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60">
+                            Status</th>
+                        <th class="px-8 py-6"></th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-theme-border/5 dark:divide-slate-800/50">
+                    @for (p of policies; track p.policyId) {
+                    <tr class="group hover:bg-primary/[0.01] transition-all duration-300">
+                        <td class="px-8 py-6">
+                            <span
+                                class="text-sm font-black text-text-primary dark:text-white tracking-widest uppercase opacity-80 group-hover:text-primary transition-colors">{{
+                                p.policyNumber || 'Pending' }}</span>
+                        </td>
+                        <td class="px-8 py-6">
+                            <div class="flex flex-col gap-0.5">
+                                <span
+                                    class="text-sm font-bold text-text-primary dark:text-slate-200 uppercase tracking-tight">{{
+                                    p.customerName }}</span>
+                                <span class="text-[10px] font-bold text-text-secondary opacity-40 uppercase
+                                tracking-widest">Customer
+                                    Policy</span>
+                            </div>
+                        </td>
+                        <td class="px-8 py-6 hidden md:table-cell">
+                            <span class="text-sm font-medium text-text-secondary dark:text-slate-400 opacity-60">{{
+                                p.planName }}</span>
+                        </td>
+                        <td class="px-8 py-6 hidden lg:table-cell">
+                            <span class="text-sm font-black text-text-primary dark:text-white">₹{{ p.sumAssured | number
+                                }}</span>
+                        </td>
+                        <td class="px-8 py-6">
+                            <app-status-badge [status]="p.status" class="scale-90 origin-left" />
+                        </td>
+                        <td class="px-8 py-6 text-right">
+                            <a [routerLink]="['/app/policy', p.policyId]"
+                                class="inline-flex items-center justify-center h-10 px-6 rounded-xl bg-white dark:bg-slate-900 border border-theme-border/10 dark:border-slate-800 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary hover:text-primary hover:border-primary/30 transition-all group-hover:-translate-x-2 shadow-sm">
+                                View Details
+                            </a>
+                        </td>
+                    </tr>
+                    } @empty {
+                    <tr>
+                        <td colspan="6" class="px-8 py-24 text-center">
+                            <div class="text-4xl mb-4 opacity-20">📭</div>
+                            <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-40">
+                                No policies found.</p>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    }
+</div>

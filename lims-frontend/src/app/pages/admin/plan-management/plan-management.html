@@ -1,0 +1,102 @@
+<div
+    class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-10 transition-all duration-500 animate-in fade-in slide-in-from-bottom-4">
+    <div>
+        <h1 class="text-4xl font-black text-text-primary dark:text-white tracking-tightest">Insurance <span
+                class="text-gradient">Plans</span></h1>
+        <p class="text-sm font-medium text-text-secondary mt-1 opacity-70">Manage and view all life insurance plans</p>
+    </div>
+    <a routerLink="/app/admin/plans/create" class="btn-premium flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+        </svg>
+        Create New Plan</a>
+</div>
+
+<app-loading-spinner *ngIf="loading"></app-loading-spinner>
+<div *ngIf="!loading" class="animate-in fade-in slide-in-from-bottom-6 duration-700">
+    <div class="premium-card overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse whitespace-nowrap">
+                <thead>
+                    <tr
+                        class="bg-slate-50/50 dark:bg-slate-800/30 text-text-secondary text-[10px] font-black uppercase tracking-[0.2em]">
+                        <th class="px-8 py-5 border-b border-theme-border/10 dark:border-slate-800">Plan Name</th>
+                        <th class="px-8 py-5 border-b border-theme-border/10 dark:border-slate-800 text-center">Base
+                            Rate</th>
+                        <th class="px-8 py-5 border-b border-theme-border/10 dark:border-slate-800 text-center">
+                            Age Limit</th>
+                        <th class="px-8 py-5 border-b border-theme-border/10 dark:border-slate-800 text-center">
+                            Status</th>
+                        <th class="px-8 py-5 border-b border-theme-border/10 dark:border-slate-800 text-right">
+                            Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-theme-border/10 dark:divide-slate-800/50">
+                    <tr *ngFor="let p of plans"
+                        class="group hover:bg-slate-50/50 dark:hover:bg-slate-800/10 transition-all duration-200">
+                        <td class="px-8 py-6">
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="h-12 w-12 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center text-xl font-black text-primary group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                                    🛡️
+                                </div>
+                                <span
+                                    class="text-base font-black text-text-primary dark:text-white group-hover:text-primary transition-colors tracking-tight">{{
+                                    p.planName }}</span>
+                            </div>
+                        </td>
+                        <td class="px-8 py-6 text-center">
+                            <div class="inline-flex flex-col items-center">
+                                <span class="text-sm font-black text-text-primary dark:text-white">₹{{ p.baseRatePer1000
+                                    }}</span>
+                                <span
+                                    class="text-[10px] font-bold text-text-secondary opacity-40 uppercase tracking-widest">per
+                                    ₹1k</span>
+                            </div>
+                        </td>
+                        <td class="px-8 py-6 text-center">
+                            <span class="text-sm font-bold text-text-secondary dark:text-slate-300">{{ p.minEntryAge }}
+                                <span class="opacity-40 font-medium tracking-tighter">—</span> {{ p.maxEntryAge }}
+                                Years</span>
+                        </td>
+                        <td class="px-8 py-6 text-center">
+                            <span
+                                class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest border transition-all"
+                                [ngClass]="p.isActive ? 'bg-emerald-50 text-emerald-700 border-emerald-100 dark:bg-emerald-900/20 dark:text-emerald-400 dark:border-emerald-800/50' : 'bg-red-50 text-red-700 border-red-100 dark:bg-red-900/20 dark:text-red-400 dark:border-red-800/50'">
+                                <span class="w-1.5 h-1.5 rounded-full"
+                                    [ngClass]="p.isActive ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]' : 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.5)]'"></span>
+                                {{ p.isActive ? 'Active' : 'Inactive' }}
+                            </span>
+                        </td>
+                        <td class="px-8 py-6">
+                            <div class="flex gap-2 justify-end">
+                                <a [routerLink]="['/app/admin/plans/edit', p.planId]"
+                                    class="h-9 px-4 flex items-center rounded-xl text-[10px] font-black uppercase tracking-widest bg-primary/10 text-primary border border-primary/20 hover:bg-primary hover:text-white transition-all active:scale-95 shadow-sm">
+                                    Edit
+                                </a>
+                                <button (click)="togglePlanStatus(p)"
+                                    class="h-9 px-4 rounded-xl text-[10px] font-black uppercase tracking-widest border border-theme-border/20 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all active:scale-95">
+                                    {{ p.isActive ? 'Deactivate' : 'Activate' }}
+                                </button>
+                                <button (click)="deletePlan(p)"
+                                    class="h-9 px-4 rounded-xl text-[10px] font-black uppercase tracking-widest border border-red-100 bg-red-50 text-red-600 hover:bg-red-600 hover:text-white transition-all active:scale-95">
+                                    Delete
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div *ngIf="plans.length === 0" class="py-24 text-center">
+            <div
+                class="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-50 dark:bg-slate-800 text-3xl mb-4 group-hover:animate-bounce transition-all">
+                📂</div>
+            <p class="text-lg font-black text-text-primary dark:text-white">No plans found</p>
+            <p class="text-sm font-medium text-text-secondary opacity-60 mt-1">Start by creating a new insurance plan
+            </p>
+        </div>
+    </div>
+</div>

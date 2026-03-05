@@ -1,0 +1,91 @@
+<div class="flex items-center gap-3 mb-8">
+    <button routerLink=".."
+        class="p-2 text-text-secondary hover:text-text-secondary dark:hover:text-slate-200 transition-colors rounded-lg hover:bg-theme-bg dark:hover:bg-slate-800">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18">
+            </path>
+        </svg>
+    </button>
+    <h1 class="text-3xl font-extrabold text-text-primary dark:text-white tracking-tight">Payment Schedule</h1>
+</div>
+
+<app-loading-spinner *ngIf="loading"></app-loading-spinner>
+<div *ngIf="!loading">
+    <!-- Schedule Summary -->
+    <div *ngIf="schedule"
+        class="bg-theme-card dark:bg-theme-sidebar rounded-2xl shadow-sm border border-theme-border dark:border-theme-border p-6 mb-6 grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+        <div>
+            <span class="block text-text-secondary dark:text-text-secondary font-medium">Policy</span>
+            <span class="font-bold text-text-primary dark:text-white">{{ schedule.policyNumber }}</span>
+        </div>
+        <div>
+            <span class="block text-text-secondary dark:text-text-secondary font-medium">Frequency</span>
+            <span class="font-bold text-text-primary dark:text-white">{{ schedule.frequency }}</span>
+        </div>
+        <div>
+            <span class="block text-text-secondary dark:text-text-secondary font-medium">Installment</span>
+            <span class="font-bold text-text-primary dark:text-white">₹{{ schedule.installmentAmount | number }}</span>
+        </div>
+        <div>
+            <span class="block text-text-secondary dark:text-text-secondary font-medium">Total Payable</span>
+            <span class="font-bold text-text-primary dark:text-white">₹{{ schedule.totalPayable | number }}</span>
+        </div>
+    </div>
+
+    <!-- Invoice Table -->
+    <div
+        class="bg-theme-card dark:bg-theme-sidebar rounded-2xl shadow-sm border border-theme-border dark:border-theme-border overflow-hidden mb-6">
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse whitespace-nowrap">
+                <thead>
+                    <tr
+                        class="bg-theme-bg dark:bg-slate-800/50 text-text-secondary dark:text-text-secondary text-xs text-center uppercase tracking-wider">
+                        <th class="px-6 py-4 font-semibold border-b border-theme-border dark:border-theme-border">Due
+                            Date
+                        </th>
+                        <th class="px-6 py-4 font-semibold border-b border-theme-border dark:border-theme-border">Amount
+                            (₹)
+                        </th>
+                        <th class="px-6 py-4 font-semibold border-b border-theme-border dark:border-theme-border">Status
+                        </th>
+                        <th class="px-6 py-4 border-b border-theme-border dark:border-theme-border">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-theme-border dark:divide-slate-800 text-center">
+                    <tr *ngFor="let s of invoices; trackBy: trackByInvoiceId"
+                        class="hover:bg-theme-bg/50 dark:hover:bg-slate-800/20 transition-colors">
+                        <td class="px-6 py-4 text-sm font-semibold text-text-primary dark:text-white">{{ s.dueDate |
+                            date:'mediumDate' }}</td>
+                        <td class="px-6 py-4 text-sm font-bold text-text-primary dark:text-white">{{ s.amountDue |
+                            currency:'INR':'symbol' }}</td>
+                        <td class="px-6 py-4">
+                            <app-status-badge [status]="s.status" />
+                        </td>
+                        <td class="px-6 py-4 text-center">
+                            <a *ngIf="s.status === 'Pending' || s.status === 'Overdue' || s.status === 'Pending'"
+                                [routerLink]="['/app/make-payment', s.invoiceId]"
+                                class="inline-flex items-center px-4 py-2 bg-primary hover:bg-primary-hover text-white font-bold rounded-lg text-xs transition-colors shadow-sm focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Pay
+                                Now</a>
+                            <span *ngIf="s.status === 'Paid'" class="text-xs text-text-secondary font-medium">Paid on {{
+                                s.paidOn | date:'shortDate' }}</span>
+                        </td>
+                    </tr>
+                    <tr *ngIf="invoices.length === 0">
+                        <td colspan="4" class="px-6 py-12 text-center">
+                            <div class="flex flex-col items-center gap-4">
+                                <p class="text-text-secondary font-medium">No payment schedule found for this policy.
+                                </p>
+                                <button (click)="generateSchedule()" [disabled]="generating"
+                                    class="px-6 py-2.5 bg-primary hover:bg-primary-hover text-white font-bold rounded-xl transition-all shadow-md flex items-center gap-2">
+                                    <span *ngIf="generating"
+                                        class="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+                                    {{ generating ? 'Generating...' : 'Generate Invoice Schedule' }}
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

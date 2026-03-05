@@ -1,0 +1,332 @@
+<div class="max-w-6xl mx-auto pt-8 transition-all duration-500 animate-in fade-in slide-in-from-bottom-8">
+    @if (loading) {
+    <div class="premium-card p-24 flex flex-col items-center justify-center gap-6">
+        <div class="w-16 h-16 border-4 border-primary/10 border-t-primary rounded-full animate-spin"></div>
+        <p class="text-[10px] font-black uppercase tracking-[0.3em] text-text-secondary animate-pulse">Loading Policy...
+        </p>
+    </div>
+    }
+    @else if (policy) {
+    <div class="flex flex-col gap-10">
+        <!-- Header -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-2">
+            <div>
+                <div class="flex items-center gap-3 mb-2 opacity-60">
+                    <span class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary">Policy
+                        Details</span>
+                    <div class="h-px w-8 bg-text-secondary opacity-30"></div>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black text-text-primary dark:text-white tracking-tightest">
+                    Policy <span class="text-gradient">{{ policy.policyNumber || 'Pending' }}</span>
+                </h1>
+            </div>
+            <div class="flex gap-4 items-center">
+                @if (role === 'Customer' && policy.status !== 'Draft' && policy.status !== 'Submitted' && policy.status
+                !== 'UnderReview' &&
+                policy.status !== 'Rejected') {
+                <div [title]="!canPay ? 'Action required: Please add nominees and missing documents.' : ''">
+                    <a [routerLink]="canPay ? '/app/invoices/' + policy.policyId : null"
+                        class="btn-premium px-6 !py-3 !rounded-2xl flex items-center gap-3 text-xs"
+                        [class.opacity-50]="!canPay" [class.cursor-not-allowed]="!canPay"
+                        [class.pointer-events-none]="!canPay">
+                        <span>💳</span> Pay Premium
+                    </a>
+                </div>
+                }
+                <app-status-badge [status]="policy.status" class="scale-110" />
+            </div>
+        </div>
+
+        <!-- Main Info Card -->
+        <div class="premium-card p-0 overflow-hidden group">
+            <div
+                class="grid grid-cols-1 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x border-theme-border/10 dark:border-slate-800">
+                <div class="p-8 md:p-10 flex flex-col gap-3 group/stat transition-colors hover:bg-primary/[0.02]">
+                    <span class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50">Plan
+                        Name</span>
+                    <span class="text-xl font-black text-text-primary dark:text-white tracking-tight">{{ policy.planName
+                        }}</span>
+                </div>
+                <div class="p-8 md:p-10 flex flex-col gap-3 group/stat transition-colors hover:bg-primary/[0.02]">
+                    <span class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50">Total
+                        Cover Amount</span>
+                    <span class="text-2xl font-black text-primary tracking-tight">₹{{ policy.sumAssured | number
+                        }}</span>
+                </div>
+                <div class="p-8 md:p-10 flex flex-col gap-3 group/stat transition-colors hover:bg-primary/[0.02]">
+                    <span class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50">Years
+                        Covered</span>
+                    <span class="text-xl font-black text-text-primary dark:text-white tracking-tight">{{
+                        policy.tenureYears }} <span class="text-sm opacity-40">Years</span></span>
+                </div>
+                <div
+                    class="p-8 md:p-10 flex flex-col gap-3 group/stat transition-colors hover:bg-primary/[0.02] bg-primary/[0.03]">
+                    <span class="text-[10px] font-black uppercase tracking-[0.2em] text-primary">Premium Amount</span>
+                    <span class="text-2xl font-black text-emerald-500 tracking-tight">{{ policy.premiumAmount ? '₹' +
+                        (policy.premiumAmount | number) : 'Pending Calc' }}</span>
+                </div>
+            </div>
+
+            <div
+                class="p-8 md:p-10 grid grid-cols-1 md:grid-cols-2 gap-8 bg-theme-bg/50 dark:bg-slate-900/30 border-t border-theme-border/10 dark:border-slate-800">
+                <div class="flex items-center gap-6">
+                    <div
+                        class="h-12 w-12 rounded-2xl bg-white dark:bg-slate-800 flex items-center justify-center text-xl shadow-sm border border-theme-border/10">
+                        📅</div>
+                    <div class="flex flex-col gap-1">
+                        <span
+                            class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50">Coverage
+                            Period</span>
+                        <span class="text-sm font-bold text-text-primary dark:text-slate-300">
+                            {{ policy.activeFrom ? (policy.activeFrom | date:'longDate') : 'Pending Activation' }}
+                            <span class="mx-2 opacity-30">—</span>
+                            {{ policy.activeTo ? (policy.activeTo | date:'longDate') : 'Lifetime' }}
+                        </span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-6">
+                    <div
+                        class="h-12 w-12 rounded-2xl bg-white dark:bg-slate-800 flex items-center justify-center text-xl shadow-sm border border-theme-border/10">
+                        👥</div>
+                    <div class="flex flex-col gap-1">
+                        <span
+                            class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50">Customer
+                            & Agent</span>
+                        <span class="text-sm font-bold text-text-primary dark:text-slate-300">
+                            <span class="text-primary">{{ policy.customerName }}</span>
+                            <span class="mx-2 opacity-30">/</span>
+                            <span class="opacity-60">{{ policy.agentName || 'Not Assigned' }}</span>
+                        </span>
+                    </div>
+                </div>
+                @if(policy.selectedRiders) {
+                <div
+                    class="md:col-span-2 pt-6 border-t border-theme-border/5 dark:border-slate-800/50 flex flex-wrap gap-2">
+                    <span
+                        class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50 w-full mb-2">Additional
+                        Riders</span>
+                    @for (rider of policy.selectedRiders.split(','); track rider) {
+                    <span
+                        class="px-3 py-1.5 rounded-full bg-primary/5 dark:bg-primary/10 border border-primary/10 text-[10px] font-black uppercase tracking-wider text-primary">
+                        {{ rider.trim() }}
+                    </span>
+                    }
+                </div>
+                }
+            </div>
+        </div>
+
+        <!-- Agent Remarks -->
+        @if (policy.agentRemarks) {
+        <div
+            class="relative overflow-hidden p-6 rounded-3xl bg-amber-500/[0.03] border border-amber-500/20 flex items-start gap-6 animate-in slide-in-from-top-4 duration-700">
+            <div class="absolute top-0 right-0 p-2 text-amber-500 opacity-10 text-6xl rotate-12">⚠️</div>
+            <div class="h-12 w-12 rounded-2xl bg-amber-500/10 flex items-center justify-center text-xl shrink-0">💬
+            </div>
+            <div class="relative z-10">
+                <h3 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 mb-1">Agent Remarks</h3>
+                <p class="text-sm font-medium text-amber-900/80 dark:text-amber-200/80 leading-relaxed italic">"{{
+                    policy.agentRemarks }}"</p>
+            </div>
+        </div>
+        }
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <!-- Documents Section -->
+            <div class="flex flex-col gap-6">
+                <div class="flex justify-between items-end px-2">
+                    <div>
+                        <h2 class="text-2xl font-black text-text-primary dark:text-white tracking-tight">Compliance
+                            Documents</h2>
+                        <p class="text-[10px] font-bold text-text-secondary uppercase tracking-[0.2em] opacity-50 mt-1">
+                            Required for policy activation</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-8">
+                    <!-- Upload Slots (Only for Customer during Approval phase) -->
+                    @if (role === 'Customer' && (policy.status === 'Approved' || policy.status === 'UnderReview')) {
+                    <div class="grid grid-cols-1 gap-4">
+                        @for (type of ['Address Proof', 'Income Proof', 'Nominee ID Proof']; track type) {
+                        <div class="premium-card !p-6 flex items-center justify-between group/upload transition-all border-dashed"
+                            [class.border-emerald-500/30]="hasDoc(type)" [class.bg-emerald-500/5]="hasDoc(type)">
+                            <div class="flex items-center gap-5">
+                                <div class="h-12 w-12 rounded-2xl flex items-center justify-center text-xl transition-all"
+                                    [class.bg-emerald-500/10]="hasDoc(type)" [class.text-emerald-500]="hasDoc(type)"
+                                    [class.bg-primary/5]="!hasDoc(type)" [class.text-primary]="!hasDoc(type)">
+                                    {{ hasDoc(type) ? '✅' : '' }}
+                                </div>
+                                <div>
+                                    <h4
+                                        class="text-[10px] font-black uppercase tracking-widest text-text-primary dark:text-white">
+                                        {{ type }}
+                                    </h4>
+                                    <p
+                                        class="text-[9px] font-bold text-text-secondary opacity-40 uppercase tracking-widest mt-0.5">
+                                        {{ hasDoc(type) ? 'Document Uploaded' : 'Upload required' }}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="relative">
+                                <input type="file" (change)="onFileSelected($event, type)" accept=".pdf,.png,.jpg,.jpeg"
+                                    class="absolute inset-0 opacity-0 cursor-pointer z-10"
+                                    [disabled]="uploadingTypes[type]">
+                                <button
+                                    class="btn-premium !py-2 !px-4 text-[9px] uppercase tracking-widest flex items-center gap-2"
+                                    [class.opacity-50]="uploadingTypes[type]">
+                                    <span *ngIf="uploadingTypes[type]"
+                                        class="w-3 h-3 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+                                    {{ hasDoc(type) ? 'Replace' : 'Upload' }}
+                                </button>
+                            </div>
+                        </div>
+                        }
+                    </div>
+                    }
+
+                    <!-- Uploaded Documents List -->
+                    <div class="space-y-4">
+                        <div class="px-2 flex items-center gap-3">
+                            <span
+                                class="text-[9px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-40">Uploaded
+                                Files</span>
+                            <div class="h-px flex-1 bg-theme-border/5"></div>
+                        </div>
+
+                        @if (policy.documents && policy.documents.length > 0) {
+                        <div class="grid grid-cols-1 gap-3">
+                            @for (d of policy.documents; track d.documentId) {
+                            <div
+                                class="premium-card !p-4 flex items-center justify-between group/doc hover:border-primary/30 transition-all bg-white/40 dark:bg-slate-900/40">
+                                <div class="flex gap-4 items-center min-w-0">
+                                    <div
+                                        class="h-10 w-10 rounded-xl bg-primary/5 text-primary flex items-center justify-center text-lg">
+                                        📄
+                                    </div>
+                                    <div class="min-w-0">
+                                        <h4
+                                            class="text-[10px] font-black text-text-primary dark:text-white uppercase tracking-widest truncate">
+                                            {{ d.documentType }}</h4>
+                                        <p class="text-[8px] font-bold text-text-secondary opacity-40 mt-1 truncate">
+                                            {{ d.fileName }}</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <app-status-badge [status]="d.status" class="scale-75" />
+                                    <a *ngIf="d.filePath" [href]="'http://localhost:5012' + d.filePath" target="_blank"
+                                        class="h-8 w-8 flex items-center justify-center rounded-lg bg-primary/5 text-primary hover:bg-primary hover:text-white transition-all">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                            }
+                        </div>
+                        } @else {
+                        <div
+                            class="premium-card p-10 border-dashed flex flex-col items-center justify-center gap-3 text-center opacity-40">
+                            <div class="text-2xl">📂</div>
+                            <p class="text-[9px] font-black uppercase tracking-[0.2em]">No files uploaded</p>
+                        </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nominee Node -->
+            <div class="flex flex-col gap-6">
+                <div class="flex justify-between items-end px-2">
+                    <div>
+                        <h2 class="text-2xl font-black text-text-primary dark:text-white tracking-tight">Nominees</h2>
+                        <p class="text-[10px] font-bold text-text-secondary uppercase tracking-[0.2em] opacity-50 mt-1">
+                            Beneficiaries for this policy</p>
+                    </div>
+                    @if (role === 'Customer' && policy.status === 'Approved') {
+                    <button (click)="toggleNomineeForm()"
+                        class="h-10 px-4 rounded-xl bg-primary/10 text-primary text-[10px] font-black uppercase tracking-widest hover:bg-primary hover:text-white transition-all active:scale-95 shadow-sm">
+                        {{ policy.nominees && policy.nominees.length > 0 ? 'Edit Nominees' : '+ Add Nominee' }}
+                    </button>
+                    }
+                </div>
+
+                <div class="flex flex-col gap-4">
+                    @if (policy.nominees && policy.nominees.length > 0) {
+                    @for (n of policy.nominees; track n.nomineeId) {
+                    <div
+                        class="premium-card !p-6 flex justify-between items-center group/card hover:border-primary/30 transition-all">
+                        <div class="flex gap-5 items-center">
+                            <div
+                                class="h-12 w-12 rounded-2xl bg-primary/5 flex items-center justify-center text-xl group-hover/card:scale-110 group-hover/card:rotate-6 transition-all">
+                                👤</div>
+                            <div>
+                                <h4
+                                    class="text-sm font-black text-text-primary dark:text-white uppercase tracking-wider">
+                                    {{ n.fullName }}</h4>
+                                <div class="flex items-center gap-3 mt-1">
+                                    <span class="text-[10px] font-bold text-primary uppercase tracking-widest">{{
+                                        n.relationship }}</span>
+                                    <span class="h-1 w-1 rounded-full bg-slate-300"></span>
+                                    <span
+                                        class="text-[10px] font-bold text-text-secondary uppercase tracking-widest opacity-60">Age
+                                        {{ n.age }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-end">
+                            <span class="text-xs font-black text-primary">{{ n.allocationPercentage }}%</span>
+                            <span
+                                class="text-[10px] font-bold text-text-secondary uppercase tracking-widest opacity-40 mt-1">{{
+                                n.contactNumber || 'No Phone' }}</span>
+                        </div>
+                    </div>
+                    }
+                    } @else {
+                    <div
+                        class="premium-card p-12 border-dashed flex flex-col items-center justify-center gap-4 text-center">
+                        <div class="text-3xl opacity-20">📭</div>
+                        <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-40">No
+                            Nominees added yet</p>
+                    </div>
+                    }
+
+                    @if (showNomineeForm) {
+                    <div
+                        class="premium-card !p-8 animate-in slide-in-from-bottom-4 duration-500 border-primary/20 bg-primary/[0.01]">
+                        <form (ngSubmit)="addNominee()" class="flex flex-col gap-6">
+                            <h3 class="text-[10px] font-black text-primary uppercase tracking-[0.3em]">Add Nominee
+                                Details</h3>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="col-span-2">
+                                    <input type="text" [(ngModel)]="newNominee.fullName" name="nomName"
+                                        placeholder="Full Name" required class="input-premium">
+                                </div>
+                                <input type="text" [(ngModel)]="newNominee.relationship" name="nomRel"
+                                    placeholder="Relationship (e.g. Son, Wife)" required class="input-premium">
+                                <input type="number" [(ngModel)]="newNominee.age" name="nomAge" placeholder="Age"
+                                    required class="input-premium">
+                                <div class="col-span-2">
+                                    <input type="text" [(ngModel)]="newNominee.contactNumber" name="nomPhone"
+                                        placeholder="Phone Number" class="input-premium">
+                                </div>
+                            </div>
+                            <div class="flex gap-4 justify-end">
+                                <button type="button" (click)="showNomineeForm = false"
+                                    class="text-[10px] font-black uppercase tracking-widest text-text-secondary px-6 hover:text-primary transition-colors">Cancel</button>
+                                <button type="submit" [disabled]="submittingNominee"
+                                    class="btn-premium px-8 !py-3 text-[10px] uppercase tracking-widest">Save
+                                    Nominee</button>
+                            </div>
+                        </form>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+</div>

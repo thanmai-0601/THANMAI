@@ -1,0 +1,66 @@
+<div class="max-w-md mx-auto relative pt-4">
+    <button routerLink=".."
+        class="absolute -left-16 top-4 p-2 text-text-secondary hover:text-text-secondary dark:hover:text-slate-200 transition-colors rounded-lg hover:bg-theme-bg dark:hover:bg-slate-800 hidden md:block">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18">
+            </path>
+        </svg>
+    </button>
+
+    <div class="mb-8">
+        <h1 class="text-3xl font-extrabold text-text-primary dark:text-white tracking-tight">Make a Payment</h1>
+        <p class="text-text-secondary dark:text-text-secondary mt-2">Securely process premium payments.</p>
+    </div>
+
+    <app-loading-spinner *ngIf="fetchingInvoice"></app-loading-spinner>
+
+    <div *ngIf="!fetchingInvoice"
+        class="bg-theme-card dark:bg-theme-sidebar rounded-3xl p-8 shadow-sm border border-theme-border dark:border-theme-border">
+        <form (ngSubmit)="processPayment()" class="flex flex-col gap-6">
+
+            <!-- Invoice Details -->
+            <div *ngIf="invoice"
+                class="p-6 rounded-xl bg-theme-bg dark:bg-slate-800 border border-theme-border dark:border-slate-700 space-y-3 mb-2">
+                <div class="flex justify-between items-center">
+                    <span class="text-text-secondary dark:text-text-secondary font-medium">Invoice #</span>
+                    <span class="font-bold text-text-primary dark:text-white">{{ invoice.invoiceNumber }}</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-text-secondary dark:text-text-secondary font-medium">Due Date</span>
+                    <span class="font-medium text-text-primary dark:text-white">{{ invoice.dueDate | date:'mediumDate'
+                        }}</span>
+                </div>
+                <div class="flex justify-between items-center pt-2 border-t border-theme-border dark:border-slate-700">
+                    <span class="text-text-secondary dark:text-text-secondary font-semibold">Amount Due</span>
+                    <span class="text-2xl font-black text-text-primary dark:text-white">₹{{ invoice.amountDue | number
+                        }}</span>
+                </div>
+            </div>
+
+            <div *ngIf="!invoice"
+                class="p-6 rounded-xl bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-900/30 text-amber-800 dark:text-amber-300 text-sm">
+                Unable to load invoice details.
+            </div>
+
+            <div class="flex flex-col gap-2 relative">
+                <label class="text-sm font-semibold text-text-primary dark:text-slate-300 ml-1">Payment Method</label>
+                <select [(ngModel)]="paymentMethod" name="paymentMethod" required
+                    class="w-full px-4 py-3.5 rounded-xl bg-theme-bg dark:bg-slate-800 border border-theme-border dark:border-slate-700 text-text-primary dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all">
+                    <option value="Card">💳 Credit / Debit Card</option>
+                    <option value="UPI">📱 UPI / Mobile Wallet</option>
+                    <option value="NetBanking">🏦 Net Banking</option>
+                </select>
+            </div>
+
+            <button type="submit" [disabled]="loading || !invoice"
+                class="mt-4 w-full flex justify-center items-center gap-2 py-4 rounded-xl font-bold text-white bg-primary hover:bg-primary-hover disabled:opacity-60 transition-all shadow-lg shadow-primary/20 hover:-translate-y-0.5">
+                <span *ngIf="loading"
+                    class="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+                {{ loading ? 'Processing...' : 'Pay ₹' + (invoice?.amountDue || 0) }}
+            </button>
+
+            <p class="text-xs text-center text-text-secondary mt-2 flex items-center justify-center gap-1"><span>🔒</span>
+                Secure 256-bit encrypted checkout</p>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,222 @@
+<div
+  class="min-h-screen bg-theme-bg dark:bg-theme-sidebar text-text-primary dark:text-slate-100 font-sans selection:bg-blue-200 dark:selection:bg-blue-900 transition-colors duration-300">
+
+  <!-- Navbar -->
+  <nav
+    class="fixed top-0 inset-x-0 z-50 bg-theme-card/80 dark:bg-theme-sidebar/80 backdrop-blur-lg border-b border-theme-border dark:border-theme-border/80">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a routerLink="/"
+        class="flex items-center gap-2 text-2xl font-extrabold text-primary dark:text-primary tracking-tight">
+        <span class="text-3xl">🏦</span> NexaLife
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#about"
+          class="text-sm font-semibold text-text-secondary dark:text-slate-300 hover:text-primary dark:hover:text-accent transition-colors">About</a>
+        <a href="#features"
+          class="text-sm font-semibold text-text-secondary dark:text-slate-300 hover:text-primary dark:hover:text-accent transition-colors">Why
+          Us</a>
+        <a href="#stats"
+          class="text-sm font-semibold text-text-secondary dark:text-slate-300 hover:text-primary dark:hover:text-accent transition-colors">Statistics</a>
+        <a href="#contact"
+          class="text-sm font-semibold text-text-secondary dark:text-slate-300 hover:text-primary dark:hover:text-accent transition-colors">Contact</a>
+        <div class="w-px h-6 bg-slate-200 dark:bg-slate-700 mx-1"></div>
+        <app-theme-toggle />
+        <a routerLink="/login"
+          class="px-5 py-2.5 rounded-xl text-sm font-bold text-primary dark:text-accent border-2 border-primary/20 dark:border-primary/30 hover:bg-primary/5 dark:hover:bg-blue-900/20 transition-all">Login</a>
+        <a routerLink="/register"
+          class="px-6 py-2.5 rounded-xl text-sm font-bold text-white bg-primary hover:bg-primary-hover shadow-md shadow-primary/20 transition-all hover:-translate-y-0.5">Register</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section
+    class="pt-40 pb-20 px-6 text-center lg:pt-48 lg:pb-32 bg-gradient-to-br from-blue-50/50 to-slate-50 dark:from-slate-900 dark:to-slate-950 relative overflow-hidden">
+    <!-- Background glows -->
+    <div
+      class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[400px] bg-primary/10 dark:bg-primary/10 blur-[100px] rounded-full point-events-none">
+    </div>
+
+    <div class="max-w-4xl mx-auto relative z-10">
+      <div
+        class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-sm font-semibold mb-8 ring-1 ring-green-500/20">
+        <span class="text-lg">🏆</span> Trusted by 50,000+ Customers
+      </div>
+      <h1
+        class="text-5xl lg:text-7xl font-extrabold tracking-tight text-text-primary dark:text-white mb-8 leading-[1.1]">
+        Secure Your Family's Future with <span
+          class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">NexaLife
+          Insurance</span>
+      </h1>
+      <p class="text-xl text-text-secondary dark:text-text-secondary mb-12 max-w-2xl mx-auto leading-relaxed">
+        Complete life insurance plans with clear pricing, fast claim handling, and personal expert help — all in one
+        easy online app.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a routerLink="/register"
+          class="w-full sm:w-auto px-8 py-4 rounded-2xl text-base font-bold text-white bg-primary hover:bg-primary-hover shadow-xl shadow-primary/25 transition-all hover:scale-105 flex items-center justify-center gap-2">
+          Get Started Now <span aria-hidden="true">&rarr;</span>
+        </a>
+        <a routerLink="/login"
+          class="w-full sm:w-auto px-8 py-4 rounded-2xl text-base font-bold text-text-primary dark:text-slate-200 bg-theme-card dark:bg-slate-800 border border-theme-border dark:border-slate-700 hover:ring-2 hover:ring-slate-200 dark:hover:ring-slate-700 shadow-sm transition-all flex items-center justify-center">
+          Login to Dashboard
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-24 px-6 max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-text-primary dark:text-white mb-4">About Our Company</h2>
+      <p class="text-lg text-text-secondary dark:text-text-secondary max-w-2xl mx-auto leading-relaxed">
+        NexaLife is a modern Life Insurance Platform made to make insurance easy for everyone. We bring clearness,
+        speed, and trust to every plan.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <div
+        class="bg-theme-card dark:bg-theme-sidebar p-8 rounded-3xl shadow-sm border border-theme-border dark:border-theme-border hover:shadow-xl transition-shadow duration-300 text-center group">
+        <div
+          class="w-16 h-16 bg-primary/5 dark:bg-blue-900/20 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-6 group-hover:scale-110 transition-transform">
+          🎯</div>
+        <h3 class="text-xl font-bold text-text-primary dark:text-white mb-4">Our Mission</h3>
+        <p class="text-text-secondary dark:text-text-secondary leading-relaxed">To make life insurance easy to get,
+          clear, and simply stress-free for every family across the nation.</p>
+      </div>
+      <div
+        class="bg-theme-card dark:bg-theme-sidebar p-8 rounded-3xl shadow-sm border border-theme-border dark:border-theme-border hover:shadow-xl transition-shadow duration-300 text-center group">
+        <div
+          class="w-16 h-16 bg-indigo-50 dark:bg-indigo-900/20 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-6 group-hover:scale-110 transition-transform">
+          👁️</div>
+        <h3 class="text-xl font-bold text-text-primary dark:text-white mb-4">Our Vision</h3>
+        <p class="text-text-secondary dark:text-text-secondary leading-relaxed">To be the most trusted, reliable, and
+          advanced online insurance app globally.</p>
+      </div>
+      <div
+        class="bg-theme-card dark:bg-theme-sidebar p-8 rounded-3xl shadow-sm border border-theme-border dark:border-theme-border hover:shadow-xl transition-shadow duration-300 text-center group">
+        <div
+          class="w-16 h-16 bg-sky-50 dark:bg-sky-900/20 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-6 group-hover:scale-110 transition-transform">
+          💎</div>
+        <h3 class="text-xl font-bold text-text-primary dark:text-white mb-4">Our Values</h3>
+        <p class="text-text-secondary dark:text-text-secondary leading-relaxed">Total honesty, complete
+          clearness, putting you first, and always improving our app.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Statistics Section -->
+  <section id="stats"
+    class="py-20 border-y border-theme-border dark:border-theme-border/60 bg-theme-card dark:bg-theme-sidebar/50">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-center text-3xl font-extrabold text-text-primary dark:text-white mb-16">Life Insurance by the
+        Numbers</h2>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+        @for (stat of stats; track stat.label) {
+        <div class="text-center flex flex-col items-center">
+          <span
+            class="text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-br from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 mb-3 drop-shadow-sm">
+            {{ stat.value | number }}{{ stat.suffix }}
+          </span>
+          <span
+            class="text-sm lg:text-base font-semibold text-text-secondary dark:text-text-secondary uppercase tracking-widest">{{
+            stat.label }}</span>
+        </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section id="features" class="py-24 px-6 max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-text-primary dark:text-white mb-4">Why Choose NexaLife?</h2>
+      <p class="text-lg text-text-secondary dark:text-text-secondary max-w-2xl mx-auto">Everything you need to handle
+        your life insurance safely, in one nice place.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+      @for (feature of features; track feature.title) {
+      <div
+        class="p-8 rounded-3xl bg-theme-card dark:bg-theme-sidebar border border-theme-border dark:border-theme-border hover:border-blue-200 dark:hover:border-blue-800/50 transition-colors group">
+        <div
+          class="w-14 h-14 bg-theme-bg dark:bg-slate-800 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:bg-primary/5 dark:group-hover:bg-blue-900/20 transition-colors">
+          {{ feature.icon }}
+        </div>
+        <h3 class="text-lg font-bold text-text-primary dark:text-white mb-3">{{ feature.title }}</h3>
+        <p class="text-text-secondary dark:text-text-secondary leading-relaxed">{{ feature.desc }}</p>
+      </div>
+      }
+    </div>
+  </section>
+
+  <!-- Call To Action -->
+  <section class="py-24 px-6">
+    <div
+      class="max-w-5xl mx-auto p-12 lg:p-20 text-center rounded-[3rem] bg-gradient-to-br from-blue-600 to-indigo-700 relative overflow-hidden shadow-2xl shadow-blue-900/20">
+      <!-- Decorative circles -->
+      <div class="absolute -top-24 -right-24 w-64 h-64 bg-theme-card/10 rounded-full blur-3xl"></div>
+      <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-indigo-900/40 rounded-full blur-3xl"></div>
+
+      <div class="relative z-10">
+        <h2 class="text-4xl lg:text-5xl font-extrabold text-white mb-6">Ready to Protect Your Future?</h2>
+        <p class="text-xl text-blue-100 mb-10 max-w-2xl mx-auto">Join thousands of families who trust NexaLife for their
+          life insurance needs. It takes less than 3 minutes to register.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a routerLink="/register"
+            class="px-8 py-4 rounded-2xl text-base font-bold text-blue-700 bg-theme-card hover:bg-theme-bg transition-colors shadow-lg shadow-black/10">
+            Create Free Account
+          </a>
+          <a routerLink="/login"
+            class="px-8 py-4 rounded-2xl text-base font-bold text-white border-2 border-white/20 hover:bg-theme-card/10 transition-colors backdrop-blur-sm">
+            Already have an account?
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact" class="bg-theme-sidebar text-text-secondary pt-20 pb-10 border-t border-slate-900">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
+        <div class="lg:col-span-2">
+          <h3 class="flex items-center gap-2 text-2xl font-extrabold text-white mb-6 tracking-tight">
+            <span class="text-3xl">🏦</span> NexaLife
+          </h3>
+          <p class="leading-relaxed max-w-md">Life Insurance Platform — Your trusted online insurance partner,
+            providing complete clearness for peace of mind.</p>
+        </div>
+
+        <div>
+          <h4 class="text-white font-bold mb-6 uppercase tracking-wider text-sm">Quick Links</h4>
+          <ul class="space-y-4">
+            <li><a routerLink="/" class="hover:text-accent transition-colors">Home</a></li>
+            <li><a routerLink="/login" class="hover:text-accent transition-colors">Login</a></li>
+            <li><a routerLink="/register" class="hover:text-accent transition-colors">Register</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-bold mb-6 uppercase tracking-wider text-sm">Contact Us</h4>
+          <ul class="space-y-4 text-sm">
+            <li class="flex items-center gap-3"><span class="text-xl">📧</span> support&#64;NexaLife-insurance.com</li>
+            <li class="flex items-center gap-3"><span class="text-xl">📞</span> +91 98765 43210</li>
+            <li class="flex items-start gap-3"><span class="text-xl">📍</span> <span>Hyderabad,
+                Telangana<br>India</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div
+        class="pt-8 border-t border-theme-border/50 flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
+        <p>&copy; 2026 NexaLife Insurance. All rights reserved.</p>
+        <div class="flex items-center gap-6">
+          <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>

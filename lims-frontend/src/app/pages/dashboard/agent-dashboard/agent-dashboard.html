@@ -1,0 +1,78 @@
+@if (loading) {
+<app-loading-spinner />
+} @else if (data) {
+<div class="animate-in fade-in slide-in-from-bottom-6 duration-1000">
+    <!-- Header Section -->
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-10">
+        <div>
+            <h1 class="text-3xl font-black text-text-primary dark:text-white tracking-tighter uppercase">Agency <span
+                    class="text-gradient">Dashboard</span></h1>
+            <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50 mt-1 italic">
+                Track your earnings and activities</p>
+        </div>
+        <a routerLink="/app/agent-policies"
+            class="btn-premium px-8 h-12 flex items-center justify-center text-[10px] font-black uppercase tracking-widest shadow-xl shadow-primary/20">
+            Assigned Policies <span class="ml-2 text-lg">→</span>
+        </a>
+    </div>
+
+    <!-- Analytics Matrix -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+        <app-stat-card label="Assigned Policies" [value]="data.totalAssignedPolicies" icon="🤝" color="#3B82F6" />
+        <app-stat-card label="Pending Review" [value]="data.submittedPolicies + data.underReviewPolicies" icon="⏱️"
+            color="#F59E0B" />
+        <app-stat-card label="Change Requests" [value]="data.pendingEndorsements.length || 0" icon="📝"
+            color="#8B5CF6" />
+        <app-stat-card label="Total Earnings (INR)" [value]="data.totalCommissionEarned | number" icon="💰"
+            color="#10B981" prefix="₹" />
+    </div>
+
+    <!-- Commission Intelligence -->
+    <div class="premium-card p-0 overflow-hidden border-white/5">
+        <div class="px-8 py-6 bg-emerald-500/[0.03] border-b border-theme-border/10 flex justify-between items-center">
+            <h2 class="text-[11px] font-black text-emerald-500 uppercase tracking-[0.3em]">Earnings History</h2>
+            <span
+                class="text-[9px] font-black text-emerald-500 uppercase px-3 py-1 bg-emerald-500/10 rounded">Commission
+                Paid</span>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="w-full">
+                <thead>
+                    <tr
+                        class="bg-theme-bg dark:bg-slate-800/40 text-[9px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60">
+                        <th class="px-8 py-4 text-left">Policy Number</th>
+                        <th class="px-8 py-4 text-left">Date</th>
+                        <th class="px-8 py-4 text-right">Amount Earned</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-theme-border/5">
+                    @for (p of data.recentCommissions; track p.policyNumber) {
+                    <tr class="group hover:bg-emerald-500/[0.02] transition-colors">
+                        <td class="px-8 py-6">
+                            <span class="text-xs font-black text-text-primary dark:text-white tracking-widest">{{
+                                p.policyNumber }}</span>
+                        </td>
+                        <td class="px-8 py-6">
+                            <span
+                                class="text-[10px] font-bold text-text-secondary opacity-60 uppercase tracking-widest">{{
+                                p.commissionDate | date:'mediumDate' }}</span>
+                        </td>
+                        <td class="px-8 py-6 text-right">
+                            <span class="text-sm font-black text-emerald-600">₹{{ p.commissionAmount | number }}</span>
+                        </td>
+                    </tr>
+                    } @empty {
+                    <tr>
+                        <td colspan="3" class="px-8 py-16 text-center">
+                            <p
+                                class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-30 italic">
+                                No earnings found recently</p>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+}

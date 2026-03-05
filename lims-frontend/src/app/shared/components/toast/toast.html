@@ -1,0 +1,18 @@
+<div class="fixed top-5 right-5 z-[9999] flex flex-col gap-2">
+  @for (toast of (toastService.toasts$ | async); track toast.id) {
+    <div 
+      class="flex items-center gap-2.5 px-5 py-3 rounded-xl text-white text-sm font-medium cursor-pointer shadow-lg min-w-[300px] transition-all duration-300 translate-x-0"
+      [ngClass]="getToastBgClass(toast.type)"
+      (click)="toastService.remove(toast.id)">
+      <div class="text-base font-bold flex-shrink-0">
+        @switch (toast.type) {
+          @case ('success') { ✓ }
+          @case ('error') { ✕ }
+          @case ('warning') { ⚠ }
+          @case ('info') { ℹ }
+        }
+      </div>
+      <span>{{ toast.message }}</span>
+    </div>
+  }
+</div>

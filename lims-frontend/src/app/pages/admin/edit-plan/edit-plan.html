@@ -1,0 +1,213 @@
+<div class="max-w-5xl mx-auto pt-8 transition-all duration-500 animate-in fade-in slide-in-from-bottom-8">
+    <div class="flex items-center gap-6 mb-12">
+        <button routerLink=".."
+            class="h-12 w-12 flex items-center justify-center text-text-secondary hover:text-primary transition-all rounded-2xl bg-white dark:bg-slate-900 border border-theme-border/20 dark:border-slate-800 shadow-sm hover:shadow-md active:scale-90">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18">
+                </path>
+            </svg>
+        </button>
+        <div>
+            <h1 class="text-4xl font-black text-text-primary dark:text-white tracking-tightest">Edit <span
+                    class="text-gradient">Plan</span></h1>
+            <p class="text-sm font-medium text-text-secondary mt-1 opacity-70">Update plan details and premium
+                calculations</p>
+        </div>
+    </div>
+
+    <app-loading-spinner *ngIf="loadingData"></app-loading-spinner>
+
+    <div *ngIf="!loadingData" class="premium-card p-10 md:p-14 relative overflow-hidden group">
+        <div
+            class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-32 -mt-32 blur-3xl group-hover:bg-primary/10 transition-all duration-700">
+        </div>
+
+        <div
+            class="flex items-center gap-6 mb-12 pb-10 border-b border-theme-border/10 dark:border-slate-800 relative z-10">
+            <div
+                class="h-20 w-20 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center text-3xl font-black text-primary group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                🛡️
+            </div>
+            <div>
+                <h2 class="text-2xl font-black text-text-primary dark:text-white tracking-tight">{{
+                    planForm.get('planName')?.value }}</h2>
+                <p class="text-sm font-bold text-text-secondary opacity-60 uppercase tracking-widest">Active Plan
+                    Configuration</p>
+            </div>
+        </div>
+
+        <form [formGroup]="planForm" (ngSubmit)="submit()"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10 relative z-10">
+
+            <!-- Plan Name -->
+            <div class="flex flex-col gap-2.5 md:col-span-2">
+                <label
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Plan
+                    Name</label>
+                <div class="relative group/input">
+                    <span
+                        class="absolute left-4 top-1/2 -translate-y-1/2 text-lg grayscale opacity-40 group-focus-within/input:opacity-100 group-focus-within/input:grayscale-0 transition-all">📋</span>
+                    <input type="text" formControlName="planName" placeholder="e.g. Paramount Shield Plus"
+                        class="input-premium pl-12">
+                </div>
+                <span *ngIf="planForm.get('planName')?.touched && planForm.get('planName')?.invalid"
+                    class="text-[10px] font-black uppercase text-red-500 mt-1 ml-1 tracking-wider">Plan name
+                    required</span>
+            </div>
+
+            <!-- Base Rate -->
+            <div class="flex flex-col gap-2.5">
+                <label
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Base
+                    Rate</label>
+                <div class="relative group/input">
+                    <span
+                        class="absolute left-4 top-1/2 -translate-y-1/2 font-black text-text-secondary opacity-40 group-focus-within/input:opacity-100 group-focus-within/input:text-primary transition-all">₹</span>
+                    <input type="number" formControlName="baseRatePer1000" step="0.01" placeholder="0.00"
+                        class="input-premium pl-10">
+                </div>
+                <span *ngIf="planForm.get('baseRatePer1000')?.touched && planForm.get('baseRatePer1000')?.invalid"
+                    class="text-[10px] font-black uppercase text-red-500 mt-1 ml-1 tracking-wider">Rate must be
+                    defined</span>
+            </div>
+
+            <!-- Description -->
+            <div class="flex flex-col gap-2.5 md:col-span-3">
+                <label
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Plan
+                    Description</label>
+                <textarea formControlName="description" rows="3" placeholder="Describe this plan's benefits..."
+                    class="input-premium !py-4 resize-none min-h-[120px]"></textarea>
+                <span *ngIf="planForm.get('description')?.touched && planForm.get('description')?.invalid"
+                    class="text-[10px] font-black uppercase text-red-500 mt-1 ml-1 tracking-wider">Description
+                    required</span>
+            </div>
+
+            <!-- Available Riders -->
+            <div class="flex flex-col gap-2.5 md:col-span-3">
+                <label
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Available
+                    Riders</label>
+                <div class="relative group/input">
+                    <span
+                        class="absolute left-4 top-1/2 -translate-y-1/2 text-lg grayscale opacity-40 group-focus-within/input:opacity-100 group-focus-within/input:grayscale-0 transition-all">➕</span>
+                    <input type="text" formControlName="availableRiders"
+                        placeholder="e.g. Critical Node, Accidental Vector" class="input-premium pl-12">
+                </div>
+                <p
+                    class="text-[10px] font-bold text-text-secondary opacity-40 uppercase tracking-widest mt-1 ml-1 leading-relaxed">
+                    Separate modules with commas</p>
+            </div>
+
+            <!-- Sum Assured Range -->
+            <div class="flex flex-col gap-2.5">
+                <label
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Minimum
+                    Sum Assured</label>
+                <input type="number" formControlName="minSumAssured" placeholder="0" class="input-premium">
+            </div>
+            <div class="flex flex-col gap-2.5">
+                <label
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Maximum
+                    Sum Assured</label>
+                <input type="number" formControlName="maxSumAssured" placeholder="Max" class="input-premium">
+            </div>
+            <div class="flex flex-col gap-2.5">
+                <label
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Minimum
+                    Annual Income</label>
+                <input type="number" formControlName="minAnnualIncome" placeholder="Min Income" class="input-premium">
+            </div>
+
+            <!-- Age Cluster -->
+            <div class="flex flex-col gap-2.5">
+                <label
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Entry
+                    Age Bracket</label>
+                <div class="flex gap-3">
+                    <input type="number" formControlName="minEntryAge" placeholder="Min"
+                        class="input-premium !px-3 text-center">
+                    <div class="flex items-center text-slate-300">/</div>
+                    <input type="number" formControlName="maxEntryAge" placeholder="Max"
+                        class="input-premium !px-3 text-center">
+                </div>
+            </div>
+
+            <!-- Tenure -->
+            <div class="flex flex-col gap-2.5 md:col-span-2">
+                <label
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Available
+                    Terms (Years)</label>
+                <input type="text" formControlName="tenureInput" placeholder="e.g. 5, 10, 20, 30" class="input-premium">
+                <p
+                    class="text-[10px] font-bold text-text-secondary opacity-40 uppercase tracking-widest mt-1 ml-1 leading-relaxed">
+                    Discrete years, comma-separated</p>
+            </div>
+
+            <!-- Risk Profile -->
+            <div class="flex flex-col gap-2.5">
+                <label class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Low
+                    Risk Factor</label>
+                <input type="number" formControlName="lowRiskMultiplier" step="0.01" class="input-premium text-center">
+            </div>
+            <div class="flex flex-col gap-2.5">
+                <label
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Medium
+                    Risk Factor</label>
+                <input type="number" formControlName="mediumRiskMultiplier" step="0.01"
+                    class="input-premium text-center">
+            </div>
+            <div class="flex flex-col gap-2.5">
+                <label
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">High
+                    Risk Factor</label>
+                <input type="number" formControlName="highRiskMultiplier" step="0.01" class="input-premium text-center">
+            </div>
+
+            <!-- Commission & Status -->
+            <div class="flex flex-col gap-2.5">
+                <label
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Agent
+                    Commission (%)</label>
+                <div class="relative group/input">
+                    <span
+                        class="absolute right-4 top-1/2 -translate-y-1/2 font-black text-text-secondary opacity-40 group-focus-within/input:opacity-100 group-focus-within/input:text-primary transition-all">%</span>
+                    <input type="number" formControlName="commissionPercentage" step="0.5" placeholder="0.0"
+                        class="input-premium pr-10 text-center">
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-2.5 md:col-span-2">
+                <label class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1
+                    opacity-60">Status</label>
+                <div class="relative group/input">
+                    <span
+                        class="absolute left-4 top-1/2 -translate-y-1/2 text-lg grayscale opacity-40 group-focus-within/input:opacity-100 group-focus-within/input:grayscale-0 transition-all">⚖️</span>
+                    <select formControlName="isActive" class="input-premium pl-12 appearance-none">
+                        <option [ngValue]="true">Active</option>
+                        <option [ngValue]="false">Inactive</option>
+                    </select>
+                    <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="md:col-span-2 lg:col-span-3 pt-10 border-t border-theme-border/10 dark:border-slate-800">
+                <button type="submit" [disabled]="saving || planForm.invalid"
+                    class="btn-premium w-full !py-5 uppercase tracking-[0.3em] flex justify-center items-center gap-4 text-sm">
+                    <span *ngIf="saving"
+                        class="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+                    {{ saving ? 'Saving Changes...' : 'Save Changes' }}
+                </button>
+                <p
+                    class="text-[10px] font-bold text-text-secondary text-center mt-6 opacity-40 uppercase tracking-widest">
+                    Changes will affect all new policies created under this plan.</p>
+            </div>
+        </form>
+    </div>
+</div>

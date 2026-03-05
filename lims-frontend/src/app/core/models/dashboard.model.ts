@@ -1,0 +1,150 @@
+import { PaymentResponse } from './payment.model';
+
+export interface AdminDashboardDto {
+  // Policy Overview
+  totalPolicies: number;
+  activePolicies: number;
+  submittedPolicies: number;
+  underReviewPolicies: number;
+  rejectedPolicies: number;
+  suspendedPolicies: number;
+  lapsedPolicies: number;
+
+  // Claims Overview
+  totalClaims: number;
+  submittedClaims: number;
+  underReviewClaims: number;
+  settledClaims: number;
+  rejectedClaims: number;
+  totalSettledAmount: number;
+
+  // Revenue
+  totalPremiumCollected: number;
+  totalCommissionPaid: number;
+  monthlyRevenue: MonthlyRevenue[];
+
+  // Users
+  totalCustomers: number;
+  totalAgents: number;
+  totalClaimsOfficers: number;
+
+  // Agent Performance
+  agentPerformance: AgentPerformance[];
+
+  // Plan Distribution
+  planDistribution: PlanDistribution[];
+
+  // Endorsements
+  totalEndorsements: number;
+  pendingEndorsements: number;
+}
+
+export interface MonthlyRevenue {
+  month: string;
+  year: number;
+  totalPremium: number;
+  totalCommission: number;
+}
+
+export interface AgentPerformance {
+  agentId: number;
+  agentName: string;
+  totalPoliciesAssigned: number;
+  activePolicies: number;
+  approvedPolicies: number;
+  rejectedPolicies: number;
+  totalCommissionEarned: number;
+  conversionRate: number;
+}
+
+export interface PlanDistribution {
+  planId: number;
+  planName: string;
+  policyCount: number;
+  totalSumAssured: number;
+}
+
+export interface AgentDashboardDto {
+  // Policy Summary
+  totalAssignedPolicies: number;
+  submittedPolicies: number;
+  underReviewPolicies: number;
+  activePolicies: number;
+  rejectedPolicies: number;
+
+  // Commission Summary
+  totalCommissionEarned: number;
+  thisMonthCommission: number;
+  lastMonthCommission: number;
+  recentCommissions: PolicyCommission[];
+
+  // Endorsements
+  pendingEndorsements: any[];
+}
+
+export interface PolicyCommission {
+  policyId: number;
+  policyNumber: string;
+  premiumAmount: number;
+  commissionAmount: number;
+  commissionDate: string;
+}
+
+
+export interface CustomerDashboardDto {
+  // Policy Summary
+  totalPolicies: number;
+  activePolicies: number;
+  pendingPolicies: number;
+  rejectedPolicies: number;
+
+  // Claims Summary
+  totalClaims: number;
+  openClaims: number;
+  settledClaims: number;
+  totalSettledAmount: number;
+
+  // Payment Summary
+  overdueInvoices: number;
+  upcomingInvoices: number;
+  totalPaidAmount: number;
+  totalOutstandingAmount: number;
+
+  // Endorsements
+  pendingEndorsements: number;
+
+  // Recent Activity
+  recentActivity: RecentActivity[];
+  recentPayments: PaymentResponse[];
+}
+
+export interface RecentActivity {
+  type: string;
+  description: string;
+  date: string;
+}
+
+export interface ClaimsOfficerDashboardDto {
+  totalAssignedClaims: number;
+  submittedClaims: number;
+  underReviewClaims: number;
+  settledClaims: number;
+  rejectedClaims: number;
+  totalSettledAmount: number;
+  thisMonthSettledAmount: number;
+}
+
+export interface UserRoleCount {
+  role: string;
+  count: number;
+}
+
+export interface ClaimStatusCount {
+  status: string;
+  count: number;
+}
+
+export interface PolicyStatusCount {
+  status: string;
+  count: number;
+}

@@ -1,0 +1,128 @@
+<div class="max-w-4xl mx-auto pt-8 transition-all duration-500 animate-in fade-in slide-in-from-bottom-8">
+    <div class="flex items-center gap-6 mb-12">
+        <button routerLink=".."
+            class="h-12 w-12 flex items-center justify-center text-text-secondary hover:text-primary transition-all rounded-2xl bg-white dark:bg-slate-900 border border-theme-border/20 dark:border-slate-800 shadow-sm hover:shadow-md active:scale-90">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18">
+                </path>
+            </svg>
+        </button>
+        <div>
+            <h1 class="text-4xl font-black text-text-primary dark:text-white tracking-tightest">Add <span
+                    class="text-gradient">Staff</span></h1>
+            <p class="text-sm font-medium text-text-secondary mt-1 opacity-70">Create a new account for a staff member
+            </p>
+        </div>
+    </div>
+
+    <div class="premium-card p-10 md:p-14 relative overflow-hidden group">
+        <div
+            class="absolute top-0 left-0 w-64 h-64 bg-primary/5 rounded-full -ml-32 -mt-32 blur-3xl group-hover:bg-primary/10 transition-all duration-700">
+        </div>
+
+        <form [formGroup]="staffForm" (ngSubmit)="submit()"
+            class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8 relative z-10">
+
+            <div class="flex flex-col gap-2.5">
+                <label
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Full
+                    Name</label>
+                <div class="relative group/input">
+                    <span
+                        class="absolute left-4 top-1/2 -translate-y-1/2 text-lg grayscale opacity-40 group-focus-within/input:opacity-100 group-focus-within/input:grayscale-0 transition-all">👤</span>
+                    <input type="text" formControlName="fullName" placeholder="Legal full name"
+                        class="input-premium pl-12">
+                </div>
+                <span *ngIf="staffForm.get('fullName')?.touched && staffForm.get('fullName')?.invalid"
+                    class="text-[10px] font-black uppercase text-red-500 mt-1 ml-1 tracking-wider">Name is
+                    required</span>
+            </div>
+
+            <div class="flex flex-col gap-2.5">
+                <label
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Role</label>
+                <div class="relative group/input">
+                    <span
+                        class="absolute left-4 top-1/2 -translate-y-1/2 text-lg grayscale opacity-40 group-focus-within/input:opacity-100 group-focus-within/input:grayscale-0 transition-all">🔑</span>
+                    <select formControlName="role" class="input-premium pl-12 appearance-none">
+                        <option value="Agent">Field Agent</option>
+                        <option value="ClaimsOfficer">Claims Officer</option>
+                    </select>
+                    <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                        </svg>
+                    </div>
+                </div>
+                <span *ngIf="staffForm.get('role')?.touched && staffForm.get('role')?.invalid"
+                    class="text-[10px] font-black uppercase text-red-500 mt-1 ml-1 tracking-wider">Selection
+                    required</span>
+            </div>
+
+            <div class="flex flex-col gap-2.5 md:col-span-2">
+                <label
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Email
+                    Address</label>
+                <div class="relative group/input">
+                    <span
+                        class="absolute left-4 top-1/2 -translate-y-1/2 text-lg grayscale opacity-40 group-focus-within/input:opacity-100 group-focus-within/input:grayscale-0 transition-all">✉️</span>
+                    <input type="email" formControlName="email" placeholder="professional@nexalife.com"
+                        class="input-premium pl-12">
+                </div>
+                <span *ngIf="staffForm.get('email')?.touched && staffForm.get('email')?.invalid"
+                    class="text-[10px] font-black uppercase text-red-500 mt-1 ml-1 tracking-wider">Valid email
+                    required</span>
+            </div>
+
+            <div class="flex flex-col gap-2.5 md:col-span-2">
+                <label
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Phone
+                    Number</label>
+                <div class="relative group/input">
+                    <span
+                        class="absolute left-4 top-1/2 -translate-y-1/2 text-lg grayscale opacity-40 group-focus-within/input:opacity-100 group-focus-within/input:grayscale-0 transition-all">📞</span>
+                    <input type="text" formControlName="phoneNumber" placeholder="+91 XXXX XXX XXX"
+                        class="input-premium pl-12">
+                </div>
+                <span *ngIf="staffForm.get('phoneNumber')?.touched && staffForm.get('phoneNumber')?.invalid"
+                    class="text-[10px] font-black uppercase text-red-500 mt-1 ml-1 tracking-wider">Phone number
+                    required</span>
+            </div>
+
+            <div class="flex flex-col gap-2.5 md:col-span-2">
+                <label
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Password</label>
+                <div class="relative group/input">
+                    <span
+                        class="absolute left-4 top-1/2 -translate-y-1/2 text-lg grayscale opacity-40 group-focus-within/input:opacity-100 group-focus-within/input:grayscale-0 transition-all">🔒</span>
+                    <input type="password" formControlName="password" placeholder="Enter password"
+                        class="input-premium pl-12">
+                </div>
+                <div class="flex justify-between mt-1 px-1">
+                    <span *ngIf="staffForm.get('password')?.touched && staffForm.get('password')?.errors?.['required']"
+                        class="text-[10px] font-black uppercase text-red-500 tracking-wider">Password required</span>
+                    <span *ngIf="staffForm.get('password')?.touched && staffForm.get('password')?.errors?.['minlength']"
+                        class="text-[10px] font-black uppercase text-red-500 tracking-wider">Password must be at least 8
+                        characters</span>
+                    <span
+                        class="text-[10px] font-black uppercase text-text-secondary opacity-40 tracking-widest ml-auto">Secure
+                        connection</span>
+                </div>
+            </div>
+
+            <div class="md:col-span-2 pt-6">
+                <button type="submit" [disabled]="loading"
+                    class="btn-premium w-full !py-4 text-sm uppercase tracking-[0.25em] flex justify-center items-center gap-3">
+                    <span *ngIf="loading"
+                        class="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+                    {{ loading ? 'Creating...' : 'Add Staff Member' }}
+                </button>
+                <p
+                    class="text-[10px] font-bold text-text-secondary text-center mt-4 opacity-40 uppercase tracking-widest">
+                    New user will be added to the system.</p>
+            </div>
+        </form>
+    </div>
+</div>

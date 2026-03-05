@@ -1,0 +1,139 @@
+<div class="max-w-4xl mx-auto pt-8 transition-all duration-500 animate-in fade-in slide-in-from-bottom-8">
+    <div class="flex items-center justify-between gap-6 mb-12">
+        <div class="flex items-center gap-6">
+            <button routerLink=".."
+                class="h-12 w-12 flex items-center justify-center text-text-secondary hover:text-primary transition-all rounded-2xl bg-white dark:bg-slate-900 border border-theme-border/20 dark:border-slate-800 shadow-sm hover:shadow-md active:scale-90">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18">
+                    </path>
+                </svg>
+            </button>
+            <h1 class="text-4xl font-black text-text-primary dark:text-white tracking-tightest">User <span
+                    class="text-gradient">Profile</span></h1>
+        </div>
+
+        <div *ngIf="!loading && user" class="flex items-center gap-3">
+            <span
+                class="inline-flex px-4 py-2 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] border shadow-sm"
+                [ngClass]="{
+                'bg-purple-50 text-purple-700 border-purple-100 dark:bg-purple-900/30 dark:text-purple-400 dark:border-purple-800/50': user.role === 'Admin',
+                'bg-blue-50 text-blue-700 border-blue-100 dark:bg-blue-900/30 dark:text-accent dark:border-blue-800/50': user.role === 'Agent',
+                'bg-amber-50 text-amber-700 border-amber-100 dark:bg-amber-900/30 dark:text-amber-400 dark:border-amber-800/50': user.role === 'ClaimsOfficer',
+                'bg-slate-50 text-slate-600 border-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:border-slate-700': user.role === 'Customer'
+            }">{{ user.role }} Access</span>
+
+            <a [routerLink]="['/app/admin/users/edit', user.userId]" class="btn-premium flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                </svg>
+                Edit User
+            </a>
+        </div>
+    </div>
+
+    <app-loading-spinner *ngIf="loading"></app-loading-spinner>
+
+    <div *ngIf="!loading && user" class="space-y-8">
+        <!-- Main Profile Card -->
+        <div class="premium-card p-10 xl:p-12 relative overflow-hidden group">
+            <div
+                class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-32 -mt-32 blur-3xl group-hover:bg-primary/10 transition-all duration-700">
+            </div>
+
+            <div class="flex flex-col md:flex-row items-center md:items-start gap-10 relative z-10">
+                <div
+                    class="h-32 w-32 rounded-3xl bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 flex items-center justify-center text-5xl font-black text-slate-400 dark:text-slate-500 shadow-inner border border-white dark:border-slate-800 transition-transform duration-500 group-hover:scale-105 group-hover:rotate-3">
+                    {{ user.fullName.charAt(0) | uppercase }}
+                </div>
+                <div class="text-center md:text-left flex-1">
+                    <div class="flex flex-col md:flex-row md:items-center gap-3 mb-2">
+                        <h2 class="text-4xl font-black text-text-primary dark:text-white tracking-tighter">{{
+                            user.fullName }}</h2>
+                        <span
+                            class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest border mx-auto md:mx-0 shadow-sm"
+                            [ngClass]="user.isActive ? 'bg-emerald-50 text-emerald-700 border-emerald-100 dark:bg-emerald-900/20 dark:text-emerald-400' : 'bg-red-50 text-red-700 border-red-100 dark:bg-red-900/20 dark:text-red-400'">
+                            <span class="w-1.5 h-1.5 rounded-full"
+                                [ngClass]="user.isActive ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]' : 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.5)]'"></span>
+                            {{ user.isActive ? 'Active' : 'Suspended' }}
+                        </span>
+                    </div>
+                    <p class="text-lg font-semibold text-text-secondary dark:text-slate-400 tracking-tight">{{
+                        user.email }}</p>
+
+                    <div
+                        class="mt-8 pt-8 border-t border-theme-border/10 dark:border-slate-800 flex flex-wrap justify-center md:justify-start gap-10">
+                        <div>
+                            <p
+                                class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50 mb-2">
+                                Account ID</p>
+                            <p
+                                class="text-sm font-black text-text-primary dark:text-white font-mono bg-slate-50 dark:bg-slate-800/50 px-3 py-1.5 rounded-lg border border-theme-border/10 dark:border-slate-800">
+                                #{{ user.userId }}</p>
+                        </div>
+                        <div>
+                            <p
+                                class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50 mb-2">
+                                Phone Number</p>
+                            <p class="text-sm font-black text-text-primary dark:text-white tracking-tight">{{
+                                user.phoneNumber || 'Data Unavailable' }}</p>
+                        </div>
+                        <div>
+                            <p
+                                class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50 mb-2">
+                                Joined Date</p>
+                            <p class="text-sm font-black text-text-primary dark:text-white tracking-tight">{{
+                                user.createdAt | date:'longDate' }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Information Placeholder / Activity -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="premium-card p-8">
+                <h3
+                    class="text-lg font-black text-text-primary dark:text-white mb-6 border-b border-theme-border/10 dark:border-slate-800 pb-4">
+                    Security Settings</h3>
+                <div class="space-y-4">
+                    <div
+                        class="flex justify-between items-center py-2 border-b border-theme-border/5 dark:border-slate-800/50">
+                        <span class="text-xs font-semibold text-text-secondary">Password Rules</span>
+                        <span class="text-xs font-black text-text-primary dark:text-slate-300">Change every 90
+                            days</span>
+                    </div>
+                    <div
+                        class="flex justify-between items-center py-2 border-b border-theme-border/5 dark:border-slate-800/50">
+                        <span class="text-xs font-semibold text-text-secondary">Two-Factor Auth</span>
+                        <span class="text-xs font-black text-emerald-600">Active</span>
+                    </div>
+                    <div class="flex justify-between items-center py-2">
+                        <span class="text-xs font-semibold text-text-secondary">Role</span>
+                        <span class="text-xs font-black text-text-primary dark:text-slate-300">{{ user.role }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="premium-card p-8 flex flex-col justify-center items-center text-center">
+                <div
+                    class="h-16 w-16 rounded-full bg-slate-50 dark:bg-slate-800 flex items-center justify-center text-2xl mb-4 group-hover:animate-bounce">
+                    🔒</div>
+                <h3 class="text-lg font-black text-text-primary dark:text-white">User Activity</h3>
+                <p class="text-xs font-medium text-text-secondary mt-2 leading-relaxed px-4">View the recent activity
+                    and actions taken by this user.</p>
+                <button
+                    class="mt-6 text-[10px] font-black uppercase tracking-widest text-primary hover:underline transition-all">View
+                    Activity Log</button>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="!loading && !user" class="text-center py-24 premium-card">
+        <div class="text-4xl mb-4">🚫</div>
+        <p class="text-xl font-black text-text-primary dark:text-white">User Not Found</p>
+        <p class="text-sm font-medium text-text-secondary mt-2">The user you are looking for does not exist.</p>
+        <button routerLink=".." class="mt-8 btn-premium">Back to Users</button>
+    </div>
+</div>

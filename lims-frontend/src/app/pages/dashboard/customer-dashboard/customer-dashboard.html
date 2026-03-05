@@ -1,0 +1,221 @@
+@if (loading) {
+<app-loading-spinner />
+} @else if (data) {
+<div class="animate-in fade-in duration-700">
+    <!-- Header Section -->
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-10">
+        <div>
+            <h1 class="text-3xl font-black text-text-primary dark:text-white tracking-tighter uppercase">My
+                Dashboard</h1>
+            <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50 mt-1 italic">
+                View and manage your insurance policies</p>
+        </div>
+        <a routerLink="/app/plans"
+            class="btn-premium px-8 h-12 flex items-center justify-center text-[10px] font-black uppercase tracking-widest shadow-xl shadow-primary/20">
+            Explore New Plans <span class="ml-2 text-lg">⊕</span>
+        </a>
+    </div>
+
+    <!-- Analytics Matrix -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+        <app-stat-card label="Active Policies" [value]="data.activePolicies" icon="🛡️" color="#10B981" />
+        <app-stat-card label="Total Paid" [value]="data.totalPaidAmount | number" icon="💸" color="#3B82F6"
+            prefix="₹" />
+        <app-stat-card label="Open Claims" [value]="data.openClaims" icon="🏥" color="#F59E0B" />
+        <!-- <app-stat-card label="Pending Changes" [value]="data.pendingEndorsements" icon="⏳" color="#8B5CF6" /> -->
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Event Timeline -->
+        <div class="lg:col-span-2 premium-card p-0 overflow-hidden">
+            <div class="p-6 bg-primary/[0.03] border-b border-theme-border/10">
+                <h2 class="text-[10px] font-black text-primary uppercase tracking-[0.3em] flex items-center gap-3">
+                    <span class="text-lg">📈</span> Recent Activity
+                </h2>
+            </div>
+            <div class="p-10">
+                @if (data.recentActivity.length) {
+                <div
+                    class="space-y-10 relative before:absolute before:inset-y-0 before:left-4 before:w-px before:bg-gradient-to-b before:from-primary/20 before:via-primary/5 before:to-transparent">
+                    @for (act of data.recentActivity; track act.date) {
+                    <div class="flex gap-8 relative group">
+                        <div
+                            class="w-8 h-8 rounded-xl bg-theme-bg dark:bg-slate-800 border border-theme-border/20 flex items-center justify-center shrink-0 z-10 transition-all group-hover:scale-110 group-hover:border-primary/50 shadow-sm">
+                            <div class="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_rgba(59,130,246,0.6)]"></div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start mb-1">
+                                <p class="text-sm font-black text-text-primary dark:text-white tracking-tight">{{
+                                    act.description }}</p>
+                                <span
+                                    class="text-[9px] font-black text-text-secondary opacity-40 uppercase tracking-widest">{{
+                                    act.date | date:'shortTime' }}</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <p
+                                    class="text-[9px] font-black text-primary uppercase tracking-[0.2em] px-2 py-0.5 rounded bg-primary/5">
+                                    {{ act.type }}</p>
+                                <p
+                                    class="text-[9px] font-bold text-text-secondary opacity-40 uppercase tracking-[0.1em]">
+                                    {{ act.date | date:'mediumDate' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+                } @else {
+                <div class="text-center py-20">
+                    <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-30 italic">
+                        No recent activity found</p>
+                </div>
+                }
+            </div>
+        </div>
+
+        <!-- Protocol Access -->
+        <div class="space-y-6">
+            <div class="premium-card p-0 overflow-hidden">
+                <div class="p-6 bg-primary/[0.03] border-b border-theme-border/10">
+                    <h2 class="text-[10px] font-black text-primary uppercase tracking-[0.3em] flex items-center gap-3">
+                        <span class="text-lg">⚡</span> Quick Actions
+                    </h2>
+                </div>
+                <div class="p-8 grid grid-cols-2 gap-4">
+                    <a routerLink="/app/my-policies"
+                        class="flex flex-col items-center p-6 rounded-2xl bg-primary/[0.02] border border-theme-border/10 hover:bg-primary/5 hover:border-primary/30 transition-all group">
+                        <span class="text-2xl mb-3 group-hover:scale-110 transition-transform">📑</span>
+                        <span
+                            class="text-[9px] font-black text-text-secondary group-hover:text-primary uppercase tracking-widest text-center">My
+                            Policies</span>
+                    </a>
+                    <a routerLink="/app/my-claims"
+                        class="flex flex-col items-center p-6 rounded-2xl bg-primary/[0.02] border border-theme-border/10 hover:bg-primary/5 hover:border-primary/30 transition-all group">
+                        <span class="text-2xl mb-3 group-hover:scale-110 transition-transform">🏥</span>
+                        <span
+                            class="text-[9px] font-black text-text-secondary group-hover:text-primary uppercase tracking-widest text-center">My
+                            Claims</span>
+                    </a>
+                    <a routerLink="/app/raise-claim"
+                        class="flex flex-col items-center p-6 rounded-2xl bg-amber-500/[0.02] border border-amber-500/10 hover:bg-amber-500/5 hover:border-amber-500/30 transition-all group">
+                        <span class="text-2xl mb-3 group-hover:scale-110 transition-transform">⚠️</span>
+                        <span
+                            class="text-[9px] font-black text-text-secondary group-hover:text-amber-500 uppercase tracking-widest text-center">Submit
+                            a
+                            Claim</span>
+                    </a>
+                    <a routerLink="/app/endorsement/request"
+                        class="flex flex-col items-center p-6 rounded-2xl bg-indigo-500/[0.02] border border-indigo-500/10 hover:bg-indigo-500/5 hover:border-indigo-500/30 transition-all group">
+                        <span class="text-2xl mb-3 group-hover:scale-110 transition-transform">✏️</span>
+                        <span
+                            class="text-[9px] font-black text-text-secondary group-hover:text-indigo-500 uppercase tracking-widest text-center">Make
+                            a
+                            Request</span>
+                    </a>
+                </div>
+            </div>
+
+     
+        </div>
+    </div>
+
+    <!-- Recent Payments Matrix -->
+    <div
+        class="mt-10 premium-card p-0 overflow-hidden animate-in fade-in slide-in-from-bottom-6 duration-1000 delay-300">
+        <div class="p-6 bg-primary/[0.03] border-b border-theme-border/10 flex justify-between items-center">
+            <h2 class="text-[10px] font-black text-primary uppercase tracking-[0.3em] flex items-center gap-3">
+                <span class="text-lg">💰</span> Recent Payments
+            </h2>
+            <a routerLink="/app/my-payments"
+                class="text-[9px] font-black text-primary uppercase tracking-[0.3em] hover:underline opacity-60 hover:opacity-100 transition-all">View
+                All Transactions</a>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="bg-primary/[0.01]">
+                        <th
+                            class="px-8 py-5 text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40 border-b border-theme-border/5">
+                            Policy Number</th>
+                        <th
+                            class="px-8 py-5 text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40 border-b border-theme-border/5">
+                            Amount Paid</th>
+                        <th
+                            class="px-8 py-5 text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40 border-b border-theme-border/5">
+                            Processing Date</th>
+                        <th
+                            class="px-8 py-5 text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40 border-b border-theme-border/5">
+                            Channel</th>
+                        <th
+                            class="px-8 py-5 text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40 border-b border-theme-border/5 text-center">
+                            Verification</th>
+                        <th
+                            class="px-8 py-5 text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40 border-b border-theme-border/5 text-right">
+                            Action</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-theme-border/5">
+                    @for (pay of data.recentPayments; track pay.paymentId) {
+                    <tr class="group hover:bg-primary/[0.01] transition-all duration-300">
+                        <td class="px-8 py-6">
+                            <p
+                                class="text-[11px] font-black text-text-primary dark:text-white tracking-widest italic group-hover:text-primary transition-colors">
+                                {{ pay.policyNumber }}</p>
+                        </td>
+                        <td class="px-8 py-6">
+                            <p class="text-xs font-black text-primary tracking-tighter italic">₹{{ pay.amountPaid |
+                                number }}</p>
+                        </td>
+                        <td class="px-8 py-6">
+                            <p
+                                class="text-[10px] font-black text-text-secondary opacity-60 uppercase tracking-widest italic">
+                                {{ pay.paymentDate | date:'mediumDate' }}</p>
+                        </td>
+                        <td class="px-8 py-6">
+                            <p
+                                class="text-[9px] font-black text-text-secondary opacity-40 uppercase tracking-widest group-hover:opacity-80 transition-opacity">
+                                {{ pay.paymentMethod }}</p>
+                        </td>
+                        <td class="px-8 py-6 text-center">
+                            <span
+                                class="px-4 py-1.5 rounded-xl text-[8px] font-black uppercase tracking-widest border transition-all duration-300 shadow-sm"
+                                [ngClass]="{
+                                    'bg-emerald-500/10 text-emerald-500 border-emerald-500/10 group-hover:bg-emerald-500/20 group-hover:shadow-emerald-500/10': pay.status === 'Paid',
+                                    'bg-amber-500/10 text-amber-500 border-amber-500/10 group-hover:bg-amber-500/20 group-hover:shadow-amber-500/10': pay.status === 'Pending',
+                                    'bg-red-500/10 text-red-500 border-red-500/10 group-hover:bg-red-500/20 group-hover:shadow-red-500/10': pay.status === 'Failed'
+                                }">
+                                {{ pay.status }}
+                            </span>
+                        </td>
+                        <td class="px-8 py-6 text-right">
+                            <button (click)="downloadInvoice(pay)"
+                                class="px-4 py-2 bg-primary/5 hover:bg-primary text-primary hover:text-white text-[8px] font-black uppercase tracking-widest rounded-xl transition-all duration-300 border border-primary/10 hover:shadow-lg hover:shadow-primary/20">
+                                Download
+                            </button>
+                        </td>
+                    </tr>
+                    }
+                    @if (data.recentPayments.length === 0) {
+                    <tr>
+                        <td colspan="5" class="px-8 py-20 text-center">
+                            <div class="flex flex-col items-center gap-3 opacity-20 group">
+                                <span class="text-4xl group-hover:scale-110 transition-transform duration-500">📪</span>
+                                <p class="text-[10px] font-black uppercase tracking-[0.3em] text-text-secondary italic">
+                                    No recent transactions found</p>
+                            </div>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+} @else {
+<div class="flex flex-col items-center justify-center py-20 opacity-40">
+    <span class="text-6xl mb-6">🏜️</span>
+    <p class="text-[10px] font-black uppercase tracking-[0.3em]">Communication failure in NexaLink matrix</p>
+    <button (click)="ngOnInit()"
+        class="mt-6 text-[9px] font-black text-primary uppercase tracking-widest border-b border-primary/20 hover:border-primary transition-all">Retry
+        Synchronization</button>
+</div>
+}

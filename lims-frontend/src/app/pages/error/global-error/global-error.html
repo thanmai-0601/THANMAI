@@ -1,0 +1,43 @@
+<div
+    class="min-h-screen flex items-center justify-center bg-theme-bg dark:bg-slate-900 px-4 py-12 relative overflow-hidden">
+    <!-- Decorative background elements -->
+    <div
+        class="absolute top-1/4 left-1/4 w-96 h-96 bg-error/10 dark:bg-error/5 rounded-full blur-3xl -z-10 mix-blend-multiply dark:mix-blend-lighten">
+    </div>
+    <div
+        class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/10 dark:bg-primary/5 rounded-full blur-3xl -z-10 mix-blend-multiply dark:mix-blend-lighten">
+    </div>
+
+    <div
+        class="max-w-md w-full bg-theme-card dark:bg-theme-sidebar rounded-[2rem] p-8 md:p-10 shadow-2xl border border-theme-border dark:border-slate-800 text-center relative z-10">
+
+        <!-- Error Icon Container -->
+        <div
+            class="w-24 h-24 bg-red-50 dark:bg-red-900/20 rounded-full flex items-center justify-center mx-auto mb-8 shadow-inner border border-red-100 dark:border-red-900/30">
+            <svg class="w-12 h-12 text-error drop-shadow-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z">
+                </path>
+            </svg>
+        </div>
+
+        <h1 class="text-3xl md:text-4xl font-black text-text-primary dark:text-white tracking-tight mb-4">Something went
+            wrong</h1>
+
+        <p class="text-text-secondary dark:text-slate-400 mb-8 leading-relaxed">
+            We encountered an unexpected error. Our technical team has been notified. Please try refreshing the page or
+            go back home.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+            <button (click)="refresh()"
+                class="px-6 py-3 rounded-xl font-bold text-sm bg-theme-bg dark:bg-slate-800 text-text-primary dark:text-white hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors border border-theme-border dark:border-slate-700 shadow-sm">
+                Refresh Page
+            </button>
+            <button (click)="goHome()"
+                class="px-6 py-3 rounded-xl font-bold text-sm bg-primary hover:bg-primary-hover text-white transition-all shadow-md shadow-primary/20">
+                Go to Home
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+    <div>
+        <h1 class="text-3xl font-extrabold text-text-primary dark:text-white tracking-tight">My Endorsement Requests</h1>
+        <p class="text-text-secondary dark:text-text-secondary mt-2">Track your requested policy changes.</p>
+    </div>
+    <a routerLink="/app/endorsement/request"
+        class="px-6 py-2.5 bg-primary hover:bg-primary-hover text-white font-medium rounded-xl shadow-sm hover:-translate-y-0.5 transition-all text-sm">
+        New Request
+    </a>
+</div>
+
+<app-loading-spinner *ngIf="loading"></app-loading-spinner>
+
+<div *ngIf="!loading">
+    <div
+        class="bg-theme-card dark:bg-theme-sidebar rounded-3xl shadow-sm border border-theme-border dark:border-theme-border overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse whitespace-nowrap">
+                <thead>
+                    <tr
+                        class="bg-theme-bg dark:bg-slate-800/50 text-text-secondary dark:text-text-secondary text-xs text-center uppercase tracking-wider">
+                        <th class="px-6 py-4 font-semibold border-b border-theme-border dark:border-theme-border">Date</th>
+                        <th class="px-6 py-4 font-semibold border-b border-theme-border dark:border-theme-border">Policy No.
+                        </th>
+                        <th class="px-6 py-4 font-semibold border-b border-theme-border dark:border-theme-border">Type</th>
+                        <th class="px-6 py-4 font-semibold border-b border-theme-border dark:border-theme-border">Status</th>
+                        <th class="px-6 py-4 border-b border-theme-border dark:border-theme-border"></th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-theme-border dark:divide-slate-800 text-center">
+                    <tr *ngFor="let e of endorsements"
+                        class="hover:bg-theme-bg/50 dark:hover:bg-slate-800/20 transition-colors group">
+                        <td class="px-6 py-4 text-sm text-text-secondary dark:text-slate-300">{{ e.requestedAt |
+                            date:'shortDate' }}</td>
+                        <td class="px-6 py-4 text-sm text-primary dark:text-accent"><a
+                                [routerLink]="['/app/policy', e.policyNumber]" class="hover:underline">{{ e.policyNumber
+                                }}</a></td>
+                        <td class="px-6 py-4 text-sm font-semibold text-text-primary dark:text-white">{{ e.type
+                            }}</td>
+                        <td class="px-6 py-4"><app-status-badge [status]="e.status"></app-status-badge></td>
+                        <td class="px-6 py-4 text-right">
+                            <a [routerLink]="['/app/endorsement', e.endorsementId]"
+                                class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-primary/5 dark:bg-blue-900/20 text-primary dark:text-accent font-semibold text-xs hover:bg-primary hover:text-white transition-colors">Details</a>
+                        </td>
+                    </tr>
+                    <tr *ngIf="endorsements.length === 0">
+                        <td colspan="5" class="px-6 py-12 text-center text-text-secondary font-medium border-0">No
+                            endorsements found.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

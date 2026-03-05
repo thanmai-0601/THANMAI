@@ -1,0 +1,2096 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\New folder\\LIMS\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{FDD683D6-6DDB-4FA7-86C7-2229898F7AE0}|API\\API.csproj|d:\\new folder\\lims\\api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{FDD683D6-6DDB-4FA7-86C7-2229898F7AE0}|API\\API.csproj|solutionrelative:api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FDD683D6-6DDB-4FA7-86C7-2229898F7AE0}|API\\API.csproj|d:\\new folder\\lims\\api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FDD683D6-6DDB-4FA7-86C7-2229898F7AE0}|API\\API.csproj|solutionrelative:api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FDD683D6-6DDB-4FA7-86C7-2229898F7AE0}|API\\API.csproj|d:\\new folder\\lims\\api\\controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FDD683D6-6DDB-4FA7-86C7-2229898F7AE0}|API\\API.csproj|solutionrelative:api\\controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FDD683D6-6DDB-4FA7-86C7-2229898F7AE0}|API\\API.csproj|d:\\new folder\\lims\\api\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FDD683D6-6DDB-4FA7-86C7-2229898F7AE0}|API\\API.csproj|solutionrelative:api\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FDD683D6-6DDB-4FA7-86C7-2229898F7AE0}|API\\API.csproj|d:\\new folder\\lims\\api\\middleware\\globalexceptionmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FDD683D6-6DDB-4FA7-86C7-2229898F7AE0}|API\\API.csproj|solutionrelative:api\\middleware\\globalexceptionmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FDD683D6-6DDB-4FA7-86C7-2229898F7AE0}|API\\API.csproj|d:\\new folder\\lims\\api\\extensions\\serviceregistrationextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FDD683D6-6DDB-4FA7-86C7-2229898F7AE0}|API\\API.csproj|solutionrelative:api\\extensions\\serviceregistrationextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FDD683D6-6DDB-4FA7-86C7-2229898F7AE0}|API\\API.csproj|d:\\new folder\\lims\\api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{FDD683D6-6DDB-4FA7-86C7-2229898F7AE0}|API\\API.csproj|solutionrelative:api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B192F31F-8D58-4FEF-98EF-A43133B0EE3B}|Infrastructure\\Infrastructure.csproj|d:\\new folder\\lims\\infrastructure\\data\\dbinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B192F31F-8D58-4FEF-98EF-A43133B0EE3B}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\data\\dbinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B192F31F-8D58-4FEF-98EF-A43133B0EE3B}|Infrastructure\\Infrastructure.csproj|d:\\new folder\\lims\\infrastructure\\security\\passwordhasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B192F31F-8D58-4FEF-98EF-A43133B0EE3B}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\security\\passwordhasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B192F31F-8D58-4FEF-98EF-A43133B0EE3B}|Infrastructure\\Infrastructure.csproj|d:\\new folder\\lims\\infrastructure\\security\\jwttokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B192F31F-8D58-4FEF-98EF-A43133B0EE3B}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\security\\jwttokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B192F31F-8D58-4FEF-98EF-A43133B0EE3B}|Infrastructure\\Infrastructure.csproj|d:\\new folder\\lims\\infrastructure\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B192F31F-8D58-4FEF-98EF-A43133B0EE3B}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B192F31F-8D58-4FEF-98EF-A43133B0EE3B}|Infrastructure\\Infrastructure.csproj|d:\\new folder\\lims\\infrastructure\\repositories\\policyrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B192F31F-8D58-4FEF-98EF-A43133B0EE3B}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\repositories\\policyrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B192F31F-8D58-4FEF-98EF-A43133B0EE3B}|Infrastructure\\Infrastructure.csproj|d:\\new folder\\lims\\infrastructure\\repositories\\planrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B192F31F-8D58-4FEF-98EF-A43133B0EE3B}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\repositories\\planrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B192F31F-8D58-4FEF-98EF-A43133B0EE3B}|Infrastructure\\Infrastructure.csproj|d:\\new folder\\lims\\infrastructure\\repositories\\paymentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B192F31F-8D58-4FEF-98EF-A43133B0EE3B}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\repositories\\paymentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B192F31F-8D58-4FEF-98EF-A43133B0EE3B}|Infrastructure\\Infrastructure.csproj|d:\\new folder\\lims\\infrastructure\\repositories\\nomineerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B192F31F-8D58-4FEF-98EF-A43133B0EE3B}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\repositories\\nomineerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B192F31F-8D58-4FEF-98EF-A43133B0EE3B}|Infrastructure\\Infrastructure.csproj|d:\\new folder\\lims\\infrastructure\\repositories\\endorsementrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B192F31F-8D58-4FEF-98EF-A43133B0EE3B}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\repositories\\endorsementrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B192F31F-8D58-4FEF-98EF-A43133B0EE3B}|Infrastructure\\Infrastructure.csproj|d:\\new folder\\lims\\infrastructure\\repositories\\commissionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B192F31F-8D58-4FEF-98EF-A43133B0EE3B}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\repositories\\commissionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B192F31F-8D58-4FEF-98EF-A43133B0EE3B}|Infrastructure\\Infrastructure.csproj|d:\\new folder\\lims\\infrastructure\\repositories\\claimrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B192F31F-8D58-4FEF-98EF-A43133B0EE3B}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\repositories\\claimrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B192F31F-8D58-4FEF-98EF-A43133B0EE3B}|Infrastructure\\Infrastructure.csproj|d:\\new folder\\lims\\infrastructure\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B192F31F-8D58-4FEF-98EF-A43133B0EE3B}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63725913-2FE6-414B-B6DD-1198F2FF79DA}|Domain\\Domain.csproj|d:\\new folder\\lims\\domain\\enums\\userrole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63725913-2FE6-414B-B6DD-1198F2FF79DA}|Domain\\Domain.csproj|solutionrelative:domain\\enums\\userrole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63725913-2FE6-414B-B6DD-1198F2FF79DA}|Domain\\Domain.csproj|d:\\new folder\\lims\\domain\\enums\\policystatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63725913-2FE6-414B-B6DD-1198F2FF79DA}|Domain\\Domain.csproj|solutionrelative:domain\\enums\\policystatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63725913-2FE6-414B-B6DD-1198F2FF79DA}|Domain\\Domain.csproj|d:\\new folder\\lims\\domain\\enums\\paymentstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63725913-2FE6-414B-B6DD-1198F2FF79DA}|Domain\\Domain.csproj|solutionrelative:domain\\enums\\paymentstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63725913-2FE6-414B-B6DD-1198F2FF79DA}|Domain\\Domain.csproj|d:\\new folder\\lims\\domain\\enums\\invoicestatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63725913-2FE6-414B-B6DD-1198F2FF79DA}|Domain\\Domain.csproj|solutionrelative:domain\\enums\\invoicestatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63725913-2FE6-414B-B6DD-1198F2FF79DA}|Domain\\Domain.csproj|d:\\new folder\\lims\\domain\\enums\\endorsementtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63725913-2FE6-414B-B6DD-1198F2FF79DA}|Domain\\Domain.csproj|solutionrelative:domain\\enums\\endorsementtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63725913-2FE6-414B-B6DD-1198F2FF79DA}|Domain\\Domain.csproj|d:\\new folder\\lims\\domain\\enums\\endorsementstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63725913-2FE6-414B-B6DD-1198F2FF79DA}|Domain\\Domain.csproj|solutionrelative:domain\\enums\\endorsementstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63725913-2FE6-414B-B6DD-1198F2FF79DA}|Domain\\Domain.csproj|d:\\new folder\\lims\\domain\\enums\\documentstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63725913-2FE6-414B-B6DD-1198F2FF79DA}|Domain\\Domain.csproj|solutionrelative:domain\\enums\\documentstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63725913-2FE6-414B-B6DD-1198F2FF79DA}|Domain\\Domain.csproj|d:\\new folder\\lims\\domain\\enums\\claimstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63725913-2FE6-414B-B6DD-1198F2FF79DA}|Domain\\Domain.csproj|solutionrelative:domain\\enums\\claimstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63725913-2FE6-414B-B6DD-1198F2FF79DA}|Domain\\Domain.csproj|d:\\new folder\\lims\\domain\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63725913-2FE6-414B-B6DD-1198F2FF79DA}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63725913-2FE6-414B-B6DD-1198F2FF79DA}|Domain\\Domain.csproj|d:\\new folder\\lims\\domain\\entities\\policyendorsement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63725913-2FE6-414B-B6DD-1198F2FF79DA}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\policyendorsement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63725913-2FE6-414B-B6DD-1198F2FF79DA}|Domain\\Domain.csproj|d:\\new folder\\lims\\domain\\entities\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63725913-2FE6-414B-B6DD-1198F2FF79DA}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63725913-2FE6-414B-B6DD-1198F2FF79DA}|Domain\\Domain.csproj|d:\\new folder\\lims\\domain\\entities\\nominee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63725913-2FE6-414B-B6DD-1198F2FF79DA}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\nominee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63725913-2FE6-414B-B6DD-1198F2FF79DA}|Domain\\Domain.csproj|d:\\new folder\\lims\\domain\\entities\\invoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63725913-2FE6-414B-B6DD-1198F2FF79DA}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\invoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63725913-2FE6-414B-B6DD-1198F2FF79DA}|Domain\\Domain.csproj|d:\\new folder\\lims\\domain\\entities\\insuranceplan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63725913-2FE6-414B-B6DD-1198F2FF79DA}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\insuranceplan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63725913-2FE6-414B-B6DD-1198F2FF79DA}|Domain\\Domain.csproj|d:\\new folder\\lims\\domain\\entities\\document.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63725913-2FE6-414B-B6DD-1198F2FF79DA}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\document.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63725913-2FE6-414B-B6DD-1198F2FF79DA}|Domain\\Domain.csproj|d:\\new folder\\lims\\domain\\entities\\commission.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63725913-2FE6-414B-B6DD-1198F2FF79DA}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\commission.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63725913-2FE6-414B-B6DD-1198F2FF79DA}|Domain\\Domain.csproj|d:\\new folder\\lims\\domain\\entities\\claimdocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63725913-2FE6-414B-B6DD-1198F2FF79DA}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\claimdocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\services\\premiumcalculationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\services\\premiumcalculationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\services\\planservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\services\\planservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\services\\invoiceservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\services\\invoiceservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\services\\endorsementservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\services\\endorsementservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\services\\claimsofficerassignmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\services\\claimsofficerassignmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\services\\claimservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\services\\claimservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\services\\agentpolicyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\services\\agentpolicyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\services\\agentassignmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\services\\agentassignmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\interfaces\\services\\ipremiumcalculationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\interfaces\\services\\ipremiumcalculationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\interfaces\\services\\ipolicyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\interfaces\\services\\ipolicyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\interfaces\\services\\iplanservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\interfaces\\services\\iplanservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\interfaces\\services\\ipaymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\interfaces\\services\\ipaymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\interfaces\\services\\iinvoiceservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\interfaces\\services\\iinvoiceservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\interfaces\\services\\iendorsementservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\interfaces\\services\\iendorsementservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\interfaces\\services\\iclaimsofficerassignmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\interfaces\\services\\iclaimsofficerassignmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\interfaces\\services\\iclaimservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\interfaces\\services\\iclaimservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\interfaces\\services\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\interfaces\\services\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\interfaces\\services\\iagentpolicyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\interfaces\\services\\iagentpolicyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\interfaces\\services\\iagentassignmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\interfaces\\services\\iagentassignmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\interfaces\\repositories\\ipolicyrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\interfaces\\repositories\\ipolicyrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\interfaces\\repositories\\iplanrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\interfaces\\repositories\\iplanrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\interfaces\\repositories\\ipaymentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\interfaces\\repositories\\ipaymentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\interfaces\\repositories\\inomineerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\interfaces\\repositories\\inomineerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\interfaces\\repositories\\iinvoicerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\interfaces\\repositories\\iinvoicerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\interfaces\\repositories\\iendorsementrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\interfaces\\repositories\\iendorsementrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\interfaces\\repositories\\icommissionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\interfaces\\repositories\\icommissionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\interfaces\\repositories\\iclaimrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\interfaces\\repositories\\iclaimrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\policy\\uploaddocumentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\policy\\uploaddocumentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\policy\\updateplandto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\policy\\updateplandto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\policy\\submitnomineesdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\policy\\submitnomineesdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\policy\\premiumcalculationresultdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\policy\\premiumcalculationresultdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\policy\\policyresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\policy\\policyresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\policy\\policydecisiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\policy\\policydecisiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\policy\\planresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\policy\\planresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\policy\\nomineeresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\policy\\nomineeresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\policy\\eligibilitydetailsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\policy\\eligibilitydetailsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\policy\\documentresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\policy\\documentresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\policy\\createplandto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\policy\\createplandto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\policy\\addnomineedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\policy\\addnomineedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\payment\\paymentscheduledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\payment\\paymentscheduledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\payment\\makepaymentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\payment\\makepaymentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\payment\\invoiceresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\payment\\invoiceresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\endorsement\\requestsumassuredincreasedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\endorsement\\requestsumassuredincreasedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\endorsement\\requestnomineechangedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\endorsement\\requestnomineechangedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\endorsement\\requestaddresschangedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\endorsement\\requestaddresschangedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\endorsement\\endorsementdecisiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\endorsement\\endorsementdecisiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\dashboard\\userrolecountdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\dashboard\\userrolecountdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\dashboard\\recentactivitydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\dashboard\\recentactivitydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\dashboard\\policystatuscountdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\dashboard\\policystatuscountdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\dashboard\\policycommissiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\dashboard\\policycommissiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\dashboard\\plandistributiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\dashboard\\plandistributiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\dashboard\\customerdashboarddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\dashboard\\customerdashboarddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\dashboard\\claimstatuscountdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\dashboard\\claimstatuscountdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\dashboard\\claimsofficerdashboarddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\dashboard\\claimsofficerdashboarddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\dashboard\\agentperformancedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\dashboard\\agentperformancedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\dashboard\\agentdashboarddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\dashboard\\agentdashboarddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\dashboard\\admindashboarddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\dashboard\\admindashboarddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\claim\\raiseclaimdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\claim\\raiseclaimdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\claim\\claimdocumentresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\claim\\claimdocumentresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\claim\\claimdocumentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\claim\\claimdocumentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\claim\\claimdecisiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\claim\\claimdecisiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\auth\\userlistdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\auth\\userlistdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\auth\\updatestaffdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\auth\\updatestaffdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\auth\\registerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\auth\\registerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\auth\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\auth\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\auth\\createstaffdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\auth\\createstaffdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\auth\\changepassworddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\auth\\changepassworddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\auth\\authresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\auth\\authresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FDD683D6-6DDB-4FA7-86C7-2229898F7AE0}|API\\API.csproj|d:\\new folder\\lims\\api\\controllers\\endorsementcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FDD683D6-6DDB-4FA7-86C7-2229898F7AE0}|API\\API.csproj|solutionrelative:api\\controllers\\endorsementcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FDD683D6-6DDB-4FA7-86C7-2229898F7AE0}|API\\API.csproj|d:\\new folder\\lims\\api\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FDD683D6-6DDB-4FA7-86C7-2229898F7AE0}|API\\API.csproj|solutionrelative:api\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FDD683D6-6DDB-4FA7-86C7-2229898F7AE0}|API\\API.csproj|d:\\new folder\\lims\\api\\controllers\\claimcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FDD683D6-6DDB-4FA7-86C7-2229898F7AE0}|API\\API.csproj|solutionrelative:api\\controllers\\claimcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B192F31F-8D58-4FEF-98EF-A43133B0EE3B}|Infrastructure\\Infrastructure.csproj|d:\\new folder\\lims\\infrastructure\\migrations\\20260227113417_policyflow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B192F31F-8D58-4FEF-98EF-A43133B0EE3B}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\migrations\\20260227113417_policyflow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\danda\\OneDrive\\Desktop\\THANMAI\\LIMS\\Infrastructure\\Migrations\\20260227072740_AddDashboardModule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\danda\\OneDrive\\Desktop\\THANMAI\\LIMS\\Infrastructure\\Migrations\\20260227072358_AddDashboardModule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\services\\dashboardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\services\\dashboardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\interfaces\\repositories\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\interfaces\\repositories\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B192F31F-8D58-4FEF-98EF-A43133B0EE3B}|Infrastructure\\Infrastructure.csproj|d:\\new folder\\lims\\infrastructure\\repositories\\invoicerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B192F31F-8D58-4FEF-98EF-A43133B0EE3B}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\repositories\\invoicerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\interfaces\\services\\idashboardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\interfaces\\services\\idashboardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\dashboard\\monthlyrevenuedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\dashboard\\monthlyrevenuedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\danda\\OneDrive\\Desktop\\THANMAI\\LIMS\\Infrastructure\\Migrations\\20260227041932_AddEnorsementModule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\endorsement\\endorsementresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\endorsement\\endorsementresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\danda\\OneDrive\\Desktop\\THANMAI\\LIMS\\Infrastructure\\Migrations\\20260226202838_AddClaimsModule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\claim\\claimresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\claim\\claimresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\danda\\OneDrive\\Desktop\\THANMAI\\LIMS\\Infrastructure\\Migrations\\20260226195706_AddBillingAndPayments.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B192F31F-8D58-4FEF-98EF-A43133B0EE3B}|Infrastructure\\Infrastructure.csproj|d:\\new folder\\lims\\infrastructure\\services\\graceperiodbackgroundservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B192F31F-8D58-4FEF-98EF-A43133B0EE3B}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\services\\graceperiodbackgroundservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\services\\paymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\services\\paymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\new folder\\lims\\application\\dtos\\payment\\paymentresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\payment\\paymentresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63725913-2FE6-414B-B6DD-1198F2FF79DA}|Domain\\Domain.csproj|d:\\new folder\\lims\\domain\\enums\\paymentfrequency.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63725913-2FE6-414B-B6DD-1198F2FF79DA}|Domain\\Domain.csproj|solutionrelative:domain\\enums\\paymentfrequency.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\danda\\OneDrive\\Desktop\\THANMAI\\LIMS\\Infrastructure\\Migrations\\20260226192912_AddAgentWorkflow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\danda\\OneDrive\\Desktop\\THANMAI\\LIMS\\Infrastructure\\Migrations\\20260226182702_AddPolicyModule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FDD683D6-6DDB-4FA7-86C7-2229898F7AE0}|API\\API.csproj|d:\\new folder\\lims\\api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FDD683D6-6DDB-4FA7-86C7-2229898F7AE0}|API\\API.csproj|solutionrelative:api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63725913-2FE6-414B-B6DD-1198F2FF79DA}|Domain\\Domain.csproj|d:\\new folder\\lims\\domain\\common\\baseentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63725913-2FE6-414B-B6DD-1198F2FF79DA}|Domain\\Domain.csproj|solutionrelative:domain\\common\\baseentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B192F31F-8D58-4FEF-98EF-A43133B0EE3B}|Infrastructure\\Infrastructure.csproj|d:\\new folder\\lims\\infrastructure\\infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{B192F31F-8D58-4FEF-98EF-A43133B0EE3B}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B192F31F-8D58-4FEF-98EF-A43133B0EE3B}|Infrastructure\\Infrastructure.csproj|d:\\new folder\\lims\\infrastructure\\migrations\\20260227073054_dbchanges.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B192F31F-8D58-4FEF-98EF-A43133B0EE3B}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\migrations\\20260227073054_dbchanges.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 7,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "PasswordHasher.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Infrastructure\\Security\\PasswordHasher.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Security\\PasswordHasher.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Infrastructure\\Security\\PasswordHasher.cs",
+              "RelativeToolTip": "Infrastructure\\Security\\PasswordHasher.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T09:02:16.187Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "DbInitializer.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Infrastructure\\Data\\DbInitializer.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Data\\DbInitializer.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Infrastructure\\Data\\DbInitializer.cs",
+              "RelativeToolTip": "Infrastructure\\Data\\DbInitializer.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAwBYAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T09:06:32.223Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\API\\appsettings.json",
+              "RelativeDocumentMoniker": "API\\appsettings.json",
+              "ToolTip": "D:\\New folder\\LIMS\\API\\appsettings.json",
+              "RelativeToolTip": "API\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-02-26T09:20:06.927Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "GlobalExceptionMiddleware.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\API\\Middleware\\GlobalExceptionMiddleware.cs",
+              "RelativeDocumentMoniker": "API\\Middleware\\GlobalExceptionMiddleware.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\API\\Middleware\\GlobalExceptionMiddleware.cs",
+              "RelativeToolTip": "API\\Middleware\\GlobalExceptionMiddleware.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADUAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T09:24:45.489Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\API\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\AdminController.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\API\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "API\\Controllers\\AdminController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADQAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T15:04:32.8Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PaymentController.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\API\\Controllers\\PaymentController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\PaymentController.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\API\\Controllers\\PaymentController.cs",
+              "RelativeToolTip": "API\\Controllers\\PaymentController.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAuwDYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T19:53:07.108Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\API\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\AuthController.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\API\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "API\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T09:25:33.97Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\API\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "API\\Properties\\launchSettings.json",
+              "ToolTip": "D:\\New folder\\LIMS\\API\\Properties\\launchSettings.json",
+              "RelativeToolTip": "API\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-02-26T11:57:57.795Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "JwtTokenService.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Infrastructure\\Security\\JwtTokenService.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Security\\JwtTokenService.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Infrastructure\\Security\\JwtTokenService.cs",
+              "RelativeToolTip": "Infrastructure\\Security\\JwtTokenService.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwBoAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T09:03:12.836Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Infrastructure\\Repositories\\UserRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\UserRepository.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Infrastructure\\Repositories\\UserRepository.cs",
+              "RelativeToolTip": "Infrastructure\\Repositories\\UserRepository.cs",
+              "ViewState": "AgIAAEcAAAAAAAAAAAAAAGIAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T09:13:26.457Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "PolicyRepository.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Infrastructure\\Repositories\\PolicyRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\PolicyRepository.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Infrastructure\\Repositories\\PolicyRepository.cs",
+              "RelativeToolTip": "Infrastructure\\Repositories\\PolicyRepository.cs",
+              "ViewState": "AgIAAH4AAAAAAAAAAAAYwJ0AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T04:40:31.164Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ServiceRegistrationExtensions.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\API\\Extensions\\ServiceRegistrationExtensions.cs",
+              "RelativeDocumentMoniker": "API\\Extensions\\ServiceRegistrationExtensions.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\API\\Extensions\\ServiceRegistrationExtensions.cs",
+              "RelativeToolTip": "API\\Extensions\\ServiceRegistrationExtensions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T09:22:18.445Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "PlanRepository.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Infrastructure\\Repositories\\PlanRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\PlanRepository.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Infrastructure\\Repositories\\PlanRepository.cs",
+              "RelativeToolTip": "Infrastructure\\Repositories\\PlanRepository.cs",
+              "ViewState": "AgIAADYAAAAAAAAAAAAAwCkAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T17:13:24.657Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "PaymentRepository.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Infrastructure\\Repositories\\PaymentRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\PaymentRepository.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Infrastructure\\Repositories\\PaymentRepository.cs",
+              "RelativeToolTip": "Infrastructure\\Repositories\\PaymentRepository.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAA1wEgAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T19:47:01.992Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "NomineeRepository.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Infrastructure\\Repositories\\NomineeRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\NomineeRepository.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Infrastructure\\Repositories\\NomineeRepository.cs",
+              "RelativeToolTip": "Infrastructure\\Repositories\\NomineeRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T18:51:20.184Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "EndorsementRepository.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Infrastructure\\Repositories\\EndorsementRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\EndorsementRepository.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Infrastructure\\Repositories\\EndorsementRepository.cs",
+              "RelativeToolTip": "Infrastructure\\Repositories\\EndorsementRepository.cs",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAYwGcAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T04:16:38.047Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "CommissionRepository.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Infrastructure\\Repositories\\CommissionRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\CommissionRepository.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Infrastructure\\Repositories\\CommissionRepository.cs",
+              "RelativeToolTip": "Infrastructure\\Repositories\\CommissionRepository.cs",
+              "ViewState": "AgIAADkAAAAAAAAAAAAYwFYAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T18:53:56.56Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ClaimRepository.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Infrastructure\\Repositories\\ClaimRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\ClaimRepository.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Infrastructure\\Repositories\\ClaimRepository.cs",
+              "RelativeToolTip": "Infrastructure\\Repositories\\ClaimRepository.cs",
+              "ViewState": "AgIAAJUAAAAAAAAAAAA5wKEAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T20:06:36.876Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Infrastructure\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Data\\AppDbContext.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Infrastructure\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "Infrastructure\\Data\\AppDbContext.cs",
+              "ViewState": "AgIAAKsAAAAAAAAAAAAQwD8AAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T16:37:05.429Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "UserRole.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Domain\\Enums\\UserRole.cs",
+              "RelativeDocumentMoniker": "Domain\\Enums\\UserRole.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Domain\\Enums\\UserRole.cs",
+              "RelativeToolTip": "Domain\\Enums\\UserRole.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T08:57:00.865Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "PolicyStatus.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Domain\\Enums\\PolicyStatus.cs",
+              "RelativeDocumentMoniker": "Domain\\Enums\\PolicyStatus.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Domain\\Enums\\PolicyStatus.cs",
+              "RelativeToolTip": "Domain\\Enums\\PolicyStatus.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T17:53:44.792Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "PaymentStatus.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Domain\\Enums\\PaymentStatus.cs",
+              "RelativeDocumentMoniker": "Domain\\Enums\\PaymentStatus.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Domain\\Enums\\PaymentStatus.cs",
+              "RelativeToolTip": "Domain\\Enums\\PaymentStatus.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T19:40:59.002Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "InvoiceStatus.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Domain\\Enums\\InvoiceStatus.cs",
+              "RelativeDocumentMoniker": "Domain\\Enums\\InvoiceStatus.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Domain\\Enums\\InvoiceStatus.cs",
+              "RelativeToolTip": "Domain\\Enums\\InvoiceStatus.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T19:41:17.208Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "EndorsementType.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Domain\\Enums\\EndorsementType.cs",
+              "RelativeDocumentMoniker": "Domain\\Enums\\EndorsementType.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Domain\\Enums\\EndorsementType.cs",
+              "RelativeToolTip": "Domain\\Enums\\EndorsementType.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T04:06:25.657Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "EndorsementStatus.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Domain\\Enums\\EndorsementStatus.cs",
+              "RelativeDocumentMoniker": "Domain\\Enums\\EndorsementStatus.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Domain\\Enums\\EndorsementStatus.cs",
+              "RelativeToolTip": "Domain\\Enums\\EndorsementStatus.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T04:05:46.411Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "DocumentStatus.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Domain\\Enums\\DocumentStatus.cs",
+              "RelativeDocumentMoniker": "Domain\\Enums\\DocumentStatus.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Domain\\Enums\\DocumentStatus.cs",
+              "RelativeToolTip": "Domain\\Enums\\DocumentStatus.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T17:54:49.129Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "ClaimStatus.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Domain\\Enums\\ClaimStatus.cs",
+              "RelativeDocumentMoniker": "Domain\\Enums\\ClaimStatus.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Domain\\Enums\\ClaimStatus.cs",
+              "RelativeToolTip": "Domain\\Enums\\ClaimStatus.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T19:59:04.907Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "User.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Domain\\Entities\\User.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\User.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Domain\\Entities\\User.cs",
+              "RelativeToolTip": "Domain\\Entities\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAowA4AAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T15:48:28.777Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "PolicyEndorsement.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Domain\\Entities\\PolicyEndorsement.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\PolicyEndorsement.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Domain\\Entities\\PolicyEndorsement.cs",
+              "RelativeToolTip": "Domain\\Entities\\PolicyEndorsement.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAzwCEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T04:06:51.668Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "Nominee.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Domain\\Entities\\Nominee.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\Nominee.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Domain\\Entities\\Nominee.cs",
+              "RelativeToolTip": "Domain\\Entities\\Nominee.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T17:55:09.447Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "Invoice.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Domain\\Entities\\Invoice.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\Invoice.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Domain\\Entities\\Invoice.cs",
+              "RelativeToolTip": "Domain\\Entities\\Invoice.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAQwBkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T17:56:30.29Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "InsurancePlan.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Domain\\Entities\\InsurancePlan.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\InsurancePlan.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Domain\\Entities\\InsurancePlan.cs",
+              "RelativeToolTip": "Domain\\Entities\\InsurancePlan.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAiwAoAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T10:06:28.814Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "Document.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Domain\\Entities\\Document.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\Document.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Domain\\Entities\\Document.cs",
+              "RelativeToolTip": "Domain\\Entities\\Document.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T17:55:36.978Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "Commission.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Domain\\Entities\\Commission.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\Commission.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Domain\\Entities\\Commission.cs",
+              "RelativeToolTip": "Domain\\Entities\\Commission.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T18:51:37.581Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "ClaimDocument.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Domain\\Entities\\ClaimDocument.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\ClaimDocument.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Domain\\Entities\\ClaimDocument.cs",
+              "RelativeToolTip": "Domain\\Entities\\ClaimDocument.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T19:59:54.769Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "PremiumCalculationService.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\Services\\PremiumCalculationService.cs",
+              "RelativeDocumentMoniker": "Application\\Services\\PremiumCalculationService.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\Services\\PremiumCalculationService.cs",
+              "RelativeToolTip": "Application\\Services\\PremiumCalculationService.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAQwDgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T18:50:46.715Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "Payment.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Domain\\Entities\\Payment.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\Payment.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Domain\\Entities\\Payment.cs",
+              "RelativeToolTip": "Domain\\Entities\\Payment.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T19:42:20.598Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "PlanService.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\Services\\PlanService.cs",
+              "RelativeDocumentMoniker": "Application\\Services\\PlanService.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\Services\\PlanService.cs",
+              "RelativeToolTip": "Application\\Services\\PlanService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T17:16:20.869Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "InvoiceService.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\Services\\InvoiceService.cs",
+              "RelativeDocumentMoniker": "Application\\Services\\InvoiceService.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\Services\\InvoiceService.cs",
+              "RelativeToolTip": "Application\\Services\\InvoiceService.cs",
+              "ViewState": "AgIAAG4AAAAAAAAAAAAzwIYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T19:47:39.962Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "EndorsementService.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\Services\\EndorsementService.cs",
+              "RelativeDocumentMoniker": "Application\\Services\\EndorsementService.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\Services\\EndorsementService.cs",
+              "RelativeToolTip": "Application\\Services\\EndorsementService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJIAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T04:17:26.668Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "ClaimsOfficerAssignmentService.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\Services\\ClaimsOfficerAssignmentService.cs",
+              "RelativeDocumentMoniker": "Application\\Services\\ClaimsOfficerAssignmentService.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\Services\\ClaimsOfficerAssignmentService.cs",
+              "RelativeToolTip": "Application\\Services\\ClaimsOfficerAssignmentService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T20:13:28.563Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "ClaimService.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\Services\\ClaimService.cs",
+              "RelativeDocumentMoniker": "Application\\Services\\ClaimService.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\Services\\ClaimService.cs",
+              "RelativeToolTip": "Application\\Services\\ClaimService.cs",
+              "ViewState": "AgIAAAwBAAAAAAAAAAAQwCQBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T20:25:48.068Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\Services\\AuthService.cs",
+              "RelativeDocumentMoniker": "Application\\Services\\AuthService.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\Services\\AuthService.cs",
+              "RelativeToolTip": "Application\\Services\\AuthService.cs",
+              "ViewState": "AgIAAPkAAAAAAAAAAAAgwBkBAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T09:16:14.543Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "AgentPolicyService.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\Services\\AgentPolicyService.cs",
+              "RelativeDocumentMoniker": "Application\\Services\\AgentPolicyService.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\Services\\AgentPolicyService.cs",
+              "RelativeToolTip": "Application\\Services\\AgentPolicyService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAF0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T18:55:42.324Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "AgentAssignmentService.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\Services\\AgentAssignmentService.cs",
+              "RelativeDocumentMoniker": "Application\\Services\\AgentAssignmentService.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\Services\\AgentAssignmentService.cs",
+              "RelativeToolTip": "Application\\Services\\AgentAssignmentService.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAzwBoAAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T18:02:27.57Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "IPremiumCalculationService.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\Interfaces\\Services\\IPremiumCalculationService.cs",
+              "RelativeDocumentMoniker": "Application\\Interfaces\\Services\\IPremiumCalculationService.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\Interfaces\\Services\\IPremiumCalculationService.cs",
+              "RelativeToolTip": "Application\\Interfaces\\Services\\IPremiumCalculationService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T18:50:34.507Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "IPolicyService.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\Interfaces\\Services\\IPolicyService.cs",
+              "RelativeDocumentMoniker": "Application\\Interfaces\\Services\\IPolicyService.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\Interfaces\\Services\\IPolicyService.cs",
+              "RelativeToolTip": "Application\\Interfaces\\Services\\IPolicyService.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAqwBwAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T18:17:26.654Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "IPlanService.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\Interfaces\\Services\\IPlanService.cs",
+              "RelativeDocumentMoniker": "Application\\Interfaces\\Services\\IPlanService.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\Interfaces\\Services\\IPlanService.cs",
+              "RelativeToolTip": "Application\\Interfaces\\Services\\IPlanService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T17:15:37.716Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
+              "Title": "IPaymentService.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\Interfaces\\Services\\IPaymentService.cs",
+              "RelativeDocumentMoniker": "Application\\Interfaces\\Services\\IPaymentService.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\Interfaces\\Services\\IPaymentService.cs",
+              "RelativeToolTip": "Application\\Interfaces\\Services\\IPaymentService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T19:47:50.854Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 49,
+              "Title": "IInvoiceService.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\Interfaces\\Services\\IInvoiceService.cs",
+              "RelativeDocumentMoniker": "Application\\Interfaces\\Services\\IInvoiceService.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\Interfaces\\Services\\IInvoiceService.cs",
+              "RelativeToolTip": "Application\\Interfaces\\Services\\IInvoiceService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T19:47:24.395Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 50,
+              "Title": "IEndorsementService.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\Interfaces\\Services\\IEndorsementService.cs",
+              "RelativeDocumentMoniker": "Application\\Interfaces\\Services\\IEndorsementService.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\Interfaces\\Services\\IEndorsementService.cs",
+              "RelativeToolTip": "Application\\Interfaces\\Services\\IEndorsementService.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAUwBIAAABQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T04:17:05.815Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 51,
+              "Title": "IClaimsOfficerAssignmentService.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\Interfaces\\Services\\IClaimsOfficerAssignmentService.cs",
+              "RelativeDocumentMoniker": "Application\\Interfaces\\Services\\IClaimsOfficerAssignmentService.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\Interfaces\\Services\\IClaimsOfficerAssignmentService.cs",
+              "RelativeToolTip": "Application\\Interfaces\\Services\\IClaimsOfficerAssignmentService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T20:13:03.247Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 52,
+              "Title": "IClaimService.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\Interfaces\\Services\\IClaimService.cs",
+              "RelativeDocumentMoniker": "Application\\Interfaces\\Services\\IClaimService.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\Interfaces\\Services\\IClaimService.cs",
+              "RelativeToolTip": "Application\\Interfaces\\Services\\IClaimService.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAQwBkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T20:25:30.507Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 53,
+              "Title": "IAuthService.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\Interfaces\\Services\\IAuthService.cs",
+              "RelativeDocumentMoniker": "Application\\Interfaces\\Services\\IAuthService.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\Interfaces\\Services\\IAuthService.cs",
+              "RelativeToolTip": "Application\\Interfaces\\Services\\IAuthService.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAAABUAAABSAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T15:21:57.176Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 54,
+              "Title": "IAgentPolicyService.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\Interfaces\\Services\\IAgentPolicyService.cs",
+              "RelativeDocumentMoniker": "Application\\Interfaces\\Services\\IAgentPolicyService.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\Interfaces\\Services\\IAgentPolicyService.cs",
+              "RelativeToolTip": "Application\\Interfaces\\Services\\IAgentPolicyService.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAxwAoAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T18:54:59.841Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 55,
+              "Title": "IAgentAssignmentService.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\Interfaces\\Services\\IAgentAssignmentService.cs",
+              "RelativeDocumentMoniker": "Application\\Interfaces\\Services\\IAgentAssignmentService.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\Interfaces\\Services\\IAgentAssignmentService.cs",
+              "RelativeToolTip": "Application\\Interfaces\\Services\\IAgentAssignmentService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T18:02:02.82Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 56,
+              "Title": "IPolicyRepository.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\Interfaces\\Repositories\\IPolicyRepository.cs",
+              "RelativeDocumentMoniker": "Application\\Interfaces\\Repositories\\IPolicyRepository.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\Interfaces\\Repositories\\IPolicyRepository.cs",
+              "RelativeToolTip": "Application\\Interfaces\\Repositories\\IPolicyRepository.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAA8wBQAAABaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T04:40:10.405Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 57,
+              "Title": "IPlanRepository.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\Interfaces\\Repositories\\IPlanRepository.cs",
+              "RelativeDocumentMoniker": "Application\\Interfaces\\Repositories\\IPlanRepository.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\Interfaces\\Repositories\\IPlanRepository.cs",
+              "RelativeToolTip": "Application\\Interfaces\\Repositories\\IPlanRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T17:12:24.873Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 58,
+              "Title": "IPaymentRepository.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\Interfaces\\Repositories\\IPaymentRepository.cs",
+              "RelativeDocumentMoniker": "Application\\Interfaces\\Repositories\\IPaymentRepository.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\Interfaces\\Repositories\\IPaymentRepository.cs",
+              "RelativeToolTip": "Application\\Interfaces\\Repositories\\IPaymentRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T19:46:32.941Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 59,
+              "Title": "INomineeRepository.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\Interfaces\\Repositories\\INomineeRepository.cs",
+              "RelativeDocumentMoniker": "Application\\Interfaces\\Repositories\\INomineeRepository.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\Interfaces\\Repositories\\INomineeRepository.cs",
+              "RelativeToolTip": "Application\\Interfaces\\Repositories\\INomineeRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T18:51:07.598Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 60,
+              "Title": "IInvoiceRepository.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\Interfaces\\Repositories\\IInvoiceRepository.cs",
+              "RelativeDocumentMoniker": "Application\\Interfaces\\Repositories\\IInvoiceRepository.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\Interfaces\\Repositories\\IInvoiceRepository.cs",
+              "RelativeToolTip": "Application\\Interfaces\\Repositories\\IInvoiceRepository.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAA6wBEAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T19:46:20.464Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 61,
+              "Title": "IEndorsementRepository.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\Interfaces\\Repositories\\IEndorsementRepository.cs",
+              "RelativeDocumentMoniker": "Application\\Interfaces\\Repositories\\IEndorsementRepository.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\Interfaces\\Repositories\\IEndorsementRepository.cs",
+              "RelativeToolTip": "Application\\Interfaces\\Repositories\\IEndorsementRepository.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAA3wBEAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T04:16:23.194Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 62,
+              "Title": "ICommissionRepository.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\Interfaces\\Repositories\\ICommissionRepository.cs",
+              "RelativeDocumentMoniker": "Application\\Interfaces\\Repositories\\ICommissionRepository.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\Interfaces\\Repositories\\ICommissionRepository.cs",
+              "RelativeToolTip": "Application\\Interfaces\\Repositories\\ICommissionRepository.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA0AAABHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T18:53:43.747Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 63,
+              "Title": "IClaimRepository.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\Interfaces\\Repositories\\IClaimRepository.cs",
+              "RelativeDocumentMoniker": "Application\\Interfaces\\Repositories\\IClaimRepository.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\Interfaces\\Repositories\\IClaimRepository.cs",
+              "RelativeToolTip": "Application\\Interfaces\\Repositories\\IClaimRepository.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAAwBUAAABYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T20:06:18.145Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 64,
+              "Title": "UploadDocumentDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Policy\\UploadDocumentDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Policy\\UploadDocumentDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Policy\\UploadDocumentDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Policy\\UploadDocumentDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T19:10:30.168Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 65,
+              "Title": "UpdatePlanDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Policy\\UpdatePlanDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Policy\\UpdatePlanDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Policy\\UpdatePlanDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Policy\\UpdatePlanDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T17:10:39.656Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 66,
+              "Title": "SubmitNomineesDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Policy\\SubmitNomineesDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Policy\\SubmitNomineesDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Policy\\SubmitNomineesDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Policy\\SubmitNomineesDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T18:48:16.053Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 67,
+              "Title": "PremiumCalculationResultDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Policy\\PremiumCalculationResultDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Policy\\PremiumCalculationResultDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Policy\\PremiumCalculationResultDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Policy\\PremiumCalculationResultDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T18:47:12.527Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 68,
+              "Title": "PolicyResponseDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Policy\\PolicyResponseDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Policy\\PolicyResponseDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Policy\\PolicyResponseDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Policy\\PolicyResponseDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T18:00:27.605Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 69,
+              "Title": "PolicyDecisionDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Policy\\PolicyDecisionDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Policy\\PolicyDecisionDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Policy\\PolicyDecisionDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Policy\\PolicyDecisionDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T18:49:19.369Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 70,
+              "Title": "PlanResponseDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Policy\\PlanResponseDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Policy\\PlanResponseDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Policy\\PlanResponseDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Policy\\PlanResponseDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T17:11:28.383Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 71,
+              "Title": "NomineeResponseDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Policy\\NomineeResponseDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Policy\\NomineeResponseDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Policy\\NomineeResponseDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Policy\\NomineeResponseDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T18:48:49.994Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 72,
+              "Title": "EligibilityDetailsDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Policy\\EligibilityDetailsDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Policy\\EligibilityDetailsDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Policy\\EligibilityDetailsDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Policy\\EligibilityDetailsDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T18:46:25.38Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 73,
+              "Title": "DocumentResponseDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Policy\\DocumentResponseDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Policy\\DocumentResponseDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Policy\\DocumentResponseDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Policy\\DocumentResponseDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T18:49:52.693Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 74,
+              "Title": "CreatePlanDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Policy\\CreatePlanDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Policy\\CreatePlanDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Policy\\CreatePlanDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Policy\\CreatePlanDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T17:09:49.162Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 75,
+              "Title": "AddNomineeDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Policy\\AddNomineeDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Policy\\AddNomineeDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Policy\\AddNomineeDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Policy\\AddNomineeDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T18:47:40.412Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 76,
+              "Title": "PaymentScheduleDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Payment\\PaymentScheduleDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Payment\\PaymentScheduleDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Payment\\PaymentScheduleDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Payment\\PaymentScheduleDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T19:46:05.212Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 77,
+              "Title": "MakePaymentDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Payment\\MakePaymentDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Payment\\MakePaymentDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Payment\\MakePaymentDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Payment\\MakePaymentDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T19:45:35.376Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 78,
+              "Title": "InvoiceResponseDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Payment\\InvoiceResponseDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Payment\\InvoiceResponseDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Payment\\InvoiceResponseDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Payment\\InvoiceResponseDto.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAA3wBEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T19:43:55.921Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 79,
+              "Title": "RequestSumAssuredIncreaseDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Endorsement\\RequestSumAssuredIncreaseDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Endorsement\\RequestSumAssuredIncreaseDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Endorsement\\RequestSumAssuredIncreaseDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Endorsement\\RequestSumAssuredIncreaseDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T04:13:55.778Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 80,
+              "Title": "RequestNomineeChangeDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Endorsement\\RequestNomineeChangeDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Endorsement\\RequestNomineeChangeDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Endorsement\\RequestNomineeChangeDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Endorsement\\RequestNomineeChangeDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T04:13:06.199Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 81,
+              "Title": "RequestAddressChangeDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Endorsement\\RequestAddressChangeDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Endorsement\\RequestAddressChangeDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Endorsement\\RequestAddressChangeDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Endorsement\\RequestAddressChangeDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T04:12:17.438Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 82,
+              "Title": "EndorsementDecisionDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Endorsement\\EndorsementDecisionDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Endorsement\\EndorsementDecisionDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Endorsement\\EndorsementDecisionDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Endorsement\\EndorsementDecisionDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T04:15:35.701Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 83,
+              "Title": "UserRoleCountDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Dashboard\\UserRoleCountDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Dashboard\\UserRoleCountDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Dashboard\\UserRoleCountDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Dashboard\\UserRoleCountDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T05:39:51.371Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 84,
+              "Title": "RecentActivityDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Dashboard\\RecentActivityDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Dashboard\\RecentActivityDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Dashboard\\RecentActivityDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Dashboard\\RecentActivityDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T04:34:46.223Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 85,
+              "Title": "PolicyStatusCountDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Dashboard\\PolicyStatusCountDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Dashboard\\PolicyStatusCountDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Dashboard\\PolicyStatusCountDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Dashboard\\PolicyStatusCountDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T05:38:21.586Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 86,
+              "Title": "PolicyCommissionDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Dashboard\\PolicyCommissionDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Dashboard\\PolicyCommissionDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Dashboard\\PolicyCommissionDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Dashboard\\PolicyCommissionDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T04:33:34.15Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 87,
+              "Title": "PlanDistributionDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Dashboard\\PlanDistributionDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Dashboard\\PlanDistributionDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Dashboard\\PlanDistributionDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Dashboard\\PlanDistributionDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T04:32:09.291Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 88,
+              "Title": "CustomerDashboardDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Dashboard\\CustomerDashboardDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Dashboard\\CustomerDashboardDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Dashboard\\CustomerDashboardDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Dashboard\\CustomerDashboardDto.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAA6wBsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T04:34:09.356Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 89,
+              "Title": "ClaimStatusCountDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Dashboard\\ClaimStatusCountDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Dashboard\\ClaimStatusCountDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Dashboard\\ClaimStatusCountDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Dashboard\\ClaimStatusCountDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T05:39:12.491Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 90,
+              "Title": "ClaimsOfficerDashboardDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Dashboard\\ClaimsOfficerDashboardDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Dashboard\\ClaimsOfficerDashboardDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Dashboard\\ClaimsOfficerDashboardDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Dashboard\\ClaimsOfficerDashboardDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T04:35:28.688Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 91,
+              "Title": "AgentPerformanceDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Dashboard\\AgentPerformanceDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Dashboard\\AgentPerformanceDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Dashboard\\AgentPerformanceDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Dashboard\\AgentPerformanceDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T04:23:43.738Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 92,
+              "Title": "AgentDashboardDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Dashboard\\AgentDashboardDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Dashboard\\AgentDashboardDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Dashboard\\AgentDashboardDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Dashboard\\AgentDashboardDto.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAAwBQAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T04:32:45.552Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 93,
+              "Title": "AdminDashboardDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Dashboard\\AdminDashboardDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Dashboard\\AdminDashboardDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Dashboard\\AdminDashboardDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Dashboard\\AdminDashboardDto.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAA8wCgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T04:22:31.393Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 94,
+              "Title": "RaiseClaimDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Claim\\RaiseClaimDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Claim\\RaiseClaimDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Claim\\RaiseClaimDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Claim\\RaiseClaimDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T20:03:32.142Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 95,
+              "Title": "ClaimDocumentResponseDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Claim\\ClaimDocumentResponseDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Claim\\ClaimDocumentResponseDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Claim\\ClaimDocumentResponseDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Claim\\ClaimDocumentResponseDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T20:05:54.504Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 96,
+              "Title": "ClaimDocumentDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Claim\\ClaimDocumentDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Claim\\ClaimDocumentDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Claim\\ClaimDocumentDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Claim\\ClaimDocumentDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T20:04:11.688Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 97,
+              "Title": "ClaimDecisionDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Claim\\ClaimDecisionDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Claim\\ClaimDecisionDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Claim\\ClaimDecisionDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Claim\\ClaimDecisionDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T20:04:42.28Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 98,
+              "Title": "UserListDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Auth\\UserListDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Auth\\UserListDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Auth\\UserListDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Auth\\UserListDto.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABMAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T15:52:09.626Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 99,
+              "Title": "UpdateStaffDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Auth\\UpdateStaffDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Auth\\UpdateStaffDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Auth\\UpdateStaffDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Auth\\UpdateStaffDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T16:14:11.853Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 100,
+              "Title": "RegisterDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Auth\\RegisterDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Auth\\RegisterDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Auth\\RegisterDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Auth\\RegisterDto.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAAABcAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T09:09:36.165Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 101,
+              "Title": "LoginDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Auth\\LoginDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Auth\\LoginDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Auth\\LoginDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Auth\\LoginDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T09:10:50.358Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 102,
+              "Title": "CreateStaffDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Auth\\CreateStaffDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Auth\\CreateStaffDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Auth\\CreateStaffDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Auth\\CreateStaffDto.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAAABgAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T12:31:54.689Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 103,
+              "Title": "ChangePasswordDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Auth\\ChangePasswordDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Auth\\ChangePasswordDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Auth\\ChangePasswordDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Auth\\ChangePasswordDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T10:01:48.62Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 104,
+              "Title": "AuthResponseDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Auth\\AuthResponseDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Auth\\AuthResponseDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Auth\\AuthResponseDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Auth\\AuthResponseDto.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAQwAsAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T09:11:22.615Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 105,
+              "Title": "EndorsementController.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\API\\Controllers\\EndorsementController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\EndorsementController.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\API\\Controllers\\EndorsementController.cs",
+              "RelativeToolTip": "API\\Controllers\\EndorsementController.cs",
+              "ViewState": "AgIAAHYAAAAAAAAAAAAQwIsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T04:17:47.87Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 106,
+              "Title": "DashboardController.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\API\\Controllers\\DashboardController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\DashboardController.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\API\\Controllers\\DashboardController.cs",
+              "RelativeToolTip": "API\\Controllers\\DashboardController.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAYwD4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T06:41:00.383Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 107,
+              "Title": "ClaimController.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\API\\Controllers\\ClaimController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\ClaimController.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\API\\Controllers\\ClaimController.cs",
+              "RelativeToolTip": "API\\Controllers\\ClaimController.cs",
+              "ViewState": "AgIAAGUAAAAAAAAAAAAQwHsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T20:26:15.589Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 108,
+              "Title": "20260227113417_PolicyFlow.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Infrastructure\\Migrations\\20260227113417_PolicyFlow.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Migrations\\20260227113417_PolicyFlow.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Infrastructure\\Migrations\\20260227113417_PolicyFlow.cs",
+              "RelativeToolTip": "Infrastructure\\Migrations\\20260227113417_PolicyFlow.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T11:34:17.678Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 130,
+              "Title": "20260227073054_DBChanges.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Infrastructure\\Migrations\\20260227073054_DBChanges.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Migrations\\20260227073054_DBChanges.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Infrastructure\\Migrations\\20260227073054_DBChanges.cs",
+              "RelativeToolTip": "Infrastructure\\Migrations\\20260227073054_DBChanges.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T07:30:54.634Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 109,
+              "Title": "20260227072740_AddDashboardModule.cs",
+              "DocumentMoniker": "C:\\Users\\danda\\OneDrive\\Desktop\\THANMAI\\LIMS\\Infrastructure\\Migrations\\20260227072740_AddDashboardModule.cs",
+              "ToolTip": "C:\\Users\\danda\\OneDrive\\Desktop\\THANMAI\\LIMS\\Infrastructure\\Migrations\\20260227072740_AddDashboardModule.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T07:27:40.886Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 110,
+              "Title": "20260227072358_AddDashboardModule.cs",
+              "DocumentMoniker": "C:\\Users\\danda\\OneDrive\\Desktop\\THANMAI\\LIMS\\Infrastructure\\Migrations\\20260227072358_AddDashboardModule.cs",
+              "ToolTip": "C:\\Users\\danda\\OneDrive\\Desktop\\THANMAI\\LIMS\\Infrastructure\\Migrations\\20260227072358_AddDashboardModule.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T07:23:58.796Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 111,
+              "Title": "DashboardService.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\Services\\DashboardService.cs",
+              "RelativeDocumentMoniker": "Application\\Services\\DashboardService.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\Services\\DashboardService.cs",
+              "RelativeToolTip": "Application\\Services\\DashboardService.cs",
+              "ViewState": "AgIAAHUAAAAAAAAAAAAAwIAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T04:36:00.218Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 112,
+              "Title": "IUserRepository.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\Interfaces\\Repositories\\IUserRepository.cs",
+              "RelativeDocumentMoniker": "Application\\Interfaces\\Repositories\\IUserRepository.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\Interfaces\\Repositories\\IUserRepository.cs",
+              "RelativeToolTip": "Application\\Interfaces\\Repositories\\IUserRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T09:12:48.393Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 113,
+              "Title": "InvoiceRepository.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Infrastructure\\Repositories\\InvoiceRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\InvoiceRepository.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Infrastructure\\Repositories\\InvoiceRepository.cs",
+              "RelativeToolTip": "Infrastructure\\Repositories\\InvoiceRepository.cs",
+              "ViewState": "AgIAAEcAAAAAAAAAAAA7wHcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T19:46:46.839Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 114,
+              "Title": "IDashboardService.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\Interfaces\\Services\\IDashboardService.cs",
+              "RelativeDocumentMoniker": "Application\\Interfaces\\Services\\IDashboardService.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\Interfaces\\Services\\IDashboardService.cs",
+              "RelativeToolTip": "Application\\Interfaces\\Services\\IDashboardService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T04:35:48.799Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 115,
+              "Title": "MonthlyRevenueDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Dashboard\\MonthlyRevenueDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Dashboard\\MonthlyRevenueDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Dashboard\\MonthlyRevenueDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Dashboard\\MonthlyRevenueDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T04:23:13.16Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 116,
+              "Title": "20260227041932_AddEnorsementModule.cs",
+              "DocumentMoniker": "C:\\Users\\danda\\OneDrive\\Desktop\\THANMAI\\LIMS\\Infrastructure\\Migrations\\20260227041932_AddEnorsementModule.cs",
+              "ToolTip": "C:\\Users\\danda\\OneDrive\\Desktop\\THANMAI\\LIMS\\Infrastructure\\Migrations\\20260227041932_AddEnorsementModule.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T04:19:32.719Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 117,
+              "Title": "EndorsementResponseDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Endorsement\\EndorsementResponseDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Endorsement\\EndorsementResponseDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Endorsement\\EndorsementResponseDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Endorsement\\EndorsementResponseDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T04:16:08.934Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 118,
+              "Title": "20260226202838_AddClaimsModule.cs",
+              "DocumentMoniker": "C:\\Users\\danda\\OneDrive\\Desktop\\THANMAI\\LIMS\\Infrastructure\\Migrations\\20260226202838_AddClaimsModule.cs",
+              "ToolTip": "C:\\Users\\danda\\OneDrive\\Desktop\\THANMAI\\LIMS\\Infrastructure\\Migrations\\20260226202838_AddClaimsModule.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T20:28:38.741Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 119,
+              "Title": "ClaimResponseDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Claim\\ClaimResponseDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Claim\\ClaimResponseDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Claim\\ClaimResponseDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Claim\\ClaimResponseDto.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwCcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T20:05:13.363Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 120,
+              "Title": "20260226195706_AddBillingAndPayments.cs",
+              "DocumentMoniker": "C:\\Users\\danda\\OneDrive\\Desktop\\THANMAI\\LIMS\\Infrastructure\\Migrations\\20260226195706_AddBillingAndPayments.cs",
+              "ToolTip": "C:\\Users\\danda\\OneDrive\\Desktop\\THANMAI\\LIMS\\Infrastructure\\Migrations\\20260226195706_AddBillingAndPayments.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T19:57:07.169Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 121,
+              "Title": "GracePeriodBackgroundService.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Infrastructure\\Services\\GracePeriodBackgroundService.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Services\\GracePeriodBackgroundService.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Infrastructure\\Services\\GracePeriodBackgroundService.cs",
+              "RelativeToolTip": "Infrastructure\\Services\\GracePeriodBackgroundService.cs",
+              "ViewState": "AgIAAE0AAAAAAAAAAAAQwF8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T19:49:36.297Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 122,
+              "Title": "PaymentService.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\Services\\PaymentService.cs",
+              "RelativeDocumentMoniker": "Application\\Services\\PaymentService.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\Services\\PaymentService.cs",
+              "RelativeToolTip": "Application\\Services\\PaymentService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T19:48:03.841Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 123,
+              "Title": "PaymentResponseDto.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Application\\DTOs\\Payment\\PaymentResponseDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\Payment\\PaymentResponseDto.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Application\\DTOs\\Payment\\PaymentResponseDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\Payment\\PaymentResponseDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T19:44:51.499Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 124,
+              "Title": "PaymentFrequency.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Domain\\Enums\\PaymentFrequency.cs",
+              "RelativeDocumentMoniker": "Domain\\Enums\\PaymentFrequency.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Domain\\Enums\\PaymentFrequency.cs",
+              "RelativeToolTip": "Domain\\Enums\\PaymentFrequency.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T19:41:50.628Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 125,
+              "Title": "20260226192912_AddAgentWorkflow.cs",
+              "DocumentMoniker": "C:\\Users\\danda\\OneDrive\\Desktop\\THANMAI\\LIMS\\Infrastructure\\Migrations\\20260226192912_AddAgentWorkflow.cs",
+              "ToolTip": "C:\\Users\\danda\\OneDrive\\Desktop\\THANMAI\\LIMS\\Infrastructure\\Migrations\\20260226192912_AddAgentWorkflow.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T19:29:12.963Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 126,
+              "Title": "20260226182702_AddPolicyModule.cs",
+              "DocumentMoniker": "C:\\Users\\danda\\OneDrive\\Desktop\\THANMAI\\LIMS\\Infrastructure\\Migrations\\20260226182702_AddPolicyModule.cs",
+              "ToolTip": "C:\\Users\\danda\\OneDrive\\Desktop\\THANMAI\\LIMS\\Infrastructure\\Migrations\\20260226182702_AddPolicyModule.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T18:27:02.772Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 127,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\API\\Program.cs",
+              "RelativeDocumentMoniker": "API\\Program.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\API\\Program.cs",
+              "RelativeToolTip": "API\\Program.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAYwCEAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T09:23:32.759Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 128,
+              "Title": "BaseEntity.cs",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Domain\\Common\\BaseEntity.cs",
+              "RelativeDocumentMoniker": "Domain\\Common\\BaseEntity.cs",
+              "ToolTip": "D:\\New folder\\LIMS\\Domain\\Common\\BaseEntity.cs",
+              "RelativeToolTip": "Domain\\Common\\BaseEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T08:57:25.17Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 129,
+              "Title": "Infrastructure.csproj",
+              "DocumentMoniker": "D:\\New folder\\LIMS\\Infrastructure\\Infrastructure.csproj",
+              "RelativeDocumentMoniker": "Infrastructure\\Infrastructure.csproj",
+              "ToolTip": "D:\\New folder\\LIMS\\Infrastructure\\Infrastructure.csproj",
+              "RelativeToolTip": "Infrastructure\\Infrastructure.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-02-26T09:31:00.798Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

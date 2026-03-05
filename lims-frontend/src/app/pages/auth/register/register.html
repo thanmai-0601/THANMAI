@@ -1,0 +1,114 @@
+<div
+  class="min-h-screen flex items-center justify-center bg-theme-bg dark:bg-slate-900 p-6 relative overflow-hidden py-20">
+  <!-- Fluid background animations -->
+  <div class="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] bg-primary/20 rounded-full blur-[140px] animate-pulse">
+  </div>
+  <div
+    class="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-indigo-500/10 rounded-full blur-[120px] animate-pulse">
+  </div>
+
+  <div class="w-full max-w-md relative z-10 animate-in fade-in slide-in-from-bottom-12 duration-1000">
+    <!-- Logo node -->
+    <div class="text-center mb-10">
+      <a routerLink="/" class="inline-flex items-center gap-3 transition-transform hover:scale-105 duration-300">
+        <span class="text-4xl">🏦</span>
+        <span class="text-3xl font-black text-gradient tracking-tighter uppercase">NexaLife</span>
+      </a>
+    </div>
+
+    <!-- Auth container -->
+    <div class="premium-card p-10 border border-white/10 shadow-3xl backdrop-blur-3xl">
+      <div class="text-center mb-10">
+        <h1 class="text-2xl font-black text-text-primary dark:text-white mb-2 tracking-tight uppercase">Create
+          Account</h1>
+        <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50 italic">Register for
+          a
+          new NexaLife account</p>
+      </div>
+
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="space-y-5">
+        <!-- Full Name -->
+        <div class="space-y-1.5">
+          <label class="text-[9px] font-black uppercase tracking-[0.3em] text-text-secondary opacity-60 ml-1">Full
+            Name</label>
+          <div class="relative group">
+            <span
+              class="absolute left-5 top-1/2 -translate-y-1/2 text-primary opacity-50 group-focus-within:opacity-100 transition-opacity"></span>
+            <input type="text" formControlName="fullName" placeholder="John Doe"
+              class="input-premium pl-14 py-3.5 font-bold text-xs tracking-wide">
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="space-y-1.5">
+          <label class="text-[9px] font-black uppercase tracking-[0.3em] text-text-secondary opacity-60 ml-1">Email
+            Address</label>
+          <div class="relative group">
+            <span
+              class="absolute left-5 top-1/2 -translate-y-1/2 text-primary opacity-50 group-focus-within:opacity-100 transition-opacity"></span>
+            <input type="email" formControlName="email" placeholder="you@nexalife.net"
+              class="input-premium pl-14 py-3.5 font-bold text-xs tracking-wide">
+          </div>
+        </div>
+
+        <!-- Phone -->
+        <div class="space-y-1.5">
+          <label class="text-[9px] font-black uppercase tracking-[0.3em] text-text-secondary opacity-60 ml-1">Phone
+            Number</label>
+          <div class="relative group">
+            <span
+              class="absolute left-5 top-1/2 -translate-y-1/2 text-primary opacity-50 group-focus-within:opacity-100 transition-opacity"></span>
+            <input type="tel" formControlName="phoneNumber" placeholder="+91 0000000000"
+              class="input-premium pl-14 py-3.5 font-bold text-xs tracking-wide">
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div class="space-y-1.5">
+          <label
+            class="text-[9px] font-black uppercase tracking-[0.3em] text-text-secondary opacity-60 ml-1">Password</label>
+          <div class="relative group">
+            <span
+              class="absolute left-5 top-1/2 -translate-y-1/2 text-primary opacity-50 group-focus-within:opacity-100 transition-opacity"></span>
+            <input type="password" formControlName="password" placeholder="••••••••"
+              class="input-premium pl-14 py-3.5 font-bold tracking-[0.3em]">
+          </div>
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="space-y-1.5">
+          <label class="text-[9px] font-black uppercase tracking-[0.3em] text-text-secondary opacity-60 ml-1">Confirm
+            Password</label>
+          <div class="relative group">
+            <span
+              class="absolute left-5 top-1/2 -translate-y-1/2 text-primary opacity-50 group-focus-within:opacity-100 transition-opacity"></span>
+            <input type="password" formControlName="confirmPassword" placeholder="••••••••"
+              class="input-premium pl-14 py-3.5 font-bold tracking-[0.3em]">
+          </div>
+        </div>
+
+        <button type="submit" [disabled]="loading"
+          class="btn-premium w-full h-14 mt-4 font-black text-[11px] tracking-[0.2em] shadow-[0_8px_30px_rgb(59,130,246,0.3)]">
+          <span *ngIf="!loading">CREATE ACCOUNT <span class="text-lg">→</span></span>
+          <span *ngIf="loading" class="flex items-center justify-center gap-2 italic">
+            <span class="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+            CREATING ACCOUNT...
+          </span>
+        </button>
+      </form>
+
+      <!-- Secondary actions -->
+      <div class="mt-10 pt-8 border-t border-theme-border/5 text-center">
+        <p class="text-[10px] font-bold text-text-secondary opacity-60 uppercase tracking-widest">
+          Already have an account?
+          <a routerLink="/login" class="text-primary font-black ml-1 hover:underline">Sign In</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- Footer metadata -->
+    <p class="mt-8 text-center text-[9px] font-black uppercase tracking-[0.4em] text-text-secondary opacity-30">
+      &copy; 2026 NEXALIFE CORE · ALL RIGHTS RESERVED
+    </p>
+  </div>
+</div>
