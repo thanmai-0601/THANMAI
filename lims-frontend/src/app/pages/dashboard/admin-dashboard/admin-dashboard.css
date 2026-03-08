@@ -1,0 +1,10 @@
+.premium-chart-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
+    backdrop-filter: blur(10px);
+}
+
+/* Fix for ApexCharts overflow in some containers */
+apx-chart {
+    width: 100%;
+    display: block;
+}

@@ -21,6 +21,7 @@ public interface IPolicyRepository
     Task AddNomineeAsync(Nominee nominee);
     Task RemoveNomineesAsync(int policyId);
     Task<List<PolicyStatusCountDto>> GetPolicyStatusCountsAsync();
+    Task<int> GetActiveWithSettledClaimCountAsync();
     Task<List<PolicyStatusCountDto>> GetPolicyStatusCountsByAgentAsync(int agentId);
     Task<List<PolicyStatusCountDto>> GetPolicyStatusCountsByCustomerAsync(int customerId);
 

@@ -21,9 +21,17 @@
                 </h1>
             </div>
             <div class="flex gap-4 items-center">
+                @if (role === 'Customer' && (policy.status !== 'Rejected' && policy.status !== 'Cancelled' &&
+                policy.status !== 'Settled') &&
+                !policy.hasSettledClaim) {
+                <a [routerLink]="['/app/endorsement/request']" [queryParams]="{ policyId: policy.policyId }"
+                    class="btn-premium px-6 !py-3 !rounded-2xl flex items-center gap-3 text-xs bg-indigo-500 hover:bg-indigo-600 border-indigo-500">
+                    <span>📝</span> Request Change
+                </a>
+                }
                 @if (role === 'Customer' && policy.status !== 'Draft' && policy.status !== 'Submitted' && policy.status
                 !== 'UnderReview' &&
-                policy.status !== 'Rejected') {
+                policy.status !== 'Rejected' && policy.status !== 'Settled') {
                 <div [title]="!canPay ? 'Action required: Please add nominees and missing documents.' : ''">
                     <a [routerLink]="canPay ? '/app/invoices/' + policy.policyId : null"
                         class="btn-premium px-6 !py-3 !rounded-2xl flex items-center gap-3 text-xs"
@@ -255,6 +263,38 @@
                 </div>
 
                 <div class="flex flex-col gap-4">
+                    @if (showNomineeForm) {
+                    <div
+                        class="premium-card !p-8 animate-in slide-in-from-top-4 duration-500 border-primary/20 bg-primary/[0.01]">
+                        <form (ngSubmit)="addNominee()" class="flex flex-col gap-6">
+                            <h3 class="text-[10px] font-black text-primary uppercase tracking-[0.3em]">Add Nominee
+                                Details</h3>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="col-span-2">
+                                    <input type="text" [(ngModel)]="newNominee.fullName" name="nomName"
+                                        placeholder="Full Name" required class="input-premium">
+                                </div>
+                                <input type="text" [(ngModel)]="newNominee.relationship" name="nomRel"
+                                    placeholder="Relationship (e.g. Son, Wife)" required class="input-premium">
+                                <input type="number" [(ngModel)]="newNominee.age" name="nomAge" placeholder="Age"
+                                    required class="input-premium">
+                                <div class="col-span-2">
+                                    <input type="tel" [(ngModel)]="newNominee.contactNumber" name="nomPhone"
+                                        placeholder="Enter 10 digit number" pattern="[0-9]{10}" maxlength="10" required
+                                        class="input-premium">
+                                </div>
+                            </div>
+                            <div class="flex gap-4 justify-end">
+                                <button type="button" (click)="showNomineeForm = false"
+                                    class="text-[10px] font-black uppercase tracking-widest text-text-secondary px-6 hover:text-primary transition-colors">Cancel</button>
+                                <button type="submit" [disabled]="submittingNominee"
+                                    class="btn-premium px-8 !py-3 text-[10px] uppercase tracking-widest">Save
+                                    Nominee</button>
+                            </div>
+                        </form>
+                    </div>
+                    }
+
                     @if (policy.nominees && policy.nominees.length > 0) {
                     @for (n of policy.nominees; track n.nomineeId) {
                     <div
@@ -291,37 +331,6 @@
                         <div class="text-3xl opacity-20">📭</div>
                         <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-40">No
                             Nominees added yet</p>
-                    </div>
-                    }
-
-                    @if (showNomineeForm) {
-                    <div
-                        class="premium-card !p-8 animate-in slide-in-from-bottom-4 duration-500 border-primary/20 bg-primary/[0.01]">
-                        <form (ngSubmit)="addNominee()" class="flex flex-col gap-6">
-                            <h3 class="text-[10px] font-black text-primary uppercase tracking-[0.3em]">Add Nominee
-                                Details</h3>
-                            <div class="grid grid-cols-2 gap-4">
-                                <div class="col-span-2">
-                                    <input type="text" [(ngModel)]="newNominee.fullName" name="nomName"
-                                        placeholder="Full Name" required class="input-premium">
-                                </div>
-                                <input type="text" [(ngModel)]="newNominee.relationship" name="nomRel"
-                                    placeholder="Relationship (e.g. Son, Wife)" required class="input-premium">
-                                <input type="number" [(ngModel)]="newNominee.age" name="nomAge" placeholder="Age"
-                                    required class="input-premium">
-                                <div class="col-span-2">
-                                    <input type="text" [(ngModel)]="newNominee.contactNumber" name="nomPhone"
-                                        placeholder="Phone Number" class="input-premium">
-                                </div>
-                            </div>
-                            <div class="flex gap-4 justify-end">
-                                <button type="button" (click)="showNomineeForm = false"
-                                    class="text-[10px] font-black uppercase tracking-widest text-text-secondary px-6 hover:text-primary transition-colors">Cancel</button>
-                                <button type="submit" [disabled]="submittingNominee"
-                                    class="btn-premium px-8 !py-3 text-[10px] uppercase tracking-widest">Save
-                                    Nominee</button>
-                            </div>
-                        </form>
                     </div>
                     }
                 </div>

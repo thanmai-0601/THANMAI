@@ -314,8 +314,8 @@ C:\Users\danda\OneDrive\Desktop\New folder\LIMS\Application.Tests\obj\Debug\net8
 C:\Users\danda\OneDrive\Desktop\New folder\LIMS\Application.Tests\obj\Debug\net8.0\ref\Application.Tests.dll
 D:\THANMAI\LIMS\Application.Tests\bin\Debug\net8.0\.msCoverageSourceRootsMapping_Application.Tests
 D:\THANMAI\LIMS\Application.Tests\bin\Debug\net8.0\CoverletSourceRootsMapping_Application.Tests
-D:\THANMAI\LIMS\Application.Tests\bin\Debug\net8.0\testhost.exe
 D:\THANMAI\LIMS\Application.Tests\bin\Debug\net8.0\testhost.dll
+D:\THANMAI\LIMS\Application.Tests\bin\Debug\net8.0\testhost.exe
 D:\THANMAI\LIMS\Application.Tests\bin\Debug\net8.0\xunit.runner.visualstudio.testadapter.dll
 D:\THANMAI\LIMS\Application.Tests\bin\Debug\net8.0\xunit.runner.reporters.netcoreapp10.dll
 D:\THANMAI\LIMS\Application.Tests\bin\Debug\net8.0\xunit.runner.utility.netcoreapp10.dll

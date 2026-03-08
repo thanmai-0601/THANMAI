@@ -219,13 +219,16 @@ public class ClaimService : IClaimService
             claim.OfficerRemarks = dto.OfficerRemarks;
             claim.SettledAmount = dto.SettledAmount;
 
-            await _claimRepo.UpdateAsync(claim);
-
             // Immediately settle after approval — generate a bank transfer reference
             claim.Status = ClaimStatus.Settled;
             claim.SettledAt = DateTime.UtcNow;
             claim.TransferReference = $"TXN-{claim.ClaimNumber}-{DateTime.UtcNow:yyyyMMddHHmm}";
+            
             await _claimRepo.UpdateAsync(claim);
+
+            // Also mark the policy as Settled
+            policy.Status = PolicyStatus.Settled;
+            await _policyRepo.UpdateAsync(policy);
 
             await _notificationService.CreateNotificationAsync(claim.CustomerId, $"Your claim '{claim.ClaimNumber}' has been approved and settled for ₹{claim.SettledAmount:N0}. Transfer Ref: {claim.TransferReference}");
         }

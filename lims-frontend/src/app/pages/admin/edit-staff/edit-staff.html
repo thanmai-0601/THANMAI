@@ -42,10 +42,8 @@
                         class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Full
                         Name</label>
                     <div class="relative group/input">
-                        <span
-                            class="absolute left-4 top-1/2 -translate-y-1/2 text-lg grayscale opacity-40 group-focus-within/input:opacity-100 group-focus-within/input:grayscale-0 transition-all">👤</span>
                         <input type="text" formControlName="fullName" placeholder="Legal full name"
-                            class="input-premium pl-12">
+                            class="input-premium pl-4">
                     </div>
                     <span *ngIf="editStaffForm.get('fullName')?.touched && editStaffForm.get('fullName')?.invalid"
                         class="text-[10px] font-black uppercase text-red-500 mt-1 ml-1 tracking-wider">Name is
@@ -58,10 +56,8 @@
                         class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Email
                         Address</label>
                     <div class="relative group/input">
-                        <span
-                            class="absolute left-4 top-1/2 -translate-y-1/2 text-lg grayscale opacity-40 group-focus-within/input:opacity-100 group-focus-within/input:grayscale-0 transition-all">✉️</span>
                         <input type="email" formControlName="email" placeholder="professional@nexalife.com"
-                            class="input-premium pl-12">
+                            class="input-premium pl-4">
                     </div>
                     <span *ngIf="editStaffForm.get('email')?.touched && editStaffForm.get('email')?.invalid"
                         class="text-[10px] font-black uppercase text-red-500 mt-1 ml-1 tracking-wider">Valid email
@@ -74,14 +70,12 @@
                         class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Phone
                         Number</label>
                     <div class="relative group/input">
-                        <span
-                            class="absolute left-4 top-1/2 -translate-y-1/2 text-lg grayscale opacity-40 group-focus-within/input:opacity-100 group-focus-within/input:grayscale-0 transition-all">📞</span>
-                        <input type="text" formControlName="phoneNumber" placeholder="+91 XXXX XXX XXX"
-                            class="input-premium pl-12">
+                        <input type="tel" formControlName="phoneNumber" placeholder="Enter 10 digit number"
+                            pattern="[0-9]{10}" maxlength="10" class="input-premium pl-4">
                     </div>
                     <span *ngIf="editStaffForm.get('phoneNumber')?.touched && editStaffForm.get('phoneNumber')?.invalid"
-                        class="text-[10px] font-black uppercase text-red-500 mt-1 ml-1 tracking-wider">Phone number
-                        required</span>
+                        class="text-[10px] font-black uppercase text-red-500 mt-1 ml-1 tracking-wider">Phone number must
+                        be exactly 10 digits</span>
                 </div>
 
                 <!-- Role -->
@@ -89,9 +83,7 @@
                     <label
                         class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Role</label>
                     <div class="relative group/input">
-                        <span
-                            class="absolute left-4 top-1/2 -translate-y-1/2 text-lg grayscale opacity-40 group-focus-within/input:opacity-100 group-focus-within/input:grayscale-0 transition-all">🔑</span>
-                        <select formControlName="role" class="input-premium pl-12 appearance-none">
+                        <select formControlName="role" class="input-premium pl-4 appearance-none">
                             <option value="Agent">Field Agent</option>
                             <option value="ClaimsOfficer">Claims Officer</option>
                         </select>
@@ -128,8 +120,7 @@
                     class="text-[10px] font-black uppercase tracking-widest text-text-secondary hover:text-primary transition-all disabled:opacity-50">
                     Cancel
                 </button>
-                <button type="submit" [disabled]="submitting || editStaffForm.invalid"
-                    class="btn-premium px-10 flex items-center gap-3">
+                <button type="submit" [disabled]="submitting" class="btn-premium px-10 flex items-center gap-3">
                     <svg *ngIf="submitting" class="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 24 24">
                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">

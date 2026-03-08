@@ -103,6 +103,9 @@ private static List<string> GetPlanBenefits(
         }).ToList();
 
         await _nomineeRepo.AddRangeAsync(nominees);
+        
+        await CheckAndUpdatePolicyActivationAsync(policyId);
+
         return nominees.Select(MapNomineeToDto).ToList();
     }
 
@@ -170,9 +173,7 @@ private static List<string> GetPlanBenefits(
         
         if (hasAddressProof && hasIncomeProof && hasNomineeId && totalAllocation == 100)
         {
-            policy.Status = PolicyStatus.Active;
-            policy.ActiveFrom = DateTime.UtcNow;
-            policy.ActiveTo = DateTime.UtcNow.AddYears(policy.TenureYears);
+            policy.Status = PolicyStatus.DocumentsSubmitted;
             await _policyRepo.UpdateAsync(policy);
         }
     }
@@ -304,7 +305,9 @@ private static List<string> GetPlanBenefits(
     {
         PolicyId = p.Id,
         PolicyNumber = p.PolicyNumber,
-        Status = p.Status.ToString(),
+        Status = (p.Claims?.Any(c => c.Status == ClaimStatus.Settled) ?? false) 
+            ? PolicyStatus.Settled.ToString() 
+            : p.Status.ToString(),
         InsurancePlanId = p.InsurancePlanId,
         PlanName = p.InsurancePlan?.PlanName ?? string.Empty,
         SumAssured = p.SumAssured,
@@ -345,6 +348,7 @@ private static List<string> GetPlanBenefits(
             FilePath = d.FilePath,
             Status = d.Status.ToString(),
             UploadedAt = d.UploadedAt
-        }).ToList() ?? new List<DocumentResponseDto>()
+        }).ToList() ?? new List<DocumentResponseDto>(),
+        HasSettledClaim = p.Claims?.Any(c => c.Status == ClaimStatus.Settled) ?? false
     };
 }

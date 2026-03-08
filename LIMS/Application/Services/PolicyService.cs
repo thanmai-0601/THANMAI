@@ -152,7 +152,9 @@ public class PolicyService : IPolicyService
     {
         PolicyId = p.Id,
         PolicyNumber = p.PolicyNumber,
-        Status = p.Status.ToString(),
+        Status = (p.Claims?.Any(c => c.Status == ClaimStatus.Settled) ?? false) 
+            ? PolicyStatus.Settled.ToString() 
+            : p.Status.ToString(),
         InsurancePlanId = p.InsurancePlanId,
         PlanName = p.InsurancePlan?.PlanName ?? string.Empty,
         SumAssured = p.SumAssured,
@@ -193,7 +195,8 @@ public class PolicyService : IPolicyService
             FilePath = d.FilePath,
             Status = d.Status.ToString(),
             UploadedAt = d.UploadedAt
-        }).ToList() ?? new List<DocumentResponseDto>()
+        }).ToList() ?? new List<DocumentResponseDto>(),
+        HasSettledClaim = p.Claims?.Any(c => c.Status == ClaimStatus.Settled) ?? false
     };
 
     public async Task<object> UploadDocumentAsync(
@@ -291,12 +294,7 @@ public class PolicyService : IPolicyService
         
         if (hasAddressProof && hasIncomeProof && hasNomineeId && totalAllocation == 100)
         {
-            policy.Status = PolicyStatus.Active;
-            if (policy.ActiveFrom == null)
-            {
-                policy.ActiveFrom = DateTime.UtcNow;
-                policy.ActiveTo = DateTime.UtcNow.AddYears(policy.TenureYears);
-            }
+            policy.Status = PolicyStatus.DocumentsSubmitted;
             await _policyRepo.UpdateAsync(policy);
         }
     }

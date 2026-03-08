@@ -80,7 +80,12 @@ export class RequestPolicy implements OnInit {
     this.form.selectedRiders = this.selectedRidersList.join(', ');
   }
 
-  submit(): void {
+  submit(reqForm?: any): void {
+    if (reqForm && reqForm.invalid) {
+      this.toast.show('Please properly fill all required details and ensure they meet the rules.', 'warning');
+      return;
+    }
+
     if (!this.form.occupation || this.form.occupation.trim() === '') {
       this.toast.show('Please enter your occupation.', 'warning');
       return;
@@ -107,7 +112,10 @@ export class RequestPolicy implements OnInit {
         this.toast.show('Policy requested successfully!', 'success');
         this.router.navigate(['/app/policy', res.policyId]);
       },
-      error: () => this.submitting = false
+      error: (err: any) => {
+        this.submitting = false;
+        this.toast.show(err.error?.message || 'Failed to submit policy request', 'error');
+      }
     });
   }
 }

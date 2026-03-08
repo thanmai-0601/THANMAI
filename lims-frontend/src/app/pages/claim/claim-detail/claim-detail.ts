@@ -127,7 +127,10 @@ export class ClaimDetail implements OnInit {
         this.startingReview = false;
         this.loadClaim();
       },
-      error: () => this.startingReview = false
+      error: (err: any) => {
+        this.startingReview = false;
+        this.toast.show(err.error?.message || 'Failed to start review', 'error');
+      }
     });
   }
 
@@ -167,7 +170,10 @@ export class ClaimDetail implements OnInit {
         this.toast.show(msg, isApproved ? 'success' : 'error');
         this.router.navigate(['/app/officer-claims']);
       },
-      error: () => this.submittingDecision = false
+      error: (err: any) => {
+        this.submittingDecision = false;
+        this.toast.show(err.error?.message || 'Failed to submit decision', 'error');
+      }
     });
   }
 }

@@ -64,6 +64,7 @@ public class PaymentRepository : IPaymentRepository
                 Year = g.Key.Year,
                 Month = g.Key.Month,
                 PremiumCollected = g.Sum(p => p.AmountPaid),
+                PoliciesActivated = g.Select(p => p.PolicyId).Distinct().Count(),
                 MonthName = new DateTime(g.Key.Year, g.Key.Month, 1)
                     .ToString("MMM yyyy")
             })
@@ -72,6 +73,27 @@ public class PaymentRepository : IPaymentRepository
             .ToListAsync();
     }
  
+    public async Task<List<MonthlyRevenueDto>> GetRevenueByYearAsync(int year)
+    {
+        return await _context.Payments
+            .Where(p =>
+                p.Status == PaymentStatus.Paid &&
+                p.PaymentDate.Year == year)
+            .GroupBy(p => new { p.PaymentDate.Year, p.PaymentDate.Month })
+            .Select(g => new MonthlyRevenueDto
+            {
+                Year = g.Key.Year,
+                Month = g.Key.Month,
+                PremiumCollected = g.Sum(p => p.AmountPaid),
+                PoliciesActivated = g.Select(p => p.PolicyId).Distinct().Count(),
+                MonthName = new DateTime(g.Key.Year, g.Key.Month, 1)
+                    .ToString("MMM yyyy")
+            })
+            .OrderBy(x => x.Year)
+            .ThenBy(x => x.Month)
+            .ToListAsync();
+    }
+
     public async Task<List<Payment>> GetRecentByCustomerAsync(int customerId, int count)
     {
         return await _context.Payments
@@ -90,6 +112,17 @@ public class PaymentRepository : IPaymentRepository
             .Include(p => p.Invoice)
             .Where(p => p.Policy.CustomerId == customerId)
             .OrderByDescending(p => p.PaymentDate)
+            .ToListAsync();
+    }
+
+    public async Task<List<Payment>> GetRecentAsync(int count)
+    {
+        return await _context.Payments
+            .Include(p => p.Policy)
+                .ThenInclude(policy => policy.Customer)
+            .Include(p => p.Invoice)
+            .OrderByDescending(p => p.PaymentDate)
+            .Take(count)
             .ToListAsync();
     }
 }

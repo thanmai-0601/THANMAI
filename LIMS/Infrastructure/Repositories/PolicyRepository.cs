@@ -26,6 +26,7 @@ public class PolicyRepository : IPolicyRepository
             .Include(p => p.InsurancePlan)
             .Include(p => p.Nominees)
             .Include(p => p.Documents)
+            .Include(p => p.Claims)
             .FirstOrDefaultAsync(p => p.Id == policyId);
 
     public async Task<Policy?> GetByPolicyNumberWithDetailsAsync(string policyNumber)
@@ -35,12 +36,14 @@ public class PolicyRepository : IPolicyRepository
             .Include(p => p.InsurancePlan)
             .Include(p => p.Nominees)
             .Include(p => p.Documents)
+            .Include(p => p.Claims)
             .FirstOrDefaultAsync(p => p.PolicyNumber == policyNumber);
 
     public async Task<List<Policy>> GetByCustomerIdAsync(int customerId)
         => await _context.Policies
             .Include(p => p.InsurancePlan)
             .Include(p => p.Agent)
+            .Include(p => p.Claims)
             .Where(p => p.CustomerId == customerId)
             .OrderByDescending(p => p.CreatedAt)
             .ToListAsync();
@@ -49,6 +52,7 @@ public class PolicyRepository : IPolicyRepository
         => await _context.Policies
             .Include(p => p.Customer)
             .Include(p => p.InsurancePlan)
+            .Include(p => p.Claims)
             .Where(p => p.AgentId == agentId)
             .OrderByDescending(p => p.CreatedAt)
             .ToListAsync();
@@ -59,6 +63,7 @@ public class PolicyRepository : IPolicyRepository
             .Include(p => p.Customer)
             .Include(p => p.Agent)
             .Include(p => p.InsurancePlan)
+            .Include(p => p.Claims)
             .AsQueryable();
 
         if (statusFilter.HasValue)
@@ -165,6 +170,12 @@ public class PolicyRepository : IPolicyRepository
             .ToListAsync();
     }
 
+    public async Task<int> GetActiveWithSettledClaimCountAsync()
+    {
+        return await _context.Policies
+            .CountAsync(p => p.Status == PolicyStatus.Active && p.Claims.Any(c => c.Status == ClaimStatus.Settled));
+    }
+
     public async Task<List<PolicyStatusCountDto>> GetPolicyStatusCountsByAgentAsync(int agentId)
     {
         return await _context.Policies
@@ -203,9 +214,9 @@ public class PolicyRepository : IPolicyRepository
                 Email = agent.Email,
                 TotalPoliciesAssigned = agent.AgentPolicies.Count,
                 ActivePolicies = agent.AgentPolicies
-                    .Count(p => p.Status == PolicyStatus.Active),
+                    .Count(p => p.Status == PolicyStatus.Active && !p.Claims.Any(c => c.Status == ClaimStatus.Settled)),
                 ApprovedPolicies = agent.AgentPolicies
-                    .Count(p => p.Status == PolicyStatus.Active),
+                    .Count(p => p.Status == PolicyStatus.Active && !p.Claims.Any(c => c.Status == ClaimStatus.Settled)),
                 RejectedPolicies = agent.AgentPolicies
                     .Count(p => p.Status == PolicyStatus.Rejected),
                 TotalCommissionEarned = _context.Commissions
@@ -214,7 +225,7 @@ public class PolicyRepository : IPolicyRepository
                 ConversionRate = agent.AgentPolicies.Count == 0 ? 0 :
                     Math.Round(
                         (decimal)agent.AgentPolicies
-                            .Count(p => p.Status == PolicyStatus.Active)
+                            .Count(p => p.Status == PolicyStatus.Active && !p.Claims.Any(c => c.Status == ClaimStatus.Settled))
                         / agent.AgentPolicies.Count * 100, 1)
             })
             .ToListAsync();
@@ -229,9 +240,9 @@ public class PolicyRepository : IPolicyRepository
                 PlanName = plan.PlanName,
                 TotalPolicies = plan.Policies.Count,
                 ActivePolicies = plan.Policies
-                    .Count(p => p.Status == PolicyStatus.Active),
+                    .Count(p => p.Status == PolicyStatus.Active && !p.Claims.Any(c => c.Status == ClaimStatus.Settled)),
                 TotalSumAssured = plan.Policies
-                    .Where(p => p.Status == PolicyStatus.Active)
+                    .Where(p => p.Status == PolicyStatus.Active && !p.Claims.Any(c => c.Status == ClaimStatus.Settled))
                     .Sum(p => p.SumAssured)
             })
             .ToListAsync();

@@ -19,14 +19,14 @@ public class DashboardController : ControllerBase
 
     // GET api/dashboard/summary
     [HttpGet("summary")]
-    public async Task<IActionResult> GetDashboardSummary()
+    public async Task<IActionResult> GetDashboardSummary([FromQuery] int? year = null)
     {
         var role = User.FindFirstValue(ClaimTypes.Role);
         
         switch (role)
         {
             case "Admin":
-                var adminResult = await _dashboardService.GetAdminDashboardAsync();
+                var adminResult = await _dashboardService.GetAdminDashboardAsync(year);
                 return Ok(adminResult);
             
             case "Agent":

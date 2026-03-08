@@ -41,7 +41,7 @@ public class DashboardControllerTests
     {
         // Arrange
         SetupUser("Admin", "1");
-        _dashboardServiceMock.Setup(s => s.GetAdminDashboardAsync()).ReturnsAsync(new AdminDashboardDto());
+        _dashboardServiceMock.Setup(s => s.GetAdminDashboardAsync(It.IsAny<int?>())).ReturnsAsync(new AdminDashboardDto());
 
         // Act
         var result = await _controller.GetDashboardSummary();

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class DBChanges : Migration
+    public partial class capstone : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -25,6 +25,7 @@ namespace Infrastructure.Migrations
                     MinEntryAge = table.Column<int>(type: "int", nullable: false),
                     MaxEntryAge = table.Column<int>(type: "int", nullable: false),
                     MinAnnualIncome = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    AvailableRiders = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     BaseRatePer1000 = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
                     LowRiskMultiplier = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
                     MediumRiskMultiplier = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
@@ -50,6 +51,7 @@ namespace Infrastructure.Migrations
                     PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Role = table.Column<int>(type: "int", nullable: false),
+                    MustChangePassword = table.Column<bool>(type: "bit", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -60,6 +62,28 @@ namespace Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Notifications",
+                columns: table => new
+                {
+                    NotificationId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    Message = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsRead = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Notifications", x => x.NotificationId);
+                    table.ForeignKey(
+                        name: "FK_Notifications_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -75,6 +99,7 @@ namespace Infrastructure.Migrations
                     AgentId = table.Column<int>(type: "int", nullable: true),
                     SumAssured = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     TenureYears = table.Column<int>(type: "int", nullable: false),
+                    SelectedRiders = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CustomerAge = table.Column<int>(type: "int", nullable: true),
                     AnnualIncome = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     Occupation = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -131,6 +156,10 @@ namespace Infrastructure.Migrations
                     RejectionReason = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ClaimAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     SettledAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    BankAccountName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BankAccountNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BankIfscCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TransferReference = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SubmittedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     AssignedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ReviewStartedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -174,7 +203,8 @@ namespace Infrastructure.Migrations
                     PremiumAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CommissionPercentage = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CommissionAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    EarnedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    EarnedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -440,6 +470,11 @@ namespace Infrastructure.Migrations
                 column: "PolicyId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Notifications_UserId",
+                table: "Notifications",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Payments_InvoiceId",
                 table: "Payments",
                 column: "InvoiceId",
@@ -507,6 +542,9 @@ namespace Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Nominees");
+
+            migrationBuilder.DropTable(
+                name: "Notifications");
 
             migrationBuilder.DropTable(
                 name: "Payments");

@@ -34,24 +34,7 @@ export class PlanManagement implements OnInit {
     });
   }
 
-  togglePlanStatus(plan: PlanResponse): void {
-    const originalStatus = plan.isActive;
-    const action = originalStatus ? 'deactivate' : 'activate';
-    if (!confirm(`Are you sure you want to ${action} ${plan.planName}?`)) return;
 
-    // Assumed endpoint like PUT /api/admin/plans/{id}/toggle or similar
-    // Since not defined clearly in docs, we'll try PUT /api/admin/plans/{id} full update or specific toggle
-    // Mocking optimistic update
-    this.api.put(`policy/plans/${plan.planId}/toggle-status`, {}).subscribe({
-      next: () => {
-        plan.isActive = !originalStatus;
-        this.toast.show(`${plan.planName} status updated.`, 'success');
-      },
-      error: () => {
-        this.toast.show(`Failed to update ${plan.planName}.`, 'error');
-      }
-    });
-  }
 
   deletePlan(plan: PlanResponse): void {
     if (!confirm(`Are you sure you want to completely DELETE ${plan.planName}? This cannot be undone.`)) return;

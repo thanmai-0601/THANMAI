@@ -29,62 +29,71 @@
                 <thead>
                     <tr class="bg-primary/[0.02] border-b border-theme-border/5 dark:border-slate-800/50">
                         <th
-                            class="px-8 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60">
+                            class="pl-6 pr-3 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60">
                             Claim Number</th>
                         <th
-                            class="px-8 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60">
+                            class="px-3 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60">
                             Customer</th>
                         <th
-                            class="px-8 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60">
+                            class="px-3 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60">
                             Assigned Officer</th>
                         <th
-                            class="px-8 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60 text-right">
+                            class="px-3 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60 text-right">
                             Requested Amount</th>
                         <th
-                            class="px-8 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60 text-center">
+                            class="px-3 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60 text-right">
+                            Approved Amount</th>
+                        <th
+                            class="px-3 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60 text-center">
                             Status</th>
-                        <th class="px-8 py-6"></th>
+                        <th class="pl-3 pr-6 py-6"></th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-theme-border/5 dark:divide-slate-800/50">
                     <tr *ngFor="let claim of claims" class="group hover:bg-primary/[0.01] transition-all duration-300">
-                        <td class="px-8 py-6">
+                        <td class="pl-6 pr-3 py-6">
                             <span
-                                class="text-sm font-black text-text-primary dark:text-white tracking-widest uppercase opacity-80 group-hover:text-primary transition-colors">{{
+                                class="text-xs font-black text-text-primary dark:text-white tracking-widest uppercase opacity-80 group-hover:text-primary transition-colors">{{
                                 claim.claimNumber }}</span>
                         </td>
-                        <td class="px-8 py-6">
+                        <td class="px-3 py-6">
                             <div class="flex flex-col gap-0.5">
                                 <span
-                                    class="text-sm font-bold text-text-primary dark:text-white uppercase tracking-tight">{{
+                                    class="text-xs font-bold text-text-primary dark:text-white uppercase tracking-tight">{{
                                     claim.customerName }}</span>
                                 <a [routerLink]="['/app/policy', claim.policyNumber]"
-                                    class="text-[10px] font-bold text-primary hover:underline uppercase tracking-widest">{{
+                                    class="text-[9px] font-bold text-primary hover:underline uppercase tracking-widest">{{
                                     claim.policyNumber }}</a>
                             </div>
                         </td>
-                        <td class="px-8 py-6">
+                        <td class="px-3 py-6">
                             <div *ngIf="claim.claimsOfficerName" class="flex items-center gap-2">
                                 <div
-                                    class="w-6 h-6 rounded-full bg-theme-border/10 flex items-center justify-center text-[10px] font-black text-text-secondary">
+                                    class="w-5 h-5 rounded-full bg-theme-border/10 flex items-center justify-center text-[9px] font-black text-text-secondary">
                                     {{ claim.claimsOfficerName.substring(0, 1) }}
                                 </div>
-                                <span class="text-sm font-medium text-text-secondary opacity-80">{{
+                                <span class="text-xs font-medium text-text-secondary opacity-80">{{
                                     claim.claimsOfficerName }}</span>
                             </div>
-                            <span *ngIf="!claim.claimsOfficerName" class="text-[10px] font-black text-text-secondary opacity-30 uppercase
+                            <span *ngIf="!claim.claimsOfficerName" class="text-[9px] font-black text-text-secondary opacity-30 uppercase
                             tracking-widest">Unassigned</span>
                         </td>
-                        <td class="px-8 py-6 text-right">
-                            <span class="text-sm font-black text-text-primary dark:text-white">₹{{ claim.claimAmount |
+                        <td class="px-3 py-6 text-right">
+                            <span class="text-xs font-black text-text-primary dark:text-white">₹{{ claim.claimAmount |
                                 number }}</span>
                         </td>
-                        <td class="px-8 py-6 text-center">
-                            <app-status-badge [status]="claim.status" class="scale-90" />
+                        <td class="px-3 py-6 text-right">
+                            <span *ngIf="claim.settledAmount" class="text-xs font-black text-emerald-500">₹{{
+                                claim.settledAmount | number }}</span>
+                            <span *ngIf="!claim.settledAmount"
+                                class="text-xs font-black text-text-secondary opacity-40">-</span>
                         </td>
-                        <td class="px-8 py-6 text-right">
+                        <td class="px-3 py-6 text-center">
+                            <app-status-badge [status]="claim.status" class="scale-75" />
+                        </td>
+                        <td class="pl-3 pr-6 py-6 text-right">
                             <a [routerLink]="['/app/claim', claim.claimId]"
-                                class="inline-flex items-center justify-center h-10 px-6 rounded-xl bg-white dark:bg-slate-900 border border-theme-border/10 dark:border-slate-800 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary hover:text-primary hover:border-primary/30 transition-all group-hover:-translate-x-2">
+                                class="inline-flex items-center justify-center h-8 px-4 rounded-lg bg-white dark:bg-slate-900 border border-theme-border/10 dark:border-slate-800 text-[9px] font-black uppercase tracking-[0.2em] text-text-secondary hover:text-primary hover:border-primary/30 transition-all group-hover:-translate-x-2">
                                 View Details
                             </a>
                         </td>

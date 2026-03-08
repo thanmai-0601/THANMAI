@@ -10,6 +10,7 @@ public class AdminDashboardDto
     public int RejectedPolicies { get; set; }
     public int SuspendedPolicies { get; set; }
     public int LapsedPolicies { get; set; }
+    public int SettledPolicies { get; set; }
 
     // ── Claims Overview ───────────────────────────────────────
     public int TotalClaims { get; set; }
@@ -39,4 +40,7 @@ public class AdminDashboardDto
     // ── Endorsements ──────────────────────────────────────────
     public int TotalEndorsements { get; set; }
     public int PendingEndorsements { get; set; }
+
+    // ── Recent Payments ───────────────────────────────────────
+    public List<Payment.PaymentResponseDto> RecentPayments { get; set; } = new();
 }

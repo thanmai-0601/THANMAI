@@ -35,7 +35,7 @@ public class DashboardService : IDashboardService
 
     // ───────────────── ADMIN DASHBOARD ─────────────────
 
-    public async Task<AdminDashboardDto> GetAdminDashboardAsync()
+    public async Task<AdminDashboardDto> GetAdminDashboardAsync(int? year = null)
     {
         var policyStats = await _policyRepo.GetPolicyStatusCountsAsync();
         var claimStats = await _claimRepo.GetClaimStatusCountsAsync();
@@ -46,7 +46,32 @@ public class DashboardService : IDashboardService
         var totalPendingCommission = await _commissionRepo.GetTotalPendingCommissionAsync();
         var totalSettledAmount = await _claimRepo.GetTotalSettledAmountAsync();
 
-        var monthlyRevenue = await _paymentRepo.GetLast12MonthsRevenueAsync();
+        var selectedYear = year ?? DateTime.UtcNow.Year;
+        var rawMonthlyRevenue = await _paymentRepo.GetRevenueByYearAsync(selectedYear);
+        var monthlyRevenue = new List<MonthlyRevenueDto>();
+        
+        // Show full year (Jan to Dec) for that year
+        for (int m = 1; m <= 12; m++)
+        {
+            var date = new DateTime(selectedYear, m, 1);
+            var existing = rawMonthlyRevenue.FirstOrDefault(x => x.Year == date.Year && x.Month == date.Month);
+            if (existing != null)
+            {
+                monthlyRevenue.Add(existing);
+            }
+            else
+            {
+                monthlyRevenue.Add(new MonthlyRevenueDto
+                {
+                    Year = date.Year,
+                    Month = date.Month,
+                    MonthName = date.ToString("MMM yyyy"),
+                    PremiumCollected = 0,
+                    PoliciesActivated = 0
+                });
+            }
+        }
+
         var agentPerformance = await _policyRepo.GetAgentPerformanceAsync();
         var planDistribution = await _policyRepo.GetPlanDistributionAsync();
 
@@ -54,12 +79,13 @@ public class DashboardService : IDashboardService
         var pendingEndorsements =
             await _endorsementRepo.GetPendingCountAsync();
 
+        var recentPayments = await _paymentRepo.GetRecentAsync(10);
+
         return new AdminDashboardDto
         {
             // Policies
             TotalPolicies = policyStats.Sum(p => p.Count),
-            ActivePolicies = policyStats
-                .FirstOrDefault(p => p.Status == PolicyStatus.Active)?.Count ?? 0,
+            ActivePolicies = planDistribution.Sum(p => p.ActivePolicies),
             SubmittedPolicies = policyStats
                 .FirstOrDefault(p => p.Status == PolicyStatus.Submitted)?.Count ?? 0,
             UnderReviewPolicies = policyStats
@@ -70,6 +96,8 @@ public class DashboardService : IDashboardService
                 .FirstOrDefault(p => p.Status == PolicyStatus.Suspended)?.Count ?? 0,
             LapsedPolicies = policyStats
                 .FirstOrDefault(p => p.Status == PolicyStatus.Lapsed)?.Count ?? 0,
+            SettledPolicies = (policyStats.FirstOrDefault(p => p.Status == PolicyStatus.Settled)?.Count ?? 0)
+                              + await _policyRepo.GetActiveWithSettledClaimCountAsync(),
 
             // Claims
             TotalClaims = claimStats.Sum(c => c.Count),
@@ -103,7 +131,20 @@ public class DashboardService : IDashboardService
 
             // Endorsements
             TotalEndorsements = totalEndorsements,
-            PendingEndorsements = pendingEndorsements
+            PendingEndorsements = pendingEndorsements,
+
+            // Payments
+            RecentPayments = recentPayments.Select(p => new Application.DTOs.Payment.PaymentResponseDto
+            {
+                PaymentId = p.Id,
+                PolicyNumber = p.Policy?.PolicyNumber ?? "N/A",
+                CustomerName = p.Policy?.Customer?.FullName,
+                AmountPaid = p.AmountPaid,
+                Status = p.Status.ToString(),
+                PaymentMethod = p.PaymentMethod.ToString(),
+                TransactionReference = p.TransactionReference,
+                PaymentDate = p.PaymentDate
+            }).ToList()
         };
     }
 
@@ -143,6 +184,8 @@ public class DashboardService : IDashboardService
                 .FirstOrDefault(p => p.Status == PolicyStatus.Active)?.Count ?? 0,
             RejectedPolicies = policyStats
                 .FirstOrDefault(p => p.Status == PolicyStatus.Rejected)?.Count ?? 0,
+            SettledPolicies = policyStats
+                .FirstOrDefault(p => p.Status == PolicyStatus.Settled)?.Count ?? 0,
 
             TotalCommissionEarned = totalCommission,
             PendingCommission = pendingCommission,
@@ -174,9 +217,8 @@ public class DashboardService : IDashboardService
     public async Task<CustomerDashboardDto> GetCustomerDashboardAsync(
         int customerId)
     {
-        var policyStats =
-            await _policyRepo.GetPolicyStatusCountsByCustomerAsync(customerId);
-
+        var policies = await _policyRepo.GetByCustomerIdAsync(customerId);
+        
         var claimStats =
             await _claimRepo.GetClaimStatusCountsByCustomerAsync(customerId);
 
@@ -202,17 +244,23 @@ public class DashboardService : IDashboardService
 
         return new CustomerDashboardDto
         {
-            TotalPolicies = policyStats.Sum(p => p.Count),
-            ActivePolicies = policyStats
-                .FirstOrDefault(p => p.Status == PolicyStatus.Active)?.Count ?? 0,
-            PendingPolicies = policyStats
-                .FirstOrDefault(p => p.Status == PolicyStatus.Submitted)?.Count ?? 0,
-            RejectedPolicies = policyStats
-                .FirstOrDefault(p => p.Status == PolicyStatus.Rejected)?.Count ?? 0,
+            TotalPolicies = policies.Count,
+            ActivePolicies = policies.Count(p => 
+                p.Status == PolicyStatus.Active && 
+                !p.Claims.Any(c => c.Status == ClaimStatus.Settled)),
+            
+            PendingPolicies = policies.Count(p => 
+                p.Status == PolicyStatus.Submitted || 
+                p.Status == PolicyStatus.UnderReview ||
+                p.Status == PolicyStatus.Approved ||
+                p.Status == PolicyStatus.DocumentsSubmitted),
+
+            RejectedPolicies = policies.Count(p => p.Status == PolicyStatus.Rejected),
 
             TotalClaims = claimStats.Sum(c => c.Count),
             OpenClaims = claimStats
-                .FirstOrDefault(c => c.Status == ClaimStatus.Submitted)?.Count ?? 0,
+                .Where(c => c.Status == ClaimStatus.Submitted || c.Status == ClaimStatus.UnderReview || c.Status == ClaimStatus.Approved)
+                .Sum(c => c.Count),
             SettledClaims = claimStats
                 .FirstOrDefault(c => c.Status == ClaimStatus.Settled)?.Count ?? 0,
             TotalSettledAmount =
@@ -229,6 +277,7 @@ public class DashboardService : IDashboardService
             {
                 PaymentId = p.Id,
                 PolicyNumber = p.Policy?.PolicyNumber ?? "N/A",
+                CustomerName = p.Policy?.Customer?.FullName,
                 AmountPaid = p.AmountPaid,
                 Status = p.Status.ToString(),
                 PaymentMethod = p.PaymentMethod.ToString(),

@@ -32,6 +32,7 @@ export interface MakePaymentDto {
 export interface PaymentResponse {
   paymentId: number;
   policyNumber: string;
+  customerName?: string;
   amountPaid: number;
   status: string;
   paymentMethod: string;

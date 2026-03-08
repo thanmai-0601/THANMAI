@@ -26,7 +26,7 @@ export class CreateStaff {
     this.staffForm = this.fb.group({
       fullName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phoneNumber: ['', Validators.required],
+      phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
       password: ['', [Validators.required, Validators.minLength(8)]],
       role: ['Agent', Validators.required]
     });
@@ -55,7 +55,10 @@ export class CreateStaff {
         this.toast.show(`${formValue.role} account created successfully!`, 'success');
         this.router.navigate(['/app/admin/users']);
       },
-      error: () => this.loading = false
+      error: (err: any) => {
+        this.loading = false;
+        this.toast.show(err.error?.message || 'Failed to create staff account', 'error');
+      }
     });
   }
 }

@@ -9,8 +9,8 @@ describe('StatusBadge', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [StatusBadge],
-      schemas: [NO_ERRORS_SCHEMA]
-    }).compileComponents();
+            schemas: [NO_ERRORS_SCHEMA]
+        }).compileComponents();
         fixture = TestBed.createComponent(StatusBadge);
         component = fixture.componentInstance;
         fixture.detectChanges();
@@ -26,7 +26,7 @@ describe('StatusBadge', () => {
 
     it('should return green class for active status', () => {
         component.status = 'Active';
-        expect(component.getStatusClass()).toContain('green');
+        expect(component.getStatusClass()).toContain('emerald');
     });
 
     it('should return amber class for submitted status', () => {
@@ -46,6 +46,6 @@ describe('StatusBadge', () => {
 
     it('should handle case insensitivity', () => {
         component.status = 'ACTIVE';
-        expect(component.getStatusClass()).toContain('green');
+        expect(component.getStatusClass()).toContain('emerald');
     });
 });

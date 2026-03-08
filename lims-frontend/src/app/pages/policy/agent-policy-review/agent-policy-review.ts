@@ -97,14 +97,11 @@ export class AgentPolicyReview implements OnInit {
     // 5. Determine Final Category based on Total Score
     if (riskScore >= 5) {
       this.calcForm.riskCategory = 'High';
-      this.calcForm.remarks = 'Auto-evaluated as High Risk due to significant financial/age exposure against standard metrics.';
     } else if (riskScore >= 2) {
       this.calcForm.riskCategory = 'Standard';
-      this.calcForm.remarks = 'Auto-evaluated as Standard Risk based on typical, balanced policy factors.';
     } else {
       // Score of 0 or 1
       this.calcForm.riskCategory = 'Low';
-      this.calcForm.remarks = 'Auto-evaluated as Low Risk: Customer is young (<30) with a highly manageable sum assured (<20 Lakhs).';
     }
   }
 
@@ -122,7 +119,10 @@ export class AgentPolicyReview implements OnInit {
         this.toast.show('Premium calculated successfully.', 'success');
         this.loadPolicy(); // Refresh to see updated premiumAmount
       },
-      error: () => this.calculating = false
+      error: (err: any) => {
+        this.calculating = false;
+        this.toast.show(err.error?.message || 'Failed to calculate premium', 'error');
+      }
     });
   }
 
@@ -151,7 +151,10 @@ export class AgentPolicyReview implements OnInit {
         this.submittingDecision = false;
         this.loadPolicy();
       },
-      error: () => this.submittingDecision = false
+      error: (err: any) => {
+        this.submittingDecision = false;
+        this.toast.show(err.error?.message || `Failed to ${status} policy`, 'error');
+      }
     });
   }
 }

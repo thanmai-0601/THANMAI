@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../../core/services/api';
 import { ToastService } from '../../../core/services/toast';
 import { PolicyResponse } from '../../../core/models/policy.model';
@@ -26,7 +26,8 @@ export class RequestEndorsement implements OnInit {
     private api: ApiService,
     private toast: ToastService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private route: ActivatedRoute
   ) {
     this.endorsementForm = this.fb.group({
       policyId: ['', Validators.required],
@@ -41,9 +42,14 @@ export class RequestEndorsement implements OnInit {
   }
 
   ngOnInit(): void {
+    const preselectedId = this.route.snapshot.queryParamMap.get('policyId');
+    if (preselectedId) {
+      this.endorsementForm.patchValue({ policyId: preselectedId });
+    }
+
     this.api.get<PolicyResponse[]>('policy').subscribe({
       next: (res: PolicyResponse[]) => {
-        this.policies = res.filter(p => p.status === 'Active');
+        this.policies = res.filter(p => p.status !== 'Rejected' && p.status !== 'Cancelled' && p.status !== 'Settled' && !p.hasSettledClaim);
         this.fetchingPolicies = false;
       },
       error: () => this.fetchingPolicies = false
@@ -77,6 +83,10 @@ export class RequestEndorsement implements OnInit {
         this.toast.show('Please complete all nominee fields.', 'warning');
         return;
       }
+      if (!/^\d{10}$/.test(formValue.nomineeContact)) {
+        this.toast.show('Nominee contact number must be exactly 10 digits.', 'warning');
+        return;
+      }
       endpoint = 'endorsement/request/nominee';
       payload.newNominees = [{
         fullName: formValue.nomineeName,
@@ -101,7 +111,10 @@ export class RequestEndorsement implements OnInit {
         this.toast.show('Endorsement requested successfully!', 'success');
         this.router.navigate(['/app/endorsement/my-endorsements']);
       },
-      error: () => this.loading = false
+      error: (err: any) => {
+        this.loading = false;
+        this.toast.show(err.error?.message || 'Endorsement request failed', 'error');
+      }
     });
   }
 }

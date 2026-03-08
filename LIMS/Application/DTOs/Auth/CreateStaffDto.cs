@@ -20,6 +20,7 @@ namespace Application.DTOs.Auth
 
         [Required]
         [Phone]
+        [RegularExpression(@"^[0-9]{10}$", ErrorMessage = "Phone number must be exactly 10 digits")]
         public string PhoneNumber { get; set; } = string.Empty;
 
         [Required]

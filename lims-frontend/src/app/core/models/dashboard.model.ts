@@ -38,13 +38,18 @@ export interface AdminDashboardDto {
   // Endorsements
   totalEndorsements: number;
   pendingEndorsements: number;
+
+  // Payments
+  recentPayments: PaymentResponse[];
 }
 
 export interface MonthlyRevenue {
-  month: string;
   year: number;
-  totalPremium: number;
-  totalCommission: number;
+  month: number;
+  monthName: string;
+  premiumCollected: number;
+  commissionPaid: number;
+  policiesActivated: number;
 }
 
 export interface AgentPerformance {
@@ -61,7 +66,8 @@ export interface AgentPerformance {
 export interface PlanDistribution {
   planId: number;
   planName: string;
-  policyCount: number;
+  totalPolicies: number;
+  activePolicies: number;
   totalSumAssured: number;
 }
 

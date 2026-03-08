@@ -103,7 +103,10 @@ export class EditPlan implements OnInit {
         this.toast.show('Insurance Plan updated successfully!', 'success');
         this.router.navigate(['/app/admin/plans']);
       },
-      error: () => this.saving = false
+      error: (err: any) => {
+        this.saving = false;
+        this.toast.show(err.error?.message || 'Failed to update plan', 'error');
+      }
     });
   }
 }

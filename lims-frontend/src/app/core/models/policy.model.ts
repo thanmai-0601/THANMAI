@@ -95,6 +95,7 @@ export interface PolicyResponse {
   activeTo: string | null;
   nominees: NomineeResponse[];
   documents: DocumentResponse[];
+  hasSettledClaim: boolean;
 }
 
 export interface PremiumPreviewDto {

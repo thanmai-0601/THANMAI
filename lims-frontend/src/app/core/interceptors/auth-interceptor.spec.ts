@@ -1,7 +1,4 @@
-﻿import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { Router } from '@angular/router';
-import { authInterceptor } from './auth-interceptor';
+﻿import { authInterceptor } from './auth-interceptor';
 
 describe('authInterceptor', () => {
     it('should be defined', () => {

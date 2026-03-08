@@ -284,15 +284,13 @@ public class EndorsementService : IEndorsementService
             throw new UnauthorizedAccessException(
                 "You can only request endorsements on your own policies.");
 
-        if (policy.Status != PolicyStatus.Active)
+        if (policy.Status == PolicyStatus.Rejected || policy.Status == PolicyStatus.Cancelled || policy.Status == PolicyStatus.Settled)
             throw new InvalidOperationException(
-                "Endorsements can only be requested on Active policies.");
+                "Endorsements cannot be requested on Rejected, Cancelled, or Settled policies.");
 
-        // Block if another endorsement is already open
-        if (await _endorsementRepo.HasPendingEndorsementAsync(policyId))
+        if (policy.Claims.Any(c => c.Status == ClaimStatus.Settled))
             throw new InvalidOperationException(
-                "There is already a pending endorsement on this policy. " +
-                "Please wait for it to be resolved.");
+                "Endorsements cannot be requested after a claim has been settled.");
 
         return policy;
     }

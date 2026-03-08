@@ -97,23 +97,13 @@
                     <form (ngSubmit)="calculatePremium()" class="flex flex-col gap-8">
                         <div class="flex flex-col gap-3">
                             <label
-                                class="text-[10px] font-black uppercase tracking-[0.2em] text-primary opacity-60 ml-1">Risk
+                                class="text-[10px] font-black uppercase tracking-[0.2em] text-primary opacity-60 ml-1">Assigned
+                                Risk
                                 Category</label>
-                            <div class="relative group/select">
-                                <select [(ngModel)]="calcForm.riskCategory" name="rc" required
-                                    class="input-premium pl-4 pr-10 appearance-none !bg-white/50 dark:!bg-slate-900/50">
-                                    <option value="Low">Low Risk</option>
-                                    <option value="Standard">Standard Risk</option>
-                                    <option value="High">High Risk</option>
-                                </select>
-                                <div
-                                    class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-primary/40">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
-                                        viewBox="0 0 16 16">
-                                        <path
-                                            d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
-                                    </svg>
-                                </div>
+                            <div
+                                class="p-4 rounded-xl border border-primary/20 bg-primary/5 flex items-center justify-between">
+                                <span class="text-sm font-black text-primary uppercase tracking-widest">{{
+                                    calcForm.riskCategory }} Risk</span>
                             </div>
                         </div>
 

@@ -43,4 +43,5 @@ public class PolicyResponseDto
     // Collections
     public List<NomineeResponseDto> Nominees { get; set; } = new();
     public List<DocumentResponseDto> Documents { get; set; } = new();
+    public bool HasSettledClaim { get; set; }
 }

@@ -91,7 +91,10 @@ export class EndorsementDetail implements OnInit {
         this.toast.show(`Endorsement ${decision} successfully!`, 'success');
         this.router.navigate(['/app/endorsement/pending']);
       },
-      error: () => this.submitLoading = false
+      error: (err: any) => {
+        this.submitLoading = false;
+        this.toast.show(err.error?.message || 'Failed to submit decision', 'error');
+      }
     });
   }
 }

@@ -66,7 +66,10 @@ export class CreatePlan {
         this.toast.show('Insurance Plan created successfully!', 'success');
         this.router.navigate(['/app/admin/plans']);
       },
-      error: () => this.loading = false
+      error: (err: any) => {
+        this.loading = false;
+        this.toast.show(err.error?.message || 'Failed to create plan', 'error');
+      }
     });
   }
 }

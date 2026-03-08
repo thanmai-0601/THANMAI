@@ -26,6 +26,15 @@
   --radius-button: 12px;
 }
 
+/* Dark mode overrides for theme colors */
+.dark {
+  --color-text-primary: #F8FAFC;
+  --color-text-secondary: #E2E8F0;
+  --color-theme-bg: #0F172A;
+  --color-theme-card: #1E293B;
+  --color-theme-border: #334155;
+}
+
 @layer base {
   body {
     @apply bg-theme-bg text-text-primary font-sans antialiased transition-colors duration-300;
@@ -71,6 +80,15 @@
   }
 
   .input-premium {
-    @apply w-full px-4 py-3 bg-white dark:bg-slate-900 border border-theme-border dark:border-slate-800 rounded-[var(--radius-button)] focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all;
+    @apply w-full px-4 py-3 bg-white dark:bg-slate-900 border border-theme-border dark:border-slate-800 rounded-[var(--radius-button)] focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-text-primary dark:text-white placeholder:text-text-secondary/50 dark:placeholder:text-slate-500;
   }
+}
+
+/* Dark mode: force all low-opacity text to be readable */
+.dark span[class*="opacity-"],
+.dark p[class*="opacity-"],
+.dark label[class*="opacity-"],
+.dark th[class*="opacity-"],
+.dark td[class*="opacity-"] {
+  opacity: 0.85 !important;
 }

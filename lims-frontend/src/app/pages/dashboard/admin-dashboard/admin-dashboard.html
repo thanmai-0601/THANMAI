@@ -35,7 +35,7 @@
         <app-stat-card label="Total Policies" [value]="data.totalPolicies" icon="📑" color="#F97316" />
         <app-stat-card label="Revenue" [value]="data.totalPremiumCollected | number" icon="💰" color="#10B981"
             prefix="₹" />
-        <app-stat-card label="Active Claims" [value]="data.submittedClaims" icon="🏥" color="#EF4444" />
+        <app-stat-card label="Claims Settled" [value]="data.settledClaims" icon="✅" color="#10B981" />
         <app-stat-card label="Endorsements" [value]="data.pendingEndorsements" icon="📝" color="#8B5CF6" />
     </div>
 
@@ -84,6 +84,11 @@
                 <span class="text-[10px] font-black text-primary uppercase tracking-widest">Active Plans</span>
             </div>
         </div>
+    </div>
+
+    <!-- Browse Insurance Plans -->
+    <div class="mb-10">
+        <app-plan-list />
     </div>
 
     <!-- Tables Grid -->
@@ -136,35 +141,115 @@
             </div>
         </div>
 
-        <!-- Market Integration Metrics -->
-        <div class="premium-card p-0 overflow-hidden border-white/5">
-            <div
-                class="px-8 py-6 bg-emerald-500/[0.03] border-b border-theme-border/10 flex justify-between items-center">
-                <h2 class="text-[11px] font-black text-emerald-500 uppercase tracking-[0.3em]">Plan Distribution</h2>
-                <span class="text-[9px] font-black text-emerald-500 uppercase px-3 py-1 bg-emerald-500/10 rounded">Live
-                    Data</span>
-            </div>
-            <div class="p-8 space-y-8">
-                @for (plan of data.planDistribution; track plan.planName) {
-                <div class="group">
-                    <div class="flex justify-between items-center mb-3">
-                        <span class="text-xs font-black text-text-primary dark:text-white uppercase tracking-tight">{{
-                            plan.planName }}</span>
-                        <div class="text-right">
-                            <span class="text-[10px] font-black text-primary uppercase tracking-widest">{{
-                                plan.policyCount }} Active</span>
-                            <span class="text-[9px] font-bold text-text-secondary opacity-40 ml-2">({{ (plan.policyCount
-                                / data.totalPolicies) | percent }})</span>
-                        </div>
-                    </div>
-                    <div
-                        class="h-3 bg-theme-bg dark:bg-slate-800 rounded-full overflow-hidden border border-theme-border/10 p-0.5">
-                        <div class="h-full bg-gradient-to-r from-primary to-blue-400 rounded-full transition-all duration-1500"
-                            [style.width.%]="(plan.policyCount / data.totalPolicies) * 100"></div>
-                    </div>
+        <!-- Revenue Intelligence Trend -->
+        <div class="premium-card p-0 overflow-hidden border-white/5 flex flex-col">
+            <div class="px-8 py-6 bg-primary/[0.03] border-b border-theme-border/10 flex justify-between items-center">
+                <h2 class="text-[11px] font-black text-primary uppercase tracking-[0.3em]">Revenue Intelligence</h2>
+
+                <div class="flex items-center gap-2">
+                    <select [(ngModel)]="selectedYear" (change)="onYearChange()"
+                        class="bg-transparent border-none text-[10px] font-black text-primary uppercase cursor-pointer outline-none focus:ring-0">
+                        @for (year of availableYears; track year) {
+                        <option [value]="year">{{ year }}</option>
+                        }
+                    </select>
+                    <span
+                        class="text-[9px] font-black text-primary/40 uppercase px-3 py-1 bg-primary/5 rounded">Trends</span>
                 </div>
-                }
             </div>
+            <div class="p-8 flex-1 flex flex-col justify-end">
+                <div class="h-[250px] mb-4">
+                    @if (chartOptions.series) {
+                    <apx-chart [series]="chartOptions.series!" [chart]="chartOptions.chart!"
+                        [xaxis]="chartOptions.xaxis!" [yaxis]="chartOptions.yaxis!" [colors]="chartOptions.colors!"
+                        [plotOptions]="chartOptions.plotOptions!" [dataLabels]="chartOptions.dataLabels!"
+                        [fill]="chartOptions.fill!" [tooltip]="chartOptions.tooltip!"
+                        [grid]="chartOptions.grid!"></apx-chart>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Payments (Global) -->
+    <div class="mt-10 premium-card p-0 overflow-hidden border-white/5">
+        <div class="px-8 py-6 bg-emerald-500/[0.03] border-b border-theme-border/10 flex justify-between items-center">
+            <h2 class="text-[11px] font-black text-emerald-500 uppercase tracking-[0.3em]">Recent Payments (Global)</h2>
+            <a routerLink="/app/admin/payments"
+                class="text-[9px] font-black text-emerald-500 uppercase px-3 py-1 bg-emerald-500/10 hover:bg-emerald-500/20 rounded transition-colors">View
+                All</a>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="w-full">
+                <thead class="bg-primary/[0.02] border-b border-theme-border/5">
+                    <tr>
+                        <th
+                            class="px-8 py-4 text-left text-[10px] font-black text-text-secondary opacity-50 uppercase tracking-widest">
+                            Customer</th>
+                        <th
+                            class="px-8 py-4 text-left text-[10px] font-black text-text-secondary opacity-50 uppercase tracking-widest">
+                            Policy No</th>
+                        <th
+                            class="px-8 py-4 text-left text-[10px] font-black text-text-secondary opacity-50 uppercase tracking-widest">
+                            Amount</th>
+                        <th
+                            class="px-8 py-4 text-left text-[10px] font-black text-text-secondary opacity-50 uppercase tracking-widest">
+                            Method</th>
+                        <th
+                            class="px-8 py-4 text-left text-[10px] font-black text-text-secondary opacity-50 uppercase tracking-widest">
+                            Status</th>
+                        <th
+                            class="px-8 py-4 text-right text-[10px] font-black text-text-secondary opacity-50 uppercase tracking-widest">
+                            Date</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-theme-border/5">
+                    @for (payment of data.recentPayments; track payment.paymentId) {
+                    <tr class="group hover:bg-primary/[0.02] transition-colors">
+                        <td class="px-8 py-4">
+                            <p class="text-sm font-black text-text-primary dark:text-white tracking-tight">{{
+                                payment.customerName || 'Unknown' }}</p>
+                        </td>
+                        <td class="px-8 py-4">
+                            <p class="text-xs font-bold text-text-secondary">{{ payment.policyNumber }}</p>
+                        </td>
+                        <td class="px-8 py-4">
+                            <p class="text-sm font-black text-emerald-600 dark:text-emerald-400">₹{{ payment.amountPaid
+                                | number: '1.0-0' }}</p>
+                        </td>
+                        <td class="px-8 py-4">
+                            <p class="text-[10px] font-bold text-text-secondary uppercase tracking-widest">{{
+                                payment.paymentMethod }}</p>
+                        </td>
+                        <td class="px-8 py-4">
+                            <span class="px-2.5 py-1 text-[9px] font-black uppercase tracking-wider rounded-full"
+                                [ngClass]="{
+                                    'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400': payment.status === 'Paid',
+                                    'bg-amber-500/10 text-amber-600 dark:text-amber-400': payment.status === 'Pending',
+                                    'bg-red-500/10 text-red-600 dark:text-red-400': payment.status === 'Failed'
+                                }">
+                                {{ payment.status }}
+                            </span>
+                        </td>
+                        <td class="px-8 py-4 text-right">
+                            <p class="text-xs font-bold text-text-secondary">{{ payment.paymentDate | date:'mediumDate'
+                                }}</p>
+                        </td>
+                    </tr>
+                    }
+                    @if (!data.recentPayments?.length) {
+                    <tr>
+                        <td colspan="6" class="px-8 py-12 text-center">
+                            <div class="inline-flex flex-col items-center justify-center opacity-50">
+                                <span class="text-4xl mb-3">💸</span>
+                                <p class="text-[11px] font-black text-text-secondary uppercase tracking-widest">No
+                                    recent payments found</p>
+                            </div>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

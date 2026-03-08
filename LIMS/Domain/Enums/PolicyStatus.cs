@@ -12,5 +12,6 @@ public enum PolicyStatus
     Suspended = 8,
     Lapsed = 9,
     Rejected = 10,
-    Cancelled = 11
+    Cancelled = 11,
+    Settled = 12
 }

@@ -32,10 +32,8 @@
           <label class="text-[9px] font-black uppercase tracking-[0.3em] text-text-secondary opacity-60 ml-1">Full
             Name</label>
           <div class="relative group">
-            <span
-              class="absolute left-5 top-1/2 -translate-y-1/2 text-primary opacity-50 group-focus-within:opacity-100 transition-opacity"></span>
             <input type="text" formControlName="fullName" placeholder="John Doe"
-              class="input-premium pl-14 py-3.5 font-bold text-xs tracking-wide">
+              class="input-premium pl-4 py-3.5 font-bold text-xs tracking-wide">
           </div>
         </div>
 
@@ -44,11 +42,11 @@
           <label class="text-[9px] font-black uppercase tracking-[0.3em] text-text-secondary opacity-60 ml-1">Email
             Address</label>
           <div class="relative group">
-            <span
-              class="absolute left-5 top-1/2 -translate-y-1/2 text-primary opacity-50 group-focus-within:opacity-100 transition-opacity"></span>
             <input type="email" formControlName="email" placeholder="you@nexalife.net"
-              class="input-premium pl-14 py-3.5 font-bold text-xs tracking-wide">
+              class="input-premium pl-4 py-3.5 font-bold text-xs tracking-wide">
           </div>
+          <span *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid"
+            class="text-[10px] font-black uppercase text-red-500 mt-1 ml-1 tracking-wider">Valid email required</span>
         </div>
 
         <!-- Phone -->
@@ -56,11 +54,12 @@
           <label class="text-[9px] font-black uppercase tracking-[0.3em] text-text-secondary opacity-60 ml-1">Phone
             Number</label>
           <div class="relative group">
-            <span
-              class="absolute left-5 top-1/2 -translate-y-1/2 text-primary opacity-50 group-focus-within:opacity-100 transition-opacity"></span>
-            <input type="tel" formControlName="phoneNumber" placeholder="+91 0000000000"
-              class="input-premium pl-14 py-3.5 font-bold text-xs tracking-wide">
+            <input type="tel" formControlName="phoneNumber" placeholder="Enter 10 digit number" pattern="[0-9]{10}"
+              maxlength="10" class="input-premium pl-4 py-3.5 font-bold text-xs tracking-wide">
           </div>
+          <span *ngIf="registerForm.get('phoneNumber')?.touched && registerForm.get('phoneNumber')?.invalid"
+            class="text-[10px] font-black uppercase text-red-500 mt-1 ml-1 tracking-wider">Phone number must be exactly
+            10 digits</span>
         </div>
 
         <!-- Password -->
@@ -68,10 +67,8 @@
           <label
             class="text-[9px] font-black uppercase tracking-[0.3em] text-text-secondary opacity-60 ml-1">Password</label>
           <div class="relative group">
-            <span
-              class="absolute left-5 top-1/2 -translate-y-1/2 text-primary opacity-50 group-focus-within:opacity-100 transition-opacity"></span>
             <input type="password" formControlName="password" placeholder="••••••••"
-              class="input-premium pl-14 py-3.5 font-bold tracking-[0.3em]">
+              class="input-premium pl-4 py-3.5 font-bold tracking-[0.3em]">
           </div>
         </div>
 
@@ -80,10 +77,8 @@
           <label class="text-[9px] font-black uppercase tracking-[0.3em] text-text-secondary opacity-60 ml-1">Confirm
             Password</label>
           <div class="relative group">
-            <span
-              class="absolute left-5 top-1/2 -translate-y-1/2 text-primary opacity-50 group-focus-within:opacity-100 transition-opacity"></span>
             <input type="password" formControlName="confirmPassword" placeholder="••••••••"
-              class="input-premium pl-14 py-3.5 font-bold tracking-[0.3em]">
+              class="input-premium pl-4 py-3.5 font-bold tracking-[0.3em]">
           </div>
         </div>
 

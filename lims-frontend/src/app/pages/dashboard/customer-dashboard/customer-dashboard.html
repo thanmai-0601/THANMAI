@@ -17,12 +17,11 @@
     </div>
 
     <!-- Analytics Matrix -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
         <app-stat-card label="Active Policies" [value]="data.activePolicies" icon="🛡️" color="#10B981" />
         <app-stat-card label="Total Paid" [value]="data.totalPaidAmount | number" icon="💸" color="#3B82F6"
             prefix="₹" />
-        <app-stat-card label="Open Claims" [value]="data.openClaims" icon="🏥" color="#F59E0B" />
-        <!-- <app-stat-card label="Pending Changes" [value]="data.pendingEndorsements" icon="⏳" color="#8B5CF6" /> -->
+        <app-stat-card label="Settled Claims" [value]="data.settledClaims" icon="✅" color="#8B5CF6" />
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -114,7 +113,7 @@
                 </div>
             </div>
 
-     
+
         </div>
     </div>
 

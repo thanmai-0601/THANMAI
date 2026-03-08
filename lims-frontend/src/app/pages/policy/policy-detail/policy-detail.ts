@@ -93,6 +93,11 @@ export class PolicyDetail implements OnInit {
       return;
     }
 
+    if (!/^\d{10}$/.test(this.newNominee.contactNumber)) {
+      this.toast.show('Contact number must be exactly 10 digits', 'warning');
+      return;
+    }
+
     this.submittingNominee = true;
     this.api.post(`policy/${this.policyId}/nominees`, { nominees: [this.newNominee] }).subscribe({
       next: () => {
@@ -101,7 +106,10 @@ export class PolicyDetail implements OnInit {
         this.submittingNominee = false;
         this.loadPolicy();
       },
-      error: () => this.submittingNominee = false
+      error: (err: any) => {
+        this.submittingNominee = false;
+        this.toast.show(err.error?.message || 'Failed to add nominee', 'error');
+      }
     });
   }
 
@@ -141,8 +149,9 @@ export class PolicyDetail implements OnInit {
         this.uploadingTypes[dto.documentType] = false;
         this.loadPolicy();
       },
-      error: () => {
+      error: (err: any) => {
         this.uploadingTypes[dto.documentType] = false;
+        this.toast.show(err.error?.message || `Failed to upload ${dto.documentType}`, 'error');
       }
     });
   }

@@ -30,7 +30,7 @@ export class EditStaff implements OnInit {
     this.editStaffForm = this.fb.group({
       fullName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phoneNumber: ['', Validators.required],
+      phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
       role: ['Agent', Validators.required]
     });
   }

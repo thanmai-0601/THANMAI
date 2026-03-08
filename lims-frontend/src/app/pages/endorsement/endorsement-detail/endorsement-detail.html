@@ -103,7 +103,7 @@
                             class="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
                         Approve Change
                     </button>
-                    <button type="button" (click)="submitReview('Reject')" [disabled]="submitLoading || !remarks"
+                    <button type="button" (click)="submitReview('Reject')" [disabled]="submitLoading"
                         class="flex-1 py-3 rounded-xl font-bold text-white bg-error hover:bg-red-700 disabled:opacity-60 transition-colors shadow-sm shadow-red-600/20 flex items-center justify-center gap-2">
                         Reject Request
                     </button>

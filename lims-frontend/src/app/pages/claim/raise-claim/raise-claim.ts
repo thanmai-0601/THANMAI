@@ -72,7 +72,8 @@ export class RaiseClaim implements OnInit {
 
     this.api.get<PolicyResponse[]>('policy').subscribe({
       next: (res: PolicyResponse[]) => {
-        this.policies = res.filter(p => p.status === 'Active');
+        // Policies must be Active AND not have a settled claim already.
+        this.policies = res.filter(p => p.status === 'Active' && !p.hasSettledClaim);
         policiesLoaded = true;
         checkLoading();
       },
@@ -85,7 +86,10 @@ export class RaiseClaim implements OnInit {
     this.api.get<ClaimResponse[]>('claim').subscribe({
       next: (claims: ClaimResponse[]) => {
         claims.forEach(c => {
-          if (c.status !== 'Rejected') {
+          // A policy is considered to have a current claim if it's not Rejected AND not already Settled.
+          // If it's settled, the policy itself should ideally be in Settled status and thus hidden,
+          // but we exclude it here as well for robustness.
+          if (c.status !== 'Rejected' && c.status !== 'Settled') {
             this.claimedPolicyNumbers.add(c.policyNumber);
           }
         });
@@ -173,7 +177,10 @@ export class RaiseClaim implements OnInit {
         this.toast.show('Claim request submitted successfully! A claims officer has been assigned.', 'success');
         this.router.navigate(['/app/claim', res.claimId]);
       },
-      error: () => this.submitting = false
+      error: (err: any) => {
+        this.submitting = false;
+        this.toast.show(err.error?.message || 'Failed to submit claim request', 'error');
+      }
     });
   }
 }

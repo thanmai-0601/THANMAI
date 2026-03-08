@@ -496,6 +496,17 @@
         "tags": [
           "Dashboard"
         ],
+        "parameters": [
+          {
+            "name": "year",
+            "in": "query",
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Success"
@@ -1287,6 +1298,7 @@
           },
           "contactNumber": {
             "minLength": 1,
+            "pattern": "^[0-9]{10}$",
             "type": "string"
           },
           "allocationPercentage": {
@@ -1525,6 +1537,7 @@
           },
           "phoneNumber": {
             "minLength": 1,
+            "pattern": "^[0-9]{10}$",
             "type": "string",
             "format": "tel"
           },
@@ -1657,7 +1670,8 @@
           "Suspended",
           "Lapsed",
           "Rejected",
-          "Cancelled"
+          "Cancelled",
+          "Settled"
         ],
         "type": "string"
       },
@@ -1740,6 +1754,7 @@
           },
           "phoneNumber": {
             "minLength": 1,
+            "pattern": "^[0-9]{10}$",
             "type": "string",
             "format": "tel"
           }
@@ -1961,6 +1976,7 @@
           },
           "phoneNumber": {
             "minLength": 1,
+            "pattern": "^[0-9]{10}$",
             "type": "string",
             "format": "tel"
           },

@@ -12,6 +12,7 @@ public class AgentDashboardDto
     public int UnderReviewPolicies { get; set; }
     public int ActivePolicies { get; set; }
     public int RejectedPolicies { get; set; }
+    public int SettledPolicies { get; set; }
 
     // ── Commission Summary ────────────────────────────────────
     public decimal TotalCommissionEarned { get; set; }
