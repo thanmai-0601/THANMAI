@@ -13,5 +13,6 @@ public class Commission : BaseEntity
     public decimal PremiumAmount { get; set; }
     public decimal CommissionPercentage { get; set; }
     public decimal CommissionAmount { get; set; }
-    public DateTime EarnedOn { get; set; } = DateTime.UtcNow;
+    public Domain.Enums.CommissionStatus Status { get; set; } = Domain.Enums.CommissionStatus.Pending;
+    public DateTime? EarnedOn { get; set; }
 }

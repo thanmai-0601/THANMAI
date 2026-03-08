@@ -4251,11 +4251,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\New folder\\LIMS\\API\\API.csproj",
+      "projectUniqueName": "D:\\THANMAI\\LIMS\\API\\API.csproj",
       "projectName": "API",
-      "projectPath": "D:\\New folder\\LIMS\\API\\API.csproj",
+      "projectPath": "D:\\THANMAI\\LIMS\\API\\API.csproj",
       "packagesPath": "C:\\Users\\danda\\.nuget\\packages\\",
-      "outputPath": "D:\\New folder\\LIMS\\API\\obj\\",
+      "outputPath": "D:\\THANMAI\\LIMS\\API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -4276,14 +4276,14 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\New folder\\LIMS\\Application\\Application.csproj": {
-              "projectPath": "D:\\New folder\\LIMS\\Application\\Application.csproj"
+            "D:\\THANMAI\\LIMS\\Application\\Application.csproj": {
+              "projectPath": "D:\\THANMAI\\LIMS\\Application\\Application.csproj"
             },
-            "D:\\New folder\\LIMS\\Domain\\Domain.csproj": {
-              "projectPath": "D:\\New folder\\LIMS\\Domain\\Domain.csproj"
+            "D:\\THANMAI\\LIMS\\Domain\\Domain.csproj": {
+              "projectPath": "D:\\THANMAI\\LIMS\\Domain\\Domain.csproj"
             },
-            "D:\\New folder\\LIMS\\Infrastructure\\Infrastructure.csproj": {
-              "projectPath": "D:\\New folder\\LIMS\\Infrastructure\\Infrastructure.csproj"
+            "D:\\THANMAI\\LIMS\\Infrastructure\\Infrastructure.csproj": {
+              "projectPath": "D:\\THANMAI\\LIMS\\Infrastructure\\Infrastructure.csproj"
             }
           }
         }

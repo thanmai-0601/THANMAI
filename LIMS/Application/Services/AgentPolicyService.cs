@@ -284,7 +284,7 @@ private static List<string> GetPlanBenefits(
             PremiumAmount = policy.PremiumAmount.Value,
             CommissionPercentage = slabPercentage,
             CommissionAmount = commissionAmount,
-            EarnedOn = DateTime.UtcNow
+            Status = CommissionStatus.Pending
         };
 
         await _commissionRepo.CreateAsync(commission);

@@ -22,21 +22,46 @@ public class CommissionRepository : ICommissionRepository
         return commission;
     }
 
+    public async Task<Commission?> GetByPolicyIdAsync(int policyId)
+    {
+        return await _context.Commissions
+            .FirstOrDefaultAsync(c => c.PolicyId == policyId);
+    }
+
+    public async Task UpdateAsync(Commission commission)
+    {
+        _context.Commissions.Update(commission);
+        await _context.SaveChangesAsync();
+    }
+
     public async Task<List<Commission>> GetByAgentIdAsync(int agentId)
         => await _context.Commissions
             .Include(c => c.Policy)
-            .Where(c => c.AgentId == agentId)
+            .Where(c => c.AgentId == agentId && c.Status == Domain.Enums.CommissionStatus.Earned)
             .OrderByDescending(c => c.EarnedOn)
             .ToListAsync();
     public async Task<decimal> GetTotalCommissionAsync()
     {
         return await _context.Commissions
+            .Where(c => c.Status != Domain.Enums.CommissionStatus.Pending)
+            .SumAsync(c => c.CommissionAmount);
+    }
+    public async Task<decimal> GetTotalPendingCommissionAsync()
+    {
+        return await _context.Commissions
+            .Where(c => c.Status == Domain.Enums.CommissionStatus.Pending)
             .SumAsync(c => c.CommissionAmount);
     }
     public async Task<decimal> GetTotalByAgentAsync(int agentId)
     {
         return await _context.Commissions
-            .Where(c => c.AgentId == agentId)
+            .Where(c => c.AgentId == agentId && c.Status != Domain.Enums.CommissionStatus.Pending)
+            .SumAsync(c => c.CommissionAmount);
+    }
+    public async Task<decimal> GetPendingTotalByAgentAsync(int agentId)
+    {
+        return await _context.Commissions
+            .Where(c => c.AgentId == agentId && c.Status == Domain.Enums.CommissionStatus.Pending)
             .SumAsync(c => c.CommissionAmount);
     }
     public async Task<decimal> GetThisMonthByAgentAsync(int agentId)
@@ -49,6 +74,7 @@ public class CommissionRepository : ICommissionRepository
         return await _context.Commissions
             .Where(c =>
                 c.AgentId == agentId &&
+                c.Status != Domain.Enums.CommissionStatus.Pending &&
                 c.EarnedOn >= startOfMonth)
             .SumAsync(c => c.CommissionAmount);
     }
@@ -61,6 +87,7 @@ public class CommissionRepository : ICommissionRepository
         return await _context.Commissions
             .Where(c =>
                 c.AgentId == agentId &&
+                c.Status != Domain.Enums.CommissionStatus.Pending &&
                 c.EarnedOn >= startOfLastMonth &&
                 c.EarnedOn < startOfMonth)
             .SumAsync(c => c.CommissionAmount);
@@ -71,7 +98,7 @@ public class CommissionRepository : ICommissionRepository
         return await _context.Commissions
             .Include(c => c.Policy)
                 .ThenInclude(p => p.Customer)
-            .Where(c => c.AgentId == agentId)
+            .Where(c => c.AgentId == agentId && c.Status == Domain.Enums.CommissionStatus.Earned)
             .OrderByDescending(c => c.EarnedOn)
             .Take(10)
             .Select(c => new PolicyCommissionDto
@@ -81,6 +108,7 @@ public class CommissionRepository : ICommissionRepository
                 PremiumAmount = c.PremiumAmount,
                 CommissionAmount = c.CommissionAmount,
                 CommissionPercentage = c.CommissionPercentage,
+                Status = c.Status.ToString(),
                 EarnedOn = c.EarnedOn
             })
             .ToListAsync();

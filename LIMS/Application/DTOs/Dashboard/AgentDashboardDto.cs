@@ -15,6 +15,7 @@ public class AgentDashboardDto
 
     // ── Commission Summary ────────────────────────────────────
     public decimal TotalCommissionEarned { get; set; }
+    public decimal PendingCommission { get; set; }
     public decimal ThisMonthCommission { get; set; }
     public decimal LastMonthCommission { get; set; }
     public List<PolicyCommissionDto> RecentCommissions { get; set; } = new();

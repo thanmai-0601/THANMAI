@@ -32,16 +32,15 @@
         <div class="px-8 py-6 bg-emerald-500/[0.03] border-b border-theme-border/10 flex justify-between items-center">
             <h2 class="text-[11px] font-black text-emerald-500 uppercase tracking-[0.3em]">Earnings History</h2>
             <span
-                class="text-[9px] font-black text-emerald-500 uppercase px-3 py-1 bg-emerald-500/10 rounded">Commission
-                Paid</span>
+                class="text-[9px] font-black text-emerald-500 uppercase px-3 py-1 bg-emerald-500/10 rounded">Commissions</span>
         </div>
         <div class="overflow-x-auto">
             <table class="w-full">
                 <thead>
                     <tr
                         class="bg-theme-bg dark:bg-slate-800/40 text-[9px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60">
-                        <th class="px-8 py-4 text-left">Policy Number</th>
-                        <th class="px-8 py-4 text-left">Date</th>
+                        <th class="px-8 py-4 text-left">Policy & Customer</th>
+                        <th class="px-8 py-4 text-left">Status & Date</th>
                         <th class="px-8 py-4 text-right">Amount Earned</th>
                     </tr>
                 </thead>
@@ -49,13 +48,21 @@
                     @for (p of data.recentCommissions; track p.policyNumber) {
                     <tr class="group hover:bg-emerald-500/[0.02] transition-colors">
                         <td class="px-8 py-6">
-                            <span class="text-xs font-black text-text-primary dark:text-white tracking-widest">{{
+                            <span class="block text-xs font-black text-text-primary dark:text-white tracking-widest">{{
                                 p.policyNumber }}</span>
+                            <span class="block text-[10px] text-text-secondary mt-1">{{ p.customerName }}</span>
                         </td>
                         <td class="px-8 py-6">
-                            <span
-                                class="text-[10px] font-bold text-text-secondary opacity-60 uppercase tracking-widest">{{
-                                p.commissionDate | date:'mediumDate' }}</span>
+                            <span class="block text-xs font-black"
+                                [ngClass]="p.status === 'Earned' ? 'text-emerald-500' : 'text-amber-500'">{{ p.status
+                                }}</span>
+                            @if (p.earnedOn) {
+                            <span class="block text-[10px] font-bold text-text-secondary opacity-60 mt-1">{{ p.earnedOn
+                                | date:'mediumDate' }}</span>
+                            } @else {
+                            <span class="block text-[10px] font-bold text-text-secondary opacity-60 mt-1">Pending
+                                Payment</span>
+                            }
                         </td>
                         <td class="px-8 py-6 text-right">
                             <span class="text-sm font-black text-emerald-600">₹{{ p.commissionAmount | number }}</span>

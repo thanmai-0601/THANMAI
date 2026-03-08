@@ -11,15 +11,18 @@ public class PaymentService : IPaymentService
     private readonly IPaymentRepository _paymentRepo;
     private readonly IInvoiceRepository _invoiceRepo;
     private readonly IPolicyRepository _policyRepo;
+    private readonly ICommissionRepository _commissionRepo;
 
     public PaymentService(
         IPaymentRepository paymentRepo,
         IInvoiceRepository invoiceRepo,
-        IPolicyRepository policyRepo)
+        IPolicyRepository policyRepo,
+        ICommissionRepository commissionRepo)
     {
         _paymentRepo = paymentRepo;
         _invoiceRepo = invoiceRepo;
         _policyRepo = policyRepo;
+        _commissionRepo = commissionRepo;
     }
 
     public async Task<PaymentResponseDto> MakePaymentAsync(
@@ -75,6 +78,15 @@ public class PaymentService : IPaymentService
                 policy.ActiveTo = DateTime.UtcNow.AddYears(policy.TenureYears);
             }
             await _policyRepo.UpdateAsync(policy);
+        }
+
+        // Extract commission logic: Change to Earned if it was Pending
+        var commission = await _commissionRepo.GetByPolicyIdAsync(invoice.PolicyId);
+        if (commission != null && commission.Status == CommissionStatus.Pending)
+        {
+            commission.Status = CommissionStatus.Earned;
+            commission.EarnedOn = DateTime.UtcNow;
+            await _commissionRepo.UpdateAsync(commission);
         }
 
         return new PaymentResponseDto

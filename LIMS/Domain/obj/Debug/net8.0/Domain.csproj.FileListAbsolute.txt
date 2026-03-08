@@ -70,3 +70,15 @@ D:\New folder\LIMS\Domain\obj\Debug\net8.0\Domain.dll
 D:\New folder\LIMS\Domain\obj\Debug\net8.0\refint\Domain.dll
 D:\New folder\LIMS\Domain\obj\Debug\net8.0\Domain.pdb
 D:\New folder\LIMS\Domain\obj\Debug\net8.0\ref\Domain.dll
+D:\THANMAI\LIMS\Domain\bin\Debug\net8.0\Domain.deps.json
+D:\THANMAI\LIMS\Domain\bin\Debug\net8.0\Domain.dll
+D:\THANMAI\LIMS\Domain\bin\Debug\net8.0\Domain.pdb
+D:\THANMAI\LIMS\Domain\obj\Debug\net8.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\THANMAI\LIMS\Domain\obj\Debug\net8.0\Domain.AssemblyInfoInputs.cache
+D:\THANMAI\LIMS\Domain\obj\Debug\net8.0\Domain.AssemblyInfo.cs
+D:\THANMAI\LIMS\Domain\obj\Debug\net8.0\Domain.csproj.CoreCompileInputs.cache
+D:\THANMAI\LIMS\Domain\obj\Debug\net8.0\Domain.sourcelink.json
+D:\THANMAI\LIMS\Domain\obj\Debug\net8.0\Domain.dll
+D:\THANMAI\LIMS\Domain\obj\Debug\net8.0\refint\Domain.dll
+D:\THANMAI\LIMS\Domain\obj\Debug\net8.0\Domain.pdb
+D:\THANMAI\LIMS\Domain\obj\Debug\net8.0\ref\Domain.dll

@@ -7,5 +7,6 @@ public class PolicyCommissionDto
     public decimal PremiumAmount { get; set; }
     public decimal CommissionAmount { get; set; }
     public decimal CommissionPercentage { get; set; }
-    public DateTime EarnedOn { get; set; }
+    public string Status { get; set; } = string.Empty;
+    public DateTime? EarnedOn { get; set; }
 }

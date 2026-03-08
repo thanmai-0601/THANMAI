@@ -4084,11 +4084,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\New folder\\LIMS\\API.Tests\\API.Tests.csproj",
+      "projectUniqueName": "D:\\THANMAI\\LIMS\\API.Tests\\API.Tests.csproj",
       "projectName": "API.Tests",
-      "projectPath": "D:\\New folder\\LIMS\\API.Tests\\API.Tests.csproj",
+      "projectPath": "D:\\THANMAI\\LIMS\\API.Tests\\API.Tests.csproj",
       "packagesPath": "C:\\Users\\danda\\.nuget\\packages\\",
-      "outputPath": "D:\\New folder\\LIMS\\API.Tests\\obj\\",
+      "outputPath": "D:\\THANMAI\\LIMS\\API.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -4109,8 +4109,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\New folder\\LIMS\\API\\API.csproj": {
-              "projectPath": "D:\\New folder\\LIMS\\API\\API.csproj"
+            "D:\\THANMAI\\LIMS\\API\\API.csproj": {
+              "projectPath": "D:\\THANMAI\\LIMS\\API\\API.csproj"
             }
           }
         }

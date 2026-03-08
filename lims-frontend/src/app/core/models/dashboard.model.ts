@@ -21,6 +21,7 @@ export interface AdminDashboardDto {
   // Revenue
   totalPremiumCollected: number;
   totalCommissionPaid: number;
+  totalPendingCommission: number;
   monthlyRevenue: MonthlyRevenue[];
 
   // Users
@@ -74,6 +75,7 @@ export interface AgentDashboardDto {
 
   // Commission Summary
   totalCommissionEarned: number;
+  pendingCommission: number;
   thisMonthCommission: number;
   lastMonthCommission: number;
   recentCommissions: PolicyCommission[];
@@ -83,11 +85,13 @@ export interface AgentDashboardDto {
 }
 
 export interface PolicyCommission {
-  policyId: number;
   policyNumber: string;
+  customerName: string;
   premiumAmount: number;
   commissionAmount: number;
-  commissionDate: string;
+  commissionPercentage: number;
+  status: string;
+  earnedOn?: string;
 }
 
 

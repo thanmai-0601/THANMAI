@@ -22,6 +22,7 @@ public class AdminDashboardDto
     // ── Revenue ───────────────────────────────────────────────
     public decimal TotalPremiumCollected { get; set; }
     public decimal TotalCommissionPaid { get; set; }
+    public decimal TotalPendingCommission { get; set; }
     public List<MonthlyRevenueDto> MonthlyRevenue { get; set; } = new();
 
     // ── Users ─────────────────────────────────────────────────

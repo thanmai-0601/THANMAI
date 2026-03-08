@@ -175,7 +175,7 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("EarnedOn")
+                    b.Property<DateTime?>("EarnedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("PolicyId")
@@ -183,6 +183,9 @@ namespace Infrastructure.Migrations
 
                     b.Property<decimal>("PremiumAmount")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");

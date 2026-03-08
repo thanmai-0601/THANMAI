@@ -43,6 +43,7 @@ public class DashboardService : IDashboardService
 
         var totalRevenue = await _paymentRepo.GetTotalPremiumCollectedAsync();
         var totalCommission = await _commissionRepo.GetTotalCommissionAsync();
+        var totalPendingCommission = await _commissionRepo.GetTotalPendingCommissionAsync();
         var totalSettledAmount = await _claimRepo.GetTotalSettledAmountAsync();
 
         var monthlyRevenue = await _paymentRepo.GetLast12MonthsRevenueAsync();
@@ -85,6 +86,7 @@ public class DashboardService : IDashboardService
             // Revenue
             TotalPremiumCollected = totalRevenue,
             TotalCommissionPaid = totalCommission,
+            TotalPendingCommission = totalPendingCommission,
             MonthlyRevenue = monthlyRevenue,
 
             // Users
@@ -115,6 +117,9 @@ public class DashboardService : IDashboardService
         var totalCommission =
             await _commissionRepo.GetTotalByAgentAsync(agentId);
 
+        var pendingCommission =
+            await _commissionRepo.GetPendingTotalByAgentAsync(agentId);
+
         var thisMonthCommission =
             await _commissionRepo.GetThisMonthByAgentAsync(agentId);
 
@@ -140,6 +145,7 @@ public class DashboardService : IDashboardService
                 .FirstOrDefault(p => p.Status == PolicyStatus.Rejected)?.Count ?? 0,
 
             TotalCommissionEarned = totalCommission,
+            PendingCommission = pendingCommission,
             ThisMonthCommission = thisMonthCommission,
             LastMonthCommission = lastMonthCommission,
             RecentCommissions = recentCommissions,

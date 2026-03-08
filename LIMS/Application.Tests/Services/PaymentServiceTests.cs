@@ -13,6 +13,7 @@ public class PaymentServiceTests
     private readonly Mock<IPaymentRepository> _paymentRepo;
     private readonly Mock<IInvoiceRepository> _invoiceRepo;
     private readonly Mock<IPolicyRepository> _policyRepo;
+    private readonly Mock<ICommissionRepository> _commissionRepo;
     private readonly PaymentService _service;
 
     public PaymentServiceTests()
@@ -20,7 +21,8 @@ public class PaymentServiceTests
         _paymentRepo = new Mock<IPaymentRepository>();
         _invoiceRepo = new Mock<IInvoiceRepository>();
         _policyRepo = new Mock<IPolicyRepository>();
-        _service = new PaymentService(_paymentRepo.Object, _invoiceRepo.Object, _policyRepo.Object);
+        _commissionRepo = new Mock<ICommissionRepository>();
+        _service = new PaymentService(_paymentRepo.Object, _invoiceRepo.Object, _policyRepo.Object, _commissionRepo.Object);
     }
 
     [Fact]
