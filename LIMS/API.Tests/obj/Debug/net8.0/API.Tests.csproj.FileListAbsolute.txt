@@ -340,18 +340,18 @@ C:\Users\danda\OneDrive\Desktop\New folder\LIMS\API.Tests\obj\Debug\net8.0\API.T
 C:\Users\danda\OneDrive\Desktop\New folder\LIMS\API.Tests\obj\Debug\net8.0\ref\API.Tests.dll
 D:\THANMAI\LIMS\API.Tests\bin\Debug\net8.0\.msCoverageSourceRootsMapping_API.Tests
 D:\THANMAI\LIMS\API.Tests\bin\Debug\net8.0\CoverletSourceRootsMapping_API.Tests
-D:\THANMAI\LIMS\API.Tests\bin\Debug\net8.0\appsettings.Development.json
-D:\THANMAI\LIMS\API.Tests\bin\Debug\net8.0\appsettings.json
-D:\THANMAI\LIMS\API.Tests\bin\Debug\net8.0\testhost.exe
 D:\THANMAI\LIMS\API.Tests\bin\Debug\net8.0\testhost.dll
-D:\THANMAI\LIMS\API.Tests\bin\Debug\net8.0\xunit.runner.visualstudio.testadapter.dll
-D:\THANMAI\LIMS\API.Tests\bin\Debug\net8.0\xunit.runner.reporters.netcoreapp10.dll
-D:\THANMAI\LIMS\API.Tests\bin\Debug\net8.0\xunit.runner.utility.netcoreapp10.dll
 D:\THANMAI\LIMS\API.Tests\bin\Debug\net8.0\API.deps.json
 D:\THANMAI\LIMS\API.Tests\bin\Debug\net8.0\API.runtimeconfig.json
+D:\THANMAI\LIMS\API.Tests\bin\Debug\net8.0\appsettings.Development.json
+D:\THANMAI\LIMS\API.Tests\bin\Debug\net8.0\appsettings.json
 D:\THANMAI\LIMS\API.Tests\bin\Debug\net8.0\API.staticwebassets.runtime.json
 D:\THANMAI\LIMS\API.Tests\bin\Debug\net8.0\API.staticwebassets.endpoints.json
 D:\THANMAI\LIMS\API.Tests\bin\Debug\net8.0\API.exe
+D:\THANMAI\LIMS\API.Tests\bin\Debug\net8.0\testhost.exe
+D:\THANMAI\LIMS\API.Tests\bin\Debug\net8.0\xunit.runner.visualstudio.testadapter.dll
+D:\THANMAI\LIMS\API.Tests\bin\Debug\net8.0\xunit.runner.reporters.netcoreapp10.dll
+D:\THANMAI\LIMS\API.Tests\bin\Debug\net8.0\xunit.runner.utility.netcoreapp10.dll
 D:\THANMAI\LIMS\API.Tests\bin\Debug\net8.0\API.Tests.deps.json
 D:\THANMAI\LIMS\API.Tests\bin\Debug\net8.0\API.Tests.runtimeconfig.json
 D:\THANMAI\LIMS\API.Tests\bin\Debug\net8.0\API.Tests.dll

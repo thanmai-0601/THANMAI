@@ -6,6 +6,5 @@ namespace Application.DTOs.Policy;
 public class SubmitNomineesDto
 {
     [Required]
-    [MinLength(1, ErrorMessage = "At least one nominee is required")]
-    public List<AddNomineeDto> Nominees { get; set; } = new();
+    public AddNomineeDto Nominee { get; set; } = new();
 }

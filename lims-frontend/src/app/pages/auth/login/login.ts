@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/services/auth';
+import { ApiService } from '../../../core/services/api';
 import { ToastService } from '../../../core/services/toast';
 import { LoginDto } from '../../../core/models/auth.model';
 
@@ -48,10 +49,7 @@ export class Login {
       },
       error: (err) => {
         this.loading = false;
-        this.toast.error(
-          err.error?.message ||
-          'Login failed. Please check your credentials.'
-        );
+        this.toast.error(ApiService.getErrorMessage(err));
       }
     });
   }

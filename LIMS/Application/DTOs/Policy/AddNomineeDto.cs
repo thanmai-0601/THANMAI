@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace Application.DTOs.Policy;
 
@@ -21,6 +21,10 @@ public class AddNomineeDto
     public string ContactNumber { get; set; } = string.Empty;
 
     [Required]
-    [Range(1, 100, ErrorMessage = "Allocation percentage must be between 1 and 100")]
-    public decimal AllocationPercentage { get; set; }
+    [RegularExpression(@"^[0-9]{12}$", ErrorMessage = "Aadhar ID must be exactly 12 digits")]
+    public string IdNumber { get; set; } = string.Empty; // 12-digit Aadhar number
+
+    [Required]
+    [EmailAddress(ErrorMessage = "Invalid nominee email address")]
+    public string Email { get; set; } = string.Empty;
 }

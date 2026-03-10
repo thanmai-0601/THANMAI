@@ -26,7 +26,7 @@ export class PolicyDetail implements OnInit {
   showNomineeForm = false;
   submittingNominee = false;
 
-  newNominee: AddNomineeDto = { fullName: '', relationship: '', age: 25, contactNumber: '', allocationPercentage: 100 };
+  newNominee: AddNomineeDto = { fullName: '', relationship: '', age: null, contactNumber: '', idNumber: '', email: '' };
 
   constructor(
     private api: ApiService,
@@ -68,7 +68,6 @@ export class PolicyDetail implements OnInit {
 
     return hasNominees && hasAddressProof && hasIncomeProof && hasNomineeId;
   }
-
   toggleNomineeForm(): void {
     if (!this.showNomineeForm) {
       if (this.policy?.nominees && this.policy.nominees.length > 0) {
@@ -78,18 +77,19 @@ export class PolicyDetail implements OnInit {
           relationship: existing.relationship,
           age: existing.age,
           contactNumber: existing.contactNumber,
-          allocationPercentage: existing.allocationPercentage
+          idNumber: existing.idNumber,
+          email: existing.email
         };
       } else {
-        this.newNominee = { fullName: '', relationship: '', age: 25, contactNumber: '', allocationPercentage: 100 };
+        this.newNominee = { fullName: '', relationship: '', age: null, contactNumber: '', idNumber: '', email: '' };
       }
     }
     this.showNomineeForm = !this.showNomineeForm;
   }
 
   addNominee(): void {
-    if (!this.newNominee.fullName || !this.newNominee.relationship || !this.newNominee.contactNumber) {
-      this.toast.show('Please fill all nominee fields', 'warning');
+    if (!this.newNominee.fullName || !this.newNominee.relationship || !this.newNominee.contactNumber || !this.newNominee.idNumber || !this.newNominee.email) {
+      this.toast.show('Please fill all nominee fields (Full Name, Relationship, Age, Contact, Email and ID Number)', 'warning');
       return;
     }
 
@@ -98,8 +98,13 @@ export class PolicyDetail implements OnInit {
       return;
     }
 
+    if (!/^\d{12}$/.test(this.newNominee.idNumber)) {
+      this.toast.show('Nominee ID must be exactly 12 numeric digits (AADHAR)', 'warning');
+      return;
+    }
+
     this.submittingNominee = true;
-    this.api.post(`policy/${this.policyId}/nominees`, { nominees: [this.newNominee] }).subscribe({
+    this.api.post(`policy/${this.policyId}/nominees`, { nominee: this.newNominee }).subscribe({
       next: () => {
         this.toast.show('Nominee added successfully', 'success');
         this.showNomineeForm = false;
@@ -108,7 +113,7 @@ export class PolicyDetail implements OnInit {
       },
       error: (err: any) => {
         this.submittingNominee = false;
-        this.toast.show(err.error?.message || 'Failed to add nominee', 'error');
+        this.toast.show(ApiService.getErrorMessage(err), 'error');
       }
     });
   }
@@ -151,7 +156,7 @@ export class PolicyDetail implements OnInit {
       },
       error: (err: any) => {
         this.uploadingTypes[dto.documentType] = false;
-        this.toast.show(err.error?.message || `Failed to upload ${dto.documentType}`, 'error');
+        this.toast.show(ApiService.getErrorMessage(err), 'error');
       }
     });
   }

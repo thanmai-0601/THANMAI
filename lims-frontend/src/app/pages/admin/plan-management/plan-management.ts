@@ -16,6 +16,12 @@ import { LoadingSpinner } from '../../../shared/components/loading-spinner/loadi
 export class PlanManagement implements OnInit {
   plans: PlanResponse[] = [];
   loading = true;
+  selectedType: string = 'All';
+
+  get filteredPlans(): PlanResponse[] {
+    if (this.selectedType === 'All') return this.plans;
+    return this.plans.filter(p => p.planType === this.selectedType);
+  }
 
   constructor(private api: ApiService, private toast: ToastService) { }
 

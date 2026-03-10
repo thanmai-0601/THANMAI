@@ -10,8 +10,8 @@ public class RequestNomineeChangeDtoTests
     [Fact]
     public void RequestNomineeChangeDto_PropertyAccessors_Work()
     {
-        var dto = new RequestNomineeChangeDto { PolicyId = 1, NewNominees = new List<AddNomineeDto>() };
+        var dto = new RequestNomineeChangeDto { PolicyId = 1, NewNominee = new AddNomineeDto() };
         Assert.Equal(1, dto.PolicyId);
-        Assert.NotNull(dto.NewNominees);
+        Assert.NotNull(dto.NewNominee);
     }
 }

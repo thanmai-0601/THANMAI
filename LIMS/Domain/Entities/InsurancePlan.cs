@@ -1,5 +1,5 @@
 ﻿using Domain.Common;
-using Domain.Entities;
+using Domain.Enums;
 
 namespace Domain.Entities;
 
@@ -7,6 +7,15 @@ public class InsurancePlan : BaseEntity
 {
     public string PlanName { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
+
+    // Plan category: TermLife, WholeLife, or Endowment
+    public PlanType PlanType { get; set; } = PlanType.TermLife;
+
+    // Endowment-specific: annual bonus accrual rate (e.g. 2.5 means 2.5% of SumAssured per year)
+    public decimal BonusRatePerYear { get; set; }
+
+    // WholeLife-specific: coverage continues until this age (e.g. 99)
+    public int CoverageToAge { get; set; }
 
     // Sum Assured Range (how much coverage the plan offers)
     public decimal MinSumAssured { get; set; }
@@ -21,8 +30,6 @@ public class InsurancePlan : BaseEntity
     public int MaxEntryAge { get; set; }
     public decimal MinAnnualIncome { get; set; }
 
-    // Available Riders as comma-separated string e.g. "Accidental Death Benefit,Critical Illness"
-    public string AvailableRiders { get; set; } = string.Empty;
 
     // Premium Calculation Factors (base rate per 1000 sum assured)
     // Agent will use these to dynamically calculate premium

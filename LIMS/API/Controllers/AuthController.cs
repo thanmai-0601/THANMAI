@@ -1,4 +1,4 @@
-﻿using Application.DTOs.Auth;
+using Application.DTOs.Auth;
 using Application.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -62,6 +62,24 @@ namespace API.Controllers
                 return BadRequest(new { message = "Password reset failed. Please ensure the email is correct and the account is active." });
             }
             return Ok(new { message = "Password has been successfully reset." });
+        }
+
+        [HttpGet("me")]
+        [Authorize]
+        public async Task<IActionResult> GetMe()
+        {
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            var result = await _authService.GetProfileAsync(userId);
+            return Ok(result);
+        }
+
+        [HttpPut("profile")]
+        [Authorize]
+        public async Task<IActionResult> UpdateProfile([FromBody] UpdateProfileDto dto)
+        {
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            await _authService.UpdateProfileAsync(userId, dto);
+            return Ok(new { message = "Profile updated successfully." });
         }
 
     }

@@ -1,4 +1,6 @@
-﻿namespace Application.DTOs.Policy;
+﻿using Domain.Enums;
+
+namespace Application.DTOs.Policy;
 
 // What we send back — TenureOptions as a clean List, not raw string
 public class PlanResponseDto
@@ -6,10 +8,12 @@ public class PlanResponseDto
     public int PlanId { get; set; }
     public string PlanName { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
+    public PlanType PlanType { get; set; }
+    public decimal BonusRatePerYear { get; set; }
+    public int CoverageToAge { get; set; }
     public decimal MinSumAssured { get; set; }
     public decimal MaxSumAssured { get; set; }
     public List<int> TenureOptions { get; set; } = new();  // parsed from "10,15,20"
-    public string AvailableRiders { get; set; } = string.Empty;
     public int MinEntryAge { get; set; }
     public int MaxEntryAge { get; set; }
     public decimal MinAnnualIncome { get; set; }

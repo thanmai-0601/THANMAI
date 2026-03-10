@@ -3,6 +3,7 @@ import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, throwError } from 'rxjs';
 import { ErrorService } from '../services/';
+import { ApiService } from '../services/api';
 
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
     const errorService = inject(ErrorService);
@@ -21,7 +22,7 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
                 errorService.setError({
                     code: error.status,
                     message: error.statusText || 'Server Error',
-                    description: error.error?.message || error.message,
+                    description: ApiService.getErrorMessage(error),
                     type: errorService.mapStatusCodeToType(error.status)
                 });
 

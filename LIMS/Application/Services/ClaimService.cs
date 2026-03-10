@@ -1,4 +1,4 @@
-﻿using Application.DTOs.Claim;
+using Application.DTOs.Claim;
 using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
 using Domain.Entities;
@@ -13,19 +13,25 @@ public class ClaimService : IClaimService
     private readonly IInvoiceRepository _invoiceRepo;
     private readonly IClaimsOfficerAssignmentService _officerAssignment;
     private readonly INotificationService _notificationService;
+    private readonly IPremiumCalculationService _premiumCalc;
+    private readonly IUserRepository _userRepo;
 
     public ClaimService(
         IClaimRepository claimRepo,
         IPolicyRepository policyRepo,
         IInvoiceRepository invoiceRepo,
         IClaimsOfficerAssignmentService officerAssignment,
-        INotificationService notificationService)
+        INotificationService notificationService,
+        IPremiumCalculationService premiumCalc,
+        IUserRepository userRepo)
     {
         _claimRepo = claimRepo;
         _policyRepo = policyRepo;
         _invoiceRepo = invoiceRepo;
         _officerAssignment = officerAssignment;
         _notificationService = notificationService;
+        _premiumCalc = premiumCalc;
+        _userRepo = userRepo;
     }
 
     // ── Customer: Raise a Claim ────────────────────────────────────────────
@@ -53,14 +59,50 @@ public class ClaimService : IClaimService
                 "There is already an open claim on this policy. " +
                 "Please wait for it to be resolved before raising another.");
 
-        // Validate Nominee Details matching exactly what was registered
-        var isNomineeValid = policy.Nominees != null && policy.Nominees.Any(n => 
-            n.FullName.Equals(dto.NomineeName, StringComparison.OrdinalIgnoreCase) &&
-            n.Relationship.Equals(dto.NomineeRelationship, StringComparison.OrdinalIgnoreCase));
+        var claimType = Enum.TryParse<ClaimType>(dto.ClaimType, true, out var ct) ? ct : ClaimType.Death;
 
-        if (!isNomineeValid)
+        string claimReason = "";
+        decimal claimAmount = 0;
+
+        if (claimType == ClaimType.Maturity)
         {
-            throw new InvalidOperationException("The nominee details provided do not match the registered nominee information for this policy.");
+            if (policy.InsurancePlan.PlanType != PlanType.Endowment)
+                throw new InvalidOperationException("Maturity claims are only applicable for Endowment plans.");
+
+            if (policy.ActiveTo == null || policy.ActiveTo.Value.Date > DateTime.UtcNow.Date)
+                throw new InvalidOperationException("This policy has not matured yet.");
+
+            var calcResult = _premiumCalc.Calculate(policy.InsurancePlan, policy.SumAssured, policy.TenureYears, policy.RiskCategory ?? "Standard");
+            claimAmount = calcResult.MaturityBenefit > 0 ? calcResult.MaturityBenefit : policy.SumAssured;
+            claimReason = "Policy Maturity Payout";
+        }
+        else
+        {
+            // Death Claim Logic
+            if (string.IsNullOrWhiteSpace(dto.NomineeName) || string.IsNullOrWhiteSpace(dto.NomineeRelationship))
+                throw new InvalidOperationException("Nominee details are required for a Death claim.");
+
+            // Validate Nominee Details matching exactly what was registered
+            var isNomineeValid = policy.Nominees != null && policy.Nominees.Any(n => 
+                n.FullName.Equals(dto.NomineeName, StringComparison.OrdinalIgnoreCase) &&
+                n.Relationship.Equals(dto.NomineeRelationship, StringComparison.OrdinalIgnoreCase) &&
+                n.IdNumber.Equals(dto.NomineeIdNumber, StringComparison.OrdinalIgnoreCase));
+
+            if (!isNomineeValid)
+            {
+                throw new InvalidOperationException("The nominee details or Nominee ID Number provided do not match the registered nominee information for this policy.");
+            }
+
+            if (dto.NomineeIdProof == null)
+            {
+                throw new InvalidOperationException("Nominee ID Proof document is required for a Death claim.");
+            }
+
+            if (dto.DateOfDeath == null || string.IsNullOrWhiteSpace(dto.CauseOfDeath))
+                throw new InvalidOperationException("Date of Death and Cause of Death are required for a Death claim.");
+
+            claimAmount = policy.SumAssured;
+            claimReason = $"Date of Death: {dto.DateOfDeath.Value:yyyy-MM-dd}. Cause: {dto.CauseOfDeath}";
         }
 
         // Auto-assign a claims officer
@@ -74,8 +116,9 @@ public class ClaimService : IClaimService
             ClaimsOfficerId = officerId,
             ClaimNumber = claimNumber,
             Status = ClaimStatus.Submitted,
-            ClaimReason = $"Date of Death: {dto.DateOfDeath:yyyy-MM-dd}. Cause: {dto.CauseOfDeath}",
-            ClaimAmount = policy.SumAssured, // Full sum assured
+            Type = claimType,
+            ClaimReason = claimReason,
+            ClaimAmount = claimAmount,
             // Bank details provided by claimant for settlement transfer
             BankAccountName = dto.BankAccountName,
             BankAccountNumber = dto.BankAccountNumber,
@@ -86,16 +129,25 @@ public class ClaimService : IClaimService
 
         await _claimRepo.CreateAsync(claim);
 
-        await _notificationService.CreateNotificationAsync(policy.CustomerId, $"A claim request '{claimNumber}' has been submitted for this policy.");
+        await _notificationService.CreateNotificationAsync(policy.CustomerId, $"A {claimType} claim request '{claimNumber}' has been submitted for this policy.");
         if (officerId > 0)
         {
-            await _notificationService.CreateNotificationAsync(officerId, $"A new claim '{claimNumber}' has been assigned to you for review.");
+            await _notificationService.CreateNotificationAsync(officerId, $"A new {claimType} claim '{claimNumber}' has been assigned to you for review.");
         }
 
-        // Handle mandatory death certificate upload
-        if (dto.DeathCertificate != null)
+        // Handle mandatory document uploads for Death claims
+        if (claimType == ClaimType.Death)
         {
-            await UploadClaimDocumentAsync(claim.Id, dto.DeathCertificate);
+            if (dto.DeathCertificate != null)
+            {
+                await UploadClaimDocumentAsync(claim.Id, dto.DeathCertificate);
+            }
+            if (dto.NomineeIdProof != null)
+            {
+                // Ensure the document type is set for identification later
+                dto.NomineeIdProof.DocumentType = "Nominee ID Proof";
+                await UploadClaimDocumentAsync(claim.Id, dto.NomineeIdProof);
+            }
         }
 
         var created = await _claimRepo.GetByIdWithDetailsAsync(claim.Id);
@@ -201,10 +253,33 @@ public class ClaimService : IClaimService
         if (dto.IsApproved)
         {
             // Verify payment history — cannot settle if policy is lapsed
-            if (policy!.Status == PolicyStatus.Lapsed ||
-                policy.Status == PolicyStatus.Suspended)
+            if (policy!.Status == PolicyStatus.Lapsed || policy.Status == PolicyStatus.Suspended)
+            {
                 throw new InvalidOperationException(
-                    "Cannot approve claim — policy is Suspended or Lapsed.");
+                    "Cannot approve claim — policy is currently Suspended or Lapsed. Yearly premiums must be cleared first.");
+            }
+
+            // Detailed check for overdue invoices relative to the date of death (or now)
+            DateTime? eventDate = null;
+            if (claim.ClaimReason.StartsWith("Date of Death: "))
+            {
+                var parts = claim.ClaimReason.Split('.');
+                var dateStr = parts[0].Replace("Date of Death: ", "").Trim();
+                if (DateTime.TryParse(dateStr, out var parsed)) eventDate = parsed;
+            }
+
+            var referenceDate = eventDate ?? DateTime.UtcNow;
+            
+            var unpaidInvoices = policy.Invoices?.Count(i => 
+                i.Status != InvoiceStatus.Paid && 
+                i.DueDate.Date < referenceDate.Date) ?? 0;
+
+            if (unpaidInvoices > 0)
+            {
+                throw new InvalidOperationException(
+                    $"Cannot approve claim — there are {unpaidInvoices} pending/overdue yearly premium payments. " +
+                    "Policy must be fully up-to-date with yearly payments before a claim can be settled.");
+            }
 
             if (dto.SettledAmount == null)
                 throw new InvalidOperationException(
@@ -231,6 +306,24 @@ public class ClaimService : IClaimService
             await _policyRepo.UpdateAsync(policy);
 
             await _notificationService.CreateNotificationAsync(claim.CustomerId, $"Your claim '{claim.ClaimNumber}' has been approved and settled for ₹{claim.SettledAmount:N0}. Transfer Ref: {claim.TransferReference}");
+
+            // Special Feature: If ALL customer policies are now closed (Settled, Rejected, or Cancelled), deactivate the account.
+            var allCustomerPolicies = await _policyRepo.GetByCustomerIdAsync(claim.CustomerId);
+            bool allFinished = allCustomerPolicies.All(p => 
+                p.Status == PolicyStatus.Settled || 
+                p.Status == PolicyStatus.Rejected || 
+                p.Status == PolicyStatus.Cancelled);
+
+            if (allFinished)
+            {
+                var user = await _userRepo.GetByIdAsync(claim.CustomerId);
+                if (user != null)
+                {
+                    user.IsActive = false;
+                    await _userRepo.UpdateAsync(user);
+                    await _notificationService.CreateNotificationAsync(user.Id, "All your policies have been fully settled. Your account has been closed as per policy guidelines.");
+                }
+            }
         }
         else
         {
@@ -296,10 +389,23 @@ public class ClaimService : IClaimService
     {
         var policy = c.Policy;
         var invoices = policy?.Invoices?.ToList() ?? new List<Invoice>();
+        
+        // Extract Date of Death if it's a death claim to calculate accuracy
+        DateTime? eventDate = null;
+        if (c.ClaimReason.StartsWith("Date of Death: "))
+        {
+            var parts = c.ClaimReason.Split('.');
+            var dateStr = parts[0].Replace("Date of Death: ", "").Trim();
+            if (DateTime.TryParse(dateStr, out var parsed)) eventDate = parsed;
+        }
+        
+        var referenceDate = eventDate ?? DateTime.UtcNow;
+
         var paidInvoices = invoices.Count(i => i.Status == InvoiceStatus.Paid);
         var overdueInvoices = invoices.Count(i =>
-            i.Status == InvoiceStatus.Overdue ||
-            i.Status == InvoiceStatus.Grace);
+            i.Status != InvoiceStatus.Paid && 
+            i.DueDate.Date < referenceDate.Date);
+
         var totalPremiumPaid = invoices
             .Where(i => i.Status == InvoiceStatus.Paid)
             .Sum(i => i.AmountDue);
@@ -309,6 +415,7 @@ public class ClaimService : IClaimService
             ClaimId = c.Id,
             ClaimNumber = c.ClaimNumber,
             Status = c.Status.ToString(),
+            ClaimType = c.Type.ToString(),
             PolicyId = c.PolicyId,
             PolicyNumber = policy?.PolicyNumber ?? string.Empty,
             PlanName = policy?.InsurancePlan?.PlanName ?? string.Empty,
@@ -338,7 +445,7 @@ public class ClaimService : IClaimService
                 Relationship = n.Relationship,
                 Age = n.Age,
                 ContactNumber = n.ContactNumber,
-                AllocationPercentage = n.AllocationPercentage
+                Email = n.Email
             }).ToList() ?? new List<ClaimNomineeDto>(),
             TotalInvoices = invoices.Count,
             PaidInvoices = paidInvoices,

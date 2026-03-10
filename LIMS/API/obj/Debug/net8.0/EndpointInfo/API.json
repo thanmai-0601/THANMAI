@@ -5,6 +5,54 @@
     "version": "v1"
   },
   "paths": {
+    "/api/Admin/users/{id}/activity": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Admin/users/{id}/assignments": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/Admin/create-staff/{role}": {
       "post": {
         "tags": [
@@ -293,6 +341,49 @@
             "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/ResetPasswordDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Auth/me": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Auth/profile": {
+      "put": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProfileDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProfileDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProfileDto"
               }
             }
           }
@@ -1266,6 +1357,42 @@
           }
         }
       }
+    },
+    "/api/SystemTest/fast-forward-policy/{policyId}": {
+      "post": {
+        "tags": [
+          "SystemTest"
+        ],
+        "parameters": [
+          {
+            "name": "policyId",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/SystemTest/trigger-maturity-job": {
+      "post": {
+        "tags": [
+          "SystemTest"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1273,9 +1400,10 @@
       "AddNomineeDto": {
         "required": [
           "age",
-          "allocationPercentage",
           "contactNumber",
+          "email",
           "fullName",
+          "idNumber",
           "relationship"
         ],
         "type": "object",
@@ -1301,11 +1429,15 @@
             "pattern": "^[0-9]{10}$",
             "type": "string"
           },
-          "allocationPercentage": {
-            "maximum": 100,
-            "minimum": 1,
-            "type": "number",
-            "format": "double"
+          "idNumber": {
+            "minLength": 1,
+            "pattern": "^[0-9]{12}$",
+            "type": "string"
+          },
+          "email": {
+            "minLength": 1,
+            "type": "string",
+            "format": "email"
           }
         },
         "additionalProperties": false
@@ -1431,6 +1563,7 @@
           "minEntryAge",
           "minSumAssured",
           "planName",
+          "planType",
           "tenureOptions"
         ],
         "type": "object",
@@ -1444,6 +1577,21 @@
             "maxLength": 1000,
             "minLength": 10,
             "type": "string"
+          },
+          "planType": {
+            "$ref": "#/components/schemas/PlanType"
+          },
+          "bonusRatePerYear": {
+            "maximum": 10,
+            "minimum": 0,
+            "type": "number",
+            "format": "double"
+          },
+          "coverageToAge": {
+            "maximum": 100,
+            "minimum": 0,
+            "type": "integer",
+            "format": "int32"
           },
           "minSumAssured": {
             "minimum": 100000,
@@ -1462,10 +1610,6 @@
               "type": "integer",
               "format": "int32"
             }
-          },
-          "availableRiders": {
-            "type": "string",
-            "nullable": true
           },
           "minEntryAge": {
             "maximum": 60,
@@ -1518,6 +1662,8 @@
       },
       "CreateStaffDto": {
         "required": [
+          "bankIfscCode",
+          "dateOfBirth",
           "email",
           "fullName",
           "password",
@@ -1544,6 +1690,23 @@
           "password": {
             "maxLength": 100,
             "minLength": 6,
+            "type": "string"
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "bankAccountName": {
+            "type": "string",
+            "nullable": true
+          },
+          "bankAccountNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "bankIfscCode": {
+            "minLength": 1,
+            "pattern": "^[A-Z]{4}0[A-Z0-9]{6}$",
             "type": "string"
           }
         },
@@ -1632,6 +1795,14 @@
         ],
         "type": "string"
       },
+      "PlanType": {
+        "enum": [
+          "TermLife",
+          "WholeLife",
+          "Endowment"
+        ],
+        "type": "string"
+      },
       "PolicyDecisionDto": {
         "required": [
           "isApproved"
@@ -1680,11 +1851,7 @@
           "bankAccountName",
           "bankAccountNumber",
           "bankIfscCode",
-          "causeOfDeath",
-          "dateOfDeath",
-          "deathCertificate",
-          "nomineeName",
-          "nomineeRelationship",
+          "nomineeIdNumber",
           "policyNumber"
         ],
         "type": "object",
@@ -1693,21 +1860,34 @@
             "minLength": 1,
             "type": "string"
           },
+          "claimType": {
+            "type": "string",
+            "nullable": true
+          },
           "causeOfDeath": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "dateOfDeath": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "nomineeName": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "nomineeRelationship": {
+            "type": "string",
+            "nullable": true
+          },
+          "nomineeIdNumber": {
             "minLength": 1,
+            "pattern": "^[0-9]{12}$",
             "type": "string"
+          },
+          "nomineeIdProof": {
+            "$ref": "#/components/schemas/ClaimDocumentDto"
           },
           "bankAccountName": {
             "minLength": 1,
@@ -1719,6 +1899,7 @@
           },
           "bankIfscCode": {
             "minLength": 1,
+            "pattern": "^[A-Z]{4}0[A-Z0-9]{6}$",
             "type": "string"
           },
           "deathCertificate": {
@@ -1729,6 +1910,8 @@
       },
       "RegisterDto": {
         "required": [
+          "bankIfscCode",
+          "dateOfBirth",
           "email",
           "fullName",
           "password",
@@ -1757,6 +1940,23 @@
             "pattern": "^[0-9]{10}$",
             "type": "string",
             "format": "tel"
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "bankAccountName": {
+            "type": "string",
+            "nullable": true
+          },
+          "bankAccountNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "bankIfscCode": {
+            "minLength": 1,
+            "pattern": "^[A-Z]{4}0[A-Z0-9]{6}$",
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -1765,8 +1965,9 @@
         "required": [
           "address",
           "annualIncome",
-          "customerAge",
+          "documents",
           "insurancePlanId",
+          "nominee",
           "occupation",
           "sumAssured",
           "tenureYears"
@@ -1789,12 +1990,6 @@
             "type": "integer",
             "format": "int32"
           },
-          "customerAge": {
-            "maximum": 70,
-            "minimum": 18,
-            "type": "integer",
-            "format": "int32"
-          },
           "annualIncome": {
             "minimum": 1,
             "type": "number",
@@ -1810,9 +2005,15 @@
             "minLength": 10,
             "type": "string"
           },
-          "selectedRiders": {
-            "type": "string",
-            "nullable": true
+          "nominee": {
+            "$ref": "#/components/schemas/AddNomineeDto"
+          },
+          "documents": {
+            "minItems": 3,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UploadDocumentDto"
+            }
           }
         },
         "additionalProperties": false
@@ -1839,16 +2040,12 @@
       },
       "SubmitNomineesDto": {
         "required": [
-          "nominees"
+          "nominee"
         ],
         "type": "object",
         "properties": {
-          "nominees": {
-            "minItems": 1,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AddNomineeDto"
-            }
+          "nominee": {
+            "$ref": "#/components/schemas/AddNomineeDto"
           }
         },
         "additionalProperties": false
@@ -1867,6 +2064,7 @@
           "minEntryAge",
           "minSumAssured",
           "planName",
+          "planType",
           "tenureOptions"
         ],
         "type": "object",
@@ -1880,6 +2078,21 @@
             "maxLength": 1000,
             "minLength": 10,
             "type": "string"
+          },
+          "planType": {
+            "$ref": "#/components/schemas/PlanType"
+          },
+          "bonusRatePerYear": {
+            "maximum": 10,
+            "minimum": 0,
+            "type": "number",
+            "format": "double"
+          },
+          "coverageToAge": {
+            "maximum": 100,
+            "minimum": 0,
+            "type": "integer",
+            "format": "int32"
           },
           "minSumAssured": {
             "minimum": 100000,
@@ -1898,10 +2111,6 @@
               "type": "integer",
               "format": "int32"
             }
-          },
-          "availableRiders": {
-            "type": "string",
-            "nullable": true
           },
           "minEntryAge": {
             "maximum": 60,
@@ -1951,6 +2160,36 @@
           },
           "isActive": {
             "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateProfileDto": {
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "bankAccountName": {
+            "type": "string",
+            "nullable": true
+          },
+          "bankAccountNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "bankIfscCode": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

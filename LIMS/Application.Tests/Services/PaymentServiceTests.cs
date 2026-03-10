@@ -29,7 +29,7 @@ public class PaymentServiceTests
     public async Task MakePaymentAsync_ShouldSucceed_AndActivatePolicy()
     {
         // Arrange
-        var invoice = new Invoice { Id = 1, PolicyId = 1, AmountDue = 500, Status = InvoiceStatus.Pending, Policy = new Policy { Id = 1, CustomerId = 1, Status = PolicyStatus.Approved, TenureYears = 5 } };
+        var invoice = new Invoice { Id = 1, PolicyId = 1, AmountDue = 500, Status = InvoiceStatus.Pending, Policy = new Policy { Id = 1, CustomerId = 1, Status = PolicyStatus.Approved, TenureYears = 5, InsurancePlan = new InsurancePlan { PlanType = PlanType.TermLife } } };
         _invoiceRepo.Setup(r => r.GetByIdWithDetailsAsync(1)).ReturnsAsync(invoice);
         _paymentRepo.Setup(r => r.InvoiceAlreadyPaidAsync(1)).ReturnsAsync(false);
 

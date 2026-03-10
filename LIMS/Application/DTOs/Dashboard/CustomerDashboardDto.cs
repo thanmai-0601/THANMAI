@@ -1,4 +1,4 @@
-﻿namespace Application.DTOs.Dashboard;
+namespace Application.DTOs.Dashboard;
 
 public class CustomerDashboardDto
 {
@@ -22,6 +22,8 @@ public class CustomerDashboardDto
 
     // ── Endorsements ──────────────────────────────────────────
     public int PendingEndorsements { get; set; }
+
+    public bool HasSettledDeathClaim { get; set; }
 
     // ── Recent Activity ───────────────────────────────────────
     public List<RecentActivityDto> RecentActivity { get; set; } = new();

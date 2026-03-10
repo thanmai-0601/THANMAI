@@ -17,6 +17,7 @@ export class PlanDetail implements OnInit {
   plan: PlanResponse | null = null;
   loading = true;
   isCustomer = false;
+  hasSettledClaim = false;
 
   constructor(
     private api: ApiService,
@@ -26,6 +27,11 @@ export class PlanDetail implements OnInit {
 
   ngOnInit(): void {
     this.isCustomer = this.auth.getUserRole() === 'Customer';
+    if (this.isCustomer) {
+      this.api.get<any>('dashboard/summary').subscribe({
+        next: (data) => this.hasSettledClaim = data.hasSettledDeathClaim
+      });
+    }
     const id = this.route.snapshot.paramMap.get('id');
 
     if (id) {

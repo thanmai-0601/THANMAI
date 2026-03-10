@@ -42,14 +42,24 @@
                 Unable to load invoice details.
             </div>
 
-            <div class="flex flex-col gap-2 relative">
+            <div class="flex flex-col gap-2 relative group/select">
                 <label class="text-sm font-semibold text-text-primary dark:text-slate-300 ml-1">Payment Method</label>
-                <select [(ngModel)]="paymentMethod" name="paymentMethod" required
-                    class="w-full px-4 py-3.5 rounded-xl bg-theme-bg dark:bg-slate-800 border border-theme-border dark:border-slate-700 text-text-primary dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all">
-                    <option value="Card">💳 Credit / Debit Card</option>
-                    <option value="UPI">📱 UPI / Mobile Wallet</option>
-                    <option value="NetBanking">🏦 Net Banking</option>
-                </select>
+                <div class="relative">
+                    <select [(ngModel)]="paymentMethod" name="paymentMethod" required
+                        class="w-full px-4 py-3.5 rounded-xl bg-theme-bg dark:bg-slate-800 border border-theme-border dark:border-slate-700 text-text-primary dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all appearance-none">
+                        <option value="Card">💳 Credit / Debit Card</option>
+                        <option value="UPI">📱 UPI / Mobile Wallet</option>
+                        <option value="NetBanking">🏦 Net Banking</option>
+                    </select>
+                    <div
+                        class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400 group-hover/select:text-primary transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                        </svg>
+                    </div>
+                </div>
             </div>
 
             <button type="submit" [disabled]="loading || !invoice"
@@ -59,7 +69,8 @@
                 {{ loading ? 'Processing...' : 'Pay ₹' + (invoice?.amountDue || 0) }}
             </button>
 
-            <p class="text-xs text-center text-text-secondary mt-2 flex items-center justify-center gap-1"><span>🔒</span>
+            <p class="text-xs text-center text-text-secondary mt-2 flex items-center justify-center gap-1">
+                <span>🔒</span>
                 Secure 256-bit encrypted checkout</p>
         </form>
     </div>

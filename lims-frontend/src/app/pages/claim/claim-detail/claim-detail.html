@@ -252,7 +252,21 @@
                 </div>
 
                 <!-- Status: UnderReview (Form) -->
-                <div *ngIf="claim.status === 'UnderReview'" class="space-y-4">
+                <div *ngIf="claim.status === 'UnderReview'" class="space-y-6">
+
+                    <!-- Compliance Warning (Officer Only) -->
+                    <div *ngIf="claim.overdueInvoices > 0" 
+                        class="p-4 rounded-2xl bg-red-500/[0.03] border-2 border-red-500/20 flex items-start gap-4 animate-pulse">
+                        <div class="h-10 w-10 shrink-0 rounded-full bg-red-500/10 flex items-center justify-center text-xl">⚠️</div>
+                        <div>
+                            <h4 class="text-xs font-black text-red-500 uppercase tracking-widest mb-1.5 underline decoration-red-500/30 underline-offset-4">Critical: Yearly Payment Default</h4>
+                            <p class="text-[11px] font-bold text-red-600/70 leading-relaxed uppercase tracking-tight">
+                                This policy has <span class="text-red-600 font-black">{{ claim.overdueInvoices }} pending yearly premium payments</span>. 
+                                <br>Policy compliance is only <span class="font-black underline">{{ paymentCompliance }}%</span>. Approval is strictly restricted until premium dues are cleared.
+                            </p>
+                        </div>
+                    </div>
+
                     <!-- Form Grid: 3-Column horizontal layout -->
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         <!-- Amount Section -->
@@ -317,8 +331,8 @@
                                 class="h-12 px-8 rounded-2xl bg-red-500/10 text-red-500 text-xs font-black uppercase tracking-widest hover:bg-red-500 hover:text-white transition-all disabled:opacity-30 active:scale-95">
                                 Reject Claim
                             </button>
-                            <button type="button" (click)="submitDecision('Approve')" [disabled]="submittingDecision"
-                                class="btn-premium h-12 px-10 text-xs bg-emerald-500 hover:bg-emerald-600 border-none shadow-xl shadow-emerald-500/20 active:scale-95">
+                            <button type="button" (click)="submitDecision('Approve')" [disabled]="submittingDecision || claim.overdueInvoices > 0"
+                                class="btn-premium h-12 px-10 text-xs bg-emerald-500 hover:bg-emerald-600 border-none shadow-xl shadow-emerald-500/20 active:scale-95 disabled:opacity-20 disabled:grayscale disabled:cursor-not-allowed">
                                 <span *ngIf="submittingDecision"
                                     class="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
                                 <span *ngIf="!submittingDecision">Approve & Pay</span>
@@ -550,7 +564,7 @@
             <div class="premium-card p-0 overflow-hidden h-full">
                 <div class="p-4 bg-primary/[0.03] border-b border-theme-border/10 dark:border-slate-800">
                     <h2 class="text-[10px] font-black text-primary uppercase tracking-[0.3em] flex items-center gap-3">
-                        <span class="text-lg">👨‍👩‍👧</span> Registered Nominees
+                        <span class="text-lg">👨‍👩‍👧</span> Registered Nominee
                     </h2>
                 </div>
                 <div *ngIf="claim.nominees.length === 0" class="p-5 text-center">
@@ -573,9 +587,6 @@
                                 <th
                                     class="px-4 py-3 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60">
                                     Phone</th>
-                                <th
-                                    class="px-4 py-3 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60 text-right">
-                                    Share (%)</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-theme-border/5 dark:divide-slate-800/50">
@@ -591,9 +602,6 @@
                                 </td>
                                 <td class="px-4 py-3 text-xs font-mono text-text-secondary opacity-60">{{
                                     n.contactNumber }}</td>
-                                <td
-                                    class="px-4 py-3 text-right font-black text-primary uppercase text-xs tracking-widest">
-                                    {{ n.allocationPercentage }}%</td>
                             </tr>
                         </tbody>
                     </table>
@@ -653,14 +661,24 @@
                                 <label
                                     class="text-[9px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60">Document
                                     Type</label>
-                                <select [(ngModel)]="newDocument.documentType" [ngModelOptions]="{standalone: true}"
-                                    class="input-premium py-2 text-xs">
-                                    <option value="DeathCertificate">Death Certificate</option>
-                                    <option value="Identity">Identity Proof</option>
-                                    <option value="Medical">Medical Report</option>
-                                    <option value="FIR">Police FIR</option>
-                                    <option value="Other">Other</option>
-                                </select>
+                                <div class="relative group/select">
+                                    <select [(ngModel)]="newDocument.documentType" [ngModelOptions]="{standalone: true}"
+                                        class="input-premium py-2 text-xs appearance-none pr-8">
+                                        <option value="DeathCertificate">Death Certificate</option>
+                                        <option value="Identity">Identity Proof</option>
+                                        <option value="Medical">Medical Report</option>
+                                        <option value="FIR">Police FIR</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                    <div
+                                        class="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400 group-hover/select:text-primary transition-colors">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"
+                                            fill="currentColor" viewBox="0 0 16 16">
+                                            <path
+                                                d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                                        </svg>
+                                    </div>
+                                </div>
                             </div>
                             <div class="space-y-1">
                                 <label

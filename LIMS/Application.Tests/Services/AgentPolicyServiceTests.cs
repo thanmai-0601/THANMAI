@@ -50,7 +50,7 @@ public class AgentPolicyServiceTests
     }
 
     [Fact]
-    public async Task SubmitNomineesAsync_ShouldSucceed_WhenTotalAllocationIs100()
+    public async Task SubmitNomineesAsync_ShouldSucceed()
     {
         // Arrange
         var policy = new Policy { Id = 1, CustomerId = 1, Status = PolicyStatus.Submitted };
@@ -58,18 +58,14 @@ public class AgentPolicyServiceTests
         
         var dto = new SubmitNomineesDto
         {
-            Nominees = new List<AddNomineeDto>
-            {
-                new AddNomineeDto { AllocationPercentage = 60 },
-                new AddNomineeDto { AllocationPercentage = 40 }
-            }
+            Nominee = new AddNomineeDto { FullName = "John Doe", Relationship = "Son", Age = 25, ContactNumber = "1234567890" }
         };
 
         // Act
         var result = await _service.SubmitNomineesAsync(1, 1, dto);
 
         // Assert
-        Assert.Equal(2, result.Count);
+        Assert.Single(result);
         _nomineeRepoMock.Verify(r => r.DeleteByPolicyIdAsync(1), Times.Once);
         _nomineeRepoMock.Verify(r => r.AddRangeAsync(It.IsAny<List<Nominee>>()), Times.Once);
     }

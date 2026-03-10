@@ -11,7 +11,6 @@ public class PolicyResponseDto
     public string PlanName { get; set; } = string.Empty;
     public decimal SumAssured { get; set; }
     public int TenureYears { get; set; }
-    public string SelectedRiders { get; set; } = string.Empty;
 
     // Customer info
     public int CustomerId { get; set; }

@@ -172,7 +172,7 @@ export class ClaimDetail implements OnInit {
       },
       error: (err: any) => {
         this.submittingDecision = false;
-        this.toast.show(err.error?.message || 'Failed to submit decision', 'error');
+        this.toast.show(ApiService.getErrorMessage(err), 'error');
       }
     });
   }

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/services/auth';
+import { ApiService } from '../../../core/services/api';
 import { ToastService } from '../../../core/services/toast';
 import { RegisterDto } from '../../../core/models/auth.model';
 
@@ -17,6 +18,7 @@ export class Register {
 
   registerForm: FormGroup;
   loading = false;
+  maxDate: string;
 
   constructor(
     private auth: AuthService,
@@ -24,18 +26,40 @@ export class Register {
     private router: Router,
     private fb: FormBuilder
   ) {
+    const today = new Date();
+    today.setFullYear(today.getFullYear() - 18);
+    this.maxDate = today.toISOString().split('T')[0];
     this.registerForm = this.fb.group({
       fullName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+      dateOfBirth: ['', [Validators.required, this.minAgeValidator(18)]],
       password: ['', [Validators.required, Validators.minLength(8)]],
-      confirmPassword: ['', [Validators.required]]
+      confirmPassword: ['', [Validators.required]],
+      bankAccountName: ['', Validators.required],
+      bankAccountNumber: ['', [Validators.required, Validators.pattern('^[0-9]{9,20}$')]],
+      bankIfscCode: ['', [Validators.required, Validators.pattern('^[A-Z]{4}0[A-Z0-9]{6}$')]]
     }, { validators: this.passwordMatchValidator });
   }
 
   passwordMatchValidator(g: FormGroup) {
     return g.get('password')?.value === g.get('confirmPassword')?.value
       ? null : { 'mismatch': true };
+  }
+
+  minAgeValidator(minAge: number) {
+    return (control: any) => {
+      if (control.value) {
+        const selectedDate = new Date(control.value);
+        const minDate = new Date();
+        minDate.setFullYear(minDate.getFullYear() - minAge);
+        minDate.setHours(0, 0, 0, 0);
+        if (selectedDate > minDate) {
+          return { 'underage': true, requiredAge: minAge };
+        }
+      }
+      return null;
+    };
   }
 
   onSubmit(): void {
@@ -59,7 +83,11 @@ export class Register {
       fullName: formValue.fullName,
       email: formValue.email,
       phoneNumber: formValue.phoneNumber,
-      password: formValue.password
+      dateOfBirth: formValue.dateOfBirth,
+      password: formValue.password,
+      bankAccountName: formValue.bankAccountName,
+      bankAccountNumber: formValue.bankAccountNumber,
+      bankIfscCode: formValue.bankIfscCode
     };
 
     this.auth.register(registerDto).subscribe({
@@ -80,12 +108,7 @@ export class Register {
       },
       error: (err) => {
         this.loading = false;
-        if (err.error?.errors) {
-          const firstError = Object.values(err.error.errors)[0] as string[];
-          this.toast.error(firstError[0]);
-        } else {
-          this.toast.error(err.error?.message || 'Registration failed');
-        }
+        this.toast.error(ApiService.getErrorMessage(err));
       }
     });
   }

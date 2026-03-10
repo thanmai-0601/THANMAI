@@ -38,6 +38,7 @@ export class RaiseClaim implements OnInit {
   today = this.getLocalYMD(new Date());
   minDeathDate = '';
   deathCertificate: ClaimDocumentDto | null = null;
+  nomineeIdProof: ClaimDocumentDto | null = null;
 
   claimForm: FormGroup;
   submitting = false;
@@ -54,9 +55,10 @@ export class RaiseClaim implements OnInit {
       dateOfDeath: ['', Validators.required],
       nomineeName: ['', Validators.required],
       nomineeRelationship: ['', Validators.required],
+      nomineeIdNumber: ['', [Validators.required, Validators.pattern('^[0-9]{12}$')]],
       bankAccountName: ['', Validators.required],
       bankAccountNumber: ['', [Validators.required, Validators.pattern('^[0-9]{9,20}$')]],
-      bankIfscCode: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]]
+      bankIfscCode: ['', [Validators.required, Validators.pattern('^[A-Z]{4}0[A-Z0-9]{6}$')]]
     });
   }
 
@@ -120,7 +122,7 @@ export class RaiseClaim implements OnInit {
     }
   }
 
-  onFileSelected(event: any): void {
+  onFileSelected(event: any, type: string): void {
     const file = event.target.files[0];
     if (file) {
       if (file.size > 5 * 1024 * 1024) {
@@ -130,19 +132,23 @@ export class RaiseClaim implements OnInit {
       }
       const reader = new FileReader();
       reader.onload = (e: any) => {
-        this.deathCertificate = {
-          documentType: 'DeathCertificate',
+        const doc: ClaimDocumentDto = {
+          documentType: type === 'death' ? 'DeathCertificate' : 'NomineeIdProof',
           fileName: file.name,
           fileBase64: e.target.result
         };
+        if (type === 'death') this.deathCertificate = doc;
+        else this.nomineeIdProof = doc;
       };
       reader.readAsDataURL(file);
     }
   }
 
   submit(): void {
-    if (this.claimForm.invalid || !this.deathCertificate) {
-      const msg = !this.deathCertificate ? 'Please upload the Death Certificate.' : 'Please complete all required fields correctly.';
+    if (this.claimForm.invalid || !this.deathCertificate || !this.nomineeIdProof) {
+      const msg = !this.deathCertificate ? 'Please upload the Death Certificate.' : 
+                  !this.nomineeIdProof ? 'Please upload the Nominee ID Proof.' :
+                  'Please complete all required fields correctly.';
       this.toast.show(msg, 'warning');
       this.claimForm.markAllAsTouched();
       return;
@@ -150,7 +156,8 @@ export class RaiseClaim implements OnInit {
 
     const payload: RaiseClaimDto = {
       ...this.claimForm.value,
-      deathCertificate: this.deathCertificate
+      deathCertificate: this.deathCertificate,
+      nomineeIdProof: this.nomineeIdProof
     };
 
     if (this.minDeathDate && payload.dateOfDeath < this.minDeathDate) {
@@ -179,7 +186,7 @@ export class RaiseClaim implements OnInit {
       },
       error: (err: any) => {
         this.submitting = false;
-        this.toast.show(err.error?.message || 'Failed to submit claim request', 'error');
+        this.toast.show(ApiService.getErrorMessage(err), 'error');
       }
     });
   }

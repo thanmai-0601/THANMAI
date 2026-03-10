@@ -65,7 +65,10 @@ export class MakePayment implements OnInit {
         this.toast.show('Payment processed successfully!', 'success');
         this.router.navigate(['/app/dashboard/customer']);
       },
-      error: () => this.loading = false
+      error: (err: any) => {
+        this.loading = false;
+        this.toast.show(ApiService.getErrorMessage(err), 'error');
+      }
     });
   }
 }

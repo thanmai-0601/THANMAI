@@ -8,40 +8,40 @@ import { StatusBadge } from '../../../shared/components/status-badge/status-badg
 import { ToastService } from '../../../core/services/toast';
 
 @Component({
-    selector: 'app-my-payments',
-    standalone: true,
-    imports: [CommonModule, RouterLink, LoadingSpinner, StatusBadge],
-    templateUrl: './my-payments.html',
-    styleUrl: './my-payments.css'
+  selector: 'app-my-payments',
+  standalone: true,
+  imports: [CommonModule, LoadingSpinner, StatusBadge],
+  templateUrl: './my-payments.html',
+  styleUrl: './my-payments.css'
 })
 export class MyPayments implements OnInit {
-    payments: PaymentResponse[] = [];
-    loading = true;
+  payments: PaymentResponse[] = [];
+  loading = true;
 
-    constructor(
-        private api: ApiService,
-        private toast: ToastService
-    ) { }
+  constructor(
+    private api: ApiService,
+    private toast: ToastService
+  ) { }
 
-    ngOnInit(): void {
-        this.api.get<PaymentResponse[]>('payment/my').subscribe({
-            next: (res) => {
-                this.payments = res;
-                this.loading = false;
-            },
-            error: () => {
-                this.loading = false;
-                this.toast.show('Failed to load payments.', 'error');
-            }
-        });
-    }
+  ngOnInit(): void {
+    this.api.get<PaymentResponse[]>('payment/my').subscribe({
+      next: (res) => {
+        this.payments = res;
+        this.loading = false;
+      },
+      error: () => {
+        this.loading = false;
+        this.toast.show('Failed to load payments.', 'error');
+      }
+    });
+  }
 
-    downloadInvoice(payment: PaymentResponse): void {
-        // Generate a simple PDF invoice
-        const win = window.open('', '_blank');
-        if (!win) return;
+  downloadInvoice(payment: PaymentResponse): void {
+    // Generate a simple PDF invoice
+    const win = window.open('', '_blank');
+    if (!win) return;
 
-        const html = `
+    const html = `
       <html>
         <head>
           <title>Invoice - ${payment.transactionReference}</title>
@@ -122,11 +122,11 @@ export class MyPayments implements OnInit {
       </html>
     `;
 
-        win.document.write(html);
-        win.document.close();
-    }
+    win.document.write(html);
+    win.document.close();
+  }
 
-    trackByPaymentId(index: number, payment: PaymentResponse): number {
-        return payment.paymentId;
-    }
+  trackByPaymentId(index: number, payment: PaymentResponse): number {
+    return payment.paymentId;
+  }
 }

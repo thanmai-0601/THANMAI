@@ -1,4 +1,4 @@
-﻿using Application.DTOs.Policy;
+using Application.DTOs.Policy;
 using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
 using Domain.Entities;
@@ -82,31 +82,25 @@ private static List<string> GetPlanBenefits(
             throw new InvalidOperationException(
                 "Nominees can only be submitted while policy is accepted but pending customer details.");
 
-        // All allocation percentages must add up to exactly 100
-        var totalAllocation = dto.Nominees.Sum(n => n.AllocationPercentage);
-        if (totalAllocation != 100)
-            throw new InvalidOperationException(
-                $"Nominee allocation percentages must total 100%. " +
-                $"Current total: {totalAllocation}%.");
-
         // Clear existing nominees and re-add (allows resubmission)
         await _nomineeRepo.DeleteByPolicyIdAsync(policyId);
 
-        var nominees = dto.Nominees.Select(n => new Nominee
+        var nominee = new Nominee
         {
             PolicyId = policyId,
-            FullName = n.FullName,
-            Relationship = n.Relationship,
-            Age = n.Age,
-            ContactNumber = n.ContactNumber,
-            AllocationPercentage = n.AllocationPercentage
-        }).ToList();
+            FullName = dto.Nominee.FullName,
+            Relationship = dto.Nominee.Relationship,
+            Age = dto.Nominee.Age,
+            ContactNumber = dto.Nominee.ContactNumber,
+            Email = dto.Nominee.Email ?? string.Empty,
+            AllocationPercentage = 100
+        };
 
-        await _nomineeRepo.AddRangeAsync(nominees);
+        await _nomineeRepo.AddRangeAsync(new List<Nominee> { nominee });
         
         await CheckAndUpdatePolicyActivationAsync(policyId);
 
-        return nominees.Select(MapNomineeToDto).ToList();
+        return new List<NomineeResponseDto> { MapNomineeToDto(nominee) };
     }
 
     // ── Step 3: Customer uploads document ────────────────────────────────
@@ -162,20 +156,9 @@ private static List<string> GetPlanBenefits(
 
     private async Task CheckAndUpdatePolicyActivationAsync(int policyId)
     {
-        var policy = await _policyRepo.GetByIdWithDetailsAsync(policyId);
-        if (policy == null || policy.Status != PolicyStatus.Approved) return;
-
-        bool hasAddressProof = policy.Documents.Any(d => d.DocumentType == "Address Proof");
-        bool hasIncomeProof = policy.Documents.Any(d => d.DocumentType == "Income Proof");
-        bool hasNomineeId = policy.Documents.Any(d => d.DocumentType == "Nominee ID Proof");
-        
-        var totalAllocation = policy.Nominees.Sum(n => n.AllocationPercentage);
-        
-        if (hasAddressProof && hasIncomeProof && hasNomineeId && totalAllocation == 100)
-        {
-            policy.Status = PolicyStatus.DocumentsSubmitted;
-            await _policyRepo.UpdateAsync(policy);
-        }
+        // Removed: We no longer transition to DocumentsSubmitted automatically.
+        // Policy remains 'Approved' until paid.
+        await Task.CompletedTask;
     }
 
     // ── Step 4: Agent approves or rejects ────────────────────────────────
@@ -215,6 +198,8 @@ private static List<string> GetPlanBenefits(
             // Default frequency is Annual — customer can choose later
             await _invoiceService.GenerateScheduleAsync(policy.Id, PaymentFrequency.Annual);
 
+            // If documents were submitted upfront, this will move it to DocumentsSubmitted
+            await CheckAndUpdatePolicyActivationAsync(policy.Id);
         }
         else
         {
@@ -297,8 +282,7 @@ private static List<string> GetPlanBenefits(
         FullName = n.FullName,
         Relationship = n.Relationship,
         Age = n.Age,
-        ContactNumber = n.ContactNumber,
-        AllocationPercentage = n.AllocationPercentage
+        ContactNumber = n.ContactNumber
     };
 
     private static PolicyResponseDto MapPolicyToDto(Policy p) => new()
@@ -317,7 +301,7 @@ private static List<string> GetPlanBenefits(
         CustomerEmail = p.Customer?.Email ?? string.Empty,
         AgentId = p.AgentId,
         AgentName = p.Agent?.FullName,
-        SelectedRiders = p.SelectedRiders,
+
         AgentEmail = p.Agent?.Email,
         CustomerAge = p.CustomerAge,
         AnnualIncome = p.AnnualIncome,
@@ -339,7 +323,7 @@ private static List<string> GetPlanBenefits(
             Relationship = n.Relationship,
             Age = n.Age,
             ContactNumber = n.ContactNumber,
-            AllocationPercentage = n.AllocationPercentage
+            Email = n.Email
         }).ToList() ?? new List<NomineeResponseDto>(),
         Documents = p.Documents?.Select(d => new DocumentResponseDto 
         {

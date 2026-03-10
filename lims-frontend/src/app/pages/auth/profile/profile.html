@@ -1,0 +1,202 @@
+<div class="max-w-4xl mx-auto pt-8 transition-all duration-500 animate-in fade-in slide-in-from-bottom-8">
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-12">
+        <div class="flex items-center gap-6">
+            <button [routerLink]="['/app']"
+                class="h-12 w-12 flex items-center justify-center text-text-secondary hover:text-primary transition-all rounded-2xl bg-white dark:bg-slate-900 border border-theme-border/10 dark:border-slate-800 shadow-sm hover:shadow-md active:scale-90">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg>
+            </button>
+            <div>
+                <h1 class="text-4xl font-black text-text-primary dark:text-white tracking-tightest">
+                    <span class="text-gradient">My</span> Profile
+                </h1>
+                <p class="text-sm font-medium text-text-secondary mt-1 opacity-70">Manage your identity and account settings</p>
+            </div>
+        </div>
+
+        @if (user && !loading) {
+        <button (click)="toggleEdit()" 
+            class="btn-premium px-8 !py-3 flex items-center gap-3 text-[10px] font-black uppercase tracking-widest"
+            [class.!bg-slate-500]="editing">
+            {{ editing ? 'ⓧ Cancel Edit' : '✎ Edit Profile' }}
+        </button>
+        }
+    </div>
+
+    @if (loading && !user) {
+        <div class="premium-card p-24 flex flex-col items-center justify-center gap-6">
+            <div class="relative">
+                <div class="w-16 h-16 border-4 border-primary/10 border-t-primary rounded-full animate-spin"></div>
+                <div class="absolute inset-0 flex items-center justify-center text-xs font-black text-primary animate-pulse">
+                    LIMS
+                </div>
+            </div>
+            <p class="text-[10px] font-black uppercase tracking-[0.3em] text-text-secondary animate-pulse">Loading Identity...</p>
+        </div>
+    } @else if (user) {
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Sidebar: Summary Information -->
+            <div class="lg:col-span-1 flex flex-col gap-6">
+                <!-- Profile Summary Card -->
+                <div class="premium-card p-0 overflow-hidden">
+                    <div class="h-32 bg-gradient-to-br from-primary/20 to-blue-600/20 relative">
+                        <div class="absolute -bottom-10 left-1/2 -translate-x-1/2">
+                            <div class="h-24 w-24 rounded-3xl bg-white dark:bg-slate-900 p-2 shadow-2xl">
+                                <div class="h-full w-full rounded-2xl bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center text-3xl font-black text-white">
+                                    {{ user.fullName.charAt(0) | uppercase }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-16 pb-8 px-8 text-center">
+                        <h2 class="text-xl font-black text-text-primary dark:text-white tracking-tight uppercase mb-1">{{ user.fullName }}</h2>
+                        <span class="text-[9px] font-black text-primary uppercase tracking-[0.2em] bg-primary/5 px-3 py-1 rounded-full border border-primary/10">{{ user.role }} Account</span>
+                        
+                        <div class="mt-8 pt-8 border-t border-theme-border/5 flex flex-col gap-4">
+                            <div class="flex items-center justify-between text-[10px] uppercase font-black tracking-widest text-text-secondary opacity-60 px-2">
+                                <span>Account Status</span>
+                                <span class="text-emerald-500">{{ user.isActive ? 'Active' : 'Inactive' }}</span>
+                            </div>
+                            <div class="flex items-center justify-between text-[10px] uppercase font-black tracking-widest text-text-secondary opacity-60 px-2">
+                                <span>Member Since</span>
+                                <span>{{ user.createdAt | date:'MMM yyyy' | uppercase }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personal Detail Shortcut Card -->
+                <div class="premium-card p-8 flex flex-col gap-6">
+                    <h3 class="text-[10px] font-black uppercase tracking-[0.3em] text-primary">Security Settings</h3>
+                    <div class="flex flex-col gap-3">
+                        <a routerLink="/app/change-password" 
+                           class="flex items-center justify-between p-4 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-theme-border/5 hover:border-primary/20 hover:bg-primary/[0.02] transition-all group">
+                            <div class="flex items-center gap-3">
+                                <span class="text-lg opacity-40">🔒</span>
+                                <span class="text-[10px] font-black uppercase tracking-widest text-text-secondary group-hover:text-primary transition-colors">Change Password</span>
+                            </div>
+                            <span class="text-xs opacity-20">→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Area: Detail Management -->
+            <div class="lg:col-span-2 space-y-8">
+                
+                <!-- PERSONAL INFORMATION -->
+                <div class="premium-card p-10 group relative transition-all" [class.border-primary/20]="editing">
+                    <div class="flex justify-between items-center mb-10 pb-4 border-b border-theme-border/5">
+                        <h3 class="text-[10px] font-black uppercase tracking-[0.4em] text-primary">Personal Information</h3>
+                        @if (editing) {
+                            <span class="text-[9px] font-bold text-primary animate-pulse uppercase tracking-widest">Editing Mode</span>
+                        }
+                    </div>
+                    
+                    @if (!editing) {
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-12">
+                            <div class="flex flex-col gap-2 relative group/item">
+                                <label class="text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40">Full Name</label>
+                                <p class="text-sm font-black text-text-primary dark:text-white uppercase tracking-tight">{{ user.fullName }}</p>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <label class="text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40">Email Address</label>
+                                <p class="text-sm font-black text-slate-400 dark:text-slate-500 italic">{{ user.email }}</p>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <label class="text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40">Phone Number</label>
+                                <p class="text-sm font-black text-text-primary dark:text-white tracking-tight">{{ user.phoneNumber || 'Not Provided' }}</p>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <label class="text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40">Date of Birth</label>
+                                <p class="text-sm font-black text-text-primary dark:text-white uppercase tracking-tight">
+                                    {{ (user.dateOfBirth | date:'yyyy-MM-dd') === '0001-01-01' ? 'Not Provided' : (user.dateOfBirth | date:'longDate') }}
+                                </p>
+                            </div>
+                        </div>
+                    } @else {
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="flex flex-col gap-2.5">
+                                <label class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Full Name</label>
+                                <input type="text" [(ngModel)]="editForm.fullName" class="input-premium py-3.5" placeholder="Your full name">
+                            </div>
+                            <div class="flex flex-col gap-2.5 opacity-60 grayscale cursor-not-allowed">
+                                <label class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Email (Non-editable)</label>
+                                <input type="text" [value]="user.email" disabled class="input-premium py-3.5 bg-slate-100/5 dark:bg-slate-800/20">
+                            </div>
+                            <div class="flex flex-col gap-2.5">
+                                <label class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Phone Number</label>
+                                <input type="tel" [(ngModel)]="editForm.phoneNumber" class="input-premium py-3.5" placeholder="10-digit mobile">
+                            </div>
+                            <div class="flex flex-col gap-2.5">
+                                <label class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Date of Birth</label>
+                                <input type="date" [(ngModel)]="editForm.dateOfBirth" [max]="today" class="input-premium py-3.5 h-[50px] block">
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                <!-- BANK DETAILS -->
+                <div class="premium-card p-10 group relative transition-all" [class.border-primary/20]="editing">
+                    <div class="flex justify-between items-center mb-10 pb-4 border-b border-theme-border/5">
+                        <h3 class="text-[10px] font-black uppercase tracking-[0.4em] text-primary">Bank Payout Details</h3>
+                        @if (editing) {
+                            <span class="text-[9px] font-bold text-primary opacity-60 uppercase tracking-widest">Required for settlements</span>
+                        }
+                    </div>
+                    
+                    @if (!editing) {
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-12">
+                            <div class="flex flex-col gap-2 md:col-span-2">
+                                <label class="text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40">Account Holder Name</label>
+                                <p class="text-sm font-black text-text-primary dark:text-white uppercase tracking-tight">{{ user.bankAccountName || 'Not configured' }}</p>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <label class="text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40">Account Number</label>
+                                <p class="text-sm font-mono font-black text-text-primary dark:text-white tracking-widest">
+                                    {{ user.bankAccountNumber ? 'XXXX-XXXX-' + user.bankAccountNumber.slice(-4) : '●●●●-●●●●' }}
+                                </p>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <label class="text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40">IFSC Code</label>
+                                <p class="text-sm font-black text-text-primary dark:text-white uppercase tracking-tight">{{ user.bankIfscCode || 'Not configured' }}</p>
+                            </div>
+                        </div>
+                    } @else {
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="flex flex-col gap-2.5 md:col-span-2">
+                                <label class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Bank Account Holder Name</label>
+                                <input type="text" [(ngModel)]="editForm.bankAccountName" class="input-premium py-3.5" placeholder="Name as per bank records">
+                            </div>
+                            <div class="flex flex-col gap-2.5">
+                                <label class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Bank Account Number</label>
+                                <input type="text" [(ngModel)]="editForm.bankAccountNumber" class="input-premium py-3.5" placeholder="Full account number">
+                            </div>
+                            <div class="flex flex-col gap-2.5">
+                                <label class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">IFSC Code</label>
+                                <input type="text" [(ngModel)]="editForm.bankIfscCode" class="input-premium py-3.5" placeholder="11-character code">
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                <!-- FORM ACTIONS -->
+                @if (editing) {
+                <div class="flex justify-end gap-6 animate-in slide-in-from-right-4 duration-500">
+                    <button (click)="toggleEdit()" 
+                        class="text-[10px] font-black uppercase tracking-widest text-text-secondary px-6 hover:text-primary transition-colors">Discard</button>
+                    <button (click)="saveProfile()" [disabled]="submitting"
+                        class="btn-premium px-12 !py-4 text-[10px] uppercase font-black tracking-widest shadow-2xl shadow-primary/20 flex items-center gap-3">
+                        @if (submitting) {
+                            <span class="w-3 h-3 border-2 border-white/20 border-t-white rounded-full animate-spin"></span>
+                        }
+                        {{ submitting ? 'Saving...' : 'Save All Changes' }}
+                    </button>
+                </div>
+                }
+            </div>
+        </div>
+    }
+</div>

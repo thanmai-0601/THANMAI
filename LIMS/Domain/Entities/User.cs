@@ -1,4 +1,4 @@
-﻿using Domain.Common;
+using Domain.Common;
 using Domain.Entities;
 using Domain.Enums;
 
@@ -11,6 +11,7 @@ public class User : BaseEntity
     public string Email { get; set; } = string.Empty;
     public string PasswordHash { get; set; } = string.Empty;
     public string PhoneNumber { get; set; } = string.Empty;
+    public DateTime DateOfBirth { get; set; }
     public UserRole Role { get; set; }
     public bool MustChangePassword { get; set; } = false;
     public bool IsActive { get; set; } = true;
@@ -21,4 +22,9 @@ public class User : BaseEntity
     // Navigation properties
     public ICollection<Policy> CustomerPolicies { get; set; } = new List<Policy>();
     public ICollection<Policy> AgentPolicies { get; set; } = new List<Policy>();
+
+    // ── Customer Bank Details for Automated Payouts ──────────
+    public string? BankAccountName { get; set; }
+    public string? BankAccountNumber { get; set; }
+    public string? BankIfscCode { get; set; }
 }

@@ -1,4 +1,4 @@
-﻿namespace Application.DTOs.Policy;
+namespace Application.DTOs.Policy;
 
 public class NomineeResponseDto
 {
@@ -7,5 +7,6 @@ public class NomineeResponseDto
     public string Relationship { get; set; } = string.Empty;
     public int Age { get; set; }
     public string ContactNumber { get; set; } = string.Empty;
-    public decimal AllocationPercentage { get; set; }
+    public string IdNumber { get; set; } = string.Empty;
+    public string Email { get; set; } = string.Empty;
 }

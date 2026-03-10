@@ -17,9 +17,6 @@ public class RequestPolicyDto
     public int TenureYears { get; set; }
 
     // ── Basic personal details submitted at enrollment ──────────────
-    [Required]
-    [Range(18, 70, ErrorMessage = "Age must be between 18 and 70")]
-    public int CustomerAge { get; set; }
 
     [Required]
     [Range(1, double.MaxValue, ErrorMessage = "Annual income must be greater than 0")]
@@ -33,6 +30,12 @@ public class RequestPolicyDto
     [StringLength(500, MinimumLength = 10)]
     public string Address { get; set; } = string.Empty;
 
-    // Optional list of selected riders from the plan
-    public string SelectedRiders { get; set; } = string.Empty;
+    // ── Upfront Nominee and Documents — required for review ──────────
+    
+    [Required]
+    public AddNomineeDto Nominee { get; set; } = new();
+
+    [Required]
+    [MinLength(3, ErrorMessage = "Three major documents are required: Address Proof, Income Proof, Nominee ID Proof.")]
+    public List<UploadDocumentDto> Documents { get; set; } = new();
 }

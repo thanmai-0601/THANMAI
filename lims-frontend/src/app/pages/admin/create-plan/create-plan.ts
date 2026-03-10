@@ -35,7 +35,6 @@ export class CreatePlan {
       mediumRiskMultiplier: [1.25, [Validators.required, Validators.min(0)]],
       highRiskMultiplier: [1.6, [Validators.required, Validators.min(0)]],
       commissionPercentage: [5, [Validators.required, Validators.min(0)]],
-      availableRiders: ['Accidental Death Benefit, Critical Illness'],
       tenureInput: ['10,15,20', Validators.required]
     });
   }
@@ -68,7 +67,7 @@ export class CreatePlan {
       },
       error: (err: any) => {
         this.loading = false;
-        this.toast.show(err.error?.message || 'Failed to create plan', 'error');
+        this.toast.show(ApiService.getErrorMessage(err), 'error');
       }
     });
   }

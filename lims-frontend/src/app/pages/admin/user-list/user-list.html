@@ -23,6 +23,30 @@
     <app-loading-spinner *ngIf="loading"></app-loading-spinner>
 
     <div *ngIf="!loading" class="animate-in fade-in slide-in-from-bottom-4 duration-700">
+        <!-- Role Selection Tabs -->
+        <div class="flex flex-wrap gap-4 mb-8">
+            <button (click)="selectedRole = 'All'"
+                class="px-6 py-2.5 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all duration-300 border"
+                [ngClass]="selectedRole === 'All' ? 'bg-primary text-white border-primary shadow-lg shadow-primary/25' : 'bg-theme-bg dark:bg-slate-900/50 text-text-secondary border-theme-border/5 hover:border-primary/30'">
+                All Users
+            </button>
+            <button (click)="selectedRole = 'Customer'"
+                class="px-6 py-2.5 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all duration-300 border"
+                [ngClass]="selectedRole === 'Customer' ? 'bg-primary text-white border-primary shadow-lg shadow-primary/25' : 'bg-theme-bg dark:bg-slate-900/50 text-text-secondary border-theme-border/5 hover:border-primary/30'">
+                Customers
+            </button>
+            <button (click)="selectedRole = 'Agent'"
+                class="px-6 py-2.5 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all duration-300 border"
+                [ngClass]="selectedRole === 'Agent' ? 'bg-primary text-white border-primary shadow-lg shadow-primary/25' : 'bg-theme-bg dark:bg-slate-900/50 text-text-secondary border-theme-border/5 hover:border-primary/30'">
+                Agents
+            </button>
+            <button (click)="selectedRole = 'ClaimsOfficer'"
+                class="px-6 py-2.5 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all duration-300 border"
+                [ngClass]="selectedRole === 'ClaimsOfficer' ? 'bg-primary text-white border-primary shadow-lg shadow-primary/25' : 'bg-theme-bg dark:bg-slate-900/50 text-text-secondary border-theme-border/5 hover:border-primary/30'">
+                Claims Officers
+            </button>
+        </div>
+
         <div class="premium-card p-0 overflow-hidden border-white/5">
             <div class="overflow-x-auto">
                 <table class="w-full text-left border-collapse whitespace-nowrap">
@@ -37,7 +61,7 @@
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-theme-border/5">
-                        <tr *ngFor="let u of users" class="group hover:bg-primary/[0.02] transition-colors">
+                        <tr *ngFor="let u of filteredUsers" class="group hover:bg-primary/[0.02] transition-colors">
                             <td class="px-8 py-6">
                                 <div class="flex items-center gap-5">
                                     <div
@@ -85,7 +109,7 @@
                                 </span>
                             </td>
                             <td class="px-8 py-6">
-                                <div class="flex gap-3 justify-end items-center">
+                                <div class="flex gap-3 justify-end items-center" *ngIf="u.role !== 'Customer'">
                                     <button (click)="toggleStatus(u)"
                                         class="h-9 px-4 rounded-xl text-[9px] font-black uppercase tracking-widest border border-theme-border/10 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all active:scale-95">
                                         {{ u.isActive ? 'Deactivate' : 'Restore' }}
@@ -100,6 +124,9 @@
                                         </svg>
                                     </a>
                                 </div>
+                                <div class="flex justify-end pr-4" *ngIf="u.role === 'Customer'">
+                                    <span class="text-[9px] font-bold text-text-secondary opacity-30 uppercase tracking-[0.1em]">View Profile &rarr;</span>
+                                </div>
                             </td>
                         </tr>
                     </tbody>
@@ -107,7 +134,7 @@
             </div>
 
             <!-- Empty State -->
-            <div *ngIf="users.length === 0" class="py-32 text-center bg-theme-bg dark:bg-slate-900/30">
+            <div *ngIf="filteredUsers.length === 0" class="py-32 text-center bg-theme-bg dark:bg-slate-900/30">
                 <div
                     class="inline-flex h-20 w-20 items-center justify-center rounded-3xl bg-slate-50 dark:bg-slate-800 text-4xl mb-6 shadow-inner">
                     🔍</div>

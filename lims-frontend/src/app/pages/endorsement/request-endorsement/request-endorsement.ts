@@ -33,11 +33,10 @@ export class RequestEndorsement implements OnInit {
       policyId: ['', Validators.required],
       endorsementType: ['', Validators.required],
       newAddress: [''],
-      nomineeName: [''],
-      nomineeRelationship: [''],
-      nomineeAge: [25],
-      nomineeContact: [''],
-      nomineeAllocation: [100]
+      nomineeName: ['', Validators.required],
+      nomineeRelationship: ['', Validators.required],
+      nomineeAge: [null, Validators.required],
+      nomineeContact: ['', Validators.required]
     });
   }
 
@@ -88,13 +87,12 @@ export class RequestEndorsement implements OnInit {
         return;
       }
       endpoint = 'endorsement/request/nominee';
-      payload.newNominees = [{
+      payload.newNominee = {
         fullName: formValue.nomineeName,
         relationship: formValue.nomineeRelationship,
         age: formValue.nomineeAge,
-        contactNumber: formValue.nomineeContact,
-        allocationPercentage: formValue.nomineeAllocation
-      }];
+        contactNumber: formValue.nomineeContact
+      };
     } else if (formValue.endorsementType === 'AddressChange') {
       if (!formValue.newAddress || formValue.newAddress.length < 10) {
         this.toast.show('Please provide a complete new address (min 10 characters).', 'warning');

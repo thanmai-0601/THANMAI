@@ -55,6 +55,10 @@ export class AuthService {
     return this.api.get('auth/me');
   }
 
+  updateProfile(dto: any): Observable<any> {
+    return this.api.put('auth/profile', dto);
+  }
+
   logout(): void {
     localStorage.removeItem('NexaLife_user');
     localStorage.removeItem('NexaLife_token');

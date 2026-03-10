@@ -58,7 +58,7 @@ public class ClaimRepositoryTests
             MinEntryAge = 18,
             MaxEntryAge = 60,
             MinAnnualIncome = 300000,
-            AvailableRiders = "",
+
             BaseRatePer1000 = 5,
             LowRiskMultiplier = 1,
             MediumRiskMultiplier = 1.25m,

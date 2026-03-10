@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Domain.Enums;
 
 namespace Application.DTOs.Policy;
 
@@ -13,6 +14,17 @@ public class CreatePlanDto
     public string Description { get; set; } = string.Empty;
 
     [Required]
+    public PlanType PlanType { get; set; } = PlanType.TermLife;
+
+    // Endowment-specific: annual bonus % (e.g. 2.5)
+    [Range(0, 10)]
+    public decimal BonusRatePerYear { get; set; }
+
+    // WholeLife-specific: coverage until this age (e.g. 99)
+    [Range(0, 100)]
+    public int CoverageToAge { get; set; }
+
+    [Required]
     [Range(100000, double.MaxValue, ErrorMessage = "Minimum sum assured must be at least 1,00,000")]
     public decimal MinSumAssured { get; set; }
 
@@ -25,8 +37,6 @@ public class CreatePlanDto
     [MinLength(1, ErrorMessage = "At least one tenure option is required")]
     public List<int> TenureOptions { get; set; } = new();
 
-    // Comma-separated list of optional riders
-    public string AvailableRiders { get; set; } = string.Empty;
 
     [Required]
     [Range(18, 60)]

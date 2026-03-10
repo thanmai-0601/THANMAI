@@ -1,4 +1,4 @@
-﻿using Application.DTOs.Dashboard;
+using Application.DTOs.Dashboard;
 using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
 using Domain.Enums;
@@ -242,6 +242,11 @@ public class DashboardService : IDashboardService
 
         var recentPayments = await _paymentRepo.GetRecentByCustomerAsync(customerId, 5);
 
+        var customerClaims = await _claimRepo.GetByCustomerIdAsync(customerId);
+        var hasSettledDeathClaim = customerClaims.Any(c => 
+            c.Type == ClaimType.Death && 
+            c.Status == ClaimStatus.Settled);
+
         return new CustomerDashboardDto
         {
             TotalPolicies = policies.Count,
@@ -272,6 +277,7 @@ public class DashboardService : IDashboardService
             TotalOutstandingAmount = totalOutstanding,
 
             PendingEndorsements = pendingEndorsements,
+            HasSettledDeathClaim = hasSettledDeathClaim, 
             RecentActivity = recentActivity,
             RecentPayments = recentPayments.Select(p => new Application.DTOs.Payment.PaymentResponseDto
             {

@@ -1,4 +1,4 @@
-﻿using Domain.Common;
+using Domain.Common;
 using Domain.Enums;
 
 namespace Domain.Entities;
@@ -16,6 +16,7 @@ public class Claim : BaseEntity
 
     public string ClaimNumber { get; set; } = string.Empty;
     public ClaimStatus Status { get; set; } = ClaimStatus.Submitted;
+    public ClaimType Type { get; set; } = ClaimType.Death;
 
     public string ClaimReason { get; set; } = string.Empty;
     public string? OfficerRemarks { get; set; }

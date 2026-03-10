@@ -1,11 +1,48 @@
+```
 <div>
     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
         <h1 class="text-3xl font-extrabold text-text-primary dark:text-white tracking-tight">Browse Insurance Plans</h1>
-        <div class="relative w-full md:w-72">
-            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary">🔍</span>
-            <input type="text" [(ngModel)]="searchTerm" (keyup)="search()" placeholder="Search plans..."
-                class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-theme-card dark:bg-theme-sidebar border border-theme-border dark:border-theme-border text-text-primary dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm transition-all text-sm">
+        <div class="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+            <div class="relative w-full sm:w-72">
+                <span class="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary opacity-50">🔍</span>
+                <input type="text" [(ngModel)]="searchTerm" (keyup)="search()" placeholder="Search plans..."
+                    class="w-full pl-10 pr-4 py-2.5 outline-none rounded-xl bg-theme-card dark:bg-theme-sidebar border border-theme-border dark:border-theme-border text-text-primary dark:text-white focus:outline-none focus:ring-2 focus:ring-primary/20 shadow-sm transition-all text-sm">
+            </div>
         </div>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="flex gap-2 mb-8 overflow-x-auto pb-2 scrollbar-hide">
+        <button (click)="setPlanType('')" [class.bg-primary]="selectedPlanType === ''"
+            [class.text-white]="selectedPlanType === ''" [class.bg-theme-card]="selectedPlanType !== ''"
+            [class.dark:bg-theme-sidebar]="selectedPlanType !== ''"
+            [class.text-text-secondary]="selectedPlanType !== ''"
+            class="px-5 py-2 text-sm font-bold rounded-full border border-primary/20 hover:border-primary/50 transition-all whitespace-nowrap">
+            All Models
+        </button>
+        <button (click)="setPlanType('TermLife')" [class.bg-primary]="selectedPlanType === 'TermLife'"
+            [class.text-white]="selectedPlanType === 'TermLife'" [class.bg-theme-card]="selectedPlanType !== 'TermLife'"
+            [class.dark:bg-theme-sidebar]="selectedPlanType !== 'TermLife'"
+            [class.text-text-secondary]="selectedPlanType !== 'TermLife'"
+            class="px-5 py-2 text-sm font-bold rounded-full border border-primary/20 hover:border-primary/50 transition-all whitespace-nowrap">
+            Term Life
+        </button>
+        <button (click)="setPlanType('WholeLife')" [class.bg-primary]="selectedPlanType === 'WholeLife'"
+            [class.text-white]="selectedPlanType === 'WholeLife'"
+            [class.bg-theme-card]="selectedPlanType !== 'WholeLife'"
+            [class.dark:bg-theme-sidebar]="selectedPlanType !== 'WholeLife'"
+            [class.text-text-secondary]="selectedPlanType !== 'WholeLife'"
+            class="px-5 py-2 text-sm font-bold rounded-full border border-primary/20 hover:border-primary/50 transition-all whitespace-nowrap">
+            Whole Life
+        </button>
+        <button (click)="setPlanType('Endowment')" [class.bg-primary]="selectedPlanType === 'Endowment'"
+            [class.text-white]="selectedPlanType === 'Endowment'"
+            [class.bg-theme-card]="selectedPlanType !== 'Endowment'"
+            [class.dark:bg-theme-sidebar]="selectedPlanType !== 'Endowment'"
+            [class.text-text-secondary]="selectedPlanType !== 'Endowment'"
+            class="px-5 py-2 text-sm font-bold rounded-full border border-primary/20 hover:border-primary/50 transition-all whitespace-nowrap">
+            Endowment
+        </button>
     </div>
 
     @if (loading) {
@@ -32,9 +69,14 @@
                         p.maxSumAssured/100000 }}L</span>
                 </div>
                 <div class="flex justify-between items-center py-1">
-                    <span class="text-text-secondary dark:text-text-secondary font-medium">Duration</span>
+                    <span class="text-text-secondary dark:text-text-secondary font-medium">Terms of Payment</span>
                     <span class="font-semibold text-text-primary dark:text-slate-200">{{ p.tenureOptions.join(', ') }}
                         Years</span>
+                </div>
+                <div class="flex justify-between items-center py-1">
+                    <span class="text-text-secondary dark:text-text-secondary font-medium">Coverage Duration</span>
+                    <span class="font-semibold text-text-primary dark:text-slate-200">{{ p.planType === 'WholeLife' ?
+                        'Lifetime' : p.planType === 'Endowment' ? 'Until Maturity' : 'Same as Payment Term' }}</span>
                 </div>
                 <div
                     class="flex justify-between items-center py-1 border-b border-theme-border dark:border-theme-border/60 pb-4">
@@ -42,10 +84,20 @@
                     <span class="font-semibold text-text-primary dark:text-slate-200">{{ p.minEntryAge }} - {{
                         p.maxEntryAge }} Years</span>
                 </div>
+
+                @if (hasSettledClaim) {
+                <div class="mt-auto p-4 bg-red-500/10 rounded-xl border border-red-500/20 text-center">
+                    <p class="text-[10px] font-black text-red-500 uppercase tracking-widest leading-normal">
+                        Settled Policy Account<br>
+                        <span class="opacity-70">New applications are restricted</span>
+                    </p>
+                </div>
+                } @else {
                 <a [routerLink]="'/app/plans/' + p.planId"
                     class="mt-auto block w-full py-3 text-center rounded-xl bg-theme-bg dark:bg-slate-800 hover:bg-primary hover:text-white dark:hover:bg-primary text-primary dark:text-accent font-bold transition-colors">
                     View Details &rarr;
                 </a>
+                }
             </div>
         </div>
         }

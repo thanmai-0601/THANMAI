@@ -1,4 +1,4 @@
-﻿using Domain.Enums;
+using Domain.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace Application.DTOs.Auth
@@ -23,5 +23,14 @@ namespace Application.DTOs.Auth
         [Phone]
         [RegularExpression(@"^[0-9]{10}$", ErrorMessage = "Phone number must be exactly 10 digits")]
         public string PhoneNumber { get; set; } = string.Empty;
+
+        [Required]
+        public DateTime DateOfBirth { get; set; }
+
+        public string? BankAccountName { get; set; }
+        public string? BankAccountNumber { get; set; }
+        [Required]
+        [RegularExpression(@"^[A-Z]{4}0[A-Z0-9]{6}$", ErrorMessage = "Invalid IFSC code format (must be 11 characters)")]
+        public string? BankIfscCode { get; set; }
     }
 }

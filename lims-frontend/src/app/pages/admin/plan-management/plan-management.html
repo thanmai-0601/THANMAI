@@ -17,9 +17,33 @@
 <app-loading-spinner *ngIf="loading"></app-loading-spinner>
 <div *ngIf="!loading" class="animate-in fade-in slide-in-from-bottom-6 duration-700">
 
+    <!-- Type Selection Tabs -->
+    <div class="flex flex-wrap gap-4 mb-10">
+        <button (click)="selectedType = 'All'"
+            class="px-6 py-2.5 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all duration-300 border"
+            [ngClass]="selectedType === 'All' ? 'bg-primary text-white border-primary shadow-lg shadow-primary/25' : 'bg-theme-bg dark:bg-slate-900/50 text-text-secondary border-theme-border/5 hover:border-primary/30'">
+            All Plans
+        </button>
+        <button (click)="selectedType = 'TermLife'"
+            class="px-6 py-2.5 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all duration-300 border"
+            [ngClass]="selectedType === 'TermLife' ? 'bg-primary text-white border-primary shadow-lg shadow-primary/25' : 'bg-theme-bg dark:bg-slate-900/50 text-text-secondary border-theme-border/5 hover:border-primary/30'">
+            🛡️ Term Life
+        </button>
+        <button (click)="selectedType = 'Endowment'"
+            class="px-6 py-2.5 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all duration-300 border"
+            [ngClass]="selectedType === 'Endowment' ? 'bg-primary text-white border-primary shadow-lg shadow-primary/25' : 'bg-theme-bg dark:bg-slate-900/50 text-text-secondary border-theme-border/5 hover:border-primary/30'">
+            💰 Endowment
+        </button>
+        <button (click)="selectedType = 'WholeLife'"
+            class="px-6 py-2.5 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all duration-300 border"
+            [ngClass]="selectedType === 'WholeLife' ? 'bg-primary text-white border-primary shadow-lg shadow-primary/25' : 'bg-theme-bg dark:bg-slate-900/50 text-text-secondary border-theme-border/5 hover:border-primary/30'">
+            📜 Whole Life
+        </button>
+    </div>
+
     <!-- Card Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        <div *ngFor="let p of plans; let i = index"
+        <div *ngFor="let p of filteredPlans; let i = index"
             class="premium-card p-0 overflow-hidden group hover:shadow-xl hover:-translate-y-1 transition-all duration-300 animate-in fade-in slide-in-from-bottom-6"
             [style.animation-delay.ms]="i * 80">
 
@@ -29,15 +53,18 @@
                 <div class="flex items-center justify-between mb-3">
                     <div
                         class="h-12 w-12 rounded-2xl bg-gradient-to-br from-primary/15 to-primary/5 flex items-center justify-center text-xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
-                        🛡️
+                        {{ p.planType === 'TermLife' ? '🛡️' : p.planType === 'Endowment' ? '💰' : '📜' }}
                     </div>
-                    <span
-                        class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest border transition-all"
-                        [ngClass]="p.isActive ? 'bg-emerald-50 text-emerald-700 border-emerald-100 dark:bg-emerald-900/20 dark:text-emerald-400 dark:border-emerald-800/50' : 'bg-red-50 text-red-700 border-red-100 dark:bg-red-900/20 dark:text-red-400 dark:border-red-800/50'">
-                        <span class="w-1.5 h-1.5 rounded-full"
-                            [ngClass]="p.isActive ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]' : 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.5)]'"></span>
-                        {{ p.isActive ? 'Active' : 'Inactive' }}
-                    </span>
+                    <div class="flex flex-col items-end gap-2">
+                        <span
+                            class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest border transition-all"
+                            [ngClass]="p.isActive ? 'bg-emerald-50 text-emerald-700 border-emerald-100 dark:bg-emerald-900/20 dark:text-emerald-400 dark:border-emerald-800/50' : 'bg-red-50 text-red-700 border-red-100 dark:bg-red-900/20 dark:text-red-400 dark:border-red-800/50'">
+                            <span class="w-1.5 h-1.5 rounded-full"
+                                [ngClass]="p.isActive ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]' : 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.5)]'"></span>
+                            {{ p.isActive ? 'Active' : 'Inactive' }}
+                        </span>
+                        <span class="text-[8px] font-black uppercase tracking-widest text-text-secondary opacity-40 italic">{{ p.planType }}</span>
+                    </div>
                 </div>
                 <h3
                     class="text-lg font-black text-text-primary dark:text-white tracking-tight group-hover:text-primary transition-colors">
@@ -88,7 +115,7 @@
     </div>
 
     <!-- Empty State -->
-    <div *ngIf="plans.length === 0" class="premium-card py-24 text-center">
+    <div *ngIf="filteredPlans.length === 0" class="premium-card py-24 text-center">
         <div
             class="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-50 dark:bg-slate-800 text-3xl mb-4">
             📂</div>

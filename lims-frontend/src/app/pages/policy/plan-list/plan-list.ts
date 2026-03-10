@@ -18,10 +18,19 @@ export class PlanList implements OnInit {
   filtered: PlanResponse[] = [];
   loading = true;
   searchTerm = '';
+  selectedPlanType = '';
+  hasSettledClaim = false;
 
   constructor(public api: ApiService) { }
 
   ngOnInit(): void {
+    const user = JSON.parse(localStorage.getItem('NexaLife_user') || '{}');
+    if (user.role === 'Customer') {
+      this.api.get<any>('dashboard/summary').subscribe({
+        next: (data) => this.hasSettledClaim = data.hasSettledDeathClaim
+      });
+    }
+
     this.api.get<PlanResponse[]>('policy/plans').subscribe({
       next: (r: PlanResponse[]) => {
         this.plans = r;
@@ -32,10 +41,19 @@ export class PlanList implements OnInit {
     });
   }
 
+  setPlanType(type: string): void {
+    this.selectedPlanType = type;
+    this.search();
+  }
+
   search(): void {
-    this.filtered = this.plans.filter(p =>
-      p.planName.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-      p.description.toLowerCase().includes(this.searchTerm.toLowerCase())
-    );
+    this.filtered = this.plans.filter(p => {
+      const matchesText = p.planName.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+        p.description.toLowerCase().includes(this.searchTerm.toLowerCase());
+
+      const matchesType = !this.selectedPlanType || p.planType === this.selectedPlanType;
+
+      return matchesText && matchesType;
+    });
   }
 }

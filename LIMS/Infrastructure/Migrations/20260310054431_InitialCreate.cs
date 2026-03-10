@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class capstone : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,13 +19,15 @@ namespace Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PlanName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    PlanType = table.Column<int>(type: "int", nullable: false),
+                    BonusRatePerYear = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CoverageToAge = table.Column<int>(type: "int", nullable: false),
                     MinSumAssured = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     MaxSumAssured = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     TenureOptions = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     MinEntryAge = table.Column<int>(type: "int", nullable: false),
                     MaxEntryAge = table.Column<int>(type: "int", nullable: false),
                     MinAnnualIncome = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    AvailableRiders = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     BaseRatePer1000 = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
                     LowRiskMultiplier = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
                     MediumRiskMultiplier = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
@@ -99,7 +101,6 @@ namespace Infrastructure.Migrations
                     AgentId = table.Column<int>(type: "int", nullable: true),
                     SumAssured = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     TenureYears = table.Column<int>(type: "int", nullable: false),
-                    SelectedRiders = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CustomerAge = table.Column<int>(type: "int", nullable: true),
                     AnnualIncome = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     Occupation = table.Column<string>(type: "nvarchar(max)", nullable: true),

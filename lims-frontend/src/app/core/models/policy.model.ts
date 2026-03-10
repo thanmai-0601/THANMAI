@@ -2,10 +2,12 @@ export interface PlanResponse {
   planId: number;
   planName: string;
   description: string;
+  planType: string;
+  bonusRatePerYear: number;
+  coverageToAge: number;
   minSumAssured: number;
   maxSumAssured: number;
   tenureOptions: number[];
-  availableRiders: string;
   minEntryAge: number;
   maxEntryAge: number;
   minAnnualIncome: number;
@@ -22,10 +24,12 @@ export interface PlanResponse {
 export interface CreatePlanDto {
   planName: string;
   description: string;
+  planType: string;
+  bonusRatePerYear: number;
+  coverageToAge: number;
   minSumAssured: number;
   maxSumAssured: number;
   tenureOptions: number[];
-  availableRiders: string;
   minEntryAge: number;
   maxEntryAge: number;
   minAnnualIncome: number;
@@ -39,10 +43,12 @@ export interface CreatePlanDto {
 export interface UpdatePlanDto {
   planName: string;
   description: string;
+  planType: string;
+  bonusRatePerYear: number;
+  coverageToAge: number;
   minSumAssured: number;
   maxSumAssured: number;
   tenureOptions: number[];
-  availableRiders: string;
   minEntryAge: number;
   maxEntryAge: number;
   minAnnualIncome: number;
@@ -56,13 +62,13 @@ export interface UpdatePlanDto {
 
 export interface RequestPolicyDto {
   insurancePlanId: number;
-  sumAssured: number;
-  tenureYears: number;
-  customerAge: number;
-  annualIncome: number;
+  sumAssured: number | null;
+  tenureYears: number | null;
+  annualIncome: number | null;
   occupation: string;
   address: string;
-  selectedRiders: string;
+  nominee?: AddNomineeDto;
+  documents?: UploadDocumentDto[];
 }
 
 export interface PolicyResponse {
@@ -71,9 +77,9 @@ export interface PolicyResponse {
   status: string;
   insurancePlanId: number;
   planName: string;
+  planType: string;
   sumAssured: number;
   tenureYears: number;
-  selectedRiders: string;
   customerId: number;
   customerName: string;
   customerEmail: string;
@@ -105,8 +111,6 @@ export interface PremiumPreviewDto {
   tenureYears: number;
   riskCategory: string;
   annualPremium: number;
-  monthlyPremium: number;
-  quarterlyPremium: number;
   totalPayableOverTenure: number;
   sumAssuredOnDeath: number;
   sumAssuredOnMaturity: number;
@@ -121,15 +125,18 @@ export interface NomineeResponse {
   relationship: string;
   age: number;
   contactNumber: string;
+  idNumber: string;
+  email: string;
   allocationPercentage: number;
 }
 
 export interface AddNomineeDto {
   fullName: string;
   relationship: string;
-  age: number;
+  age: number | null;
   contactNumber: string;
-  allocationPercentage: number;
+  idNumber: string;
+  email: string;
 }
 
 export interface SubmitNomineesDto {
@@ -163,8 +170,6 @@ export interface PremiumCalcResultDto {
   baseRatePer1000: number;
   riskMultiplierApplied: number;
   annualPremium: number;
-  monthlyPremium: number;
-  quarterlyPremium: number;
   totalPremiumOverTenure: number;
   commissionAmount: number;
   commissionPercentage: number;

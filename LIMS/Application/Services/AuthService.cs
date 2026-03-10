@@ -1,4 +1,4 @@
-﻿using Application.DTOs.Auth;
+using Application.DTOs.Auth;
 using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
 using Domain.Entities;
@@ -38,14 +38,24 @@ public class AuthService : IAuthService
         if (await _userRepo.EmailExistsAsync(dto.Email))
             throw new InvalidOperationException("Email already registered.");
 
+        var age = DateTime.UtcNow.Year - dto.DateOfBirth.Year;
+        if (dto.DateOfBirth.Date > DateTime.UtcNow.AddYears(-age)) age--;
+
+        if (age < 18)
+            throw new InvalidOperationException("not eligible as age is less");
+
         var user = new User
         {
             FullName = dto.FullName,
             Email = dto.Email.ToLower().Trim(),
             PasswordHash = _passwordHasher.Hash(dto.Password),
             PhoneNumber = dto.PhoneNumber,
+            DateOfBirth = dto.DateOfBirth,
             Role = UserRole.Customer,  // always Customer, no exceptions
-            IsActive = true
+            IsActive = true,
+            BankAccountName = dto.BankAccountName,
+            BankAccountNumber = dto.BankAccountNumber,
+            BankIfscCode = dto.BankIfscCode
         };
 
         await _userRepo.CreateAsync(user);
@@ -94,15 +104,25 @@ public class AuthService : IAuthService
         if (await _userRepo.EmailExistsAsync(dto.Email))
             throw new InvalidOperationException("Email already registered.");
 
+        var age = DateTime.UtcNow.Year - dto.DateOfBirth.Year;
+        if (dto.DateOfBirth.Date > DateTime.UtcNow.AddYears(-age)) age--;
+
+        if (age < 18)
+            throw new InvalidOperationException("Staff must be at least 18 years old.");
+
         var user = new User
         {
             FullName = dto.FullName,
             Email = dto.Email.ToLower().Trim(),
             PasswordHash = _passwordHasher.Hash(dto.Password),
             PhoneNumber = dto.PhoneNumber,
+            DateOfBirth = dto.DateOfBirth,
             Role = role,
             IsActive = true,
-            MustChangePassword = false
+            MustChangePassword = false,
+            BankAccountName = dto.BankAccountName,
+            BankAccountNumber = dto.BankAccountNumber,
+            BankIfscCode = dto.BankIfscCode
         };
 
         await _userRepo.CreateAsync(user);
@@ -199,6 +219,9 @@ public class AuthService : IAuthService
 
         if (user.Role == UserRole.Admin)
             throw new InvalidOperationException("Admin account status cannot be toggled.");
+
+        if (user.Role == UserRole.Customer)
+            throw new InvalidOperationException("Customer account status cannot be toggled manually. This is handled by automated system processes (e.g., policy settlements).");
 
         user.IsActive = !user.IsActive;
         await _userRepo.UpdateAsync(user);
@@ -391,11 +414,6 @@ public class AuthService : IAuthService
         return new string(password.OrderBy(_ => random.Next()).ToArray());
     }
 
-    public Task<StaffResponseDto> CreateStaffAsync(CreateStaffDto dto)
-    {
-        throw new NotImplementedException();
-    }
-
     // ── Regular password change (any logged-in user) ────────────────────────
 
     public async Task ChangePasswordAsync(int userId, ChangePasswordDto dto)
@@ -433,4 +451,49 @@ public class AuthService : IAuthService
         await _userRepo.UpdateAsync(user);
         return true;
     }
+
+    // ── Profile Management ───────────────────────────────────────────────────
+
+    public async Task<UserProfileDto> GetProfileAsync(int userId)
+    {
+        var user = await _userRepo.GetByIdAsync(userId)
+            ?? throw new KeyNotFoundException($"User with ID {userId} not found.");
+
+        return MapToUserProfileDto(user);
+    }
+
+    public async Task UpdateProfileAsync(int userId, UpdateProfileDto dto)
+    {
+        var user = await _userRepo.GetByIdAsync(userId)
+            ?? throw new KeyNotFoundException($"User with ID {userId} not found.");
+
+        user.FullName = dto.FullName;
+        user.PhoneNumber = dto.PhoneNumber;
+
+        if (dto.DateOfBirth > DateTime.UtcNow)
+            throw new InvalidOperationException("Date of Birth cannot be in the future.");
+
+        user.DateOfBirth = dto.DateOfBirth;
+        user.BankAccountName = dto.BankAccountName;
+        user.BankAccountNumber = dto.BankAccountNumber;
+        user.BankIfscCode = dto.BankIfscCode;
+
+        await _userRepo.UpdateAsync(user);
+    }
+
+    private static UserProfileDto MapToUserProfileDto(User user) => new()
+    {
+        UserId = user.Id,
+        FullName = user.FullName,
+        Email = user.Email,
+        PhoneNumber = user.PhoneNumber,
+        DateOfBirth = user.DateOfBirth,
+        Role = user.Role.ToString(),
+        IsActive = user.IsActive,
+        CreatedAt = user.CreatedAt,
+        BankAccountName = user.BankAccountName,
+        BankAccountNumber = user.BankAccountNumber,
+        BankIfscCode = user.BankIfscCode
+    };
+
 }

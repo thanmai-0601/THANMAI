@@ -15,6 +15,8 @@ public class PolicyServiceTests
     private readonly Mock<IPlanRepository> _planRepoMock;
     private readonly Mock<IAgentAssignmentService> _agentAssignmentMock;
     private readonly Mock<INotificationService> _notificationMock;
+    private readonly Mock<IUserRepository> _userRepoMock;
+    private readonly Mock<IClaimRepository> _claimRepoMock;
     private readonly PolicyService _policyService;
 
     public PolicyServiceTests()
@@ -23,12 +25,16 @@ public class PolicyServiceTests
         _planRepoMock = new Mock<IPlanRepository>();
         _agentAssignmentMock = new Mock<IAgentAssignmentService>();
         _notificationMock = new Mock<INotificationService>();
+        _userRepoMock = new Mock<IUserRepository>();
+        _claimRepoMock = new Mock<IClaimRepository>();
         
         _policyService = new PolicyService(
             _policyRepoMock.Object,
             _planRepoMock.Object,
             _agentAssignmentMock.Object,
-            _notificationMock.Object);
+            _notificationMock.Object,
+            _userRepoMock.Object,
+            _claimRepoMock.Object);
     }
 
     [Fact]
@@ -41,7 +47,6 @@ public class PolicyServiceTests
             InsurancePlanId = 10, 
             SumAssured = 100000, 
             TenureYears = 10,
-            CustomerAge = 30,
             AnnualIncome = 500000
         };
 
@@ -58,6 +63,11 @@ public class PolicyServiceTests
         };
 
         _planRepoMock.Setup(r => r.GetByIdAsync(dto.InsurancePlanId)).ReturnsAsync(plan);
+        _claimRepoMock.Setup(r => r.GetByCustomerIdAsync(customerId)).ReturnsAsync(new List<Claim>());
+        
+        var user = new User { Id = customerId, DateOfBirth = new DateTime(1990, 1, 1) };
+        _userRepoMock.Setup(r => r.GetByIdAsync(customerId)).ReturnsAsync(user);
+
         _agentAssignmentMock.Setup(a => a.AssignAgentAsync()).ReturnsAsync(5);
         _policyRepoMock.Setup(r => r.GeneratePolicyNumberAsync()).ReturnsAsync("POL-001");
         
@@ -81,6 +91,7 @@ public class PolicyServiceTests
         var dto = new RequestPolicyDto { InsurancePlanId = 10 };
         var plan = new InsurancePlan { Id = 10, IsActive = false };
         _planRepoMock.Setup(r => r.GetByIdAsync(dto.InsurancePlanId)).ReturnsAsync(plan);
+        _claimRepoMock.Setup(r => r.GetByCustomerIdAsync(1)).ReturnsAsync(new List<Claim>());
 
         // Act & Assert
         await Assert.ThrowsAsync<InvalidOperationException>(() => _policyService.RequestPolicyAsync(1, dto));

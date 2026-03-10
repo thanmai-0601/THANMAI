@@ -4,10 +4,12 @@ export interface RaiseClaimDto {
   dateOfDeath: string; // ISO date string
   nomineeName: string;
   nomineeRelationship: string;
+  nomineeIdNumber: string;
   bankAccountName: string;
   bankAccountNumber: string;
   bankIfscCode: string;
   deathCertificate: ClaimDocumentDto;
+  nomineeIdProof: ClaimDocumentDto;
 }
 
 export interface ClaimNominee {
@@ -15,13 +17,13 @@ export interface ClaimNominee {
   relationship: string;
   age: number;
   contactNumber: string;
-  allocationPercentage: number;
 }
 
 export interface ClaimResponse {
   claimId: number;
   claimNumber: string;
   status: string;
+  claimType: string;
   policyId: number;
   policyNumber: string;
   planName: string;

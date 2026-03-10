@@ -15,8 +15,7 @@ public class RequestPolicyDtoTests
             SumAssured = 500000,
             AnnualIncome = 50000,
             Occupation = "Engineer",
-            Address = "123 Main St",
-            CustomerAge = 30
+            Address = "123 Main St"
         };
         Assert.Equal(1, dto.InsurancePlanId);
         Assert.Equal(10, dto.TenureYears);

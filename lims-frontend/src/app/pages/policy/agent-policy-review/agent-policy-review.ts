@@ -121,7 +121,7 @@ export class AgentPolicyReview implements OnInit {
       },
       error: (err: any) => {
         this.calculating = false;
-        this.toast.show(err.error?.message || 'Failed to calculate premium', 'error');
+        this.toast.show(ApiService.getErrorMessage(err), 'error');
       }
     });
   }
@@ -137,11 +137,10 @@ export class AgentPolicyReview implements OnInit {
       this.decisionForm.riskCategory = this.calcForm.riskCategory;
       this.decisionForm.agentRemarks = this.calcForm.remarks;
     } else {
-      if (!this.calcForm.remarks) {
-        this.toast.show('Remarks are required for rejection.', 'warning');
+      if (!this.decisionForm.rejectionReason) {
+        this.toast.show('A rejection reason is required to reject the policy.', 'warning');
         return;
       }
-      this.decisionForm.rejectionReason = this.calcForm.remarks;
     }
 
     this.submittingDecision = true;
@@ -153,7 +152,7 @@ export class AgentPolicyReview implements OnInit {
       },
       error: (err: any) => {
         this.submittingDecision = false;
-        this.toast.show(err.error?.message || `Failed to ${status} policy`, 'error');
+        this.toast.show(ApiService.getErrorMessage(err), 'error');
       }
     });
   }

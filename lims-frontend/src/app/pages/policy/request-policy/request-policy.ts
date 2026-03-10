@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
@@ -13,7 +13,7 @@ import { RequestPolicyDto, PlanResponse } from '../../../core/models/policy.mode
   templateUrl: './request-policy.html',
   styleUrl: './request-policy.css'
 })
-export class RequestPolicy implements OnInit {
+export class RequestPolicy implements OnInit, OnDestroy {
   planId: number = 0;
   plan: PlanResponse | null = null;
   loading = true;
@@ -23,15 +23,20 @@ export class RequestPolicy implements OnInit {
     insurancePlanId: 0,
     sumAssured: 500000,
     tenureYears: 10,
-    customerAge: 30,
     annualIncome: 500000,
     occupation: '',
     address: '',
-    selectedRiders: ''
+    nominee: { fullName: '', relationship: '', age: null, contactNumber: '', idNumber: '', email: '' },
+    documents: []
   };
 
-  availableRidersList: string[] = [];
-  selectedRidersList: string[] = [];
+  docTypes = ['Address Proof', 'Income Proof', 'Nominee ID Proof'];
+  selectedDocs: { [key: string]: File | null } = {
+    'Address Proof': null,
+    'Income Proof': null,
+    'Nominee ID Proof': null
+  };
+  private objectUrls: string[] = [];
 
   constructor(
     private api: ApiService,
@@ -52,12 +57,7 @@ export class RequestPolicy implements OnInit {
           // Set defaults based on plan constraints
           this.form.sumAssured = p.minSumAssured;
           this.form.tenureYears = p.tenureOptions.length > 0 ? p.tenureOptions[0] : 10;
-          this.form.customerAge = p.minEntryAge;
           this.form.annualIncome = Math.max(500000, p.minAnnualIncome);
-
-          if (p.availableRiders) {
-            this.availableRidersList = p.availableRiders.split(',').map(r => r.trim()).filter(r => r.length > 0);
-          }
 
           this.loading = false;
         },
@@ -66,18 +66,6 @@ export class RequestPolicy implements OnInit {
     } else {
       this.loading = false;
     }
-  }
-
-  toggleRider(rider: string, event: Event): void {
-    const checked = (event.target as HTMLInputElement).checked;
-    if (checked) {
-      if (!this.selectedRidersList.includes(rider)) {
-        this.selectedRidersList.push(rider);
-      }
-    } else {
-      this.selectedRidersList = this.selectedRidersList.filter(r => r !== rider);
-    }
-    this.form.selectedRiders = this.selectedRidersList.join(', ');
   }
 
   submit(reqForm?: any): void {
@@ -92,30 +80,101 @@ export class RequestPolicy implements OnInit {
     }
 
     if (this.plan) {
-      if (this.form.sumAssured < this.plan.minSumAssured || this.form.sumAssured > this.plan.maxSumAssured) {
+      if (this.form.sumAssured === null || this.form.sumAssured < this.plan.minSumAssured || this.form.sumAssured > this.plan.maxSumAssured) {
         this.toast.show(`Sum assured must be between ₹${this.plan.minSumAssured} and ₹${this.plan.maxSumAssured}.`, 'error');
         return;
       }
-      if (!this.plan.tenureOptions.includes(this.form.tenureYears)) {
+      if (this.form.tenureYears === null || !this.plan.tenureOptions.includes(this.form.tenureYears)) {
         this.toast.show(`Tenure must be one of: ${this.plan.tenureOptions.join(', ')} years.`, 'error');
-        return;
-      }
-      if (this.form.customerAge < this.plan.minEntryAge || this.form.customerAge > this.plan.maxEntryAge) {
-        this.toast.show(`Age must be between ${this.plan.minEntryAge} and ${this.plan.maxEntryAge} years.`, 'error');
         return;
       }
     }
 
+    // Validate Nominee
+    if (!this.form.nominee?.fullName || !this.form.nominee?.relationship || !this.form.nominee?.contactNumber || !this.form.nominee?.idNumber || !this.form.nominee?.email) {
+      this.toast.show('Please fill all nominee details, including email and the 12-digit Aadhar number.', 'warning');
+      return;
+    }
+
+    if (!/^\d{10}$/.test(this.form.nominee.contactNumber)) {
+      this.toast.show('Nominee contact must be exactly 10 digits.', 'warning');
+      return;
+    }
+
+    if (!/^\d{12}$/.test(this.form.nominee.idNumber)) {
+      this.toast.show('Nominee Aadhar number must be exactly 12 numeric digits.', 'warning');
+      return;
+    }
+
+    // Validate Documents
+    if (!this.selectedDocs['Address Proof'] || !this.selectedDocs['Income Proof'] || !this.selectedDocs['Nominee ID Proof']) {
+      this.toast.show('Please select all required documents (Address, Income, and Nominee ID Proof).', 'warning');
+      return;
+    }
+
     this.submitting = true;
-    this.api.post<{ message: string; policyId: number }>('policy/request', this.form).subscribe({
-      next: (res: { message: string; policyId: number }) => {
-        this.toast.show('Policy requested successfully!', 'success');
-        this.router.navigate(['/app/policy', res.policyId]);
-      },
-      error: (err: any) => {
-        this.submitting = false;
-        this.toast.show(err.error?.message || 'Failed to submit policy request', 'error');
+    this.prepareFilesAndSubmit();
+  }
+
+
+
+  onFileSelected(event: any, type: string) {
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedDocs[type] = file;
+    }
+  }
+
+  viewDocument(type: string): void {
+    const file = this.selectedDocs[type];
+    if (file) {
+      const url = URL.createObjectURL(file);
+      this.objectUrls.push(url);
+      window.open(url, '_blank');
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.objectUrls.forEach(url => URL.revokeObjectURL(url));
+  }
+
+  private async prepareFilesAndSubmit() {
+    try {
+      this.form.documents = [];
+      for (const type of this.docTypes) {
+        const file = this.selectedDocs[type];
+        if (file) {
+          const base64 = await this.toBase64(file);
+          this.form.documents.push({
+            documentType: type,
+            fileName: file.name,
+            fileBase64: base64
+          });
+        }
       }
+
+      this.api.post<{ message: string; policyId: number }>('policy/request', this.form).subscribe({
+        next: (res: { message: string; policyId: number }) => {
+          this.toast.show('Policy requested successfully!', 'success');
+          this.router.navigate(['/app/policy', res.policyId]);
+        },
+        error: (err: any) => {
+          this.submitting = false;
+          this.toast.show(ApiService.getErrorMessage(err), 'error');
+        }
+      });
+    } catch (err) {
+      this.submitting = false;
+      this.toast.show('Document processing failed.', 'error');
+    }
+  }
+
+  private toBase64(file: File): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = error => reject(error);
     });
   }
 }

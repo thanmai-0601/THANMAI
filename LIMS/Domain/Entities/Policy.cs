@@ -26,9 +26,6 @@ public class Policy : BaseEntity
     // We store these here because plan details might change later
     public decimal SumAssured { get; set; }
     public int TenureYears { get; set; }
-    
-    // Comma-separated list of selected riders
-    public string SelectedRiders { get; set; } = string.Empty;
 
     // ── Agent fills these after eligibility evaluation ──────────────
     public int? CustomerAge { get; set; }

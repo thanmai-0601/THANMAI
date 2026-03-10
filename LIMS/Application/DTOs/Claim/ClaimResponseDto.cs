@@ -1,10 +1,11 @@
-﻿namespace Application.DTOs.Claim;
+namespace Application.DTOs.Claim;
 
 public class ClaimResponseDto
 {
     public int ClaimId { get; set; }
     public string ClaimNumber { get; set; } = string.Empty;
     public string Status { get; set; } = string.Empty;
+    public string ClaimType { get; set; } = "Death";
 
     // Policy info
     public int PolicyId { get; set; }
@@ -66,5 +67,5 @@ public class ClaimNomineeDto
     public string Relationship { get; set; } = string.Empty;
     public int Age { get; set; }
     public string ContactNumber { get; set; } = string.Empty;
-    public decimal AllocationPercentage { get; set; }
+    public string Email { get; set; } = string.Empty;
 }

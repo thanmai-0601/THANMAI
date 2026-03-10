@@ -9,6 +9,5 @@ public class RequestNomineeChangeDto
     public int PolicyId { get; set; }
 
     [Required]
-    [MinLength(1, ErrorMessage = "At least one nominee is required")]
-    public List<AddNomineeDto> NewNominees { get; set; } = new();
+    public AddNomineeDto NewNominee { get; set; } = new();
 }

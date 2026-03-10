@@ -48,7 +48,7 @@
         <!-- Main Info Card -->
         <div class="premium-card p-0 overflow-hidden group">
             <div
-                class="grid grid-cols-1 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x border-theme-border/10 dark:border-slate-800">
+                class="grid grid-cols-1 md:grid-cols-5 divide-y md:divide-y-0 md:divide-x border-theme-border/10 dark:border-slate-800">
                 <div class="p-8 md:p-10 flex flex-col gap-3 group/stat transition-colors hover:bg-primary/[0.02]">
                     <span class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50">Plan
                         Name</span>
@@ -62,10 +62,20 @@
                         }}</span>
                 </div>
                 <div class="p-8 md:p-10 flex flex-col gap-3 group/stat transition-colors hover:bg-primary/[0.02]">
-                    <span class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50">Years
-                        Covered</span>
+                    <span class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50">Terms
+                        of Payment</span>
                     <span class="text-xl font-black text-text-primary dark:text-white tracking-tight">{{
                         policy.tenureYears }} <span class="text-sm opacity-40">Years</span></span>
+                </div>
+                <div class="p-8 md:p-10 flex flex-col gap-3 group/stat transition-colors hover:bg-primary/[0.02]">
+                    <span
+                        class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50">Coverage
+                        Duration</span>
+                    <span class="text-xl font-black text-text-primary dark:text-white tracking-tight">{{
+                        policy.planType === 'WholeLife' ? 'Lifetime' :
+                        policy.planType === 'Endowment' ? 'Until Maturity' :
+                        (policy.tenureYears + ' Years')
+                        }}</span>
                 </div>
                 <div
                     class="p-8 md:p-10 flex flex-col gap-3 group/stat transition-colors hover:bg-primary/[0.02] bg-primary/[0.03]">
@@ -107,20 +117,6 @@
                         </span>
                     </div>
                 </div>
-                @if(policy.selectedRiders) {
-                <div
-                    class="md:col-span-2 pt-6 border-t border-theme-border/5 dark:border-slate-800/50 flex flex-wrap gap-2">
-                    <span
-                        class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50 w-full mb-2">Additional
-                        Riders</span>
-                    @for (rider of policy.selectedRiders.split(','); track rider) {
-                    <span
-                        class="px-3 py-1.5 rounded-full bg-primary/5 dark:bg-primary/10 border border-primary/10 text-[10px] font-black uppercase tracking-wider text-primary">
-                        {{ rider.trim() }}
-                    </span>
-                    }
-                </div>
-                }
             </div>
         </div>
 
@@ -152,8 +148,8 @@
                 </div>
 
                 <div class="flex flex-col gap-8">
-                    <!-- Upload Slots (Only for Customer during Approval phase) -->
-                    @if (role === 'Customer' && (policy.status === 'Approved' || policy.status === 'UnderReview')) {
+                    <!-- Upload Slots (Only for Customer during UnderReview phase) -->
+                    @if (role === 'Customer' && policy.status === 'UnderReview') {
                     <div class="grid grid-cols-1 gap-4">
                         @for (type of ['Address Proof', 'Income Proof', 'Nominee ID Proof']; track type) {
                         <div class="premium-card !p-6 flex items-center justify-between group/upload transition-all border-dashed"
@@ -250,14 +246,14 @@
             <div class="flex flex-col gap-6">
                 <div class="flex justify-between items-end px-2">
                     <div>
-                        <h2 class="text-2xl font-black text-text-primary dark:text-white tracking-tight">Nominees</h2>
+                        <h2 class="text-2xl font-black text-text-primary dark:text-white tracking-tight">Nominee</h2>
                         <p class="text-[10px] font-bold text-text-secondary uppercase tracking-[0.2em] opacity-50 mt-1">
-                            Beneficiaries for this policy</p>
+                            Primary beneficiary for this policy</p>
                     </div>
-                    @if (role === 'Customer' && policy.status === 'Approved') {
+                    @if (role === 'Customer' && policy.status === 'UnderReview') {
                     <button (click)="toggleNomineeForm()"
                         class="h-10 px-4 rounded-xl bg-primary/10 text-primary text-[10px] font-black uppercase tracking-widest hover:bg-primary hover:text-white transition-all active:scale-95 shadow-sm">
-                        {{ policy.nominees && policy.nominees.length > 0 ? 'Edit Nominees' : '+ Add Nominee' }}
+                        {{ policy.nominees && policy.nominees.length > 0 ? 'Edit Nominee' : '+ Add Nominee' }}
                     </button>
                     }
                 </div>
@@ -271,17 +267,32 @@
                                 Details</h3>
                             <div class="grid grid-cols-2 gap-4">
                                 <div class="col-span-2">
-                                    <input type="text" [(ngModel)]="newNominee.fullName" name="nomName"
-                                        placeholder="Full Name" required class="input-premium">
+                                    <input type="text" [(ngModel)]="newNominee.fullName" name="nomName" required
+                                        class="input-premium" placeholder="Nominee Full Name">
                                 </div>
-                                <input type="text" [(ngModel)]="newNominee.relationship" name="nomRel"
-                                    placeholder="Relationship (e.g. Son, Wife)" required class="input-premium">
-                                <input type="number" [(ngModel)]="newNominee.age" name="nomAge" placeholder="Age"
-                                    required class="input-premium">
+                                <input type="text" [(ngModel)]="newNominee.relationship" name="nomRel" required
+                                    class="input-premium" placeholder="e.g. Sister">
+                                <input type="number" [(ngModel)]="newNominee.age" name="nomAge" required
+                                    class="input-premium" placeholder="Age">
                                 <div class="col-span-2">
                                     <input type="tel" [(ngModel)]="newNominee.contactNumber" name="nomPhone"
-                                        placeholder="Enter 10 digit number" pattern="[0-9]{10}" maxlength="10" required
-                                        class="input-premium">
+                                        pattern="[0-9]{10}" maxlength="10" minlength="10" required
+                                        class="input-premium" placeholder="Contact Number (10 digits)">
+                                </div>
+                                <div class="col-span-2">
+                                    <input type="text" [(ngModel)]="newNominee.idNumber" name="nomIdNum"
+                                        required pattern="[0-9]{12}" maxlength="12" minlength="12"
+                                        class="input-premium" placeholder="Nominee Aadhar Number (12 digits)">
+                                    <p class="text-[9px] font-bold text-text-secondary opacity-40 uppercase tracking-widest mt-1 ml-1">
+                                        Note: The claimant must provide this same 12-digit Aadhar number later.
+                                    </p>
+                                </div>
+                                <div class="col-span-2">
+                                    <input type="email" [(ngModel)]="newNominee.email" name="nomEmail"
+                                        required class="input-premium" placeholder="Nominee Email Address">
+                                    <p class="text-[9px] font-bold text-text-secondary opacity-40 uppercase tracking-widest mt-1 ml-1">
+                                        For claim settlement confirmation
+                                    </p>
                                 </div>
                             </div>
                             <div class="flex gap-4 justify-end">
@@ -301,27 +312,29 @@
                         class="premium-card !p-6 flex justify-between items-center group/card hover:border-primary/30 transition-all">
                         <div class="flex gap-5 items-center">
                             <div
-                                class="h-12 w-12 rounded-2xl bg-primary/5 flex items-center justify-center text-xl group-hover/card:scale-110 group-hover/card:rotate-6 transition-all">
-                                👤</div>
+                                class="h-12 w-12 rounded-2xl bg-primary/10 flex items-center justify-center text-xl text-primary transition-all group-hover/card:scale-110 shrink-0">
+                                👤
+                            </div>
                             <div>
-                                <h4
-                                    class="text-sm font-black text-text-primary dark:text-white uppercase tracking-wider">
-                                    {{ n.fullName }}</h4>
-                                <div class="flex items-center gap-3 mt-1">
-                                    <span class="text-[10px] font-bold text-primary uppercase tracking-widest">{{
-                                        n.relationship }}</span>
-                                    <span class="h-1 w-1 rounded-full bg-slate-300"></span>
-                                    <span
-                                        class="text-[10px] font-bold text-text-secondary uppercase tracking-widest opacity-60">Age
-                                        {{ n.age }}</span>
+                                <div>
+                                    <h4
+                                        class="text-sm font-black text-text-primary dark:text-white uppercase tracking-wider">
+                                        {{ n.fullName }}</h4>
+                                    <div class="flex items-center gap-3 mt-1">
+                                        <span class="text-[10px] font-bold text-primary uppercase tracking-widest">{{
+                                            n.relationship }}</span>
+                                        <span class="h-1 w-1 rounded-full bg-slate-300"></span>
+                                        <span
+                                            class="text-[10px] font-bold text-text-secondary uppercase tracking-widest opacity-60">Age
+                                            {{ n.age }}</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="flex flex-col items-end">
-                            <span class="text-xs font-black text-primary">{{ n.allocationPercentage }}%</span>
-                            <span
-                                class="text-[10px] font-bold text-text-secondary uppercase tracking-widest opacity-40 mt-1">{{
-                                n.contactNumber || 'No Phone' }}</span>
+                            <div class="flex flex-col items-end">
+                                <span
+                                    class="text-[10px] font-bold text-text-secondary uppercase tracking-widest opacity-40 mt-1">{{
+                                    n.contactNumber || 'No Phone' }}</span>
+                            </div>
                         </div>
                     </div>
                     }
@@ -329,7 +342,8 @@
                     <div
                         class="premium-card p-12 border-dashed flex flex-col items-center justify-center gap-4 text-center">
                         <div class="text-3xl opacity-20">📭</div>
-                        <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-40">No
+                        <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-40">
+                            No
                             Nominees added yet</p>
                     </div>
                     }

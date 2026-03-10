@@ -1,4 +1,4 @@
-﻿using Application.Interfaces.Repositories;
+using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
 using Application.Services;
 using Infrastructure.Data;
@@ -56,8 +56,14 @@ namespace API.Extensions
             services.AddScoped<IDashboardService, DashboardService>();
             services.AddScoped<INotificationService, NotificationService>();
 
-            // Background service for grace period logic
+            // Background services
             services.AddHostedService<GracePeriodBackgroundService>();
+            services.AddHostedService<MaturityBackgroundService>();
+
+            // =============================
+            // Automated Services
+            // =============================
+            services.AddScoped<IAutomatedMaturityService, AutomatedMaturityService>();
 
             // =============================
             // Agent Workflow Services

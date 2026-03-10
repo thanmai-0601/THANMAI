@@ -41,7 +41,6 @@ export class EditPlan implements OnInit {
       highRiskMultiplier: [1.6, [Validators.required, Validators.min(0)]],
       commissionPercentage: [5, [Validators.required, Validators.min(0)]],
       isActive: [true, Validators.required],
-      availableRiders: [''],
       tenureInput: ['', Validators.required]
     });
   }
@@ -66,7 +65,6 @@ export class EditPlan implements OnInit {
             highRiskMultiplier: res.highRiskMultiplier,
             commissionPercentage: res.commissionPercentage,
             isActive: res.isActive,
-            availableRiders: res.availableRiders || '',
             tenureInput: res.tenureOptions.join(', ')
           });
           this.loadingData = false;

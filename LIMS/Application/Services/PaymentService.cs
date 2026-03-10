@@ -75,7 +75,14 @@ public class PaymentService : IPaymentService
             if (policy.ActiveFrom == null)
             {
                 policy.ActiveFrom = DateTime.UtcNow;
-                policy.ActiveTo = DateTime.UtcNow.AddYears(policy.TenureYears);
+                if (policy.InsurancePlan.PlanType == Domain.Enums.PlanType.WholeLife)
+                {
+                    policy.ActiveTo = null; // Lifetime coverage
+                }
+                else
+                {
+                    policy.ActiveTo = DateTime.UtcNow.AddYears(policy.TenureYears);
+                }
             }
             await _policyRepo.UpdateAsync(policy);
         }

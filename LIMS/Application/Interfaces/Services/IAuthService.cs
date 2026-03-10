@@ -1,4 +1,4 @@
-﻿using Application.DTOs.Auth;
+using Application.DTOs.Auth;
 using Domain.Enums;
 
 
@@ -21,5 +21,9 @@ public interface IAuthService
     Task ChangePasswordAsync(int userId, ChangePasswordDto dto);
     Task<bool> ResetPasswordAsync(ResetPasswordDto dto);
     Task ToggleUserStatusAsync(int userId);
+
+    // Profile Management
+    Task<UserProfileDto> GetProfileAsync(int userId);
+    Task UpdateProfileAsync(int userId, UpdateProfileDto dto);
 
 }

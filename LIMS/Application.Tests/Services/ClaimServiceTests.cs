@@ -16,6 +16,8 @@ public class ClaimServiceTests
     private readonly Mock<IInvoiceRepository> _invoiceRepoMock;
     private readonly Mock<IClaimsOfficerAssignmentService> _assignmentMock;
     private readonly Mock<INotificationService> _notificationMock;
+    private readonly Mock<IPremiumCalculationService> _premiumCalcMock;
+    private readonly Mock<IUserRepository> _userRepoMock;
     private readonly ClaimService _claimService;
 
     public ClaimServiceTests()
@@ -25,13 +27,17 @@ public class ClaimServiceTests
         _invoiceRepoMock = new Mock<IInvoiceRepository>();
         _assignmentMock = new Mock<IClaimsOfficerAssignmentService>();
         _notificationMock = new Mock<INotificationService>();
+        _premiumCalcMock = new Mock<IPremiumCalculationService>();
+        _userRepoMock = new Mock<IUserRepository>();
 
         _claimService = new ClaimService(
             _claimRepoMock.Object,
             _policyRepoMock.Object,
             _invoiceRepoMock.Object,
             _assignmentMock.Object,
-            _notificationMock.Object);
+            _notificationMock.Object,
+            _premiumCalcMock.Object,
+            _userRepoMock.Object);
     }
 
     [Fact]
@@ -45,9 +51,12 @@ public class ClaimServiceTests
             DateOfDeath = DateTime.UtcNow,
             NomineeName = "Jane Doe",
             NomineeRelationship = "Spouse",
+            NomineeIdNumber = "123456789012",
             BankAccountName = "Jane Doe",
             BankAccountNumber = "12345",
-            BankIfscCode = "IFSC001"
+            BankIfscCode = "IFSC001",
+            NomineeIdProof = new ClaimDocumentDto { FileName = "proof.pdf", DocumentType = "ID", FileBase64 = "YmFzZTY0" },
+            DeathCertificate = new ClaimDocumentDto { FileName = "death.pdf", DocumentType = "DeathInfo", FileBase64 = "YmFzZTY0" }
         };
         
         var policy = new Policy 
@@ -58,7 +67,13 @@ public class ClaimServiceTests
             Status = PolicyStatus.Active,
             Nominees = new List<Nominee> 
             { 
-                new Nominee { FullName = "Jane Doe", Relationship = "Spouse" } 
+                new Nominee 
+                { 
+                    FullName = "Jane Doe", 
+                    Relationship = "Spouse",
+                    IdNumber = "123456789012",
+                    Email = "jane.doe@example.com"
+                } 
             }
         };
         

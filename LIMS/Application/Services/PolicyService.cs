@@ -1,4 +1,4 @@
-﻿using Application.DTOs.Policy;
+using Application.DTOs.Policy;
 using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
 using Domain.Entities;
@@ -12,17 +12,23 @@ public class PolicyService : IPolicyService
     private readonly IPlanRepository _planRepo;
     private readonly IAgentAssignmentService _agentAssignment;
     private readonly INotificationService _notificationService;
+    private readonly IUserRepository _userRepo;
+    private readonly IClaimRepository _claimRepo;
 
     public PolicyService(
         IPolicyRepository policyRepo,
         IPlanRepository planRepo,
         IAgentAssignmentService agentAssignment,
-        INotificationService notificationService)
+        INotificationService notificationService,
+        IUserRepository userRepo,
+        IClaimRepository claimRepo)
     {
         _policyRepo = policyRepo;
         _planRepo = planRepo;
         _agentAssignment = agentAssignment;
         _notificationService = notificationService;
+        _userRepo = userRepo;
+        _claimRepo = claimRepo;
     }
 
     // ── Customer: Submit Policy Request ───────────────────────────────────
@@ -33,8 +39,23 @@ public class PolicyService : IPolicyService
         var plan = await _planRepo.GetByIdAsync(dto.InsurancePlanId)
             ?? throw new KeyNotFoundException("Insurance plan not found.");
 
+        // Check if customer has any settled death claims - if so, they cannot take new policies
+        var claims = await _claimRepo.GetByCustomerIdAsync(customerId);
+        if (claims.Any(c => c.Type == ClaimType.Death && c.Status == ClaimStatus.Settled))
+        {
+            throw new InvalidOperationException("New policy requests are not allowed as a death claim has already been settled for this account.");
+        }
+
         if (!plan.IsActive)
             throw new InvalidOperationException("This plan is no longer available.");
+
+        // Calculate Customer Age from DOB
+        var user = await _userRepo.GetByIdAsync(customerId) 
+            ?? throw new KeyNotFoundException("Customer not found.");
+        
+        var today = DateTime.UtcNow;
+        var customerAge = today.Year - user.DateOfBirth.Year;
+        if (user.DateOfBirth.Date > today.AddYears(-customerAge)) customerAge--;
 
         // 2. Validate sum assured range
         if (dto.SumAssured < plan.MinSumAssured || dto.SumAssured > plan.MaxSumAssured)
@@ -48,11 +69,9 @@ public class PolicyService : IPolicyService
             throw new InvalidOperationException(
                 $"Invalid tenure. Allowed options: {plan.TenureOptions} years.");
 
-        // 4. Validate age eligibility upfront
-        if (dto.CustomerAge < plan.MinEntryAge || dto.CustomerAge > plan.MaxEntryAge)
-            throw new InvalidOperationException(
-                $"Your age {dto.CustomerAge} is not eligible for this plan. " +
-                $"Allowed: {plan.MinEntryAge}–{plan.MaxEntryAge} years.");
+        // 4. Validate age eligibility upfront using calculated age
+        if (customerAge < plan.MinEntryAge || customerAge > plan.MaxEntryAge)
+            throw new InvalidOperationException("not eligible as age is less");
 
         // 5. Validate income eligibility upfront
         if (dto.AnnualIncome < plan.MinAnnualIncome)
@@ -75,17 +94,58 @@ public class PolicyService : IPolicyService
             AgentId = agentId,
 
             // ← Customer fills these at enrollment now
-            CustomerAge = dto.CustomerAge,
+            CustomerAge = customerAge,
             AnnualIncome = dto.AnnualIncome,
             Occupation = dto.Occupation,
             CustomerAddress = dto.Address,
-            SelectedRiders = dto.SelectedRiders,
 
             SubmittedAt = DateTime.UtcNow,
             AgentAssignedAt = DateTime.UtcNow
         };
 
+        // 8. Process Nominee upfront
+        if (dto.Nominee != null)
+        {
+            policy.Nominees.Add(new Nominee
+            {
+                FullName = dto.Nominee.FullName,
+                Relationship = dto.Nominee.Relationship,
+                Age = dto.Nominee.Age,
+                ContactNumber = dto.Nominee.ContactNumber,
+                IdNumber = dto.Nominee.IdNumber,
+                Email = dto.Nominee.Email,
+                AllocationPercentage = 100 // Single nominee gets full
+            });
+        }
+
         await _policyRepo.CreateAsync(policy);
+
+        // Now that the policy ID is available, process documents
+        if (dto.Documents != null && dto.Documents.Any())
+        {
+            foreach (var d in dto.Documents)
+            {
+                var base64Data = d.FileBase64.Split(',').Last();
+                var fileBytes = Convert.FromBase64String(base64Data);
+                
+                var uploadDir = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads", policy.Id.ToString());
+                if (!Directory.Exists(uploadDir)) Directory.CreateDirectory(uploadDir);
+
+                var filePath = Path.Combine(uploadDir, d.FileName);
+                await File.WriteAllBytesAsync(filePath, fileBytes);
+
+                var document = new Document
+                {
+                    PolicyId = policy.Id,
+                    DocumentType = d.DocumentType,
+                    FileName = d.FileName,
+                    FilePath = $"/uploads/{policy.Id}/{d.FileName}",
+                    UploadedAt = DateTime.UtcNow,
+                    Status = DocumentStatus.Submitted
+                };
+                await _policyRepo.AddDocumentAsync(document);
+            }
+        }
 
         await _notificationService.CreateNotificationAsync(customerId, $"Your policy request '{policyNumber}' has been submitted successfully and assigned to an agent.");
         if (agentId > 0)
@@ -164,7 +224,7 @@ public class PolicyService : IPolicyService
         CustomerEmail = p.Customer?.Email ?? string.Empty,
         AgentId = p.AgentId,
         AgentName = p.Agent?.FullName,
-        SelectedRiders = p.SelectedRiders,
+
         AgentEmail = p.Agent?.Email,
         CustomerAge = p.CustomerAge,
         AnnualIncome = p.AnnualIncome,
@@ -186,7 +246,8 @@ public class PolicyService : IPolicyService
             Relationship = n.Relationship,
             Age = n.Age,
             ContactNumber = n.ContactNumber,
-            AllocationPercentage = n.AllocationPercentage
+            IdNumber = n.IdNumber,
+            Email = n.Email
         }).ToList() ?? new List<NomineeResponseDto>(),
         Documents = p.Documents?.Select(d => new DocumentResponseDto 
         {
@@ -256,25 +317,23 @@ public class PolicyService : IPolicyService
             throw new UnauthorizedAccessException(
                 "You do not have access to this policy.");
 
-        // We do *not* clear existing nominees natively right now, we are just appending new ones 
-        // per the user workflow in adding individually from the UI instead of all at once.
-        var newNominees = dto.Nominees.Select(n => new Nominee
-        {
-            PolicyId = policyId,
-            FullName = n.FullName,
-            Relationship = n.Relationship,
-            Age = n.Age,
-            ContactNumber = n.ContactNumber ?? string.Empty,
-            AllocationPercentage = n.AllocationPercentage
-        }).ToList();
-
-        // Clear existing nominees before adding the new one (edit mode)
+        // Clear existing nominees and re-add (allows resubmission)
         await _policyRepo.RemoveNomineesAsync(policyId);
 
-        foreach (var nominee in newNominees)
+        var nominee = new Nominee
         {
-            await _policyRepo.AddNomineeAsync(nominee);
-        }
+            PolicyId = policyId,
+            FullName = dto.Nominee.FullName,
+            Relationship = dto.Nominee.Relationship,
+            Age = dto.Nominee.Age,
+            ContactNumber = dto.Nominee.ContactNumber ?? string.Empty,
+            IdNumber = dto.Nominee.IdNumber ?? string.Empty,
+            Email = dto.Nominee.Email ?? string.Empty,
+            AllocationPercentage = 100
+        };
+
+        await _policyRepo.AddNomineeAsync(nominee);
+
 
         await CheckAndUpdatePolicyActivationAsync(policyId);
 
@@ -283,19 +342,8 @@ public class PolicyService : IPolicyService
 
     private async Task CheckAndUpdatePolicyActivationAsync(int policyId)
     {
-        var policy = await _policyRepo.GetByIdWithDetailsAsync(policyId);
-        if (policy == null || policy.Status != PolicyStatus.Approved) return;
-
-        bool hasAddressProof = policy.Documents.Any(d => d.DocumentType == "Address Proof");
-        bool hasIncomeProof = policy.Documents.Any(d => d.DocumentType == "Income Proof");
-        bool hasNomineeId = policy.Documents.Any(d => d.DocumentType == "Nominee ID Proof");
-        
-        var totalAllocation = policy.Nominees.Sum(n => n.AllocationPercentage);
-        
-        if (hasAddressProof && hasIncomeProof && hasNomineeId && totalAllocation == 100)
-        {
-            policy.Status = PolicyStatus.DocumentsSubmitted;
-            await _policyRepo.UpdateAsync(policy);
-        }
+        // Removed: We no longer transition to DocumentsSubmitted automatically.
+        // Policy remains 'Approved' until paid.
+        await Task.CompletedTask;
     }
 }

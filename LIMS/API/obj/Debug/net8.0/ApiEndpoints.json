@@ -91,6 +91,38 @@
   },
   {
     "ContainingType": "API.Controllers.AdminController",
+    "Method": "GetUserActivity",
+    "RelativePath": "api/Admin/users/{id}/activity",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.AdminController",
+    "Method": "GetUserAssignments",
+    "RelativePath": "api/Admin/users/{id}/assignments",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.AdminController",
     "Method": "ToggleUserStatus",
     "RelativePath": "api/Admin/users/{id}/toggle-status",
     "HttpMethod": "PUT",
@@ -132,6 +164,32 @@
       {
         "Name": "dto",
         "Type": "Application.DTOs.Auth.LoginDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.AuthController",
+    "Method": "GetMe",
+    "RelativePath": "api/Auth/me",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.AuthController",
+    "Method": "UpdateProfile",
+    "RelativePath": "api/Auth/profile",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Application.DTOs.Auth.UpdateProfileDto",
         "IsRequired": true
       }
     ],
@@ -738,6 +796,32 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.SystemTestController",
+    "Method": "FastForwardPolicy",
+    "RelativePath": "api/SystemTest/fast-forward-policy/{policyId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "policyId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.SystemTestController",
+    "Method": "TriggerMaturityJob",
+    "RelativePath": "api/SystemTest/trigger-maturity-job",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   }
 ]

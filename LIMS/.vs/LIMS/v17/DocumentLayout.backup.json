@@ -3,8 +3,32 @@
   "WorkspaceRootPath": "D:\\THANMAI\\LIMS\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\THANMAI\\LIMS\\Infrastructure\\Migrations\\20260308103151_capstone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Infrastructure\\Migrations\\20260308103151_capstone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B192F31F-8D58-4FEF-98EF-A43133B0EE3B}|Infrastructure\\Infrastructure.csproj|d:\\thanmai\\lims\\infrastructure\\data\\dbinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B192F31F-8D58-4FEF-98EF-A43133B0EE3B}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\data\\dbinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\thanmai\\lims\\application\\services\\agentassignmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\services\\agentassignmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\thanmai\\lims\\application\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8AB87FFF-2BF5-4F93-80FA-0571093B1E90}|API.Tests\\API.Tests.csproj|d:\\thanmai\\lims\\api.tests\\controllers\\admincontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8AB87FFF-2BF5-4F93-80FA-0571093B1E90}|API.Tests\\API.Tests.csproj|solutionrelative:api.tests\\controllers\\admincontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FDD683D6-6DDB-4FA7-86C7-2229898F7AE0}|API\\API.csproj|d:\\thanmai\\lims\\api\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FDD683D6-6DDB-4FA7-86C7-2229898F7AE0}|API\\API.csproj|solutionrelative:api\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FDD683D6-6DDB-4FA7-86C7-2229898F7AE0}|API\\API.csproj|d:\\thanmai\\lims\\api\\controllers\\endorsementcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FDD683D6-6DDB-4FA7-86C7-2229898F7AE0}|API\\API.csproj|solutionrelative:api\\controllers\\endorsementcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FDD683D6-6DDB-4FA7-86C7-2229898F7AE0}|API\\API.csproj|d:\\thanmai\\lims\\api\\controllers\\policycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FDD683D6-6DDB-4FA7-86C7-2229898F7AE0}|API\\API.csproj|solutionrelative:api\\controllers\\policycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FDD683D6-6DDB-4FA7-86C7-2229898F7AE0}|API\\API.csproj|d:\\thanmai\\lims\\api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -15,16 +39,8 @@
       "RelativeMoniker": "D:0:0:{B192F31F-8D58-4FEF-98EF-A43133B0EE3B}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\thanmai\\lims\\application\\services\\agentassignmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\services\\agentassignmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\thanmai\\lims\\application\\interfaces\\services\\ipolicyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\interfaces\\services\\ipolicyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FDD683D6-6DDB-4FA7-86C7-2229898F7AE0}|API\\API.csproj|d:\\thanmai\\lims\\api\\controllers\\policycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FDD683D6-6DDB-4FA7-86C7-2229898F7AE0}|API\\API.csproj|solutionrelative:api\\controllers\\policycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FDD683D6-6DDB-4FA7-86C7-2229898F7AE0}|API\\API.csproj|d:\\thanmai\\lims\\api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -49,10 +65,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{FDD683D6-6DDB-4FA7-86C7-2229898F7AE0}|API\\API.csproj|d:\\thanmai\\lims\\api\\extensions\\serviceregistrationextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FDD683D6-6DDB-4FA7-86C7-2229898F7AE0}|API\\API.csproj|solutionrelative:api\\extensions\\serviceregistrationextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B192F31F-8D58-4FEF-98EF-A43133B0EE3B}|Infrastructure\\Infrastructure.csproj|d:\\thanmai\\lims\\infrastructure\\data\\dbinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B192F31F-8D58-4FEF-98EF-A43133B0EE3B}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\data\\dbinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B192F31F-8D58-4FEF-98EF-A43133B0EE3B}|Infrastructure\\Infrastructure.csproj|d:\\thanmai\\lims\\infrastructure\\security\\passwordhasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -189,10 +201,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\thanmai\\lims\\application\\services\\claimservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\services\\claimservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\thanmai\\lims\\application\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|d:\\thanmai\\lims\\application\\services\\agentpolicyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -435,14 +443,6 @@
       "RelativeMoniker": "D:0:0:{A7A8910B-C04D-4CFE-9769-2AF46176097F}|Application\\Application.csproj|solutionrelative:application\\dtos\\auth\\authresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FDD683D6-6DDB-4FA7-86C7-2229898F7AE0}|API\\API.csproj|d:\\thanmai\\lims\\api\\controllers\\endorsementcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FDD683D6-6DDB-4FA7-86C7-2229898F7AE0}|API\\API.csproj|solutionrelative:api\\controllers\\endorsementcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FDD683D6-6DDB-4FA7-86C7-2229898F7AE0}|API\\API.csproj|d:\\thanmai\\lims\\api\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FDD683D6-6DDB-4FA7-86C7-2229898F7AE0}|API\\API.csproj|solutionrelative:api\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FDD683D6-6DDB-4FA7-86C7-2229898F7AE0}|API\\API.csproj|d:\\thanmai\\lims\\api\\controllers\\claimcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FDD683D6-6DDB-4FA7-86C7-2229898F7AE0}|API\\API.csproj|solutionrelative:api\\controllers\\claimcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -527,61 +527,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "20260308103151_capstone.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Infrastructure\\Migrations\\20260308103151_capstone.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Migrations\\20260308103151_capstone.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\Infrastructure\\Migrations\\20260308103151_capstone.cs",
-              "RelativeToolTip": "Infrastructure\\Migrations\\20260308103151_capstone.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAxwA4AAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-08T10:31:51.697Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\API\\appsettings.json",
-              "RelativeDocumentMoniker": "API\\appsettings.json",
-              "ToolTip": "D:\\THANMAI\\LIMS\\API\\appsettings.json",
-              "RelativeToolTip": "API\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA9AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-02-26T09:20:06.927Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "GlobalExceptionMiddleware.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\API\\Middleware\\GlobalExceptionMiddleware.cs",
-              "RelativeDocumentMoniker": "API\\Middleware\\GlobalExceptionMiddleware.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\API\\Middleware\\GlobalExceptionMiddleware.cs",
-              "RelativeToolTip": "API\\Middleware\\GlobalExceptionMiddleware.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADUAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T09:24:45.489Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "AdminController.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\API\\Controllers\\AdminController.cs",
-              "RelativeDocumentMoniker": "API\\Controllers\\AdminController.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\API\\Controllers\\AdminController.cs",
-              "RelativeToolTip": "API\\Controllers\\AdminController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADQAAAA7AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T15:04:32.8Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 12,
               "Title": "PaymentController.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\API\\Controllers\\PaymentController.cs",
               "RelativeDocumentMoniker": "API\\Controllers\\PaymentController.cs",
@@ -593,7 +543,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 11,
               "Title": "AuthController.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\API\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "API\\Controllers\\AuthController.cs",
@@ -605,7 +555,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 9,
               "Title": "IPolicyService.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\Interfaces\\Services\\IPolicyService.cs",
               "RelativeDocumentMoniker": "Application\\Interfaces\\Services\\IPolicyService.cs",
@@ -617,33 +567,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AgentAssignmentService.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\Services\\AgentAssignmentService.cs",
-              "RelativeDocumentMoniker": "Application\\Services\\AgentAssignmentService.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\Application\\Services\\AgentAssignmentService.cs",
-              "RelativeToolTip": "Application\\Services\\AgentAssignmentService.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAABwAAABgAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "DashboardController.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\API\\Controllers\\DashboardController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\DashboardController.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\API\\Controllers\\DashboardController.cs",
+              "RelativeToolTip": "API\\Controllers\\DashboardController.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAxwBEAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T18:02:27.57Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-27T06:41:00.383Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Infrastructure.csproj",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Infrastructure\\Infrastructure.csproj",
-              "RelativeDocumentMoniker": "Infrastructure\\Infrastructure.csproj",
-              "ToolTip": "D:\\THANMAI\\LIMS\\Infrastructure\\Infrastructure.csproj",
-              "RelativeToolTip": "Infrastructure\\Infrastructure.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-02-26T09:31:00.798Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "PolicyController.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\API\\Controllers\\PolicyController.cs",
               "RelativeDocumentMoniker": "API\\Controllers\\PolicyController.cs",
@@ -655,451 +591,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "DbInitializer.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Infrastructure\\Data\\DbInitializer.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Data\\DbInitializer.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\Infrastructure\\Data\\DbInitializer.cs",
-              "RelativeToolTip": "Infrastructure\\Data\\DbInitializer.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAAwBYAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T09:06:32.223Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "PasswordHasher.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Infrastructure\\Security\\PasswordHasher.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Security\\PasswordHasher.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\Infrastructure\\Security\\PasswordHasher.cs",
-              "RelativeToolTip": "Infrastructure\\Security\\PasswordHasher.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T09:02:16.187Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "launchSettings.json",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\API\\Properties\\launchSettings.json",
-              "RelativeDocumentMoniker": "API\\Properties\\launchSettings.json",
-              "ToolTip": "D:\\THANMAI\\LIMS\\API\\Properties\\launchSettings.json",
-              "RelativeToolTip": "API\\Properties\\launchSettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-02-26T11:57:57.795Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "JwtTokenService.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Infrastructure\\Security\\JwtTokenService.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Security\\JwtTokenService.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\Infrastructure\\Security\\JwtTokenService.cs",
-              "RelativeToolTip": "Infrastructure\\Security\\JwtTokenService.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAQwBoAAAAXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T09:03:12.836Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "UserRepository.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Infrastructure\\Repositories\\UserRepository.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\UserRepository.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\Infrastructure\\Repositories\\UserRepository.cs",
-              "RelativeToolTip": "Infrastructure\\Repositories\\UserRepository.cs",
-              "ViewState": "AgIAAEcAAAAAAAAAAAAAAGIAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T09:13:26.457Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "PolicyRepository.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Infrastructure\\Repositories\\PolicyRepository.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\PolicyRepository.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\Infrastructure\\Repositories\\PolicyRepository.cs",
-              "RelativeToolTip": "Infrastructure\\Repositories\\PolicyRepository.cs",
-              "ViewState": "AgIAAH4AAAAAAAAAAAAYwJ0AAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-27T04:40:31.164Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "ServiceRegistrationExtensions.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\API\\Extensions\\ServiceRegistrationExtensions.cs",
-              "RelativeDocumentMoniker": "API\\Extensions\\ServiceRegistrationExtensions.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\API\\Extensions\\ServiceRegistrationExtensions.cs",
-              "RelativeToolTip": "API\\Extensions\\ServiceRegistrationExtensions.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T09:22:18.445Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "PlanRepository.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Infrastructure\\Repositories\\PlanRepository.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\PlanRepository.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\Infrastructure\\Repositories\\PlanRepository.cs",
-              "RelativeToolTip": "Infrastructure\\Repositories\\PlanRepository.cs",
-              "ViewState": "AgIAADYAAAAAAAAAAAAAwCkAAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T17:13:24.657Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "PaymentRepository.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Infrastructure\\Repositories\\PaymentRepository.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\PaymentRepository.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\Infrastructure\\Repositories\\PaymentRepository.cs",
-              "RelativeToolTip": "Infrastructure\\Repositories\\PaymentRepository.cs",
-              "ViewState": "AgIAACwAAAAAAAAAAAA1wEgAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T19:47:01.992Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "NomineeRepository.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Infrastructure\\Repositories\\NomineeRepository.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\NomineeRepository.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\Infrastructure\\Repositories\\NomineeRepository.cs",
-              "RelativeToolTip": "Infrastructure\\Repositories\\NomineeRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T18:51:20.184Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "EndorsementRepository.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Infrastructure\\Repositories\\EndorsementRepository.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\EndorsementRepository.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\Infrastructure\\Repositories\\EndorsementRepository.cs",
-              "RelativeToolTip": "Infrastructure\\Repositories\\EndorsementRepository.cs",
-              "ViewState": "AgIAAF0AAAAAAAAAAAAYwGcAAAA5AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-27T04:16:38.047Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "CommissionRepository.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Infrastructure\\Repositories\\CommissionRepository.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\CommissionRepository.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\Infrastructure\\Repositories\\CommissionRepository.cs",
-              "RelativeToolTip": "Infrastructure\\Repositories\\CommissionRepository.cs",
-              "ViewState": "AgIAADkAAAAAAAAAAAAYwFYAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T18:53:56.56Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "ClaimRepository.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Infrastructure\\Repositories\\ClaimRepository.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\ClaimRepository.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\Infrastructure\\Repositories\\ClaimRepository.cs",
-              "RelativeToolTip": "Infrastructure\\Repositories\\ClaimRepository.cs",
-              "ViewState": "AgIAAJUAAAAAAAAAAAA5wKEAAAADAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T20:06:36.876Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "AppDbContext.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Infrastructure\\Data\\AppDbContext.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Data\\AppDbContext.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\Infrastructure\\Data\\AppDbContext.cs",
-              "RelativeToolTip": "Infrastructure\\Data\\AppDbContext.cs",
-              "ViewState": "AgIAAKsAAAAAAAAAAAAQwD8AAABGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T16:37:05.429Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "UserRole.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Domain\\Enums\\UserRole.cs",
-              "RelativeDocumentMoniker": "Domain\\Enums\\UserRole.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\Domain\\Enums\\UserRole.cs",
-              "RelativeToolTip": "Domain\\Enums\\UserRole.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T08:57:00.865Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "PolicyStatus.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Domain\\Enums\\PolicyStatus.cs",
-              "RelativeDocumentMoniker": "Domain\\Enums\\PolicyStatus.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\Domain\\Enums\\PolicyStatus.cs",
-              "RelativeToolTip": "Domain\\Enums\\PolicyStatus.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T17:53:44.792Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "PaymentStatus.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Domain\\Enums\\PaymentStatus.cs",
-              "RelativeDocumentMoniker": "Domain\\Enums\\PaymentStatus.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\Domain\\Enums\\PaymentStatus.cs",
-              "RelativeToolTip": "Domain\\Enums\\PaymentStatus.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T19:40:59.002Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "InvoiceStatus.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Domain\\Enums\\InvoiceStatus.cs",
-              "RelativeDocumentMoniker": "Domain\\Enums\\InvoiceStatus.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\Domain\\Enums\\InvoiceStatus.cs",
-              "RelativeToolTip": "Domain\\Enums\\InvoiceStatus.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T19:41:17.208Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 28,
-              "Title": "EndorsementType.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Domain\\Enums\\EndorsementType.cs",
-              "RelativeDocumentMoniker": "Domain\\Enums\\EndorsementType.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\Domain\\Enums\\EndorsementType.cs",
-              "RelativeToolTip": "Domain\\Enums\\EndorsementType.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-27T04:06:25.657Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 29,
-              "Title": "EndorsementStatus.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Domain\\Enums\\EndorsementStatus.cs",
-              "RelativeDocumentMoniker": "Domain\\Enums\\EndorsementStatus.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\Domain\\Enums\\EndorsementStatus.cs",
-              "RelativeToolTip": "Domain\\Enums\\EndorsementStatus.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-27T04:05:46.411Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 30,
-              "Title": "DocumentStatus.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Domain\\Enums\\DocumentStatus.cs",
-              "RelativeDocumentMoniker": "Domain\\Enums\\DocumentStatus.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\Domain\\Enums\\DocumentStatus.cs",
-              "RelativeToolTip": "Domain\\Enums\\DocumentStatus.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T17:54:49.129Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 31,
-              "Title": "ClaimStatus.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Domain\\Enums\\ClaimStatus.cs",
-              "RelativeDocumentMoniker": "Domain\\Enums\\ClaimStatus.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\Domain\\Enums\\ClaimStatus.cs",
-              "RelativeToolTip": "Domain\\Enums\\ClaimStatus.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T19:59:04.907Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 32,
-              "Title": "User.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Domain\\Entities\\User.cs",
-              "RelativeDocumentMoniker": "Domain\\Entities\\User.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\Domain\\Entities\\User.cs",
-              "RelativeToolTip": "Domain\\Entities\\User.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAowA4AAAA5AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T15:48:28.777Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 33,
-              "Title": "PolicyEndorsement.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Domain\\Entities\\PolicyEndorsement.cs",
-              "RelativeDocumentMoniker": "Domain\\Entities\\PolicyEndorsement.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\Domain\\Entities\\PolicyEndorsement.cs",
-              "RelativeToolTip": "Domain\\Entities\\PolicyEndorsement.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAzwCEAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-27T04:06:51.668Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 35,
-              "Title": "Nominee.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Domain\\Entities\\Nominee.cs",
-              "RelativeDocumentMoniker": "Domain\\Entities\\Nominee.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\Domain\\Entities\\Nominee.cs",
-              "RelativeToolTip": "Domain\\Entities\\Nominee.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T17:55:09.447Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 36,
-              "Title": "Invoice.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Domain\\Entities\\Invoice.cs",
-              "RelativeDocumentMoniker": "Domain\\Entities\\Invoice.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\Domain\\Entities\\Invoice.cs",
-              "RelativeToolTip": "Domain\\Entities\\Invoice.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAQwBkAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T17:56:30.29Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 37,
-              "Title": "InsurancePlan.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Domain\\Entities\\InsurancePlan.cs",
-              "RelativeDocumentMoniker": "Domain\\Entities\\InsurancePlan.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\Domain\\Entities\\InsurancePlan.cs",
-              "RelativeToolTip": "Domain\\Entities\\InsurancePlan.cs",
-              "ViewState": "AgIAACAAAAAAAAAAAAAiwAoAAAA4AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T10:06:28.814Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 38,
-              "Title": "Document.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Domain\\Entities\\Document.cs",
-              "RelativeDocumentMoniker": "Domain\\Entities\\Document.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\Domain\\Entities\\Document.cs",
-              "RelativeToolTip": "Domain\\Entities\\Document.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T17:55:36.978Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 39,
-              "Title": "Commission.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Domain\\Entities\\Commission.cs",
-              "RelativeDocumentMoniker": "Domain\\Entities\\Commission.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\Domain\\Entities\\Commission.cs",
-              "RelativeToolTip": "Domain\\Entities\\Commission.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T18:51:37.581Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 40,
-              "Title": "ClaimDocument.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Domain\\Entities\\ClaimDocument.cs",
-              "RelativeDocumentMoniker": "Domain\\Entities\\ClaimDocument.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\Domain\\Entities\\ClaimDocument.cs",
-              "RelativeToolTip": "Domain\\Entities\\ClaimDocument.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T19:59:54.769Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 41,
-              "Title": "PremiumCalculationService.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\Services\\PremiumCalculationService.cs",
-              "RelativeDocumentMoniker": "Application\\Services\\PremiumCalculationService.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\Application\\Services\\PremiumCalculationService.cs",
-              "RelativeToolTip": "Application\\Services\\PremiumCalculationService.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAAQwDgAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T18:50:46.715Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 34,
-              "Title": "Payment.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Domain\\Entities\\Payment.cs",
-              "RelativeDocumentMoniker": "Domain\\Entities\\Payment.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\Domain\\Entities\\Payment.cs",
-              "RelativeToolTip": "Domain\\Entities\\Payment.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T19:42:20.598Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 42,
-              "Title": "PlanService.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\Services\\PlanService.cs",
-              "RelativeDocumentMoniker": "Application\\Services\\PlanService.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\Application\\Services\\PlanService.cs",
-              "RelativeToolTip": "Application\\Services\\PlanService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T17:16:20.869Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 43,
-              "Title": "InvoiceService.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\Services\\InvoiceService.cs",
-              "RelativeDocumentMoniker": "Application\\Services\\InvoiceService.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\Application\\Services\\InvoiceService.cs",
-              "RelativeToolTip": "Application\\Services\\InvoiceService.cs",
-              "ViewState": "AgIAAG4AAAAAAAAAAAAzwIYAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T19:47:39.962Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 44,
-              "Title": "EndorsementService.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\Services\\EndorsementService.cs",
-              "RelativeDocumentMoniker": "Application\\Services\\EndorsementService.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\Application\\Services\\EndorsementService.cs",
-              "RelativeToolTip": "Application\\Services\\EndorsementService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJIAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-27T04:17:26.668Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 45,
-              "Title": "ClaimsOfficerAssignmentService.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\Services\\ClaimsOfficerAssignmentService.cs",
-              "RelativeDocumentMoniker": "Application\\Services\\ClaimsOfficerAssignmentService.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\Application\\Services\\ClaimsOfficerAssignmentService.cs",
-              "RelativeToolTip": "Application\\Services\\ClaimsOfficerAssignmentService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T20:13:28.563Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 46,
-              "Title": "ClaimService.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\Services\\ClaimService.cs",
-              "RelativeDocumentMoniker": "Application\\Services\\ClaimService.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\Application\\Services\\ClaimService.cs",
-              "RelativeToolTip": "Application\\Services\\ClaimService.cs",
-              "ViewState": "AgIAAAwBAAAAAAAAAAAQwCQBAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T20:25:48.068Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 2,
               "Title": "AuthService.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\Services\\AuthService.cs",
               "RelativeDocumentMoniker": "Application\\Services\\AuthService.cs",
@@ -1111,7 +603,537 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DbInitializer.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Infrastructure\\Data\\DbInitializer.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Data\\DbInitializer.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\Infrastructure\\Data\\DbInitializer.cs",
+              "RelativeToolTip": "Infrastructure\\Data\\DbInitializer.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAQwCIAAABIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T09:06:32.223Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AdminControllerTests.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\API.Tests\\Controllers\\AdminControllerTests.cs",
+              "RelativeDocumentMoniker": "API.Tests\\Controllers\\AdminControllerTests.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\API.Tests\\Controllers\\AdminControllerTests.cs",
+              "RelativeToolTip": "API.Tests\\Controllers\\AdminControllerTests.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-09T05:14:12.14Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AgentAssignmentService.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\Services\\AgentAssignmentService.cs",
+              "RelativeDocumentMoniker": "Application\\Services\\AgentAssignmentService.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\Application\\Services\\AgentAssignmentService.cs",
+              "RelativeToolTip": "Application\\Services\\AgentAssignmentService.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAQwBwAAABgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T18:02:27.57Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\API\\appsettings.json",
+              "RelativeDocumentMoniker": "API\\appsettings.json",
+              "ToolTip": "D:\\THANMAI\\LIMS\\API\\appsettings.json",
+              "RelativeToolTip": "API\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-02-26T09:20:06.927Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "EndorsementController.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\API\\Controllers\\EndorsementController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\EndorsementController.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\API\\Controllers\\EndorsementController.cs",
+              "RelativeToolTip": "API\\Controllers\\EndorsementController.cs",
+              "ViewState": "AgIAAHYAAAAAAAAAAAAQwH0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T04:17:47.87Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\API\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\AdminController.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\API\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "API\\Controllers\\AdminController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADQAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T15:04:32.8Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "GlobalExceptionMiddleware.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\API\\Middleware\\GlobalExceptionMiddleware.cs",
+              "RelativeDocumentMoniker": "API\\Middleware\\GlobalExceptionMiddleware.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\API\\Middleware\\GlobalExceptionMiddleware.cs",
+              "RelativeToolTip": "API\\Middleware\\GlobalExceptionMiddleware.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADUAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T09:24:45.489Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Infrastructure.csproj",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Infrastructure\\Infrastructure.csproj",
+              "RelativeDocumentMoniker": "Infrastructure\\Infrastructure.csproj",
+              "ToolTip": "D:\\THANMAI\\LIMS\\Infrastructure\\Infrastructure.csproj",
+              "RelativeToolTip": "Infrastructure\\Infrastructure.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-02-26T09:31:00.798Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "PasswordHasher.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Infrastructure\\Security\\PasswordHasher.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Security\\PasswordHasher.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\Infrastructure\\Security\\PasswordHasher.cs",
+              "RelativeToolTip": "Infrastructure\\Security\\PasswordHasher.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T09:02:16.187Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\API\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "API\\Properties\\launchSettings.json",
+              "ToolTip": "D:\\THANMAI\\LIMS\\API\\Properties\\launchSettings.json",
+              "RelativeToolTip": "API\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-02-26T11:57:57.795Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "JwtTokenService.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Infrastructure\\Security\\JwtTokenService.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Security\\JwtTokenService.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\Infrastructure\\Security\\JwtTokenService.cs",
+              "RelativeToolTip": "Infrastructure\\Security\\JwtTokenService.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwBoAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T09:03:12.836Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Infrastructure\\Repositories\\UserRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\UserRepository.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\Infrastructure\\Repositories\\UserRepository.cs",
+              "RelativeToolTip": "Infrastructure\\Repositories\\UserRepository.cs",
+              "ViewState": "AgIAAEcAAAAAAAAAAAAAAGIAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T09:13:26.457Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "PolicyRepository.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Infrastructure\\Repositories\\PolicyRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\PolicyRepository.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\Infrastructure\\Repositories\\PolicyRepository.cs",
+              "RelativeToolTip": "Infrastructure\\Repositories\\PolicyRepository.cs",
+              "ViewState": "AgIAAH4AAAAAAAAAAAAYwJ0AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T04:40:31.164Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ServiceRegistrationExtensions.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\API\\Extensions\\ServiceRegistrationExtensions.cs",
+              "RelativeDocumentMoniker": "API\\Extensions\\ServiceRegistrationExtensions.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\API\\Extensions\\ServiceRegistrationExtensions.cs",
+              "RelativeToolTip": "API\\Extensions\\ServiceRegistrationExtensions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T09:22:18.445Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "PlanRepository.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Infrastructure\\Repositories\\PlanRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\PlanRepository.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\Infrastructure\\Repositories\\PlanRepository.cs",
+              "RelativeToolTip": "Infrastructure\\Repositories\\PlanRepository.cs",
+              "ViewState": "AgIAADYAAAAAAAAAAAAAwCkAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T17:13:24.657Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "PaymentRepository.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Infrastructure\\Repositories\\PaymentRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\PaymentRepository.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\Infrastructure\\Repositories\\PaymentRepository.cs",
+              "RelativeToolTip": "Infrastructure\\Repositories\\PaymentRepository.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAA1wEgAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T19:47:01.992Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "NomineeRepository.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Infrastructure\\Repositories\\NomineeRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\NomineeRepository.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\Infrastructure\\Repositories\\NomineeRepository.cs",
+              "RelativeToolTip": "Infrastructure\\Repositories\\NomineeRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T18:51:20.184Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "EndorsementRepository.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Infrastructure\\Repositories\\EndorsementRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\EndorsementRepository.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\Infrastructure\\Repositories\\EndorsementRepository.cs",
+              "RelativeToolTip": "Infrastructure\\Repositories\\EndorsementRepository.cs",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAYwGcAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T04:16:38.047Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "CommissionRepository.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Infrastructure\\Repositories\\CommissionRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\CommissionRepository.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\Infrastructure\\Repositories\\CommissionRepository.cs",
+              "RelativeToolTip": "Infrastructure\\Repositories\\CommissionRepository.cs",
+              "ViewState": "AgIAADkAAAAAAAAAAAAYwFYAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T18:53:56.56Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "ClaimRepository.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Infrastructure\\Repositories\\ClaimRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\ClaimRepository.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\Infrastructure\\Repositories\\ClaimRepository.cs",
+              "RelativeToolTip": "Infrastructure\\Repositories\\ClaimRepository.cs",
+              "ViewState": "AgIAAJUAAAAAAAAAAAA5wKEAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T20:06:36.876Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Infrastructure\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Data\\AppDbContext.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\Infrastructure\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "Infrastructure\\Data\\AppDbContext.cs",
+              "ViewState": "AgIAAKsAAAAAAAAAAAAQwD8AAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T16:37:05.429Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "UserRole.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Domain\\Enums\\UserRole.cs",
+              "RelativeDocumentMoniker": "Domain\\Enums\\UserRole.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\Domain\\Enums\\UserRole.cs",
+              "RelativeToolTip": "Domain\\Enums\\UserRole.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T08:57:00.865Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "PolicyStatus.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Domain\\Enums\\PolicyStatus.cs",
+              "RelativeDocumentMoniker": "Domain\\Enums\\PolicyStatus.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\Domain\\Enums\\PolicyStatus.cs",
+              "RelativeToolTip": "Domain\\Enums\\PolicyStatus.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T17:53:44.792Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "PaymentStatus.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Domain\\Enums\\PaymentStatus.cs",
+              "RelativeDocumentMoniker": "Domain\\Enums\\PaymentStatus.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\Domain\\Enums\\PaymentStatus.cs",
+              "RelativeToolTip": "Domain\\Enums\\PaymentStatus.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T19:40:59.002Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "InvoiceStatus.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Domain\\Enums\\InvoiceStatus.cs",
+              "RelativeDocumentMoniker": "Domain\\Enums\\InvoiceStatus.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\Domain\\Enums\\InvoiceStatus.cs",
+              "RelativeToolTip": "Domain\\Enums\\InvoiceStatus.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T19:41:17.208Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "EndorsementType.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Domain\\Enums\\EndorsementType.cs",
+              "RelativeDocumentMoniker": "Domain\\Enums\\EndorsementType.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\Domain\\Enums\\EndorsementType.cs",
+              "RelativeToolTip": "Domain\\Enums\\EndorsementType.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T04:06:25.657Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "EndorsementStatus.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Domain\\Enums\\EndorsementStatus.cs",
+              "RelativeDocumentMoniker": "Domain\\Enums\\EndorsementStatus.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\Domain\\Enums\\EndorsementStatus.cs",
+              "RelativeToolTip": "Domain\\Enums\\EndorsementStatus.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T04:05:46.411Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "DocumentStatus.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Domain\\Enums\\DocumentStatus.cs",
+              "RelativeDocumentMoniker": "Domain\\Enums\\DocumentStatus.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\Domain\\Enums\\DocumentStatus.cs",
+              "RelativeToolTip": "Domain\\Enums\\DocumentStatus.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T17:54:49.129Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "ClaimStatus.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Domain\\Enums\\ClaimStatus.cs",
+              "RelativeDocumentMoniker": "Domain\\Enums\\ClaimStatus.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\Domain\\Enums\\ClaimStatus.cs",
+              "RelativeToolTip": "Domain\\Enums\\ClaimStatus.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T19:59:04.907Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "User.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Domain\\Entities\\User.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\User.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\Domain\\Entities\\User.cs",
+              "RelativeToolTip": "Domain\\Entities\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAowA4AAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T15:48:28.777Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "PolicyEndorsement.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Domain\\Entities\\PolicyEndorsement.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\PolicyEndorsement.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\Domain\\Entities\\PolicyEndorsement.cs",
+              "RelativeToolTip": "Domain\\Entities\\PolicyEndorsement.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAzwCEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T04:06:51.668Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "Nominee.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Domain\\Entities\\Nominee.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\Nominee.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\Domain\\Entities\\Nominee.cs",
+              "RelativeToolTip": "Domain\\Entities\\Nominee.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T17:55:09.447Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "Invoice.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Domain\\Entities\\Invoice.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\Invoice.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\Domain\\Entities\\Invoice.cs",
+              "RelativeToolTip": "Domain\\Entities\\Invoice.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAQwBkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T17:56:30.29Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "InsurancePlan.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Domain\\Entities\\InsurancePlan.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\InsurancePlan.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\Domain\\Entities\\InsurancePlan.cs",
+              "RelativeToolTip": "Domain\\Entities\\InsurancePlan.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAiwAoAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T10:06:28.814Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "Document.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Domain\\Entities\\Document.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\Document.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\Domain\\Entities\\Document.cs",
+              "RelativeToolTip": "Domain\\Entities\\Document.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T17:55:36.978Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "Commission.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Domain\\Entities\\Commission.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\Commission.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\Domain\\Entities\\Commission.cs",
+              "RelativeToolTip": "Domain\\Entities\\Commission.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T18:51:37.581Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "ClaimDocument.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Domain\\Entities\\ClaimDocument.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\ClaimDocument.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\Domain\\Entities\\ClaimDocument.cs",
+              "RelativeToolTip": "Domain\\Entities\\ClaimDocument.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T19:59:54.769Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "PremiumCalculationService.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\Services\\PremiumCalculationService.cs",
+              "RelativeDocumentMoniker": "Application\\Services\\PremiumCalculationService.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\Application\\Services\\PremiumCalculationService.cs",
+              "RelativeToolTip": "Application\\Services\\PremiumCalculationService.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAQwDgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T18:50:46.715Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "Payment.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Domain\\Entities\\Payment.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\Payment.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\Domain\\Entities\\Payment.cs",
+              "RelativeToolTip": "Domain\\Entities\\Payment.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T19:42:20.598Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "PlanService.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\Services\\PlanService.cs",
+              "RelativeDocumentMoniker": "Application\\Services\\PlanService.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\Application\\Services\\PlanService.cs",
+              "RelativeToolTip": "Application\\Services\\PlanService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T17:16:20.869Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "InvoiceService.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\Services\\InvoiceService.cs",
+              "RelativeDocumentMoniker": "Application\\Services\\InvoiceService.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\Application\\Services\\InvoiceService.cs",
+              "RelativeToolTip": "Application\\Services\\InvoiceService.cs",
+              "ViewState": "AgIAAG4AAAAAAAAAAAAzwIYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T19:47:39.962Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "EndorsementService.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\Services\\EndorsementService.cs",
+              "RelativeDocumentMoniker": "Application\\Services\\EndorsementService.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\Application\\Services\\EndorsementService.cs",
+              "RelativeToolTip": "Application\\Services\\EndorsementService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJIAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-27T04:17:26.668Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 48,
+              "Title": "ClaimsOfficerAssignmentService.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\Services\\ClaimsOfficerAssignmentService.cs",
+              "RelativeDocumentMoniker": "Application\\Services\\ClaimsOfficerAssignmentService.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\Application\\Services\\ClaimsOfficerAssignmentService.cs",
+              "RelativeToolTip": "Application\\Services\\ClaimsOfficerAssignmentService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T20:13:28.563Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 49,
+              "Title": "ClaimService.cs",
+              "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\Services\\ClaimService.cs",
+              "RelativeDocumentMoniker": "Application\\Services\\ClaimService.cs",
+              "ToolTip": "D:\\THANMAI\\LIMS\\Application\\Services\\ClaimService.cs",
+              "RelativeToolTip": "Application\\Services\\ClaimService.cs",
+              "ViewState": "AgIAAAwBAAAAAAAAAAAQwCQBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T20:25:48.068Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 50,
               "Title": "AgentPolicyService.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\Services\\AgentPolicyService.cs",
               "RelativeDocumentMoniker": "Application\\Services\\AgentPolicyService.cs",
@@ -1123,7 +1145,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 51,
               "Title": "IPremiumCalculationService.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\Interfaces\\Services\\IPremiumCalculationService.cs",
               "RelativeDocumentMoniker": "Application\\Interfaces\\Services\\IPremiumCalculationService.cs",
@@ -1135,7 +1157,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 52,
               "Title": "IPlanService.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\Interfaces\\Services\\IPlanService.cs",
               "RelativeDocumentMoniker": "Application\\Interfaces\\Services\\IPlanService.cs",
@@ -1147,7 +1169,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 53,
               "Title": "IPaymentService.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\Interfaces\\Services\\IPaymentService.cs",
               "RelativeDocumentMoniker": "Application\\Interfaces\\Services\\IPaymentService.cs",
@@ -1159,7 +1181,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 54,
               "Title": "IInvoiceService.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\Interfaces\\Services\\IInvoiceService.cs",
               "RelativeDocumentMoniker": "Application\\Interfaces\\Services\\IInvoiceService.cs",
@@ -1171,7 +1193,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 55,
               "Title": "IEndorsementService.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\Interfaces\\Services\\IEndorsementService.cs",
               "RelativeDocumentMoniker": "Application\\Interfaces\\Services\\IEndorsementService.cs",
@@ -1183,7 +1205,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 54,
+              "DocumentIndex": 56,
               "Title": "IClaimsOfficerAssignmentService.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\Interfaces\\Services\\IClaimsOfficerAssignmentService.cs",
               "RelativeDocumentMoniker": "Application\\Interfaces\\Services\\IClaimsOfficerAssignmentService.cs",
@@ -1195,7 +1217,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 55,
+              "DocumentIndex": 57,
               "Title": "IClaimService.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\Interfaces\\Services\\IClaimService.cs",
               "RelativeDocumentMoniker": "Application\\Interfaces\\Services\\IClaimService.cs",
@@ -1207,7 +1229,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 56,
+              "DocumentIndex": 58,
               "Title": "IAuthService.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\Interfaces\\Services\\IAuthService.cs",
               "RelativeDocumentMoniker": "Application\\Interfaces\\Services\\IAuthService.cs",
@@ -1219,7 +1241,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 57,
+              "DocumentIndex": 59,
               "Title": "IAgentPolicyService.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\Interfaces\\Services\\IAgentPolicyService.cs",
               "RelativeDocumentMoniker": "Application\\Interfaces\\Services\\IAgentPolicyService.cs",
@@ -1231,7 +1253,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 58,
+              "DocumentIndex": 60,
               "Title": "IAgentAssignmentService.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\Interfaces\\Services\\IAgentAssignmentService.cs",
               "RelativeDocumentMoniker": "Application\\Interfaces\\Services\\IAgentAssignmentService.cs",
@@ -1243,7 +1265,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 59,
+              "DocumentIndex": 61,
               "Title": "IPolicyRepository.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\Interfaces\\Repositories\\IPolicyRepository.cs",
               "RelativeDocumentMoniker": "Application\\Interfaces\\Repositories\\IPolicyRepository.cs",
@@ -1255,7 +1277,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 60,
+              "DocumentIndex": 62,
               "Title": "IPlanRepository.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\Interfaces\\Repositories\\IPlanRepository.cs",
               "RelativeDocumentMoniker": "Application\\Interfaces\\Repositories\\IPlanRepository.cs",
@@ -1267,7 +1289,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 61,
+              "DocumentIndex": 63,
               "Title": "IPaymentRepository.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\Interfaces\\Repositories\\IPaymentRepository.cs",
               "RelativeDocumentMoniker": "Application\\Interfaces\\Repositories\\IPaymentRepository.cs",
@@ -1279,7 +1301,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 62,
+              "DocumentIndex": 64,
               "Title": "INomineeRepository.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\Interfaces\\Repositories\\INomineeRepository.cs",
               "RelativeDocumentMoniker": "Application\\Interfaces\\Repositories\\INomineeRepository.cs",
@@ -1291,7 +1313,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 63,
+              "DocumentIndex": 65,
               "Title": "IInvoiceRepository.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\Interfaces\\Repositories\\IInvoiceRepository.cs",
               "RelativeDocumentMoniker": "Application\\Interfaces\\Repositories\\IInvoiceRepository.cs",
@@ -1303,7 +1325,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 64,
+              "DocumentIndex": 66,
               "Title": "IEndorsementRepository.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\Interfaces\\Repositories\\IEndorsementRepository.cs",
               "RelativeDocumentMoniker": "Application\\Interfaces\\Repositories\\IEndorsementRepository.cs",
@@ -1315,7 +1337,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 65,
+              "DocumentIndex": 67,
               "Title": "ICommissionRepository.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\Interfaces\\Repositories\\ICommissionRepository.cs",
               "RelativeDocumentMoniker": "Application\\Interfaces\\Repositories\\ICommissionRepository.cs",
@@ -1327,7 +1349,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 66,
+              "DocumentIndex": 68,
               "Title": "IClaimRepository.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\Interfaces\\Repositories\\IClaimRepository.cs",
               "RelativeDocumentMoniker": "Application\\Interfaces\\Repositories\\IClaimRepository.cs",
@@ -1339,7 +1361,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 67,
+              "DocumentIndex": 69,
               "Title": "UploadDocumentDto.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\DTOs\\Policy\\UploadDocumentDto.cs",
               "RelativeDocumentMoniker": "Application\\DTOs\\Policy\\UploadDocumentDto.cs",
@@ -1351,7 +1373,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 68,
+              "DocumentIndex": 70,
               "Title": "UpdatePlanDto.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\DTOs\\Policy\\UpdatePlanDto.cs",
               "RelativeDocumentMoniker": "Application\\DTOs\\Policy\\UpdatePlanDto.cs",
@@ -1363,7 +1385,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 69,
+              "DocumentIndex": 71,
               "Title": "SubmitNomineesDto.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\DTOs\\Policy\\SubmitNomineesDto.cs",
               "RelativeDocumentMoniker": "Application\\DTOs\\Policy\\SubmitNomineesDto.cs",
@@ -1375,7 +1397,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 70,
+              "DocumentIndex": 72,
               "Title": "PremiumCalculationResultDto.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\DTOs\\Policy\\PremiumCalculationResultDto.cs",
               "RelativeDocumentMoniker": "Application\\DTOs\\Policy\\PremiumCalculationResultDto.cs",
@@ -1387,7 +1409,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 71,
+              "DocumentIndex": 73,
               "Title": "PolicyResponseDto.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\DTOs\\Policy\\PolicyResponseDto.cs",
               "RelativeDocumentMoniker": "Application\\DTOs\\Policy\\PolicyResponseDto.cs",
@@ -1399,7 +1421,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 72,
+              "DocumentIndex": 74,
               "Title": "PolicyDecisionDto.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\DTOs\\Policy\\PolicyDecisionDto.cs",
               "RelativeDocumentMoniker": "Application\\DTOs\\Policy\\PolicyDecisionDto.cs",
@@ -1411,7 +1433,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 73,
+              "DocumentIndex": 75,
               "Title": "PlanResponseDto.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\DTOs\\Policy\\PlanResponseDto.cs",
               "RelativeDocumentMoniker": "Application\\DTOs\\Policy\\PlanResponseDto.cs",
@@ -1423,7 +1445,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 74,
+              "DocumentIndex": 76,
               "Title": "NomineeResponseDto.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\DTOs\\Policy\\NomineeResponseDto.cs",
               "RelativeDocumentMoniker": "Application\\DTOs\\Policy\\NomineeResponseDto.cs",
@@ -1435,7 +1457,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 75,
+              "DocumentIndex": 77,
               "Title": "EligibilityDetailsDto.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\DTOs\\Policy\\EligibilityDetailsDto.cs",
               "RelativeDocumentMoniker": "Application\\DTOs\\Policy\\EligibilityDetailsDto.cs",
@@ -1447,7 +1469,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 76,
+              "DocumentIndex": 78,
               "Title": "DocumentResponseDto.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\DTOs\\Policy\\DocumentResponseDto.cs",
               "RelativeDocumentMoniker": "Application\\DTOs\\Policy\\DocumentResponseDto.cs",
@@ -1459,7 +1481,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 77,
+              "DocumentIndex": 79,
               "Title": "CreatePlanDto.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\DTOs\\Policy\\CreatePlanDto.cs",
               "RelativeDocumentMoniker": "Application\\DTOs\\Policy\\CreatePlanDto.cs",
@@ -1471,7 +1493,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 78,
+              "DocumentIndex": 80,
               "Title": "AddNomineeDto.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\DTOs\\Policy\\AddNomineeDto.cs",
               "RelativeDocumentMoniker": "Application\\DTOs\\Policy\\AddNomineeDto.cs",
@@ -1483,7 +1505,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 79,
+              "DocumentIndex": 81,
               "Title": "PaymentScheduleDto.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\DTOs\\Payment\\PaymentScheduleDto.cs",
               "RelativeDocumentMoniker": "Application\\DTOs\\Payment\\PaymentScheduleDto.cs",
@@ -1495,7 +1517,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 80,
+              "DocumentIndex": 82,
               "Title": "MakePaymentDto.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\DTOs\\Payment\\MakePaymentDto.cs",
               "RelativeDocumentMoniker": "Application\\DTOs\\Payment\\MakePaymentDto.cs",
@@ -1507,7 +1529,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 81,
+              "DocumentIndex": 83,
               "Title": "InvoiceResponseDto.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\DTOs\\Payment\\InvoiceResponseDto.cs",
               "RelativeDocumentMoniker": "Application\\DTOs\\Payment\\InvoiceResponseDto.cs",
@@ -1519,7 +1541,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 82,
+              "DocumentIndex": 84,
               "Title": "RequestSumAssuredIncreaseDto.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\DTOs\\Endorsement\\RequestSumAssuredIncreaseDto.cs",
               "RelativeDocumentMoniker": "Application\\DTOs\\Endorsement\\RequestSumAssuredIncreaseDto.cs",
@@ -1531,7 +1553,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 83,
+              "DocumentIndex": 85,
               "Title": "RequestNomineeChangeDto.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\DTOs\\Endorsement\\RequestNomineeChangeDto.cs",
               "RelativeDocumentMoniker": "Application\\DTOs\\Endorsement\\RequestNomineeChangeDto.cs",
@@ -1543,7 +1565,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 84,
+              "DocumentIndex": 86,
               "Title": "RequestAddressChangeDto.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\DTOs\\Endorsement\\RequestAddressChangeDto.cs",
               "RelativeDocumentMoniker": "Application\\DTOs\\Endorsement\\RequestAddressChangeDto.cs",
@@ -1555,7 +1577,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 85,
+              "DocumentIndex": 87,
               "Title": "EndorsementDecisionDto.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\DTOs\\Endorsement\\EndorsementDecisionDto.cs",
               "RelativeDocumentMoniker": "Application\\DTOs\\Endorsement\\EndorsementDecisionDto.cs",
@@ -1567,7 +1589,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 86,
+              "DocumentIndex": 88,
               "Title": "UserRoleCountDto.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\DTOs\\Dashboard\\UserRoleCountDto.cs",
               "RelativeDocumentMoniker": "Application\\DTOs\\Dashboard\\UserRoleCountDto.cs",
@@ -1579,7 +1601,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 87,
+              "DocumentIndex": 89,
               "Title": "RecentActivityDto.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\DTOs\\Dashboard\\RecentActivityDto.cs",
               "RelativeDocumentMoniker": "Application\\DTOs\\Dashboard\\RecentActivityDto.cs",
@@ -1591,7 +1613,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 88,
+              "DocumentIndex": 90,
               "Title": "PolicyStatusCountDto.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\DTOs\\Dashboard\\PolicyStatusCountDto.cs",
               "RelativeDocumentMoniker": "Application\\DTOs\\Dashboard\\PolicyStatusCountDto.cs",
@@ -1603,7 +1625,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 89,
+              "DocumentIndex": 91,
               "Title": "PolicyCommissionDto.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\DTOs\\Dashboard\\PolicyCommissionDto.cs",
               "RelativeDocumentMoniker": "Application\\DTOs\\Dashboard\\PolicyCommissionDto.cs",
@@ -1615,7 +1637,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 90,
+              "DocumentIndex": 92,
               "Title": "PlanDistributionDto.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\DTOs\\Dashboard\\PlanDistributionDto.cs",
               "RelativeDocumentMoniker": "Application\\DTOs\\Dashboard\\PlanDistributionDto.cs",
@@ -1627,7 +1649,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 91,
+              "DocumentIndex": 93,
               "Title": "CustomerDashboardDto.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\DTOs\\Dashboard\\CustomerDashboardDto.cs",
               "RelativeDocumentMoniker": "Application\\DTOs\\Dashboard\\CustomerDashboardDto.cs",
@@ -1639,7 +1661,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 92,
+              "DocumentIndex": 94,
               "Title": "ClaimStatusCountDto.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\DTOs\\Dashboard\\ClaimStatusCountDto.cs",
               "RelativeDocumentMoniker": "Application\\DTOs\\Dashboard\\ClaimStatusCountDto.cs",
@@ -1651,7 +1673,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 93,
+              "DocumentIndex": 95,
               "Title": "ClaimsOfficerDashboardDto.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\DTOs\\Dashboard\\ClaimsOfficerDashboardDto.cs",
               "RelativeDocumentMoniker": "Application\\DTOs\\Dashboard\\ClaimsOfficerDashboardDto.cs",
@@ -1663,7 +1685,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 94,
+              "DocumentIndex": 96,
               "Title": "AgentPerformanceDto.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\DTOs\\Dashboard\\AgentPerformanceDto.cs",
               "RelativeDocumentMoniker": "Application\\DTOs\\Dashboard\\AgentPerformanceDto.cs",
@@ -1675,7 +1697,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 95,
+              "DocumentIndex": 97,
               "Title": "AgentDashboardDto.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\DTOs\\Dashboard\\AgentDashboardDto.cs",
               "RelativeDocumentMoniker": "Application\\DTOs\\Dashboard\\AgentDashboardDto.cs",
@@ -1687,7 +1709,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 96,
+              "DocumentIndex": 98,
               "Title": "AdminDashboardDto.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\DTOs\\Dashboard\\AdminDashboardDto.cs",
               "RelativeDocumentMoniker": "Application\\DTOs\\Dashboard\\AdminDashboardDto.cs",
@@ -1699,7 +1721,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 97,
+              "DocumentIndex": 99,
               "Title": "RaiseClaimDto.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\DTOs\\Claim\\RaiseClaimDto.cs",
               "RelativeDocumentMoniker": "Application\\DTOs\\Claim\\RaiseClaimDto.cs",
@@ -1711,7 +1733,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 98,
+              "DocumentIndex": 100,
               "Title": "ClaimDocumentResponseDto.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\DTOs\\Claim\\ClaimDocumentResponseDto.cs",
               "RelativeDocumentMoniker": "Application\\DTOs\\Claim\\ClaimDocumentResponseDto.cs",
@@ -1723,7 +1745,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 99,
+              "DocumentIndex": 101,
               "Title": "ClaimDocumentDto.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\DTOs\\Claim\\ClaimDocumentDto.cs",
               "RelativeDocumentMoniker": "Application\\DTOs\\Claim\\ClaimDocumentDto.cs",
@@ -1735,7 +1757,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 100,
+              "DocumentIndex": 102,
               "Title": "ClaimDecisionDto.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\DTOs\\Claim\\ClaimDecisionDto.cs",
               "RelativeDocumentMoniker": "Application\\DTOs\\Claim\\ClaimDecisionDto.cs",
@@ -1747,7 +1769,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 101,
+              "DocumentIndex": 103,
               "Title": "UserListDto.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\DTOs\\Auth\\UserListDto.cs",
               "RelativeDocumentMoniker": "Application\\DTOs\\Auth\\UserListDto.cs",
@@ -1759,7 +1781,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 102,
+              "DocumentIndex": 104,
               "Title": "UpdateStaffDto.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\DTOs\\Auth\\UpdateStaffDto.cs",
               "RelativeDocumentMoniker": "Application\\DTOs\\Auth\\UpdateStaffDto.cs",
@@ -1771,7 +1793,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 103,
+              "DocumentIndex": 105,
               "Title": "RegisterDto.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\DTOs\\Auth\\RegisterDto.cs",
               "RelativeDocumentMoniker": "Application\\DTOs\\Auth\\RegisterDto.cs",
@@ -1783,7 +1805,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 104,
+              "DocumentIndex": 106,
               "Title": "LoginDto.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\DTOs\\Auth\\LoginDto.cs",
               "RelativeDocumentMoniker": "Application\\DTOs\\Auth\\LoginDto.cs",
@@ -1795,7 +1817,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 105,
+              "DocumentIndex": 107,
               "Title": "CreateStaffDto.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\DTOs\\Auth\\CreateStaffDto.cs",
               "RelativeDocumentMoniker": "Application\\DTOs\\Auth\\CreateStaffDto.cs",
@@ -1807,7 +1829,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 106,
+              "DocumentIndex": 108,
               "Title": "ChangePasswordDto.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\DTOs\\Auth\\ChangePasswordDto.cs",
               "RelativeDocumentMoniker": "Application\\DTOs\\Auth\\ChangePasswordDto.cs",
@@ -1819,7 +1841,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 107,
+              "DocumentIndex": 109,
               "Title": "AuthResponseDto.cs",
               "DocumentMoniker": "D:\\THANMAI\\LIMS\\Application\\DTOs\\Auth\\AuthResponseDto.cs",
               "RelativeDocumentMoniker": "Application\\DTOs\\Auth\\AuthResponseDto.cs",
@@ -1828,30 +1850,6 @@
               "ViewState": "AgIAAAIAAAAAAAAAAAAQwAsAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-26T09:11:22.615Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 108,
-              "Title": "EndorsementController.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\API\\Controllers\\EndorsementController.cs",
-              "RelativeDocumentMoniker": "API\\Controllers\\EndorsementController.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\API\\Controllers\\EndorsementController.cs",
-              "RelativeToolTip": "API\\Controllers\\EndorsementController.cs",
-              "ViewState": "AgIAAHYAAAAAAAAAAAAQwIsAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-27T04:17:47.87Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 109,
-              "Title": "DashboardController.cs",
-              "DocumentMoniker": "D:\\THANMAI\\LIMS\\API\\Controllers\\DashboardController.cs",
-              "RelativeDocumentMoniker": "API\\Controllers\\DashboardController.cs",
-              "ToolTip": "D:\\THANMAI\\LIMS\\API\\Controllers\\DashboardController.cs",
-              "RelativeToolTip": "API\\Controllers\\DashboardController.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAYwD4AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-27T06:41:00.383Z"
             },
             {
               "$type": "Document",

@@ -11,7 +11,7 @@
     <!-- Logo node -->
     <div class="text-center mb-10">
       <a routerLink="/" class="inline-flex items-center gap-3 transition-transform hover:scale-105 duration-300">
-        <span class="text-4xl">🏦</span>
+        <span class="text-3xl">🏦</span>
         <span class="text-3xl font-black text-gradient tracking-tighter uppercase">NexaLife</span>
       </a>
     </div>
@@ -55,11 +55,62 @@
             Number</label>
           <div class="relative group">
             <input type="tel" formControlName="phoneNumber" placeholder="Enter 10 digit number" pattern="[0-9]{10}"
-              maxlength="10" class="input-premium pl-4 py-3.5 font-bold text-xs tracking-wide">
+              maxlength="10" minlength="10" class="input-premium pl-4 py-3.5 font-bold text-xs tracking-wide">
           </div>
           <span *ngIf="registerForm.get('phoneNumber')?.touched && registerForm.get('phoneNumber')?.invalid"
             class="text-[10px] font-black uppercase text-red-500 mt-1 ml-1 tracking-wider">Phone number must be exactly
             10 digits</span>
+        </div>
+
+        <!-- Date of Birth -->
+        <div class="space-y-1.5">
+          <label class="text-[9px] font-black uppercase tracking-[0.3em] text-text-secondary opacity-60 ml-1">Date of
+            Birth</label>
+          <div class="relative group">
+            <input type="date" formControlName="dateOfBirth" [max]="maxDate"
+              class="input-premium pl-4 py-3.5 font-bold text-xs tracking-wide">
+          </div>
+          <span
+            *ngIf="registerForm.get('dateOfBirth')?.touched && registerForm.get('dateOfBirth')?.errors?.['required']"
+            class="text-[10px] font-black uppercase text-red-500 mt-1 ml-1 tracking-wider">Date of birth is
+            required</span>
+          <span
+            *ngIf="registerForm.get('dateOfBirth')?.touched && registerForm.get('dateOfBirth')?.errors?.['underage']"
+            class="text-[10px] font-black uppercase text-red-500 mt-1 ml-1 tracking-wider">not eligible as age is
+            less</span>
+        </div>
+
+        <div class="pt-4 border-t border-white/5 opacity-40 uppercase text-[8px] font-black tracking-[0.4em] ml-1">Bank Payout Info</div>
+
+        <!-- Bank Name -->
+        <div class="space-y-1.5">
+          <label class="text-[9px] font-black uppercase tracking-[0.3em] text-text-secondary opacity-60 ml-1">Bank Account Name</label>
+          <div class="relative group">
+            <input type="text" formControlName="bankAccountName" placeholder="AS PER BANK RECORDS" 
+              class="input-premium pl-4 py-3.5 font-bold text-[10px] tracking-widest uppercase">
+          </div>
+        </div>
+
+        <!-- Account Number -->
+        <div class="space-y-1.5">
+          <label class="text-[9px] font-black uppercase tracking-[0.3em] text-text-secondary opacity-60 ml-1">Account Number</label>
+          <div class="relative group">
+            <input type="text" formControlName="bankAccountNumber" placeholder="9-20 DIGITS" 
+              class="input-premium pl-4 py-3.5 font-bold text-xs tracking-[0.2em]">
+          </div>
+        </div>
+
+        <!-- IFSC -->
+        <div class="space-y-1.5">
+          <label class="text-[9px] font-black uppercase tracking-[0.3em] text-text-secondary opacity-60 ml-1">IFSC Code</label>
+          <div class="relative group">
+            <input type="text" formControlName="bankIfscCode" placeholder="IFSC CODE (11 CHARS)" maxlength="11"
+              class="input-premium pl-4 py-3.5 font-bold text-xs tracking-widest uppercase">
+          </div>
+          <span *ngIf="registerForm.get('bankIfscCode')?.touched && registerForm.get('bankIfscCode')?.invalid"
+            class="text-[10px] font-black uppercase text-red-500 mt-1 ml-1 tracking-wider italic">
+            invalid IFSC format (must be 11 chars)
+          </span>
         </div>
 
         <!-- Password -->

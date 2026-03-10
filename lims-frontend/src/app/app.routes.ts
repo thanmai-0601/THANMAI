@@ -8,6 +8,7 @@ import { Login } from './pages/auth/login/login';
 import { Register } from './pages/auth/register/register';
 import { ChangePassword } from './pages/auth/change-password/change-password';
 import { ForgotPassword } from './pages/auth/forgot-password/forgot-password';
+import { Profile } from './pages/auth/profile/profile';
 import { GlobalError } from './pages/error/global-error/global-error';
 
 import { AdminDashboard } from './pages/dashboard/admin-dashboard/admin-dashboard';
@@ -75,6 +76,7 @@ export const routes: Routes = [
 
       // ───── Common ─────
       { path: 'change-password', component: ChangePassword },
+      { path: 'profile', component: Profile },
 
       // ───── Policy ─────
       { path: 'plans', component: PlanList },

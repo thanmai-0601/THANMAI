@@ -92,3 +92,19 @@
 .dark td[class*="opacity-"] {
   opacity: 0.85 !important;
 }
+
+/* Prevent browser autofill from changing input background colors (e.g., blue/yellow) */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: var(--color-text-primary) !important;
+}
+
+.dark input:-webkit-autofill,
+.dark input:-webkit-autofill:hover,
+.dark input:-webkit-autofill:focus,
+.dark input:-webkit-autofill:active {
+  -webkit-text-fill-color: #ffffff !important;
+}

@@ -21,6 +21,7 @@ public class InvoiceRepository : IInvoiceRepository
     public async Task<Invoice?> GetByIdWithDetailsAsync(int invoiceId)
         => await _context.Invoices
             .Include(i => i.Policy)
+                .ThenInclude(p => p.InsurancePlan)
             .Include(i => i.Payment)
             .FirstOrDefaultAsync(i => i.Id == invoiceId);
 

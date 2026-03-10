@@ -16,6 +16,12 @@ import { LoadingSpinner } from '../../../shared/components/loading-spinner/loadi
 export class UserList implements OnInit {
   users: UserListDto[] = [];
   loading = true;
+  selectedRole: string = 'All';
+
+  get filteredUsers(): UserListDto[] {
+    if (this.selectedRole === 'All') return this.users;
+    return this.users.filter(u => u.role === this.selectedRole);
+  }
 
   constructor(private api: ApiService, private toast: ToastService) { }
 

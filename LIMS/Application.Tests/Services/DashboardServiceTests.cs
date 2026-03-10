@@ -46,7 +46,7 @@ public class DashboardServiceTests
         _commissionRepo.Setup(r => r.GetTotalCommissionAsync()).ReturnsAsync(0m);
         _commissionRepo.Setup(r => r.GetTotalPendingCommissionAsync()).ReturnsAsync(0m);
         _claimRepo.Setup(r => r.GetTotalSettledAmountAsync()).ReturnsAsync(0m);
-        _paymentRepo.Setup(r => r.GetLast12MonthsRevenueAsync()).ReturnsAsync(new List<MonthlyRevenueDto>());
+        _paymentRepo.Setup(r => r.GetRevenueByYearAsync(It.IsAny<int>())).ReturnsAsync(new List<MonthlyRevenueDto>());
         _policyRepo.Setup(r => r.GetAgentPerformanceAsync()).ReturnsAsync(new List<AgentPerformanceDto>());
         _policyRepo.Setup(r => r.GetPlanDistributionAsync()).ReturnsAsync(new List<PlanDistributionDto>());
         _endorsementRepo.Setup(r => r.GetTotalCountAsync()).ReturnsAsync(0);

@@ -1,4 +1,4 @@
-﻿using System.Text.Json;
+using System.Text.Json;
 using Application.DTOs.Endorsement;
 using Application.DTOs.Policy;
 using Application.Interfaces.Repositories;
@@ -58,12 +58,6 @@ public class EndorsementService : IEndorsementService
     {
         await ValidatePolicyForEndorsement(dto.PolicyId, customerId);
 
-        // Validate new nominees total 100%
-        var total = dto.NewNominees.Sum(n => n.AllocationPercentage);
-        if (total != 100)
-            throw new InvalidOperationException(
-                $"Nominee allocation must total 100%. Current total: {total}%.");
-
         // Get current nominees for old value snapshot
         var currentNominees = await _nomineeRepo.GetByPolicyIdAsync(dto.PolicyId);
         var oldSnapshot = currentNominees.Select(n => new
@@ -71,7 +65,7 @@ public class EndorsementService : IEndorsementService
             n.FullName,
             n.Relationship,
             n.Age,
-            n.AllocationPercentage
+            AllocationPercentage = 100
         });
 
         var endorsement = new PolicyEndorsement
@@ -80,7 +74,7 @@ public class EndorsementService : IEndorsementService
             RequestedByCustomerId = customerId,
             Type = EndorsementType.NomineeChange,
             Status = EndorsementStatus.Requested,
-            ChangeRequestJson = JsonSerializer.Serialize(dto.NewNominees),
+            ChangeRequestJson = JsonSerializer.Serialize(dto.NewNominee),
             OldValueJson = JsonSerializer.Serialize(oldSnapshot),
             RequestedAt = DateTime.UtcNow
         };
@@ -246,21 +240,23 @@ public class EndorsementService : IEndorsementService
                 break;
 
             case EndorsementType.NomineeChange:
-                var newNominees = JsonSerializer
-                    .Deserialize<List<AddNomineeDto>>(endorsement.ChangeRequestJson, new JsonSerializerOptions { PropertyNameCaseInsensitive = true })!;
+                var newNominee = JsonSerializer
+                    .Deserialize<AddNomineeDto>(endorsement.ChangeRequestJson, new JsonSerializerOptions { PropertyNameCaseInsensitive = true })!;
 
                 // Replace all existing nominees with new ones
                 await _nomineeRepo.DeleteByPolicyIdAsync(endorsement.PolicyId);
-                var nominees = newNominees.Select(n => new Nominee
+                var nominee = new Nominee
                 {
                     PolicyId = endorsement.PolicyId,
-                    FullName = n.FullName,
-                    Relationship = n.Relationship,
-                    Age = n.Age,
-                    ContactNumber = n.ContactNumber,
-                    AllocationPercentage = n.AllocationPercentage
-                }).ToList();
-                await _nomineeRepo.AddRangeAsync(nominees);
+                    FullName = newNominee.FullName,
+                    Relationship = newNominee.Relationship,
+                    Age = newNominee.Age,
+                    ContactNumber = newNominee.ContactNumber,
+                    Email = newNominee.Email ?? string.Empty,
+                    IdNumber = newNominee.IdNumber ?? string.Empty,
+                    AllocationPercentage = 100
+                };
+                await _nomineeRepo.AddRangeAsync(new List<Nominee> { nominee });
                 break;
 
             case EndorsementType.SumAssuredIncrease:

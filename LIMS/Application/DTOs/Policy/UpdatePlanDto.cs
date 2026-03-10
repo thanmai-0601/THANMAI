@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Domain.Enums;
 
 namespace Application.DTOs.Policy;
 
@@ -14,6 +15,15 @@ public class UpdatePlanDto
     public string Description { get; set; } = string.Empty;
 
     [Required]
+    public PlanType PlanType { get; set; } = PlanType.TermLife;
+
+    [Range(0, 10)]
+    public decimal BonusRatePerYear { get; set; }
+
+    [Range(0, 100)]
+    public int CoverageToAge { get; set; }
+
+    [Required]
     [Range(100000, double.MaxValue)]
     public decimal MinSumAssured { get; set; }
 
@@ -25,8 +35,6 @@ public class UpdatePlanDto
     [MinLength(1)]
     public List<int> TenureOptions { get; set; } = new();
 
-    // Comma-separated list of optional riders
-    public string AvailableRiders { get; set; } = string.Empty;
 
     [Required]
     [Range(18, 60)]

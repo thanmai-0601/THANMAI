@@ -8,6 +8,10 @@ export interface RegisterDto {
   email: string;
   password: string;
   phoneNumber: string;
+  dateOfBirth: string;
+  bankAccountName?: string;
+  bankAccountNumber?: string;
+  bankIfscCode?: string;
 }
 
 export interface AuthResponseDto {
@@ -36,6 +40,10 @@ export interface CreateStaffDto {
   email: string;
   phoneNumber: string;
   password?: string;
+  dateOfBirth: string;
+  bankAccountName?: string;
+  bankAccountNumber?: string;
+  bankIfscCode?: string;
 }
 
 export interface UpdateStaffDto {

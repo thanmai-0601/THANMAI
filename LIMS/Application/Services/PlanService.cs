@@ -55,10 +55,13 @@ public class PlanService : IPlanService
         {
             PlanName = dto.PlanName.Trim(),
             Description = dto.Description.Trim(),
+            PlanType = dto.PlanType,
+            BonusRatePerYear = dto.BonusRatePerYear,
+            CoverageToAge = dto.CoverageToAge,
             MinSumAssured = dto.MinSumAssured,
             MaxSumAssured = dto.MaxSumAssured,
             TenureOptions = string.Join(",", dto.TenureOptions.OrderBy(t => t)),
-            AvailableRiders = dto.AvailableRiders,
+
             MinEntryAge = dto.MinEntryAge,
             MaxEntryAge = dto.MaxEntryAge,
             MinAnnualIncome = dto.MinAnnualIncome,
@@ -98,10 +101,12 @@ public class PlanService : IPlanService
 
         plan.PlanName = dto.PlanName.Trim();
         plan.Description = dto.Description.Trim();
+        plan.PlanType = dto.PlanType;
+        plan.BonusRatePerYear = dto.BonusRatePerYear;
+        plan.CoverageToAge = dto.CoverageToAge;
         plan.MinSumAssured = dto.MinSumAssured;
         plan.MaxSumAssured = dto.MaxSumAssured;
         plan.TenureOptions = string.Join(",", dto.TenureOptions.OrderBy(t => t));
-        plan.AvailableRiders = dto.AvailableRiders;
         plan.MinEntryAge = dto.MinEntryAge;
         plan.MaxEntryAge = dto.MaxEntryAge;
         plan.MinAnnualIncome = dto.MinAnnualIncome;
@@ -137,6 +142,9 @@ public class PlanService : IPlanService
         PlanId = plan.Id,
         PlanName = plan.PlanName,
         Description = plan.Description,
+        PlanType = plan.PlanType,
+        BonusRatePerYear = plan.BonusRatePerYear,
+        CoverageToAge = plan.CoverageToAge,
         MinSumAssured = plan.MinSumAssured,
         MaxSumAssured = plan.MaxSumAssured,
         // Parse "10,15,20" back into [10, 15, 20]
@@ -144,7 +152,6 @@ public class PlanService : IPlanService
             .Split(',', StringSplitOptions.RemoveEmptyEntries)
             .Select(int.Parse)
             .ToList(),
-        AvailableRiders = plan.AvailableRiders,
         MinEntryAge = plan.MinEntryAge,
         MaxEntryAge = plan.MaxEntryAge,
         MinAnnualIncome = plan.MinAnnualIncome,
