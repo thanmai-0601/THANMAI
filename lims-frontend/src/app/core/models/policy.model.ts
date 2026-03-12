@@ -102,6 +102,7 @@ export interface PolicyResponse {
   nominees: NomineeResponse[];
   documents: DocumentResponse[];
   hasSettledClaim: boolean;
+  hasGlobalSettledDeathClaim: boolean;
 }
 
 export interface PremiumPreviewDto {

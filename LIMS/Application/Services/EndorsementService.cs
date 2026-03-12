@@ -13,15 +13,18 @@ public class EndorsementService : IEndorsementService
     private readonly IEndorsementRepository _endorsementRepo;
     private readonly IPolicyRepository _policyRepo;
     private readonly INomineeRepository _nomineeRepo;
+    private readonly IClaimRepository _claimRepo;
 
     public EndorsementService(
         IEndorsementRepository endorsementRepo,
         IPolicyRepository policyRepo,
-        INomineeRepository nomineeRepo)
+        INomineeRepository nomineeRepo,
+        IClaimRepository claimRepo)
     {
         _endorsementRepo = endorsementRepo;
         _policyRepo = policyRepo;
         _nomineeRepo = nomineeRepo;
+        _claimRepo = claimRepo;
     }
 
     // ── Address Change ─────────────────────────────────────────────────────
@@ -158,6 +161,11 @@ public class EndorsementService : IEndorsementService
             throw new InvalidOperationException(
                 "This endorsement has already been processed.");
 
+        if (endorsement.Policy.Status == PolicyStatus.Settled || 
+            endorsement.Policy.Claims.Any(c => c.Status == ClaimStatus.Settled))
+            throw new InvalidOperationException(
+                "Cannot process an endorsement on a settled policy or a policy with a settled claim.");
+
         endorsement.ReviewedByAgentId = agentId;
         endorsement.ReviewedAt = DateTime.UtcNow;
         endorsement.AgentRemarks = dto.AgentRemarks;
@@ -287,6 +295,12 @@ public class EndorsementService : IEndorsementService
         if (policy.Claims.Any(c => c.Status == ClaimStatus.Settled))
             throw new InvalidOperationException(
                 "Endorsements cannot be requested after a claim has been settled.");
+
+        // Global check: If any death claim has been settled for this customer, block all endorsements
+        var allClaims = await _claimRepo.GetByCustomerIdAsync(customerId);
+        if (allClaims.Any(c => c.Type == ClaimType.Death && c.Status == ClaimStatus.Settled))
+            throw new InvalidOperationException(
+                "Endorsements are not allowed as a death claim has been settled for this account.");
 
         return policy;
     }

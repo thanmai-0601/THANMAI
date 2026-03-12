@@ -102,7 +102,10 @@
                             a
                             Claim</span>
                     </a>
-                    <a routerLink="/app/endorsement/request"
+                    <a [routerLink]="data.hasSettledDeathClaim ? null : '/app/endorsement/request'"
+                        [class.opacity-50]="data.hasSettledDeathClaim"
+                        [class.cursor-not-allowed]="data.hasSettledDeathClaim"
+                        [title]="data.hasSettledDeathClaim ? 'Endorsements are not allowed after a death claim has been settled.' : ''"
                         class="flex flex-col items-center p-6 rounded-2xl bg-indigo-500/[0.02] border border-indigo-500/10 hover:bg-indigo-500/5 hover:border-indigo-500/30 transition-all group">
                         <app-icon name="edit" className="text-2xl mb-3 group-hover:scale-110 transition-transform"></app-icon>
                         <span

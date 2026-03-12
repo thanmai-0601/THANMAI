@@ -49,7 +49,7 @@ export class RequestEndorsement implements OnInit {
 
     this.api.get<PolicyResponse[]>('policy').subscribe({
       next: (res: PolicyResponse[]) => {
-        this.policies = res.filter(p => p.status !== 'Rejected' && p.status !== 'Cancelled' && p.status !== 'Settled' && !p.hasSettledClaim);
+        this.policies = res.filter(p => p.status !== 'Rejected' && p.status !== 'Cancelled' && p.status !== 'Settled' && !p.hasSettledClaim && !p.hasGlobalSettledDeathClaim);
         this.fetchingPolicies = false;
       },
       error: () => this.fetchingPolicies = false
@@ -66,6 +66,13 @@ export class RequestEndorsement implements OnInit {
       this.endorsementForm.get('endorsementType')?.markAsTouched();
       return;
     }
+
+    const isValidPolicy = this.policies.some(p => p.policyId === +policyId);
+    if (!isValidPolicy) {
+      this.toast.show('Selected policy is not eligible for endorsements (it may be settled or inactive).', 'error');
+      return;
+    }
+
     this.step = 2;
   }
 

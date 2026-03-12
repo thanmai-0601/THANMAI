@@ -23,7 +23,7 @@
             <div class="flex gap-4 items-center">
                 @if (role === 'Customer' && (policy.status !== 'Rejected' && policy.status !== 'Cancelled' &&
                 policy.status !== 'Settled') &&
-                !policy.hasSettledClaim) {
+                !policy.hasSettledClaim && !policy.hasGlobalSettledDeathClaim) {
                 <a [routerLink]="['/app/endorsement/request']" [queryParams]="{ policyId: policy.policyId }"
                     class="btn-premium px-6 !py-3 !rounded-2xl flex items-center gap-3 text-sm bg-indigo-500 hover:bg-indigo-600 border-indigo-500">
                     <app-icon name="plus"></app-icon> Request Change

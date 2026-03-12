@@ -154,24 +154,32 @@ public class PolicyService : IPolicyService
         }
 
         var created = await _policyRepo.GetByIdWithDetailsAsync(policy.Id);
-        return MapToDto(created!);
+        return await MapToDtoAsync(created!);
     }
 
 
     // ── Customer: View My Policies ─────────────────────────────────────────
 
-    public async Task<List<PolicyResponseDto>> GetMyPoliciesAsync(int customerId)
     {
         var policies = await _policyRepo.GetByCustomerIdAsync(customerId);
-        return policies.Select(MapToDto).ToList();
+        var dtos = new List<PolicyResponseDto>();
+        foreach (var p in policies)
+        {
+            dtos.Add(await MapToDtoAsync(p));
+        }
+        return dtos;
     }
 
     // ── Agent: View Assigned Policies ──────────────────────────────────────
 
-    public async Task<List<PolicyResponseDto>> GetAgentPoliciesAsync(int agentId)
     {
         var policies = await _policyRepo.GetByAgentIdAsync(agentId);
-        return policies.Select(MapToDto).ToList();
+        var dtos = new List<PolicyResponseDto>();
+        foreach (var p in policies)
+        {
+            dtos.Add(await MapToDtoAsync(p));
+        }
+        return dtos;
     }
 
     // ── Shared: Get Single Policy (role-aware access control) ─────────────
@@ -195,7 +203,7 @@ public class PolicyService : IPolicyService
             throw new UnauthorizedAccessException(
                 "You do not have access to this policy.");
 
-        return MapToDto(policy);
+        return await MapToDtoAsync(policy);
     }
 
     // ── Admin: View All Policies ───────────────────────────────────────────
@@ -203,62 +211,74 @@ public class PolicyService : IPolicyService
     public async Task<List<PolicyResponseDto>> GetAllPoliciesAsync(PolicyStatus? status = null)
     {
         var policies = await _policyRepo.GetAllAsync(status);
-        return policies.Select(MapToDto).ToList();
+        var dtos = new List<PolicyResponseDto>();
+        foreach (var p in policies)
+        {
+            dtos.Add(await MapToDtoAsync(p));
+        }
+        return dtos;
     }
 
     // ── Private Mapper ─────────────────────────────────────────────────────
 
-    private static PolicyResponseDto MapToDto(Policy p) => new()
+    private async Task<PolicyResponseDto> MapToDtoAsync(Policy p)
     {
-        PolicyId = p.Id,
-        PolicyNumber = p.PolicyNumber,
-        Status = (p.Claims?.Any(c => c.Status == ClaimStatus.Settled) ?? false) 
-            ? PolicyStatus.Settled.ToString() 
-            : p.Status.ToString(),
-        InsurancePlanId = p.InsurancePlanId,
-        PlanName = p.InsurancePlan?.PlanName ?? string.Empty,
-        SumAssured = p.SumAssured,
-        TenureYears = p.TenureYears,
-        CustomerId = p.CustomerId,
-        CustomerName = p.Customer?.FullName ?? string.Empty,
-        CustomerEmail = p.Customer?.Email ?? string.Empty,
-        AgentId = p.AgentId,
-        AgentName = p.Agent?.FullName,
+        var customerClaims = await _claimRepo.GetByCustomerIdAsync(p.CustomerId);
+        var hasGlobalSettledDeathClaim = customerClaims.Any(c => c.Type == ClaimType.Death && c.Status == ClaimStatus.Settled);
 
-        AgentEmail = p.Agent?.Email,
-        CustomerAge = p.CustomerAge,
-        AnnualIncome = p.AnnualIncome,
-        Occupation = p.Occupation,
-        RiskCategory = p.RiskCategory,
-        PremiumAmount = p.PremiumAmount,
-        AgentRemarks = p.AgentRemarks,
-        RejectionReason = p.RejectionReason,
-        CreatedAt = p.CreatedAt,
-        SubmittedAt = p.SubmittedAt,
-        AgentAssignedAt = p.AgentAssignedAt,
-        ApprovedAt = p.ApprovedAt,
-        ActiveFrom = p.ActiveFrom,
-        ActiveTo = p.ActiveTo,
-        Nominees = p.Nominees?.Select(n => new NomineeResponseDto 
+        return new PolicyResponseDto
         {
-            NomineeId = n.Id,
-            FullName = n.FullName,
-            Relationship = n.Relationship,
-            Age = n.Age,
-            ContactNumber = n.ContactNumber,
-            IdNumber = n.IdNumber,
-            Email = n.Email
-        }).ToList() ?? new List<NomineeResponseDto>(),
-        Documents = p.Documents?.Select(d => new DocumentResponseDto 
-        {
-            DocumentType = d.DocumentType,
-            FileName = d.FileName,
-            FilePath = d.FilePath,
-            Status = d.Status.ToString(),
-            UploadedAt = d.UploadedAt
-        }).ToList() ?? new List<DocumentResponseDto>(),
-        HasSettledClaim = p.Claims?.Any(c => c.Status == ClaimStatus.Settled) ?? false
-    };
+            PolicyId = p.Id,
+            PolicyNumber = p.PolicyNumber,
+            Status = (p.Claims?.Any(c => c.Status == ClaimStatus.Settled) ?? false)
+                ? PolicyStatus.Settled.ToString()
+                : p.Status.ToString(),
+            InsurancePlanId = p.InsurancePlanId,
+            PlanName = p.InsurancePlan?.PlanName ?? string.Empty,
+            SumAssured = p.SumAssured,
+            TenureYears = p.TenureYears,
+            CustomerId = p.CustomerId,
+            CustomerName = p.Customer?.FullName ?? string.Empty,
+            CustomerEmail = p.Customer?.Email ?? string.Empty,
+            AgentId = p.AgentId,
+            AgentName = p.Agent?.FullName,
+
+            AgentEmail = p.Agent?.Email,
+            CustomerAge = p.CustomerAge,
+            AnnualIncome = p.AnnualIncome,
+            Occupation = p.Occupation,
+            RiskCategory = p.RiskCategory,
+            PremiumAmount = p.PremiumAmount,
+            AgentRemarks = p.AgentRemarks,
+            RejectionReason = p.RejectionReason,
+            CreatedAt = p.CreatedAt,
+            SubmittedAt = p.SubmittedAt,
+            AgentAssignedAt = p.AgentAssignedAt,
+            ApprovedAt = p.ApprovedAt,
+            ActiveFrom = p.ActiveFrom,
+            ActiveTo = p.ActiveTo,
+            Nominees = p.Nominees?.Select(n => new NomineeResponseDto
+            {
+                NomineeId = n.Id,
+                FullName = n.FullName,
+                Relationship = n.Relationship,
+                Age = n.Age,
+                ContactNumber = n.ContactNumber,
+                IdNumber = n.IdNumber,
+                Email = n.Email
+            }).ToList() ?? new List<NomineeResponseDto>(),
+            Documents = p.Documents?.Select(d => new DocumentResponseDto
+            {
+                DocumentType = d.DocumentType,
+                FileName = d.FileName,
+                FilePath = d.FilePath,
+                Status = d.Status.ToString(),
+                UploadedAt = d.UploadedAt
+            }).ToList() ?? new List<DocumentResponseDto>(),
+            HasSettledClaim = p.Claims?.Any(c => c.Status == ClaimStatus.Settled) ?? false,
+            HasGlobalSettledDeathClaim = hasGlobalSettledDeathClaim
+        };
+    }
 
     public async Task<object> UploadDocumentAsync(
     int policyId,
@@ -271,6 +291,9 @@ public class PolicyService : IPolicyService
 
         if (policy == null)
             throw new KeyNotFoundException("Policy not found.");
+
+        if (policy.Status == PolicyStatus.Settled || policy.Status == PolicyStatus.Cancelled || policy.Status == PolicyStatus.Rejected)
+            throw new InvalidOperationException($"Cannot upload documents for a policy with status {policy.Status}.");
 
         if (policy.CustomerId != customerId)
             throw new UnauthorizedAccessException("You cannot upload documents for this policy.");
@@ -316,6 +339,9 @@ public class PolicyService : IPolicyService
         if (policy.CustomerId != customerId)
             throw new UnauthorizedAccessException(
                 "You do not have access to this policy.");
+
+        if (policy.Status == PolicyStatus.Settled || policy.Status == PolicyStatus.Cancelled || policy.Status == PolicyStatus.Rejected)
+            throw new InvalidOperationException($"Cannot change nominees for a policy with status {policy.Status}.");
 
         // Clear existing nominees and re-add (allows resubmission)
         await _policyRepo.RemoveNomineesAsync(policyId);

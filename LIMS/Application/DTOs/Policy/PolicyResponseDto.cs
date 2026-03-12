@@ -1,4 +1,4 @@
-﻿namespace Application.DTOs.Policy;
+namespace Application.DTOs.Policy;
 
 public class PolicyResponseDto
 {
@@ -43,4 +43,5 @@ public class PolicyResponseDto
     public List<NomineeResponseDto> Nominees { get; set; } = new();
     public List<DocumentResponseDto> Documents { get; set; } = new();
     public bool HasSettledClaim { get; set; }
+    public bool HasGlobalSettledDeathClaim { get; set; }
 }

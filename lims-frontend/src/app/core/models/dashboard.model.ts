@@ -122,6 +122,7 @@ export interface CustomerDashboardDto {
 
   // Endorsements
   pendingEndorsements: number;
+  hasSettledDeathClaim: boolean;
 
   // Recent Activity
   recentActivity: RecentActivity[];
