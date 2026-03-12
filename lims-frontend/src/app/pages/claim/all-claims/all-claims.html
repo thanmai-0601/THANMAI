@@ -1,15 +1,15 @@
 <div class="max-w-7xl mx-auto pt-8 transition-all duration-500 animate-in fade-in slide-in-from-bottom-8">
     <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12">
         <div>
-            <div class="flex items-center gap-3 mb-2 opacity-60">
+            <div class="flex items-center gap-3 mb-2 opacity-90">
                 <span class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary">Admin
                     Dashboard</span>
-                <div class="h-px w-8 bg-text-secondary opacity-30"></div>
+                <div class="h-px w-8 bg-text-secondary opacity-70"></div>
             </div>
             <h1 class="text-4xl font-black text-text-primary dark:text-white tracking-tightest">
                 All <span class="text-gradient">Claims</span>
             </h1>
-            <p class="text-xs font-bold text-text-secondary uppercase tracking-[0.2em] opacity-50 mt-2">View all active
+            <p class="text-xs font-bold text-text-secondary uppercase tracking-[0.2em] opacity-80 mt-2">View all active
                 and past claims</p>
         </div>
     </div>
@@ -18,8 +18,8 @@
 
     <div *ngIf="!loading && claims.length === 0"
         class="premium-card p-24 border-dashed flex flex-col items-center justify-center gap-6 text-center">
-        <div class="text-5xl opacity-20">🕳️</div>
-        <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-40">No claims found.</p>
+        <div class="text-5xl opacity-70"><app-icon name="mail"></app-icon></div>
+        <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80">No claims found.</p>
     </div>
 
     <div *ngIf="!loading && claims.length > 0"
@@ -29,22 +29,22 @@
                 <thead>
                     <tr class="bg-primary/[0.02] border-b border-theme-border/5 dark:border-slate-800/50">
                         <th
-                            class="pl-6 pr-3 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60">
+                            class="pl-6 pr-3 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-90">
                             Claim Number</th>
                         <th
-                            class="px-3 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60">
+                            class="px-3 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-90">
                             Customer</th>
                         <th
-                            class="px-3 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60">
+                            class="px-3 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-90">
                             Assigned Officer</th>
                         <th
-                            class="px-3 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60 text-right">
+                            class="px-3 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-90 text-right">
                             Requested Amount</th>
                         <th
-                            class="px-3 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60 text-right">
+                            class="px-3 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-90 text-right">
                             Approved Amount</th>
                         <th
-                            class="px-3 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60 text-center">
+                            class="px-3 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-90 text-center">
                             Status</th>
                         <th class="pl-3 pr-6 py-6"></th>
                     </tr>
@@ -75,7 +75,7 @@
                                 <span class="text-xs font-medium text-text-secondary opacity-80">{{
                                     claim.claimsOfficerName }}</span>
                             </div>
-                            <span *ngIf="!claim.claimsOfficerName" class="text-[9px] font-black text-text-secondary opacity-30 uppercase
+                            <span *ngIf="!claim.claimsOfficerName" class="text-[9px] font-black text-text-secondary opacity-70 uppercase
                             tracking-widest">Unassigned</span>
                         </td>
                         <td class="px-3 py-6 text-right">
@@ -86,7 +86,7 @@
                             <span *ngIf="claim.settledAmount" class="text-xs font-black text-emerald-500">₹{{
                                 claim.settledAmount | number }}</span>
                             <span *ngIf="!claim.settledAmount"
-                                class="text-xs font-black text-text-secondary opacity-40">-</span>
+                                class="text-xs font-black text-text-secondary opacity-80">-</span>
                         </td>
                         <td class="px-3 py-6 text-center">
                             <app-status-badge [status]="claim.status" class="scale-75" />
@@ -103,3 +103,4 @@
         </div>
     </div>
 </div>
+

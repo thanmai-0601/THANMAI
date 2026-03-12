@@ -14,29 +14,29 @@
             <h1 class="text-4xl font-black text-text-primary dark:text-white tracking-tightest uppercase">
                 Admin <span class="text-gradient">Dashboard</span>
             </h1>
-            <p class="text-[10px] font-bold text-text-secondary mt-2 opacity-50 uppercase tracking-[0.1em]">
+            <p class="text-[10px] font-bold text-text-secondary mt-2 opacity-80 uppercase tracking-[0.1em]">
                 Monitoring {{ data.totalPolicies }} active policies across the platform
             </p>
         </div>
         <div class="flex items-center gap-4">
             <a routerLink="/app/admin/users"
                 class="h-12 px-8 flex items-center bg-theme-bg dark:bg-slate-900 border border-theme-border/10 text-text-primary dark:text-slate-300 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 font-black text-[10px] uppercase tracking-widest transition-all shadow-sm group">
-                <span class="mr-2 opacity-50 transition-transform group-hover:rotate-12">🗂️</span> Manage Users
+                <app-icon name="folder" className="mr-2 opacity-80 transition-transform group-hover:rotate-12 text-lg"></app-icon> Manage Users
             </a>
             <a routerLink="/app/admin/plans/create"
                 class="btn-premium px-8 h-12 flex items-center gap-3 font-black text-[10px] tracking-widest uppercase shadow-xl shadow-primary/20">
-                <span class="text-lg">⊕</span> Create Plan
+                <app-icon name="plus" className="text-lg"></app-icon> Create Plan
             </a>
         </div>
     </div>
 
     <!-- Top Stats -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-        <app-stat-card label="Total Policies" [value]="data.totalPolicies" icon="📑" color="#F97316" />
-        <app-stat-card label="Revenue" [value]="data.totalPremiumCollected | number" icon="💰" color="#10B981"
+        <app-stat-card label="Total Policies" [value]="data.totalPolicies" icon="policies" color="#F97316" />
+        <app-stat-card label="Revenue" [value]="data.totalPremiumCollected | number" icon="money" color="#10B981"
             prefix="₹" />
-        <app-stat-card label="Claims Settled" [value]="data.settledClaims" icon="✅" color="#10B981" />
-        <app-stat-card label="Endorsements" [value]="data.pendingEndorsements" icon="📝" color="#8B5CF6" />
+        <app-stat-card label="Claims Settled" [value]="data.settledClaims" icon="check" color="#10B981" />
+        <app-stat-card label="Endorsements" [value]="data.pendingEndorsements" icon="endorsements" color="#8B5CF6" />
     </div>
 
     <!-- User & Plan Stats -->
@@ -44,10 +44,10 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
         <div class="premium-card p-8 group relative overflow-hidden">
             <div class="absolute top-0 right-0 p-4 opacity-[0.03] group-hover:opacity-10 transition-opacity">
-                <span class="text-6xl">👥</span>
+                <app-icon name="users" className="text-6xl"></app-icon>
             </div>
             <span
-                class="block text-[9px] font-black uppercase tracking-[0.3em] text-text-secondary opacity-50 mb-3">Total
+                class="block text-[9px] font-black uppercase tracking-[0.3em] text-text-secondary opacity-70 mb-3">Total
                 Customers</span>
             <div class="flex items-baseline gap-3">
                 <span class="text-4xl font-black text-text-primary dark:text-white tracking-tighter">{{
@@ -58,25 +58,25 @@
 
         <div class="premium-card p-8 group relative overflow-hidden border-indigo-500/10">
             <div class="absolute top-0 right-0 p-4 opacity-[0.03] group-hover:opacity-10 transition-opacity">
-                <span class="text-6xl">👔</span>
+                <app-icon name="staff" className="text-6xl"></app-icon>
             </div>
             <span
-                class="block text-[9px] font-black uppercase tracking-[0.3em] text-text-secondary opacity-50 mb-3">Staff
+                class="block text-[9px] font-black uppercase tracking-[0.3em] text-text-secondary opacity-70 mb-3">Staff
                 And Agents</span>
             <div class="flex items-baseline gap-3">
                 <span class="text-4xl font-black text-text-primary dark:text-white tracking-tighter">{{ data.totalAgents
                     + data.totalClaimsOfficers }}</span>
-                <span class="text-[10px] font-bold text-text-secondary opacity-40 uppercase tracking-widest">{{
+                <span class="text-[10px] font-bold text-text-secondary opacity-70 uppercase tracking-widest">{{
                     data.totalAgents }}A / {{ data.totalClaimsOfficers }}O</span>
             </div>
         </div>
 
         <div class="premium-card p-8 group relative overflow-hidden border-emerald-500/10">
             <div class="absolute top-0 right-0 p-4 opacity-[0.03] group-hover:opacity-10 transition-opacity">
-                <span class="text-6xl">🛡️</span>
+                <app-icon name="shield" className="text-6xl"></app-icon>
             </div>
             <span
-                class="block text-[9px] font-black uppercase tracking-[0.3em] text-text-secondary opacity-50 mb-3">Available
+                class="block text-[9px] font-black uppercase tracking-[0.3em] text-text-secondary opacity-70 mb-3">Available
                 Insurance Plans</span>
             <div class="flex items-baseline gap-3">
                 <span class="text-4xl font-black text-text-primary dark:text-white tracking-tighter">{{
@@ -100,44 +100,22 @@
                 <h2 class="text-[11px] font-black text-primary uppercase tracking-[0.3em]">Agent Performance</h2>
                 <div class="h-6 w-20 bg-primary/10 rounded-full animate-pulse"></div>
             </div>
-            <div class="overflow-x-auto">
-                <table class="w-full">
-                    <tbody class="divide-y divide-theme-border/5">
-                        @for (agent of data.agentPerformance; track agent.agentName) {
-                        <tr class="group hover:bg-primary/[0.02] transition-colors">
-                            <td class="px-8 py-6">
-                                <div class="flex items-center gap-4">
-                                    <div
-                                        class="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center font-black text-primary text-[10px]">
-                                        {{ agent.agentName.substring(0, 1) | uppercase }}
-                                    </div>
-                                    <div>
-                                        <p class="text-sm font-black text-text-primary dark:text-white tracking-tight">
-                                            {{ agent.agentName }}</p>
-                                        <p
-                                            class="text-[10px] font-bold text-text-secondary opacity-40 uppercase tracking-widest mt-0.5">
-                                            Agent</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="px-8 py-6">
-                                <p
-                                    class="text-[10px] font-black text-text-secondary opacity-60 uppercase tracking-widest mb-1">
-                                    Volume</p>
-                                <p
-                                    class="text-sm font-black text-text-primary dark:text-white tracking-widest uppercase">
-                                    {{ agent.totalPoliciesAssigned }} Policies</p>
-                            </td>
-                            <td class="px-8 py-6 text-right">
-                                <p class="text-[10px] font-black text-emerald-500 uppercase tracking-widest mb-1">Yield
-                                </p>
-                                <p class="text-base font-black text-emerald-600">₹{{ agent.totalCommissionEarned |
-                                    number: '1.0-0' }}</p>
-                            </td>
-                        </tr>
-                        }
-                    </tbody>
-                </table>
+            <div class="p-8">
+                <div class="h-[350px]">
+                    @if (agentPerformanceChartOptions.series) {
+                    <apx-chart [series]="agentPerformanceChartOptions.series!" 
+                        [chart]="agentPerformanceChartOptions.chart!"
+                        [xaxis]="agentPerformanceChartOptions.xaxis!" 
+                        [yaxis]="agentPerformanceChartOptions.yaxis!"
+                        [colors]="agentPerformanceChartOptions.colors!" 
+                        [stroke]="agentPerformanceChartOptions.stroke!"
+                        [dataLabels]="agentPerformanceChartOptions.dataLabels!" 
+                        [grid]="agentPerformanceChartOptions.grid!"
+                        [legend]="agentPerformanceChartOptions.legend!" 
+                        [tooltip]="agentPerformanceChartOptions.tooltip!">
+                    </apx-chart>
+                    }
+                </div>
             </div>
         </div>
 
@@ -155,16 +133,12 @@
                             }
                         </select>
                         <div
-                            class="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-primary/40 group-hover/year:text-primary transition-colors">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor"
-                                viewBox="0 0 16 16">
-                                <path
-                                    d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
-                            </svg>
+                            class="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-primary/70 group-hover/year:text-primary transition-colors">
+                            <app-icon name="chevron-down"></app-icon>
                         </div>
                     </div>
                     <span
-                        class="text-[9px] font-black text-primary/40 uppercase px-3 py-1 bg-primary/5 rounded">Trends</span>
+                        class="text-[9px] font-black text-primary/70 uppercase px-3 py-1 bg-primary/5 rounded">Trends</span>
                 </div>
             </div>
             <div class="p-8 flex-1 flex flex-col justify-end">
@@ -194,22 +168,22 @@
                 <thead class="bg-primary/[0.02] border-b border-theme-border/5">
                     <tr>
                         <th
-                            class="px-8 py-4 text-left text-[10px] font-black text-text-secondary opacity-50 uppercase tracking-widest">
+                            class="px-8 py-4 text-left text-[10px] font-black text-text-secondary opacity-80 uppercase tracking-widest">
                             Customer</th>
                         <th
-                            class="px-8 py-4 text-left text-[10px] font-black text-text-secondary opacity-50 uppercase tracking-widest">
+                            class="px-8 py-4 text-left text-[10px] font-black text-text-secondary opacity-80 uppercase tracking-widest">
                             Policy No</th>
                         <th
-                            class="px-8 py-4 text-left text-[10px] font-black text-text-secondary opacity-50 uppercase tracking-widest">
+                            class="px-8 py-4 text-left text-[10px] font-black text-text-secondary opacity-80 uppercase tracking-widest">
                             Amount</th>
                         <th
-                            class="px-8 py-4 text-left text-[10px] font-black text-text-secondary opacity-50 uppercase tracking-widest">
+                            class="px-8 py-4 text-left text-[10px] font-black text-text-secondary opacity-80 uppercase tracking-widest">
                             Method</th>
                         <th
-                            class="px-8 py-4 text-left text-[10px] font-black text-text-secondary opacity-50 uppercase tracking-widest">
+                            class="px-8 py-4 text-left text-[10px] font-black text-text-secondary opacity-80 uppercase tracking-widest">
                             Status</th>
                         <th
-                            class="px-8 py-4 text-right text-[10px] font-black text-text-secondary opacity-50 uppercase tracking-widest">
+                            class="px-8 py-4 text-right text-[10px] font-black text-text-secondary opacity-80 uppercase tracking-widest">
                             Date</th>
                     </tr>
                 </thead>
@@ -250,8 +224,8 @@
                     @if (!data.recentPayments.length) {
                     <tr>
                         <td colspan="6" class="px-8 py-12 text-center">
-                            <div class="inline-flex flex-col items-center justify-center opacity-50">
-                                <span class="text-4xl mb-3">💸</span>
+                            <div class="inline-flex flex-col items-center justify-center opacity-80">
+                                <app-icon name="money" className="text-4xl mb-3"></app-icon>
                                 <p class="text-[11px] font-black text-text-secondary uppercase tracking-widest">No
                                     recent payments found</p>
                             </div>

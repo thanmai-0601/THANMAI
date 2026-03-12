@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppIcon } from '../../../shared/components/app-icon/app-icon';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ApiService } from '../../../core/services/api';
@@ -9,7 +10,7 @@ import { LoadingSpinner } from '../../../shared/components/loading-spinner/loadi
 @Component({
   selector: 'app-plan-detail',
   standalone: true,
-  imports: [CommonModule, RouterLink, LoadingSpinner],
+  imports: [CommonModule, RouterLink, LoadingSpinner, AppIcon],
   templateUrl: './plan-detail.html',
   styleUrl: './plan-detail.css'
 })
@@ -18,6 +19,7 @@ export class PlanDetail implements OnInit {
   loading = true;
   isCustomer = false;
   hasSettledClaim = false;
+  customerDetails: any = null;
 
   constructor(
     private api: ApiService,
@@ -28,6 +30,9 @@ export class PlanDetail implements OnInit {
   ngOnInit(): void {
     this.isCustomer = this.auth.getUserRole() === 'Customer';
     if (this.isCustomer) {
+      this.auth.getCurrentUserFromApi().subscribe({
+        next: (data) => this.customerDetails = data
+      });
       this.api.get<any>('dashboard/summary').subscribe({
         next: (data) => this.hasSettledClaim = data.hasSettledDeathClaim
       });
@@ -45,5 +50,27 @@ export class PlanDetail implements OnInit {
     } else {
       this.loading = false;
     }
+  }
+
+  get customerAge(): number {
+    if (!this.customerDetails?.dateOfBirth) return 0;
+    const birthDate = new Date(this.customerDetails.dateOfBirth);
+    const today = new Date();
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
+  }
+
+  get isAgeBelowMin(): boolean {
+    if (!this.plan || !this.customerDetails) return false;
+    return this.customerAge < this.plan.minEntryAge;
+  }
+
+  get isAgeAboveMax(): boolean {
+    if (!this.plan || !this.customerDetails) return false;
+    return this.customerAge > this.plan.maxEntryAge;
   }
 }

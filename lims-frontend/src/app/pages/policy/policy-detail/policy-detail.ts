@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppIcon } from '../../../shared/components/app-icon/app-icon';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
@@ -12,7 +13,7 @@ import { StatusBadge } from '../../../shared/components/status-badge/status-badg
 @Component({
   selector: 'app-policy-detail',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink, StatusBadge],
+  imports: [CommonModule, FormsModule, RouterLink, StatusBadge, LoadingSpinner, AppIcon],
   templateUrl: './policy-detail.html',
   styleUrl: './policy-detail.css'
 })

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppIcon } from '../../../shared/components/app-icon/app-icon';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink, Router } from '@angular/router';
 import { ApiService } from '../../../core/services/api';
@@ -12,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-endorsement-detail',
   standalone: true,
-  imports: [CommonModule, RouterLink, LoadingSpinner, StatusBadge, FormsModule],
+  imports: [CommonModule, RouterLink, LoadingSpinner, StatusBadge, FormsModule, AppIcon],
   templateUrl: './endorsement-detail.html',
   styleUrl: './endorsement-detail.css'
 })

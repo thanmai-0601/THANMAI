@@ -38,10 +38,12 @@ wwwroot\uploads\4\Postman Testing Week-7.pdf
 wwwroot\uploads\4\Unit - 1.0 Power Sector at a Glance ALL INDIA.pdf
 wwwroot\uploads\4\Unit - 1.2 New Energies for Sustainable Development.pdf
 wwwroot\uploads\4\Usecase Diagram.pdf
+wwwroot\uploads\4\Workflow.pdf
 wwwroot\uploads\5\22071A6710_Introduction to Internet of Things.pdf
 wwwroot\uploads\5\Abstract.pdf
 wwwroot\uploads\5\Class Diagram.pdf
 wwwroot\uploads\5\Invoice - E46387CBD675.pdf
+wwwroot\uploads\5\Workflow.pdf
 wwwroot\uploads\7\22071A6710_Blockchain and its Applications.pdf
 wwwroot\uploads\7\22071A6710_Introduction to Internet of Things.pdf
 wwwroot\uploads\claims\1\Abstract.pdf
@@ -58,3 +60,5 @@ wwwroot\uploads\claims\3\Unit - 1.0 Power Sector at a Glance ALL INDIA.pdf
 wwwroot\uploads\claims\3\Usecase Diagram.pdf
 wwwroot\uploads\claims\4\Usecase Diagram.pdf
 wwwroot\uploads\claims\4\Workflow.pdf
+wwwroot\uploads\claims\5\Abstract.pdf
+wwwroot\uploads\claims\5\Workflow.pdf

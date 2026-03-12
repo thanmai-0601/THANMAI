@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppIcon } from '../../../shared/components/app-icon/app-icon';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ApiService } from '../../../core/services/api';
@@ -8,7 +9,7 @@ import { LoadingSpinner } from '../../../shared/components/loading-spinner/loadi
 @Component({
   selector: 'app-user-detail',
   standalone: true,
-  imports: [CommonModule, RouterLink, LoadingSpinner],
+  imports: [CommonModule, RouterLink, LoadingSpinner, AppIcon],
   templateUrl: './user-detail.html',
   styleUrl: './user-detail.css'
 })

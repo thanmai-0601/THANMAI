@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppIcon } from '../../../shared/components/app-icon/app-icon';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
@@ -8,7 +9,7 @@ import { ToastService } from '../../../core/services/toast';
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink, AppIcon],
   templateUrl: './profile.html',
   styleUrl: './profile.css'
 })

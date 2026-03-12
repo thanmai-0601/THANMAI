@@ -1,23 +1,23 @@
 <div class="max-w-6xl mx-auto pt-8 transition-all duration-500 animate-in fade-in slide-in-from-bottom-8">
     <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12">
         <div>
-            <div class="flex items-center gap-3 mb-2 opacity-60">
+            <div class="flex items-center gap-3 mb-2 opacity-90">
                 <span class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary">Admin
                     Dashboard</span>
-                <div class="h-px w-8 bg-text-secondary opacity-30"></div>
+                <div class="h-px w-8 bg-text-secondary opacity-70"></div>
             </div>
             <h1 class="text-4xl md:text-5xl font-black text-text-primary dark:text-white tracking-tightest">
                 All <span class="text-gradient">Policies</span>
             </h1>
-            <p class="text-xs font-bold text-text-secondary uppercase tracking-[0.2em] opacity-50 mt-2">View all active
+            <p class="text-xs font-bold text-text-secondary uppercase tracking-[0.2em] opacity-80 mt-2">View all active
                 and pending policies</p>
         </div>
         <div class="flex gap-4">
             <div
                 class="px-6 py-3 rounded-2xl bg-white dark:bg-slate-900 border border-theme-border/10 flex items-center gap-3 shadow-sm">
-                <span class="text-xl">📋</span>
+                <app-icon name="policies" className="text-xl"></app-icon>
                 <div class="flex flex-col">
-                    <span class="text-[10px] font-black uppercase tracking-wider text-text-secondary opacity-40">Total
+                    <span class="text-[10px] font-black uppercase tracking-wider text-text-secondary opacity-80">Total
                         Policies</span>
                     <span class="text-sm font-black text-text-primary dark:text-white">{{ policies.length }}</span>
                 </div>
@@ -35,19 +35,19 @@
                 <thead>
                     <tr class="bg-primary/[0.02] border-b border-theme-border/5 dark:border-slate-800/50">
                         <th
-                            class="px-8 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60">
+                            class="px-8 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-90">
                             Policy Number</th>
                         <th
-                            class="px-8 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60">
+                            class="px-8 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-90">
                             Customer</th>
                         <th
-                            class="px-8 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60">
+                            class="px-8 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-90">
                             Plan Name</th>
                         <th
-                            class="px-8 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60">
+                            class="px-8 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-90">
                             Sum Assured</th>
                         <th
-                            class="px-8 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60">
+                            class="px-8 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-90">
                             Status</th>
                         <th class="px-8 py-6"></th>
                     </tr>
@@ -65,13 +65,13 @@
                                 <span
                                     class="text-sm font-bold text-text-primary dark:text-slate-200 uppercase tracking-tight">{{
                                     p.customerName }}</span>
-                                <span class="text-[10px] font-bold text-text-secondary opacity-40 uppercase
+                                <span class="text-[10px] font-bold text-text-secondary opacity-80 uppercase
                                 tracking-widest">Customer
                                     Policy</span>
                             </div>
                         </td>
                         <td class="px-8 py-6 hidden md:table-cell">
-                            <span class="text-sm font-medium text-text-secondary dark:text-slate-400 opacity-60">{{
+                            <span class="text-sm font-medium text-text-secondary dark:text-slate-400 opacity-90">{{
                                 p.planName }}</span>
                         </td>
                         <td class="px-8 py-6 hidden lg:table-cell">
@@ -91,8 +91,8 @@
                     } @empty {
                     <tr>
                         <td colspan="6" class="px-8 py-24 text-center">
-                            <div class="text-4xl mb-4 opacity-20">📭</div>
-                            <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-40">
+                            <div class="text-4xl mb-4 opacity-70"><app-icon name="mail"></app-icon></div>
+                            <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80">
                                 No policies found.</p>
                         </td>
                     </tr>
@@ -103,3 +103,4 @@
     </div>
     }
 </div>
+

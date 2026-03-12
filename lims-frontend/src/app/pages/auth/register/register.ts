@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AppIcon } from '../../../shared/components/app-icon/app-icon';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
@@ -10,7 +11,7 @@ import { RegisterDto } from '../../../core/models/auth.model';
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, AppIcon],
   templateUrl: './register.html',
   styleUrl: './register.css'
 })
@@ -19,6 +20,7 @@ export class Register {
   registerForm: FormGroup;
   loading = false;
   maxDate: string;
+  currentStep = 1;
 
   constructor(
     private auth: AuthService,
@@ -60,6 +62,35 @@ export class Register {
       }
       return null;
     };
+  }
+
+  goToNextStep(): void {
+    const step1Controls = ['fullName', 'email', 'phoneNumber', 'dateOfBirth', 'password', 'confirmPassword'];
+    let isValid = true;
+
+    for (const ctrl of step1Controls) {
+      const control = this.registerForm.get(ctrl);
+      control?.markAsTouched();
+      if (control?.invalid) isValid = false;
+    }
+
+    const passwordsMatch = !this.registerForm.errors?.['mismatch'];
+
+    if (!isValid) {
+      this.toast.error('Please fill in all personal details correctly.');
+      return;
+    }
+    
+    if (!passwordsMatch) {
+      this.toast.error('Passwords do not match');
+      return;
+    }
+
+    this.currentStep = 2;
+  }
+
+  goToPrevStep(): void {
+    this.currentStep = 1;
   }
 
   onSubmit(): void {

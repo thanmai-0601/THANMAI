@@ -4,13 +4,14 @@ import { Router, RouterOutlet, RouterLink, RouterLinkActive } from '@angular/rou
 import { AuthService } from '../../core/services/auth';
 import { NotificationService, NotificationDto } from '../../core/services/notification';
 import { ThemeToggle } from '../../shared/components/theme-toggle/theme-toggle';
+import { AppIcon } from '../../shared/components/app-icon/app-icon';
 
 interface MenuItem { label: string; icon: string; link: string; }
 
 @Component({
   selector: 'app-layout',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive, ThemeToggle],
+  imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive, ThemeToggle, AppIcon],
   templateUrl: './layout.html',
   styleUrl: './layout.css'
 })
@@ -110,38 +111,52 @@ export class Layout implements OnInit {
     switch (role) {
       case 'Admin':
         this.menuItems = [
-          { label: 'Dashboard', icon: '📊', link: '/app/dashboard/admin' },
-          { label: 'All Policies', icon: '📑', link: '/app/all-policies' },
-          { label: 'All Claims', icon: '🏥', link: '/app/all-claims' },
-          { label: 'Endorsements', icon: '📝', link: '/app/admin/endorsements' },
-          { label: 'User Management', icon: '👥', link: '/app/admin/users' },
-          { label: 'Plan Management', icon: '⚙️', link: '/app/admin/plans' }
+          { label: 'Dashboard', icon: 'dashboard', link: '/app/dashboard/admin' },
+          { label: 'All Policies', icon: 'policies', link: '/app/all-policies' },
+          { label: 'All Claims', icon: 'claims', link: '/app/all-claims' },
+          { label: 'Endorsements', icon: 'endorsements', link: '/app/admin/endorsements' },
+          { label: 'User Management', icon: 'users', link: '/app/admin/users' },
+          { label: 'Plan Management', icon: 'settings', link: '/app/admin/plans' }
         ];
         break;
       case 'Agent':
         this.menuItems = [
-          { label: 'Dashboard', icon: '📊', link: '/app/dashboard/agent' },
-          { label: 'Assigned Policies', icon: '📑', link: '/app/agent-policies' },
-          { label: 'Endorsements', icon: '📝', link: '/app/endorsement/pending' }
+          { label: 'Dashboard', icon: 'dashboard', link: '/app/dashboard/agent' },
+          { label: 'Assigned Policies', icon: 'policies', link: '/app/agent-policies' },
+          { label: 'Endorsements', icon: 'endorsements', link: '/app/endorsement/pending' }
         ];
         break;
       case 'ClaimsOfficer':
         this.menuItems = [
-          { label: 'Dashboard', icon: '📊', link: '/app/dashboard/claims-officer' },
-          { label: 'Assigned Claims', icon: '🏥', link: '/app/officer-claims' }
+          { label: 'Dashboard', icon: 'dashboard', link: '/app/dashboard/claims-officer' },
+          { label: 'Assigned Claims', icon: 'claims', link: '/app/officer-claims' }
         ];
         break;
       case 'Customer':
         this.menuItems = [
-          { label: 'Dashboard', icon: '📊', link: '/app/dashboard/customer' },
-          { label: 'Browse Plans', icon: '🔎', link: '/app/plans' },
-          { label: 'My Policies', icon: '📑', link: '/app/my-policies' },
-          { label: 'My Payments', icon: '💳', link: '/app/my-payments' },
-          { label: 'My Claims', icon: '🏥', link: '/app/my-claims' },
-          { label: 'My Endorsements', icon: '📝', link: '/app/endorsement/my-endorsements' }
+          { label: 'Dashboard', icon: 'dashboard', link: '/app/dashboard/customer' },
+          { label: 'Browse Plans', icon: 'search', link: '/app/plans' },
+          { label: 'My Policies', icon: 'policies', link: '/app/my-policies' },
+          { label: 'My Payments', icon: 'payments', link: '/app/my-payments' },
+          { label: 'My Claims', icon: 'claims', link: '/app/my-claims' },
+          { label: 'My Endorsements', icon: 'endorsements', link: '/app/endorsement/my-endorsements' }
         ];
         break;
     }
+  }
+
+  get isNotDashboard(): boolean {
+    return !this.router.url.includes('/dashboard/');
+  }
+
+  get dashboardLink(): string {
+    const roleMap: any = {
+      'Admin': '/app/dashboard/admin',
+      'Agent': '/app/dashboard/agent',
+      'ClaimsOfficer': '/app/dashboard/claims-officer',
+      'Customer': '/app/dashboard/customer'
+    };
+    return roleMap[this.userRole] || '/app';
   }
 
   logout(): void {

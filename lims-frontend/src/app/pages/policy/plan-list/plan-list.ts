@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppIcon } from '../../../shared/components/app-icon/app-icon';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
@@ -9,7 +10,7 @@ import { LoadingSpinner } from '../../../shared/components/loading-spinner/loadi
 @Component({
   selector: 'app-plan-list',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink, LoadingSpinner],
+  imports: [CommonModule, FormsModule, RouterLink, LoadingSpinner, AppIcon],
   templateUrl: './plan-list.html',
   styleUrl: './plan-list.css'
 })

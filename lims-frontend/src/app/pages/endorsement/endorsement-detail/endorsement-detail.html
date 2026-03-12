@@ -4,10 +4,7 @@
         <div class="flex items-center gap-3">
             <button routerLink=".."
                 class="p-2 text-text-secondary hover:text-text-secondary dark:hover:text-slate-200 transition-colors rounded-lg hover:bg-theme-bg dark:hover:bg-slate-800">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-                </svg>
+                <app-icon name="arrow-right" className="rotate-180"></app-icon>
             </button>
             <h1 class="text-2xl font-extrabold text-text-primary dark:text-white tracking-tight">Review Request</h1>
         </div>
@@ -82,8 +79,9 @@
         class="bg-theme-card dark:bg-theme-sidebar rounded-2xl shadow-sm border border-theme-border dark:border-theme-border overflow-hidden mt-4">
         <div
             class="px-6 py-4 border-b border-theme-border dark:border-theme-border bg-amber-50/50 dark:bg-amber-900/10">
-            <h2 class="font-bold text-amber-900 dark:text-warning flex items-center gap-2"><span>🛡️</span> Agent
-                Decision</h2>
+            <h2 class="font-bold text-amber-900 dark:text-warning flex items-center gap-2">
+                <app-icon name="shield"></app-icon> Agent Decision
+            </h2>
         </div>
         <div class="p-6">
             <form class="flex flex-col gap-5">
@@ -98,13 +96,13 @@
 
                 <div class="flex gap-4">
                     <button type="button" (click)="submitReview('Approve')" [disabled]="submitLoading"
-                        class="flex-1 py-3 rounded-xl font-bold text-white bg-success hover:bg-green-700 disabled:opacity-60 transition-colors shadow-sm shadow-green-600/20 flex items-center justify-center gap-2">
+                        class="flex-1 py-3 rounded-xl font-bold text-white bg-success hover:bg-green-700 disabled:opacity-90 transition-colors shadow-sm shadow-green-600/20 flex items-center justify-center gap-2">
                         <span *ngIf="submitLoading"
                             class="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
                         Approve Change
                     </button>
                     <button type="button" (click)="submitReview('Reject')" [disabled]="submitLoading"
-                        class="flex-1 py-3 rounded-xl font-bold text-white bg-error hover:bg-red-700 disabled:opacity-60 transition-colors shadow-sm shadow-red-600/20 flex items-center justify-center gap-2">
+                        class="flex-1 py-3 rounded-xl font-bold text-white bg-error hover:bg-red-700 disabled:opacity-90 transition-colors shadow-sm shadow-red-600/20 flex items-center justify-center gap-2">
                         Reject Request
                     </button>
                 </div>

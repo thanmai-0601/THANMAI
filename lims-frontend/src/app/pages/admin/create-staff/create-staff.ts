@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AppIcon } from '../../../shared/components/app-icon/app-icon';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
@@ -9,7 +10,7 @@ import { CreateStaffDto } from '../../../core/models/auth.model';
 @Component({
   selector: 'app-create-staff',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, AppIcon],
   templateUrl: './create-staff.html',
   styleUrl: './create-staff.css'
 })

@@ -1,20 +1,20 @@
 <div class="max-w-6xl mx-auto pt-8 transition-all duration-500 animate-in fade-in slide-in-from-bottom-8">
     <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12">
         <div>
-            <div class="flex items-center gap-3 mb-2 opacity-60">
+            <div class="flex items-center gap-3 mb-2 opacity-90">
                 <span class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary">Agent
                     Dashboard</span>
-                <div class="h-px w-8 bg-text-secondary opacity-30"></div>
+                <div class="h-px w-8 bg-text-secondary opacity-70"></div>
             </div>
             <h1 class="text-4xl md:text-5xl font-black text-text-primary dark:text-white tracking-tightest">
                 Assigned <span class="text-gradient">Policies</span>
             </h1>
-            <p class="text-xs font-bold text-text-secondary uppercase tracking-[0.2em] opacity-50 mt-2">Manage customer
+            <p class="text-xs font-bold text-text-secondary uppercase tracking-[0.2em] opacity-80 mt-2">Manage customer
                 policies and applications</p>
         </div>
         <div class="flex gap-4">
             <div class="px-6 py-3 rounded-2xl bg-primary/5 border border-primary/10 flex items-center gap-3">
-                <span class="text-xl">📊</span>
+                <app-icon name="policies" className="text-xl"></app-icon>
                 <div class="flex flex-col">
                     <span class="text-[10px] font-black uppercase tracking-wider text-primary">Active Policies</span>
                     <span class="text-sm font-black text-text-primary dark:text-white">{{ policies.length }}
@@ -33,19 +33,19 @@
             <thead>
                 <tr class="bg-primary/[0.02] border-b border-theme-border/5 dark:border-slate-800/50">
                     <th
-                        class="px-2 py-4 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60">
+                        class="px-2 py-4 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-90">
                         Policy Number</th>
                     <th
-                        class="px-2 py-4 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60">
+                        class="px-2 py-4 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-90">
                         Customer</th>
                     <th
-                        class="px-2 py-4 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60">
+                        class="px-2 py-4 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-90">
                         Plan Name</th>
                     <th
-                        class="px-2 py-4 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60">
+                        class="px-2 py-4 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-90">
                         Sum Assured</th>
                     <th
-                        class="px-2 py-4 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60">
+                        class="px-2 py-4 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-90">
                         Status</th>
                     <th class="px-2 py-4"></th>
                 </tr>
@@ -70,7 +70,7 @@
                         </div>
                     </td>
                     <td class="px-2 py-4">
-                        <span class="text-sm font-medium text-text-secondary dark:text-slate-400 opacity-60">{{
+                        <span class="text-sm font-medium text-text-secondary dark:text-slate-400 opacity-90">{{
                             p.planName }}</span>
                     </td>
                     <td class="px-2 py-4 hidden md:table-cell">
@@ -99,8 +99,8 @@
                 } @empty {
                 <tr>
                     <td colspan="6" class="px-4 py-24 text-center">
-                        <div class="text-4xl mb-4 opacity-20">📂</div>
-                        <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-40">
+                        <div class="text-4xl mb-4 opacity-70"><app-icon name="folder"></app-icon></div>
+                        <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80">
                             You don't have any assigned policies.</p>
                     </td>
                 </tr>
@@ -110,3 +110,4 @@
     </div>
     }
 </div>
+

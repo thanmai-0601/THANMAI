@@ -7,23 +7,23 @@
         <div>
             <h1 class="text-3xl font-black text-text-primary dark:text-white tracking-tighter uppercase">Agency <span
                     class="text-gradient">Dashboard</span></h1>
-            <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50 mt-1 italic">
+            <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80 mt-1 italic">
                 Track your earnings and activities</p>
         </div>
         <a routerLink="/app/agent-policies"
             class="btn-premium px-8 h-12 flex items-center justify-center text-[10px] font-black uppercase tracking-widest shadow-xl shadow-primary/20">
-            Assigned Policies <span class="ml-2 text-lg">→</span>
+            Assigned Policies <app-icon name="arrow-right" className="ml-2 text-lg"></app-icon>
         </a>
     </div>
 
     <!-- Analytics Matrix -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-        <app-stat-card label="Assigned Policies" [value]="data.totalAssignedPolicies" icon="🤝" color="#3B82F6" />
-        <app-stat-card label="Pending Review" [value]="data.submittedPolicies + data.underReviewPolicies" icon="⏱️"
+        <app-stat-card label="Assigned Policies" [value]="data.totalAssignedPolicies" icon="handshake" color="#3B82F6" />
+        <app-stat-card label="Pending Review" [value]="data.submittedPolicies + data.underReviewPolicies" icon="clock"
             color="#F59E0B" />
-        <app-stat-card label="Change Requests" [value]="data.pendingEndorsements.length || 0" icon="📝"
+        <app-stat-card label="Change Requests" [value]="data.pendingEndorsements.length || 0" icon="endorsements"
             color="#8B5CF6" />
-        <app-stat-card label="Total Earnings (INR)" [value]="data.totalCommissionEarned | number" icon="💰"
+        <app-stat-card label="Total Earnings (INR)" [value]="data.totalCommissionEarned | number" icon="money"
             color="#10B981" prefix="₹" />
     </div>
 
@@ -38,7 +38,7 @@
             <table class="w-full">
                 <thead>
                     <tr
-                        class="bg-theme-bg dark:bg-slate-800/40 text-[9px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60">
+                        class="bg-theme-bg dark:bg-slate-800/40 text-[9px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-90">
                         <th class="px-8 py-4 text-left">Policy & Customer</th>
                         <th class="px-8 py-4 text-left">Status & Date</th>
                         <th class="px-8 py-4 text-right">Amount Earned</th>
@@ -57,10 +57,10 @@
                                 [ngClass]="p.status === 'Earned' ? 'text-emerald-500' : 'text-amber-500'">{{ p.status
                                 }}</span>
                             @if (p.earnedOn) {
-                            <span class="block text-[10px] font-bold text-text-secondary opacity-60 mt-1">{{ p.earnedOn
+                            <span class="block text-[10px] font-bold text-text-secondary opacity-80 mt-1">{{ p.earnedOn
                                 | date:'mediumDate' }}</span>
                             } @else {
-                            <span class="block text-[10px] font-bold text-text-secondary opacity-60 mt-1">Pending
+                            <span class="block text-[10px] font-bold text-text-secondary opacity-80 mt-1">Pending
                                 Payment</span>
                             }
                         </td>
@@ -72,7 +72,7 @@
                     <tr>
                         <td colspan="3" class="px-8 py-16 text-center">
                             <p
-                                class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-30 italic">
+                                class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-70 italic">
                                 No earnings found recently</p>
                         </td>
                     </tr>

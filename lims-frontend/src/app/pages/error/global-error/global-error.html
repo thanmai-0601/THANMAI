@@ -21,34 +21,16 @@
             }">
 
             <!-- Server / Unknown Error Icon -->
-            <svg *ngIf="error.type === 'server' || error.type === 'unknown'" class="w-12 h-12 text-error" fill="none"
-                stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z">
-                </path>
-            </svg>
+            <app-icon *ngIf="error.type === 'server' || error.type === 'unknown'" name="alert" className="w-12 h-12 text-error"></app-icon>
 
             <!-- Network / Maintenance Icon -->
-            <svg *ngIf="error.type === 'network' || error.type === 'maintenance'" class="w-12 h-12 text-amber-500"
-                fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z">
-                </path>
-            </svg>
+            <app-icon *ngIf="error.type === 'network' || error.type === 'maintenance'" name="zap" className="w-12 h-12 text-amber-500"></app-icon>
 
             <!-- Auth / Forbidden Icon -->
-            <svg *ngIf="error.type === 'auth' || error.type === 'forbidden'" class="w-12 h-12 text-indigo-500"
-                fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
-                </path>
-            </svg>
+            <app-icon *ngIf="error.type === 'auth' || error.type === 'forbidden'" name="lock" className="w-12 h-12 text-indigo-500"></app-icon>
 
             <!-- Not Found Icon -->
-            <svg *ngIf="error.type === 'not-found'" class="w-12 h-12 text-slate-400" fill="none" stroke="currentColor"
-                viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-            </svg>
+            <app-icon *ngIf="error.type === 'not-found'" name="search" className="w-12 h-12 text-slate-400"></app-icon>
         </div>
 
         <h1 class="text-3xl font-black text-text-primary dark:text-white tracking-tight mb-3">
@@ -73,18 +55,18 @@
         <div class="flex flex-col gap-3 mb-8">
             <button (click)="goHome()"
                 class="w-full py-4 rounded-2xl font-black text-xs uppercase tracking-widest bg-primary hover:bg-primary-hover text-white transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2">
-                <span class="text-base">🏠</span> Return to Dashboard
+                <app-icon name="dashboard" className="text-base"></app-icon> Return to Dashboard
             </button>
             <button (click)="refresh()"
                 class="w-full py-4 rounded-2xl font-black text-xs uppercase tracking-widest bg-theme-bg dark:bg-slate-800 text-text-primary dark:text-white hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors border border-theme-border dark:border-slate-700 shadow-sm flex items-center justify-center gap-2">
-                <span class="text-base">🔄</span> Try Again
+                <app-icon name="clock" className="text-base"></app-icon> Try Again
             </button>
         </div>
 
         <!-- Technical Details Toggle -->
         <div class="pt-6 border-t border-theme-border/10">
             <button (click)="toggleDetails()"
-                class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50 hover:opacity-100 transition-opacity flex items-center gap-2 mx-auto">
+                class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80 hover:opacity-100 transition-opacity flex items-center gap-2 mx-auto">
                 {{ showDetails ? 'Hide' : 'Show' }} Tech Details
                 <span [class.rotate-180]="showDetails"
                     class="transition-transform duration-300 inline-block text-[8px]">▼</span>
@@ -95,18 +77,18 @@
                 <div class="space-y-3">
                     <div class="flex justify-between items-center border-b border-theme-border/5 pb-2">
                         <span
-                            class="text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40">Status
+                            class="text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-80">Status
                             Code</span>
                         <span class="text-xs font-mono font-black text-text-primary">{{ error.code }}</span>
                     </div>
                     <div class="flex flex-col gap-1">
                         <span
-                            class="text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40">Message</span>
+                            class="text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-80">Message</span>
                         <p class="text-[11px] font-medium text-text-primary leading-tight">{{ error.message }}</p>
                     </div>
                     <div *ngIf="error.description" class="flex flex-col gap-1">
                         <span
-                            class="text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40">Details</span>
+                            class="text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-80">Details</span>
                         <p class="text-[10px] font-mono text-text-secondary opacity-70 break-all leading-normal">{{
                             error.description }}</p>
                     </div>

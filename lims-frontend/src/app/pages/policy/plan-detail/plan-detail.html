@@ -4,8 +4,9 @@
 @else if (plan) {
 <div class="max-w-4xl mx-auto">
     <div class="mb-6">
-        <a routerLink="/app/plans" class="text-sm font-semibold text-primary dark:text-primary hover:underline">&larr;
-            Back to Plans</a>
+        <a routerLink="/app/plans" class="text-sm font-semibold text-primary dark:text-primary hover:underline flex items-center gap-1">
+            <app-icon name="arrow-right" className="rotate-180"></app-icon> Back to Plans
+        </a>
     </div>
 
     <div
@@ -18,7 +19,7 @@
         <div class="p-8 md:p-10 grid md:grid-cols-2 gap-10">
             <div>
                 <h2 class="text-lg font-bold text-text-primary dark:text-white mb-6 flex items-center gap-2">
-                    <span class="text-xl">📋</span> Plan Specifications
+                    <app-icon name="clipboard" className="text-xl"></app-icon> Plan Specifications
                 </h2>
                 <div
                     class="flex flex-col gap-0 border border-theme-border dark:border-theme-border rounded-xl overflow-hidden text-sm">
@@ -64,7 +65,7 @@
 
             <div class="flex flex-col">
                 <h2 class="text-lg font-bold text-text-primary dark:text-white mb-6 flex items-center gap-2">
-                    <span class="text-xl">🛡️</span> Premium Details
+                    <app-icon name="shield" className="text-xl"></app-icon> Premium Details
                 </h2>
                 <div
                     class="flex flex-col gap-0 border border-theme-border dark:border-theme-border rounded-xl overflow-hidden text-sm mb-8 flex-1">
@@ -95,11 +96,32 @@
                 </div>
 
                 @if (isCustomer) {
-                    @if (hasSettledClaim) {
+                    @if (!plan.isActive) {
+                    <div class="mt-auto p-5 bg-amber-500/10 rounded-2xl border border-amber-500/30 text-center animate-in fade-in slide-in-from-bottom-2">
+                        <p class="text-xs font-black text-amber-600 uppercase tracking-[0.2em] leading-relaxed">
+                            Plan Unavailable<br>
+                            <span class="opacity-90 font-bold normal-case tracking-normal text-text-secondary">This insurance plan is currently inactive and not accepting new policies.</span>
+                        </p>
+                    </div>
+                    } @else if (hasSettledClaim) {
                     <div class="mt-auto p-5 bg-red-500/10 rounded-2xl border border-red-500/30 text-center animate-in fade-in slide-in-from-bottom-2">
                         <p class="text-xs font-black text-red-500 uppercase tracking-[0.2em] leading-relaxed">
                             Account Settlement Restriction<br>
-                            <span class="opacity-60 font-bold normal-case tracking-normal">New policy applications are disabled due to previously settled claims on this account.</span>
+                            <span class="opacity-90 font-bold normal-case tracking-normal">New policy applications are disabled due to previously settled claims on this account.</span>
+                        </p>
+                    </div>
+                    } @else if (isAgeBelowMin) {
+                    <div class="mt-auto p-5 bg-red-500/10 rounded-2xl border border-red-500/30 text-center animate-in fade-in slide-in-from-bottom-2">
+                        <p class="text-xs font-black text-red-500 uppercase tracking-[0.2em] leading-relaxed">
+                            Age Requirement Not Met<br>
+                            <span class="opacity-90 font-bold normal-case tracking-normal">You can't apply as your age is less than the minimum age ({{ plan.minEntryAge }} years).</span>
+                        </p>
+                    </div>
+                    } @else if (isAgeAboveMax) {
+                    <div class="mt-auto p-5 bg-red-500/10 rounded-2xl border border-red-500/30 text-center animate-in fade-in slide-in-from-bottom-2">
+                        <p class="text-xs font-black text-red-500 uppercase tracking-[0.2em] leading-relaxed">
+                            Age Requirement Not Met<br>
+                            <span class="opacity-90 font-bold normal-case tracking-normal">You can't apply as your age is more than the maximum age ({{ plan.maxEntryAge }} years).</span>
                         </p>
                     </div>
                     } @else {

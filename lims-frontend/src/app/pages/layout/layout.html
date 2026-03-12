@@ -8,8 +8,11 @@
     [class.-translate-x-full]="!isSidebarOpen && isMobile">
 
     <div class="h-24 flex items-center justify-between px-8 shrink-0">
-      <a routerLink="/app" class="flex items-center gap-3 transition-transform hover:scale-105 duration-300">
-        <span class="text-3xl filter drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]">🏦</span>
+      <a routerLink="/" class="flex items-center gap-3 transition-transform hover:scale-105 duration-300 group">
+        <div class="relative w-10 h-10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+          <div class="absolute inset-0 bg-primary/20 blur-lg rounded-full animate-pulse"></div>
+          <app-icon name="shield" className="text-4xl relative z-10 text-primary drop-shadow-[0_0_8px_rgba(249,115,22,0.5)]"></app-icon>
+        </div>
         <span class="text-2xl font-black text-gradient uppercase tracking-tightest">NexaLife</span>
       </a>
       @if (isMobile) {
@@ -22,9 +25,7 @@
       <div class="w-full flex items-center justify-center gap-3 px-6 py-4 rounded-3xl bg-gradient-to-r from-primary/10 via-primary/5 to-white/[0.02] border border-primary/20 shadow-[0_0_20px_rgba(59,130,246,0.1)] relative overflow-hidden group">
         <!-- Shine effect -->
         <div class="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-white/5 to-transparent skew-x-12"></div>
-        <svg class="w-4 h-4 text-primary opacity-80" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 2C12 7.5 16.5 12 22 12C16.5 12 12 16.5 12 22C12 16.5 7.5 12 2 12C7.5 12 12 7.5 12 2Z"></path>
-        </svg>
+        <app-icon name="shield" className="w-4 h-4 text-primary opacity-80"></app-icon>
         <span class="text-[11px] font-black uppercase tracking-[0.2em] text-white">
           {{ userName }}
         </span>
@@ -38,8 +39,7 @@
         [routerLinkActiveOptions]="{exact: true}"
         class="flex items-center gap-4 px-5 py-3.5 rounded-2xl text-slate-400 font-bold text-[11px] uppercase tracking-[0.15em] border border-transparent hover:bg-white/5 hover:text-white transition-all group"
         (click)="closeSidebarMobile()">
-        <span class="text-lg w-6 text-center opacity-50 group-hover:opacity-100 transition-opacity">{{ item.icon
-          }}</span>
+        <app-icon [name]="item.icon" className="text-lg w-6 text-center opacity-80 group-hover:opacity-100 transition-opacity"></app-icon>
         <span class="tracking-widest">{{ item.label }}</span>
       </a>
       }
@@ -50,12 +50,12 @@
         <a routerLink="/app/change-password"
           class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 text-[9px] font-black uppercase tracking-[0.2em] hover:text-white transition-all"
           (click)="closeSidebarMobile()">
-          <span class="text-sm">🔒</span> Security Center
+          <app-icon name="lock" className="text-sm"></app-icon> Security Center
         </a>
         <a routerLink="/app/profile"
           class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 text-[9px] font-black uppercase tracking-[0.2em] hover:text-white transition-all"
           (click)="closeSidebarMobile()">
-          <span class="text-sm">👤</span> My Profile
+          <app-icon name="user" className="text-sm"></app-icon> My Profile
         </a>
       </div>
     </div>
@@ -74,20 +74,13 @@
 
     <!-- Header -->
     <header class="h-24 shrink-0 flex items-center justify-between px-8 lg:px-12 z-20">
-      <div class="flex items-center gap-8">
+      <div class="flex items-center gap-4 lg:gap-8">
         <button (click)="toggleSidebar()"
           class="h-12 w-12 rounded-2xl bg-white dark:bg-slate-900 border border-theme-border/10 flex items-center justify-center text-text-secondary hover:text-primary transition-all shadow-sm active:scale-95 group">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
-            class="transition-transform group-hover:rotate-180">
-            <line x1="3" y1="12" x2="21" y2="12"></line>
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <line x1="3" y1="18" x2="21" y2="18"></line>
-          </svg>
+          <app-icon name="menu" className="transition-transform group-hover:rotate-180"></app-icon>
         </button>
-        <div class="hidden md:block">
-          <p class="text-[9px] font-black uppercase tracking-[0.4em] text-text-secondary opacity-40 mb-1">Dashboard
-            Overview</p>
+        <div class="hidden lg:block">
+          <p class="text-[9px] font-black uppercase tracking-[0.4em] text-text-secondary opacity-80 mb-1">Your Life, Our Promise</p>
           <p class="text-xs font-black text-text-primary dark:text-white uppercase tracking-widest">{{ userRole }}
             Account Active</p>
         </div>
@@ -103,11 +96,7 @@
         <div class="relative">
           <button (click)="toggleNotificationMenu()"
             class="h-12 w-12 rounded-2xl bg-white dark:bg-slate-900 text-text-secondary dark:text-slate-300 flex items-center justify-center border border-theme-border/10 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all relative focus:outline-none z-50">
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-            </svg>
+            <app-icon name="notification" className="text-xl"></app-icon>
             <span *ngIf="unreadCount > 0"
               class="absolute top-3.5 right-3.5 w-2.5 h-2.5 bg-primary rounded-full border-2 border-white dark:border-slate-900 shadow-[0_0_10px_rgba(59,130,246,0.6)] animate-pulse"></span>
           </button>
@@ -133,13 +122,13 @@
                       *ngIf="!n.isRead"></div>
                   </div>
                   <div class="flex-1 min-w-0">
-                    <p class="text-xs font-black text-text-primary dark:text-slate-100 leading-relaxed mb-3"
-                      [class.opacity-100]="!n.isRead" [class.opacity-60]="n.isRead">{{ n.message }}</p>
+                    <p class="text-[13px] font-medium text-text-primary dark:text-slate-100 leading-relaxed mb-3"
+                      [class.opacity-100]="!n.isRead" [class.opacity-90]="n.isRead">{{ n.message }}</p>
                     <div class="flex items-center gap-3">
-                      <span class="text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40">{{
+                      <span class="text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-80">{{
                         n.createdAt | date:'mediumDate' | uppercase }}</span>
-                      <span class="h-1 w-1 rounded-full bg-text-secondary opacity-20"></span>
-                      <span class="text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40">{{
+                      <span class="h-1 w-1 rounded-full bg-text-secondary opacity-80"></span>
+                      <span class="text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-80">{{
                         n.createdAt | date:'shortTime' }}</span>
                     </div>
                   </div>
@@ -152,13 +141,13 @@
         <button (click)="logout()"
           class="group h-12 flex items-center gap-3 px-6 rounded-2xl bg-white dark:bg-slate-900 border border-theme-border/10 shadow-sm hover:shadow-lg hover:bg-red-500/5 hover:-translate-y-0.5 transition-all focus:outline-none z-50">
           <span class="text-[10px] font-black uppercase tracking-[0.2em] text-red-500 group-hover:text-red-400">Logout</span>
-          <span class="text-lg opacity-40 group-hover:opacity-100 group-hover:rotate-12 transition-all">⎋</span>
+          <app-icon name="logout" className="text-lg opacity-80 group-hover:opacity-100 group-hover:rotate-12 transition-all"></app-icon>
         </button>
       </div>
     </header>
 
     <!-- Page Content Container -->
-    <div class="flex-1 overflow-y-auto px-8 pb-12 lg:px-12 scrollbar-premium">
+    <div class="flex-1 overflow-y-auto px-8 pb-12 pt-6 lg:px-12 scrollbar-premium">
       <div class="max-w-[1600px] mx-auto">
         <router-outlet></router-outlet>
       </div>

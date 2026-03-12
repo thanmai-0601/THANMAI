@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppIcon } from '../../../shared/components/app-icon/app-icon';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
@@ -10,7 +11,7 @@ import { LoadingSpinner } from '../../../shared/components/loading-spinner/loadi
 @Component({
   selector: 'app-edit-plan',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink, LoadingSpinner],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, LoadingSpinner, AppIcon],
   templateUrl: './edit-plan.html',
   styleUrl: './edit-plan.css'
 })
@@ -29,6 +30,7 @@ export class EditPlan implements OnInit {
   ) {
     this.planForm = this.fb.group({
       planName: ['', Validators.required],
+      planType: ['TermLife', Validators.required],
       description: ['', Validators.required],
       minSumAssured: [0, [Validators.required, Validators.min(0)]],
       maxSumAssured: [0, [Validators.required, Validators.min(0)]],
@@ -53,6 +55,7 @@ export class EditPlan implements OnInit {
         next: (res) => {
           this.planForm.patchValue({
             planName: res.planName,
+            planType: res.planType,
             description: res.description,
             minSumAssured: res.minSumAssured,
             maxSumAssured: res.maxSumAssured,

@@ -8,30 +8,30 @@
             <h1 class="text-3xl font-black text-text-primary dark:text-white tracking-tighter uppercase">Claims
                 <span class="text-gradient">Dashboard</span>
             </h1>
-            <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50 mt-1 italic">
+            <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80 mt-1 italic">
                 Review and manage insurance claims</p>
         </div>
         <a routerLink="/app/officer-claims"
             class="btn-premium px-8 h-12 flex items-center justify-center text-[10px] font-black uppercase tracking-widest shadow-xl shadow-primary/20">
-            View Claims <span class="ml-2 text-lg">→</span>
+            View Claims <app-icon name="arrow-right" className="ml-2 text-lg"></app-icon>
         </a>
     </div>
 
     <!-- Analytics Matrix -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-        <app-stat-card label="Pending Claims" [value]="data.totalAssignedClaims" icon="🏥" color="#3B82F6" />
-        <app-stat-card label="Claims Under Review" [value]="data.underReviewClaims" icon="⏱️" color="#F59E0B" />
-        <app-stat-card label="Approved Claims" [value]="data.settledClaims" icon="✅" color="#10B981" />
-        <app-stat-card label="Rejected Claims" [value]="data.rejectedClaims" icon="❌" color="#EF4444" />
+        <app-stat-card label="Pending Claims" [value]="data.totalAssignedClaims" icon="claims" color="#3B82F6" />
+        <app-stat-card label="Claims Under Review" [value]="data.underReviewClaims" icon="clock" color="#F59E0B" />
+        <app-stat-card label="Approved Claims" [value]="data.settledClaims" icon="check" color="#10B981" />
+        <app-stat-card label="Rejected Claims" [value]="data.rejectedClaims" icon="cross" color="#EF4444" />
     </div>
 
     <!-- Quick Insights -->
     <div
         class="premium-card p-10 bg-gradient-to-br from-slate-900 to-indigo-950 text-white border-none overflow-hidden relative">
-        <div class="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full -mr-32 -mt-32 blur-3xl opacity-50">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full -mr-32 -mt-32 blur-3xl opacity-80">
         </div>
         <div class="relative z-10 max-w-2xl">
-            <p class="text-[9px] font-black uppercase tracking-[0.4em] opacity-40 mb-4">Officer Dashboard</p>
+            <p class="text-[9px] font-black uppercase tracking-[0.4em] opacity-80 mb-4">Officer Dashboard</p>
             <h2 class="text-2xl font-black tracking-tight mb-6 uppercase">Review Process</h2>
             <p class="text-xs leading-relaxed opacity-70 mb-8 font-medium italic">Review claims thoroughly and ensure
                 all necessary documentation is verified before making a final decision.</p>

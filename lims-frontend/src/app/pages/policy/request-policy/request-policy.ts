@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { AppIcon } from '../../../shared/components/app-icon/app-icon';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
@@ -9,7 +10,7 @@ import { RequestPolicyDto, PlanResponse } from '../../../core/models/policy.mode
 @Component({
   selector: 'app-request-policy',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink, AppIcon],
   templateUrl: './request-policy.html',
   styleUrl: './request-policy.css'
 })
@@ -53,6 +54,11 @@ export class RequestPolicy implements OnInit, OnDestroy {
 
       this.api.get<PlanResponse>(`policy/plans/${this.planId}`).subscribe({
         next: (p: PlanResponse) => {
+          if (!p.isActive) {
+            this.toast.show('This insurance plan is currently inactive and not accepting new policy applications.', 'error');
+            this.router.navigate(['/app/plans']);
+            return;
+          }
           this.plan = p;
           // Set defaults based on plan constraints
           this.form.sumAssured = p.minSumAssured;

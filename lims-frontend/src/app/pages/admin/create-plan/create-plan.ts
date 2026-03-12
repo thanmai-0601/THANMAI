@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AppIcon } from '../../../shared/components/app-icon/app-icon';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
@@ -8,7 +9,7 @@ import { ToastService } from '../../../core/services/toast';
 @Component({
   selector: 'app-create-plan',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, AppIcon],
   templateUrl: './create-plan.html',
   styleUrl: './create-plan.css'
 })

@@ -7,11 +7,14 @@
     class="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-indigo-500/10 rounded-full blur-[120px] animate-pulse">
   </div>
 
-  <div class="w-full max-w-md relative z-10 animate-in fade-in slide-in-from-bottom-12 duration-1000">
+  <div class="w-full max-w-4xl xl:max-w-5xl relative z-10 animate-in fade-in slide-in-from-bottom-12 duration-1000">
     <!-- Logo node -->
     <div class="text-center mb-10">
-      <a routerLink="/" class="inline-flex items-center gap-3 transition-transform hover:scale-105 duration-300">
-        <span class="text-3xl">🏦</span>
+      <a routerLink="/" class="inline-flex items-center gap-3 transition-transform hover:scale-105 duration-300 group">
+        <div class="relative w-10 h-10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+          <div class="absolute inset-0 bg-primary/20 blur-lg rounded-full animate-pulse"></div>
+          <app-icon name="shield" className="text-4xl relative z-10 text-primary drop-shadow-[0_0_8px_rgba(249,115,22,0.5)]"></app-icon>
+        </div>
         <span class="text-3xl font-black text-gradient tracking-tighter uppercase">NexaLife</span>
       </a>
     </div>
@@ -21,131 +24,116 @@
       <div class="text-center mb-10">
         <h1 class="text-2xl font-black text-text-primary dark:text-white mb-2 tracking-tight uppercase">Create
           Account</h1>
-        <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50 italic">Register for
-          a
-          new NexaLife account</p>
+        <p class="text-xs font-black uppercase tracking-[0.2em] text-text-secondary opacity-80 italic">Your Life, Our Promise</p>
       </div>
 
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="space-y-5">
-        <!-- Full Name -->
-        <div class="space-y-1.5">
-          <label class="text-[9px] font-black uppercase tracking-[0.3em] text-text-secondary opacity-60 ml-1">Full
-            Name</label>
-          <div class="relative group">
-            <input type="text" formControlName="fullName" placeholder="John Doe"
-              class="input-premium pl-4 py-3.5 font-bold text-xs tracking-wide">
+        <!-- GRID WRAPPER FOR SIDE-BY-SIDE -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
+
+          <!-- LEFT COLUMN -->
+          <div class="space-y-5">
+            <h3 class="text-[10px] font-black uppercase tracking-[0.4em] text-primary mb-4">Personal Information</h3>
+
+            <!-- Full Name -->
+            <div class="space-y-1.5">
+              <label class="text-xs font-black uppercase tracking-[0.3em] text-text-secondary opacity-90 ml-1">Full Name</label>
+              <div class="relative group">
+                <input type="text" formControlName="fullName" placeholder="John Doe" class="input-premium pl-4 py-3.5 font-bold text-xs tracking-wide">
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="space-y-1.5">
+              <label class="text-xs font-black uppercase tracking-[0.3em] text-text-secondary opacity-90 ml-1">Email Address</label>
+              <div class="relative group">
+                <input type="email" formControlName="email" placeholder="you@nexalife.net" class="input-premium pl-4 py-3.5 font-bold text-xs tracking-wide">
+              </div>
+              <span *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid" class="text-[10px] font-black uppercase text-red-500 mt-1 ml-1 tracking-wider">Valid email required</span>
+            </div>
+
+            <!-- Phone -->
+            <div class="space-y-1.5">
+              <label class="text-xs font-black uppercase tracking-[0.3em] text-text-secondary opacity-90 ml-1">Phone Number</label>
+              <div class="relative group">
+                <input type="tel" formControlName="phoneNumber" placeholder="Enter 10 digit number" pattern="[0-9]{10}" maxlength="10" minlength="10" class="input-premium pl-4 py-3.5 font-bold text-xs tracking-wide">
+              </div>
+              <span *ngIf="registerForm.get('phoneNumber')?.touched && registerForm.get('phoneNumber')?.invalid" class="text-[10px] font-black uppercase text-red-500 mt-1 ml-1 tracking-wider">Phone number must be exactly 10 digits</span>
+            </div>
+
+            <!-- Date of Birth -->
+            <div class="space-y-1.5">
+              <label class="text-xs font-black uppercase tracking-[0.3em] text-text-secondary opacity-90 ml-1">Date of Birth</label>
+              <div class="relative group">
+                <input type="date" formControlName="dateOfBirth" [max]="maxDate" class="input-premium pl-4 py-3.5 font-bold text-xs tracking-wide">
+              </div>
+              <span *ngIf="registerForm.get('dateOfBirth')?.touched && registerForm.get('dateOfBirth')?.errors?.['required']" class="text-[10px] font-black uppercase text-red-500 mt-1 ml-1 tracking-wider">Date of birth is required</span>
+              <span *ngIf="registerForm.get('dateOfBirth')?.touched && registerForm.get('dateOfBirth')?.errors?.['underage']" class="text-[10px] font-black uppercase text-red-500 mt-1 ml-1 tracking-wider">not eligible as age is less</span>
+            </div>
+          </div>
+
+          <!-- RIGHT COLUMN -->
+          <div class="space-y-5">
+            <h3 class="text-[10px] font-black uppercase tracking-[0.4em] text-primary mb-4">Account & Bank Details</h3>
+
+            <!-- Bank Name -->
+            <div class="space-y-1.5">
+              <label class="text-xs font-black uppercase tracking-[0.3em] text-text-secondary opacity-90 ml-1">Bank Account Name</label>
+              <div class="relative group">
+                <input type="text" formControlName="bankAccountName" placeholder="AS PER BANK RECORDS" class="input-premium pl-4 py-3.5 font-bold text-xs tracking-widest uppercase">
+              </div>
+            </div>
+
+            <!-- Account Number -->
+            <div class="space-y-1.5">
+              <label class="text-xs font-black uppercase tracking-[0.3em] text-text-secondary opacity-90 ml-1">Account Number</label>
+              <div class="relative group">
+                <input type="text" formControlName="bankAccountNumber" placeholder="9-20 DIGITS" class="input-premium pl-4 py-3.5 font-bold text-xs tracking-[0.2em]">
+              </div>
+            </div>
+
+            <!-- IFSC -->
+            <div class="space-y-1.5">
+              <label class="text-xs font-black uppercase tracking-[0.3em] text-text-secondary opacity-90 ml-1">IFSC Code</label>
+              <div class="relative group">
+                <input type="text" formControlName="bankIfscCode" placeholder="IFSC CODE (11 CHARS)" maxlength="11" class="input-premium pl-4 py-3.5 font-bold text-xs tracking-widest uppercase" (input)="registerForm.patchValue({bankIfscCode: $any($event.target).value.toUpperCase()})">
+              </div>
+              <span *ngIf="registerForm.get('bankIfscCode')?.touched && registerForm.get('bankIfscCode')?.invalid" class="text-[10px] font-black uppercase text-red-500 mt-1 ml-1 tracking-wider italic">
+                invalid IFSC format (must be 11 chars)
+              </span>
+            </div>
+
+            <!-- Password -->
+            <div class="space-y-1.5">
+              <label class="text-xs font-black uppercase tracking-[0.3em] text-text-secondary opacity-90 ml-1">Password</label>
+              <div class="relative group">
+                <input type="password" formControlName="password" placeholder="••••••••" class="input-premium pl-4 py-3.5 font-bold tracking-[0.3em]">
+              </div>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="space-y-1.5">
+              <label class="text-xs font-black uppercase tracking-[0.3em] text-text-secondary opacity-90 ml-1">Confirm Password</label>
+              <div class="relative group">
+                <input type="password" formControlName="confirmPassword" placeholder="••••••••" class="input-premium pl-4 py-3.5 font-bold tracking-[0.3em]">
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- Email -->
-        <div class="space-y-1.5">
-          <label class="text-[9px] font-black uppercase tracking-[0.3em] text-text-secondary opacity-60 ml-1">Email
-            Address</label>
-          <div class="relative group">
-            <input type="email" formControlName="email" placeholder="you@nexalife.net"
-              class="input-premium pl-4 py-3.5 font-bold text-xs tracking-wide">
-          </div>
-          <span *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid"
-            class="text-[10px] font-black uppercase text-red-500 mt-1 ml-1 tracking-wider">Valid email required</span>
+        <!-- FULL WIDTH SUBMIT AREA (Under both columns) -->
+        <div class="pt-8">
+          <button type="submit" [disabled]="registerForm.invalid || loading"
+            class="w-full btn-premium py-4 text-xs font-black uppercase tracking-[0.2em] shadow-2xl shadow-primary/30 flex justify-center items-center gap-3 disabled:opacity-50 disabled:scale-100 disabled:cursor-not-allowed">
+            <span *ngIf="loading" class="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+            {{ loading ? 'Initializing Account...' : 'Initialize Account' }}
+          </button>
         </div>
-
-        <!-- Phone -->
-        <div class="space-y-1.5">
-          <label class="text-[9px] font-black uppercase tracking-[0.3em] text-text-secondary opacity-60 ml-1">Phone
-            Number</label>
-          <div class="relative group">
-            <input type="tel" formControlName="phoneNumber" placeholder="Enter 10 digit number" pattern="[0-9]{10}"
-              maxlength="10" minlength="10" class="input-premium pl-4 py-3.5 font-bold text-xs tracking-wide">
-          </div>
-          <span *ngIf="registerForm.get('phoneNumber')?.touched && registerForm.get('phoneNumber')?.invalid"
-            class="text-[10px] font-black uppercase text-red-500 mt-1 ml-1 tracking-wider">Phone number must be exactly
-            10 digits</span>
-        </div>
-
-        <!-- Date of Birth -->
-        <div class="space-y-1.5">
-          <label class="text-[9px] font-black uppercase tracking-[0.3em] text-text-secondary opacity-60 ml-1">Date of
-            Birth</label>
-          <div class="relative group">
-            <input type="date" formControlName="dateOfBirth" [max]="maxDate"
-              class="input-premium pl-4 py-3.5 font-bold text-xs tracking-wide">
-          </div>
-          <span
-            *ngIf="registerForm.get('dateOfBirth')?.touched && registerForm.get('dateOfBirth')?.errors?.['required']"
-            class="text-[10px] font-black uppercase text-red-500 mt-1 ml-1 tracking-wider">Date of birth is
-            required</span>
-          <span
-            *ngIf="registerForm.get('dateOfBirth')?.touched && registerForm.get('dateOfBirth')?.errors?.['underage']"
-            class="text-[10px] font-black uppercase text-red-500 mt-1 ml-1 tracking-wider">not eligible as age is
-            less</span>
-        </div>
-
-        <div class="pt-4 border-t border-white/5 opacity-40 uppercase text-[8px] font-black tracking-[0.4em] ml-1">Bank Payout Info</div>
-
-        <!-- Bank Name -->
-        <div class="space-y-1.5">
-          <label class="text-[9px] font-black uppercase tracking-[0.3em] text-text-secondary opacity-60 ml-1">Bank Account Name</label>
-          <div class="relative group">
-            <input type="text" formControlName="bankAccountName" placeholder="AS PER BANK RECORDS" 
-              class="input-premium pl-4 py-3.5 font-bold text-[10px] tracking-widest uppercase">
-          </div>
-        </div>
-
-        <!-- Account Number -->
-        <div class="space-y-1.5">
-          <label class="text-[9px] font-black uppercase tracking-[0.3em] text-text-secondary opacity-60 ml-1">Account Number</label>
-          <div class="relative group">
-            <input type="text" formControlName="bankAccountNumber" placeholder="9-20 DIGITS" 
-              class="input-premium pl-4 py-3.5 font-bold text-xs tracking-[0.2em]">
-          </div>
-        </div>
-
-        <!-- IFSC -->
-        <div class="space-y-1.5">
-          <label class="text-[9px] font-black uppercase tracking-[0.3em] text-text-secondary opacity-60 ml-1">IFSC Code</label>
-          <div class="relative group">
-            <input type="text" formControlName="bankIfscCode" placeholder="IFSC CODE (11 CHARS)" maxlength="11"
-              class="input-premium pl-4 py-3.5 font-bold text-xs tracking-widest uppercase">
-          </div>
-          <span *ngIf="registerForm.get('bankIfscCode')?.touched && registerForm.get('bankIfscCode')?.invalid"
-            class="text-[10px] font-black uppercase text-red-500 mt-1 ml-1 tracking-wider italic">
-            invalid IFSC format (must be 11 chars)
-          </span>
-        </div>
-
-        <!-- Password -->
-        <div class="space-y-1.5">
-          <label
-            class="text-[9px] font-black uppercase tracking-[0.3em] text-text-secondary opacity-60 ml-1">Password</label>
-          <div class="relative group">
-            <input type="password" formControlName="password" placeholder="••••••••"
-              class="input-premium pl-4 py-3.5 font-bold tracking-[0.3em]">
-          </div>
-        </div>
-
-        <!-- Confirm Password -->
-        <div class="space-y-1.5">
-          <label class="text-[9px] font-black uppercase tracking-[0.3em] text-text-secondary opacity-60 ml-1">Confirm
-            Password</label>
-          <div class="relative group">
-            <input type="password" formControlName="confirmPassword" placeholder="••••••••"
-              class="input-premium pl-4 py-3.5 font-bold tracking-[0.3em]">
-          </div>
-        </div>
-
-        <button type="submit" [disabled]="loading"
-          class="btn-premium w-full h-14 mt-4 font-black text-[11px] tracking-[0.2em] shadow-[0_8px_30px_rgb(59,130,246,0.3)]">
-          <span *ngIf="!loading">CREATE ACCOUNT <span class="text-lg">→</span></span>
-          <span *ngIf="loading" class="flex items-center justify-center gap-2 italic">
-            <span class="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
-            CREATING ACCOUNT...
-          </span>
-        </button>
       </form>
 
       <!-- Secondary actions -->
       <div class="mt-10 pt-8 border-t border-theme-border/5 text-center">
-        <p class="text-[10px] font-bold text-text-secondary opacity-60 uppercase tracking-widest">
+        <p class="text-xs font-bold text-text-secondary opacity-90 uppercase tracking-widest">
           Already have an account?
           <a routerLink="/login" class="text-primary font-black ml-1 hover:underline">Sign In</a>
         </p>
@@ -153,7 +141,7 @@
     </div>
 
     <!-- Footer metadata -->
-    <p class="mt-8 text-center text-[9px] font-black uppercase tracking-[0.4em] text-text-secondary opacity-30">
+    <p class="mt-8 text-center text-[9px] font-black uppercase tracking-[0.4em] text-text-secondary opacity-70">
       &copy; 2026 NEXALIFE CORE · ALL RIGHTS RESERVED
     </p>
   </div>

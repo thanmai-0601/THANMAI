@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppIcon } from '../../../shared/components/app-icon/app-icon';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink, Router } from '@angular/router';
@@ -13,7 +14,7 @@ import { environment } from '../../../../environments/environment';
 @Component({
   selector: 'app-claim-detail',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink, LoadingSpinner, StatusBadge],
+  imports: [CommonModule, FormsModule, RouterLink, LoadingSpinner, StatusBadge, AppIcon],
   templateUrl: './claim-detail.html',
   styleUrl: './claim-detail.css'
 })

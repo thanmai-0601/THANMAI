@@ -10,13 +10,13 @@
             <h1 class="text-4xl font-black text-text-primary dark:text-white tracking-tightest uppercase">
                 Manage <span class="text-gradient">Users</span>
             </h1>
-            <p class="text-[10px] font-bold text-text-secondary mt-2 opacity-50 uppercase tracking-[0.1em]">
+            <p class="text-[10px] font-bold text-text-secondary mt-2 opacity-80 uppercase tracking-[0.1em]">
                 View and manage system users
             </p>
         </div>
         <a routerLink="/app/admin/users/create"
             class="btn-premium px-8 h-12 flex items-center gap-3 font-black text-[10px] tracking-widest uppercase shadow-xl shadow-primary/20">
-            <span class="text-lg">⊕</span> Add User
+            <app-icon name="plus" className="text-lg"></app-icon> Add User
         </a>
     </div>
 
@@ -72,14 +72,10 @@
                                         <a [routerLink]="['/app/admin/users', u.userId]"
                                             class="text-sm font-black text-text-primary dark:text-white hover:text-primary transition-colors flex items-center gap-2">
                                             {{ u.fullName }}
-                                            <svg class="opacity-0 group-hover:opacity-100 transition-all w-4 h-4 text-primary -translate-x-2 group-hover:translate-x-0"
-                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
-                                                    d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-                                            </svg>
+                                            <app-icon name="arrow-right" className="opacity-0 group-hover:opacity-100 transition-all text-primary -translate-x-2 group-hover:translate-x-0 w-4 h-4"></app-icon>
                                         </a>
                                         <p
-                                            class="text-[9px] font-bold text-text-secondary opacity-40 uppercase tracking-widest mt-1 italic">
+                                            class="text-[9px] font-bold text-text-secondary opacity-80 uppercase tracking-widest mt-1 italic">
                                             Joined {{ u.createdAt | date:'mediumDate' }}</p>
                                     </div>
                                 </div>
@@ -116,16 +112,11 @@
                                     </button>
                                     <a [routerLink]="['/app/admin/users/edit', u.userId]"
                                         class="h-9 w-9 flex items-center justify-center rounded-xl bg-primary/10 text-primary border border-primary/20 hover:bg-primary hover:text-white transition-all active:scale-95 shadow-sm">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
-                                            stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M12 20h9"></path>
-                                            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
-                                        </svg>
+                                        <app-icon name="edit" className="text-2xl"></app-icon>
                                     </a>
                                 </div>
                                 <div class="flex justify-end pr-4" *ngIf="u.role === 'Customer'">
-                                    <span class="text-[9px] font-bold text-text-secondary opacity-30 uppercase tracking-[0.1em]">View Profile &rarr;</span>
+                                    <span class="text-[9px] font-bold text-text-secondary opacity-70 uppercase tracking-[0.1em] flex items-center gap-1">View Profile <app-icon name="arrow-right"></app-icon></span>
                                 </div>
                             </td>
                         </tr>
@@ -137,10 +128,10 @@
             <div *ngIf="filteredUsers.length === 0" class="py-32 text-center bg-theme-bg dark:bg-slate-900/30">
                 <div
                     class="inline-flex h-20 w-20 items-center justify-center rounded-3xl bg-slate-50 dark:bg-slate-800 text-4xl mb-6 shadow-inner">
-                    🔍</div>
+                    <app-icon name="search"></app-icon></div>
                 <h3 class="text-xl font-black text-text-primary dark:text-white uppercase tracking-tight">No Users Found
                 </h3>
-                <p class="text-[10px] font-bold text-text-secondary opacity-40 uppercase tracking-[0.2em] mt-2">There
+                <p class="text-[10px] font-bold text-text-secondary opacity-80 uppercase tracking-[0.2em] mt-2">There
                     are currently no users matching your criteria.</p>
                 <div class="mt-10">
                     <a routerLink="/app/admin/users/create"

@@ -3,20 +3,18 @@
     <div class="flex items-center gap-4">
         <button [routerLink]="role === 'ClaimsOfficer' ? '/app/officer-claims' : '/app/my-claims'"
             class="h-12 w-12 flex items-center justify-center text-text-secondary hover:text-primary transition-all rounded-2xl bg-white dark:bg-slate-900 border border-theme-border/20 dark:border-slate-800 shadow-sm hover:shadow-md active:scale-90">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-            </svg>
+            <app-icon name="arrow-right" className="rotate-180 text-lg"></app-icon>
         </button>
         <div>
-            <div class="flex items-center gap-3 mb-2 opacity-60">
+            <div class="flex items-center gap-3 mb-2 opacity-90">
                 <span class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary">Claim Details</span>
-                <div class="h-px w-8 bg-text-secondary opacity-30"></div>
+                <div class="h-px w-8 bg-text-secondary opacity-70"></div>
                 <app-status-badge *ngIf="claim" [status]="claim.status" class="scale-90" />
             </div>
             <h1 class="text-3xl md:text-4xl font-black text-text-primary dark:text-white tracking-tightest">
                 {{ claim?.claimNumber }}
             </h1>
-            <p class="text-xs font-bold text-text-secondary uppercase tracking-[0.2em] opacity-50 mt-2">
+            <p class="text-xs font-bold text-text-secondary uppercase tracking-[0.2em] opacity-80 mt-2">
                 Linked Policy:
                 <a [routerLink]="['/app/policy', claim?.policyId]"
                     class="text-primary hover:underline font-black tracking-tightest">
@@ -42,29 +40,29 @@
                 <div
                     class="p-4 bg-primary/[0.03] border-b border-theme-border/10 dark:border-slate-800 flex justify-between items-center">
                     <h2 class="text-[10px] font-black text-primary uppercase tracking-[0.3em] flex items-center gap-3">
-                        <span class="text-lg">🏥</span> Claim Information
+                        <app-icon name="shield"></app-icon> Claim Information
                     </h2>
                     <app-status-badge [status]="claim.status" class="scale-90" />
                 </div>
                 <div class="p-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                     <div class="space-y-1">
-                        <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50">
+                        <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80">
                             Customer</p>
                         <p class="text-lg font-black text-text-primary dark:text-white tracking-tight">{{
                             claim.customerName }}</p>
-                        <p class="text-[10px] font-bold text-text-secondary opacity-40 lowercase tracking-widest">{{
+                        <p class="text-[10px] font-bold text-text-secondary opacity-80 lowercase tracking-widest">{{
                             claim.customerEmail }}</p>
                     </div>
                     <div class="space-y-1">
-                        <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50">
+                        <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80">
                             Submitted On</p>
                         <p class="text-sm font-black text-text-primary dark:text-white tracking-widest uppercase">{{
                             claim.submittedAt | date:'mediumDate' }}</p>
-                        <p class="text-[10px] font-bold text-text-secondary opacity-30">{{ claim.submittedAt |
+                        <p class="text-[10px] font-bold text-text-secondary opacity-70">{{ claim.submittedAt |
                             date:'shortTime' }}</p>
                     </div>
                     <div class="space-y-1">
-                        <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50">
+                        <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80">
                             Claim Amount</p>
                         <p class="text-2xl font-black text-text-primary dark:text-white tracking-tight">₹{{
                             claim.claimAmount | number }}</p>
@@ -82,7 +80,7 @@
                     </div>
                 </div>
                 <div class="px-5 pb-5 space-y-3">
-                    <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50">Reason
+                    <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80">Reason
                         for Claim</p>
                     <div
                         class="p-4 rounded-2xl bg-secondary/[0.02] border border-theme-border/10 dark:border-slate-800 text-sm leading-relaxed text-text-primary dark:text-slate-300 italic font-medium">
@@ -109,7 +107,7 @@
         <!-- RIGHT: Assigned Officer (1/3 width) -->
         <div class="flex flex-col h-full">
             <div *ngIf="claim.claimsOfficerName" class="premium-card p-5 h-full flex flex-col justify-center">
-                <p class="text-[10px] font-black uppercase tracking-[0.3em] text-primary opacity-60 mb-3">Assigned
+                <p class="text-[10px] font-black uppercase tracking-[0.3em] text-primary opacity-90 mb-3">Assigned
                     Officer</p>
                 <div class="flex items-center gap-4">
                     <div
@@ -119,20 +117,20 @@
                     <div>
                         <p class="text-base font-black text-text-primary dark:text-white uppercase tracking-wide">{{
                             claim.claimsOfficerName }}</p>
-                        <p class="text-[10px] font-bold text-text-secondary opacity-50 mt-1">Assigned: {{
+                        <p class="text-[10px] font-bold text-text-secondary opacity-80 mt-1">Assigned: {{
                             claim.assignedAt | date:'mediumDate' }}</p>
                     </div>
                 </div>
                 <div *ngIf="claim.reviewStartedAt"
-                    class="mt-4 pt-3 border-t border-theme-border/10 text-[10px] font-black uppercase tracking-widest text-text-secondary opacity-50 flex items-center gap-2">
+                    class="mt-4 pt-3 border-t border-theme-border/10 text-[10px] font-black uppercase tracking-widest text-text-secondary opacity-80 flex items-center gap-2">
                     <span class="h-2 w-2 rounded-full bg-primary animate-pulse"></span>
                     Review started {{ claim.reviewStartedAt | date:'mediumDate' }}
                 </div>
             </div>
             <!-- Fallback if no officer assigned yet -->
             <div *ngIf="!claim.claimsOfficerName"
-                class="premium-card p-5 h-full flex flex-col justify-center items-center text-center opacity-40">
-                <span class="text-3xl mb-2">⏳</span>
+                class="premium-card p-5 h-full flex flex-col justify-center items-center text-center opacity-80">
+                <app-icon name="alert" className="text-3xl mb-2"></app-icon>
                 <p class="text-[10px] font-black uppercase tracking-widest">Awaiting Assignment</p>
             </div>
         </div>
@@ -155,7 +153,7 @@
                     <div>
                         <h3 class="text-xs font-black text-emerald-500 uppercase tracking-[0.3em]">Claim Approved & Paid
                         </h3>
-                        <p class="text-[10px] font-bold text-text-secondary opacity-60 mt-1">Payment successfully
+                        <p class="text-[10px] font-bold text-text-secondary opacity-90 mt-1">Payment successfully
                             processed to beneficiary.</p>
                     </div>
                 </div>
@@ -176,7 +174,7 @@
                         </div>
                     </div>
                     <div class="text-right">
-                        <p class="text-[9px] font-bold text-text-secondary opacity-40 uppercase tracking-widest italic">
+                        <p class="text-[9px] font-bold text-text-secondary opacity-80 uppercase tracking-widest italic">
                             Settled On: {{ claim.settledAt | date:'mediumDate' }}</p>
                     </div>
                 </div>
@@ -193,7 +191,7 @@
                         ✕</div>
                     <div>
                         <h3 class="text-xs font-black text-red-500 uppercase tracking-[0.3em]">Claim Rejected</h3>
-                        <p class="text-[10px] font-bold text-text-secondary opacity-60 mt-1">This claim was not accepted
+                        <p class="text-[10px] font-bold text-text-secondary opacity-90 mt-1">This claim was not accepted
                             for settlement.</p>
                     </div>
                 </div>
@@ -208,7 +206,7 @@
                 </div>
                 <div class="text-right">
                     <p class="text-[9px] font-bold text-red-500/40 uppercase tracking-[0.2em]">Decision Date</p>
-                    <p class="text-xs font-black text-red-500 opacity-60 uppercase">{{ claim.rejectedAt | date:'medium'
+                    <p class="text-xs font-black text-red-500 opacity-90 uppercase">{{ claim.rejectedAt | date:'medium'
                         }}</p>
                 </div>
             </div>
@@ -219,7 +217,7 @@
             class="premium-card p-0 overflow-hidden border-2 border-primary/20 animate-in fade-in slide-in-from-bottom-4 duration-700">
             <div class="p-2.5 px-4 bg-primary/[0.03] border-b border-primary/10 flex items-center justify-between">
                 <h2 class="text-[10px] font-black text-primary uppercase tracking-[0.4em] flex items-center gap-3">
-                    <span class="text-base">⚖️</span> Review Process
+                    <app-icon name="policies"></app-icon> Review Process
                 </h2>
                 <div class="flex items-center gap-3" *ngIf="claim.status === 'UnderReview'">
                     <span class="h-1.5 w-1.5 rounded-full bg-primary animate-pulse"></span>
@@ -231,13 +229,13 @@
             <div class="p-4">
                 <!-- Status: Submitted (Start Button) -->
                 <div *ngIf="claim.status === 'Submitted'" class="py-10 text-center max-w-md mx-auto space-y-5">
-                    <div
-                        class="h-16 w-16 bg-primary/10 rounded-3xl flex items-center justify-center text-3xl mx-auto mb-2">
-                        📋</div>
+                    <div class="w-20 h-20 rounded-3xl bg-primary/5 flex items-center justify-center mx-auto mb-6">
+                        <app-icon name="folder" className="text-3xl"></app-icon>
+                    </div>
                     <div>
                         <h3 class="text-sm font-black text-text-primary dark:text-white uppercase tracking-widest mb-2">
                             New Claim Submission</h3>
-                        <p class="text-xs font-medium text-text-secondary opacity-60 leading-relaxed">This claim is
+                        <p class="text-xs font-medium text-text-secondary opacity-90 leading-relaxed">This claim is
                             awaiting review. Click below to begin the investigation and document verification process.
                         </p>
                     </div>
@@ -257,7 +255,7 @@
                     <!-- Compliance Warning (Officer Only) -->
                     <div *ngIf="claim.overdueInvoices > 0" 
                         class="p-4 rounded-2xl bg-red-500/[0.03] border-2 border-red-500/20 flex items-start gap-4 animate-pulse">
-                        <div class="h-10 w-10 shrink-0 rounded-full bg-red-500/10 flex items-center justify-center text-xl">⚠️</div>
+                        <div class="h-10 w-10 shrink-0 rounded-full bg-red-500/10 flex items-center justify-center text-xl"><app-icon name="alert"></app-icon></div>
                         <div>
                             <h4 class="text-xs font-black text-red-500 uppercase tracking-widest mb-1.5 underline decoration-red-500/30 underline-offset-4">Critical: Yearly Payment Default</h4>
                             <p class="text-[11px] font-bold text-red-600/70 leading-relaxed uppercase tracking-tight">
@@ -272,7 +270,7 @@
                         <!-- Amount Section -->
                         <div class="space-y-2">
                             <label
-                                class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60 flex items-center justify-between">
+                                class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-90 flex items-center justify-between">
                                 Amount to Pay (₹)
                                 <span class="text-[9px] text-primary/60">Max: ₹{{ claim.claimAmount | number }}</span>
                             </label>
@@ -288,7 +286,7 @@
                         <!-- Officer Remarks -->
                         <div class="space-y-2">
                             <label
-                                class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60">Officer
+                                class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-90">Officer
                                 Review Comments</label>
                             <textarea [(ngModel)]="decisionForm.remarks" name="remarks" rows="2"
                                 class="input-premium py-2 text-sm italic leading-relaxed"
@@ -310,9 +308,9 @@
                         class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 pt-3 border-t border-theme-border/10">
                         <div
                             class="flex items-center gap-3 p-2 px-3 rounded-2xl bg-primary/[0.03] border border-primary/10 w-full lg:w-auto">
-                            <div
-                                class="h-10 w-10 flex items-center justify-center text-2xl bg-white dark:bg-slate-900 rounded-xl shadow-sm">
-                                🏦</div>
+                            <div class="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                                <app-icon name="money" className="text-2xl"></app-icon>
+                            </div>
                             <div>
                                 <p class="text-[9px] font-black uppercase tracking-[0.2em] text-primary/60 mb-1">
                                     Settlement beneficiary Account</p>
@@ -320,7 +318,7 @@
                                     <span class="text-xs font-black text-text-primary uppercase tracking-tight">{{
                                         claim.bankAccountName }}</span>
                                     <span
-                                        class="text-[10px] font-mono text-text-secondary opacity-60 tracking-wider">Acct:
+                                        class="text-[10px] font-mono text-text-secondary opacity-90 tracking-wider">Acct:
                                         {{ claim.bankAccountNumber }}</span>
                                 </div>
                             </div>
@@ -328,11 +326,11 @@
 
                         <div class="flex gap-4 w-full lg:w-auto">
                             <button type="button" (click)="submitDecision('Reject')" [disabled]="submittingDecision"
-                                class="h-12 px-8 rounded-2xl bg-red-500/10 text-red-500 text-xs font-black uppercase tracking-widest hover:bg-red-500 hover:text-white transition-all disabled:opacity-30 active:scale-95">
+                                class="h-12 px-8 rounded-2xl bg-red-500/10 text-red-500 text-xs font-black uppercase tracking-widest hover:bg-red-500 hover:text-white transition-all disabled:opacity-70 active:scale-95">
                                 Reject Claim
                             </button>
                             <button type="button" (click)="submitDecision('Approve')" [disabled]="submittingDecision || claim.overdueInvoices > 0"
-                                class="btn-premium h-12 px-10 text-xs bg-emerald-500 hover:bg-emerald-600 border-none shadow-xl shadow-emerald-500/20 active:scale-95 disabled:opacity-20 disabled:grayscale disabled:cursor-not-allowed">
+                                class="btn-premium h-12 px-10 text-xs bg-emerald-500 hover:bg-emerald-600 border-none shadow-xl shadow-emerald-500/20 active:scale-95 disabled:opacity-70 disabled:grayscale disabled:cursor-not-allowed">
                                 <span *ngIf="submittingDecision"
                                     class="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
                                 <span *ngIf="!submittingDecision">Approve & Pay</span>
@@ -353,13 +351,13 @@
         <div class="premium-card p-0 overflow-hidden shadow-sm">
             <div class="p-4 bg-primary/[0.03] border-b border-theme-border/10">
                 <h2 class="text-[11px] font-black text-primary uppercase tracking-[0.3em] flex items-center gap-3">
-                    <span class="text-base">📋</span> Policy Details
+                    <app-icon name="policies"></app-icon> Policy Details
                 </h2>
             </div>
             <div class="p-5 space-y-4">
                 <div class="grid grid-cols-2 gap-4 items-center">
                     <p
-                        class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50 text-left">
+                        class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80 text-left">
                         Plan Name</p>
                     <p class="text-sm font-black text-text-primary dark:text-white text-right leading-tight">{{
                         claim.planName }}</p>
@@ -371,14 +369,14 @@
                 </div>
                 <div class="grid grid-cols-2 gap-4 items-center">
                     <p
-                        class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50 text-left">
+                        class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80 text-left">
                         Policy Tenure</p>
                     <p class="text-sm font-black text-text-primary dark:text-white text-right">{{ claim.tenureYears }}
                         Years</p>
                 </div>
                 <div class="grid grid-cols-2 gap-4 items-center">
                     <p
-                        class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50 text-left">
+                        class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80 text-left">
                         Risk Category</p>
                     <div class="text-right">
                         <span
@@ -390,7 +388,7 @@
                 </div>
                 <div class="grid grid-cols-2 gap-4 items-center">
                     <p
-                        class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50 text-left">
+                        class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80 text-left">
                         Premium Pay</p>
                     <p
                         class="text-sm font-black text-text-primary dark:text-white text-right font-mono tracking-tighter">
@@ -398,13 +396,13 @@
                 </div>
                 <div class="flex justify-between items-center pt-1 mt-1 border-t border-theme-border/5">
                     <div class="text-left">
-                        <p class="text-[9px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-40">Start
+                        <p class="text-[9px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80">Start
                         </p>
                         <p class="text-[10px] font-black text-text-primary dark:text-white opacity-70 italic">{{
                             claim.policyActiveFrom | date:'shortDate' }}</p>
                     </div>
                     <div class="text-right">
-                        <p class="text-[9px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-40">End
+                        <p class="text-[9px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80">End
                         </p>
                         <p class="text-[10px] font-black text-text-primary dark:text-white opacity-70 italic">{{
                             claim.policyActiveTo | date:'shortDate' }}</p>
@@ -417,20 +415,20 @@
         <div class="premium-card p-0 overflow-hidden shadow-sm flex flex-col h-full">
             <div class="p-4 bg-primary/[0.03] border-b border-theme-border/10">
                 <h2 class="text-[11px] font-black text-primary uppercase tracking-[0.3em] flex items-center gap-2">
-                    <span class="text-base">🏦</span> Bank Account
+                    <app-icon name="money"></app-icon> Bank Account
                 </h2>
             </div>
             <div class="p-5 space-y-5 flex-1 content-center">
                 <div class="grid grid-cols-2 gap-4 items-center">
                     <p
-                        class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50 text-left">
+                        class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80 text-left">
                         Beneficiary</p>
                     <p class="text-sm font-black text-text-primary dark:text-white text-right uppercase tracking-tight">
                         {{ claim.bankAccountName ?? '—' }}</p>
                 </div>
                 <div class="grid grid-cols-2 gap-4 items-center">
                     <p
-                        class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50 text-left">
+                        class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80 text-left">
                         Account Number</p>
                     <p
                         class="text-sm font-mono font-black text-text-primary dark:text-white text-right tracking-widest">
@@ -438,7 +436,7 @@
                 </div>
                 <div class="grid grid-cols-2 gap-4 items-center">
                     <p
-                        class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50 text-left">
+                        class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80 text-left">
                         IFSC Code</p>
                     <p class="text-sm font-mono font-black text-text-primary dark:text-white text-right">{{
                         claim.bankIfscCode ?? '—' }}</p>
@@ -448,14 +446,14 @@
                 <div class="pt-2">
                     <div
                         class="p-3 rounded-2xl bg-emerald-500/[0.03] border border-emerald-500/10 flex items-center gap-3">
-                        <div
-                            class="h-6 w-6 rounded-full bg-emerald-500/10 flex items-center justify-center text-[10px]">
-                            ✨</div>
+                        <div class="h-8 w-8 rounded-lg bg-emerald-500/20 flex items-center justify-center text-emerald-500">
+                            <app-icon name="check"></app-icon>
+                        </div>
                         <div>
                             <p class="text-[9px] font-black text-emerald-500 uppercase tracking-widest leading-none">
                                 Verified Account</p>
                             <p
-                                class="text-[8px] font-bold text-text-secondary opacity-40 uppercase tracking-tighter mt-1">
+                                class="text-[8px] font-bold text-text-secondary opacity-80 uppercase tracking-tighter mt-1">
                                 Ready for settlement</p>
                         </div>
                     </div>
@@ -463,7 +461,7 @@
                 <div *ngIf="claim.transferReference" class="pt-2 mt-1 border-t border-theme-border/5">
                     <div class="flex justify-between items-center mb-1">
                         <p class="text-[9px] font-black uppercase tracking-[0.2em] text-emerald-500">Txn Ref</p>
-                        <p class="text-[9px] font-bold text-text-secondary opacity-40 italic">{{ claim.settledAt |
+                        <p class="text-[9px] font-bold text-text-secondary opacity-80 italic">{{ claim.settledAt |
                             date:'short' }}</p>
                     </div>
                     <div class="p-2 rounded-xl bg-emerald-500/[0.03] border border-emerald-500/10">
@@ -477,13 +475,13 @@
             <div class="p-4 pt-2 border-t border-theme-border/5 bg-primary/[0.01]">
                 <div class="flex justify-between items-center">
                     <div class="text-left">
-                        <p class="text-[9px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-40">
+                        <p class="text-[9px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80">
                             Method</p>
                         <p class="text-[10px] font-black text-text-primary dark:text-white opacity-70 italic">Direct
                             Deposit (NEFT)</p>
                     </div>
                     <div class="text-right">
-                        <p class="text-[9px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-40">
+                        <p class="text-[9px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80">
                             Status</p>
                         <p class="text-[10px] font-black text-emerald-500 opacity-70 italic">Active</p>
                     </div>
@@ -496,36 +494,36 @@
             [ngClass]="claim.overdueInvoices > 0 ? 'border-red-500/20' : 'border-emerald-500/20'">
             <div class="p-4 bg-primary/[0.03] border-b border-theme-border/10">
                 <h2 class="text-[11px] font-black text-primary uppercase tracking-[0.3em] flex items-center gap-3">
-                    <span class="text-base">💳</span> Payment Tracker
+                    <app-icon name="money"></app-icon> Payment Tracker
                 </h2>
             </div>
             <div class="p-5">
                 <div class="space-y-3 mb-4">
                     <div class="flex justify-between items-center py-2 border-b border-theme-border/5">
                         <span
-                            class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50">Total
+                            class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80">Total
                             Invoices</span>
                         <span class="text-lg font-black text-primary tracking-tight">{{ claim.totalInvoices }}</span>
                     </div>
                     <div class="flex justify-between items-center py-2 border-b border-theme-border/5">
                         <span
-                            class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50">Settled
+                            class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80">Settled
                             Bills</span>
                         <span class="text-lg font-black text-emerald-500 tracking-tight">{{ claim.paidInvoices }}</span>
                     </div>
                     <div class="flex justify-between items-center py-2 border-b border-theme-border/5">
                         <span
-                            class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50">Pending
+                            class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80">Pending
                             Bills</span>
                         <span class="text-lg font-black tracking-tight"
-                            [ngClass]="claim.overdueInvoices > 0 ? 'text-red-500' : 'text-text-secondary opacity-40'">{{
+                            [ngClass]="claim.overdueInvoices > 0 ? 'text-red-500' : 'text-text-secondary opacity-80'">{{
                             claim.overdueInvoices }}</span>
                     </div>
                 </div>
                 <div class="space-y-2">
                     <div class="flex justify-between items-end">
                         <span
-                            class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-40">Score</span>
+                            class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80">Score</span>
                         <span class="text-xs font-black tracking-widest"
                             [ngClass]="paymentCompliance >= 80 ? 'text-emerald-500' : paymentCompliance >= 50 ? 'text-amber-500' : 'text-red-500'">
                             {{ paymentCompliance }}%
@@ -540,7 +538,7 @@
                 </div>
                 <div
                     class="mt-3 flex justify-between items-center py-2 border-t border-theme-border/5 dark:border-slate-800">
-                    <span class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60">Total
+                    <span class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-90">Total
                         Paid</span>
                     <span class="text-sm font-black text-text-primary dark:text-white tracking-tight">₹{{
                         claim.totalPremiumPaid | number }}</span>
@@ -564,11 +562,11 @@
             <div class="premium-card p-0 overflow-hidden h-full">
                 <div class="p-4 bg-primary/[0.03] border-b border-theme-border/10 dark:border-slate-800">
                     <h2 class="text-[10px] font-black text-primary uppercase tracking-[0.3em] flex items-center gap-3">
-                        <span class="text-lg">👨‍👩‍👧</span> Registered Nominee
+                        <app-icon name="user"></app-icon> Registered Nominee
                     </h2>
                 </div>
                 <div *ngIf="claim.nominees.length === 0" class="p-5 text-center">
-                    <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-30">No
+                    <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-70">No
                         nominees found for this policy.</p>
                 </div>
                 <div *ngIf="claim.nominees.length > 0" class="overflow-x-auto">
@@ -576,16 +574,16 @@
                         <thead>
                             <tr class="bg-primary/[0.01] border-b border-theme-border/5 dark:border-slate-800/50">
                                 <th
-                                    class="px-4 py-3 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60">
+                                    class="px-4 py-3 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-90">
                                     Name</th>
                                 <th
-                                    class="px-4 py-3 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60">
+                                    class="px-4 py-3 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-90">
                                     Relationship</th>
                                 <th
-                                    class="px-4 py-3 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60">
+                                    class="px-4 py-3 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-90">
                                     Age</th>
                                 <th
-                                    class="px-4 py-3 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60">
+                                    class="px-4 py-3 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-90">
                                     Phone</th>
                             </tr>
                         </thead>
@@ -596,11 +594,11 @@
                                     class="px-4 py-3 font-bold text-text-primary dark:text-white tracking-tight uppercase text-xs">
                                     {{ n.fullName }}</td>
                                 <td
-                                    class="px-4 py-3 text-[10px] font-black text-text-secondary opacity-60 uppercase tracking-widest">
+                                    class="px-4 py-3 text-[10px] font-black text-text-secondary opacity-90 uppercase tracking-widest">
                                     {{ n.relationship }}</td>
-                                <td class="px-4 py-3 text-sm font-medium text-text-secondary opacity-60">{{ n.age }} Yrs
+                                <td class="px-4 py-3 text-sm font-medium text-text-secondary opacity-90">{{ n.age }} Yrs
                                 </td>
-                                <td class="px-4 py-3 text-xs font-mono text-text-secondary opacity-60">{{
+                                <td class="px-4 py-3 text-xs font-mono text-text-secondary opacity-90">{{
                                     n.contactNumber }}</td>
                             </tr>
                         </tbody>
@@ -616,7 +614,7 @@
                     <div class="flex justify-between items-center">
                         <h2
                             class="text-[10px] font-black text-primary uppercase tracking-[0.3em] flex items-center gap-2">
-                            📎 Uploaded Docs
+                            <app-icon name="folder"></app-icon> Uploaded Docs
                         </h2>
                         <button
                             *ngIf="role === 'Customer' && claim.status !== 'Settled' && claim.status !== 'Rejected' && !showDocForm"
@@ -626,7 +624,7 @@
                 </div>
                 <div>
                     <div *ngIf="claim.documents.length === 0 && !showDocForm" class="p-5 text-center">
-                        <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-30">No
+                        <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-70">No
                             documents yet.</p>
                     </div>
                     <ul class="divide-y divide-theme-border/5" *ngIf="claim.documents.length > 0">
@@ -635,16 +633,13 @@
                             <div class="flex items-center gap-3 min-w-0">
                                 <div
                                     class="h-9 w-9 shrink-0 rounded-xl bg-primary/10 flex items-center justify-center text-primary transition-all group-hover:scale-110">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                    </svg>
+                                    <app-icon name="folder"></app-icon>
                                 </div>
                                 <div class="min-w-0">
                                     <p
                                         class="text-[10px] font-black text-text-primary dark:text-white uppercase tracking-widest truncate">
                                         {{ doc.documentType }}</p>
-                                    <p class="text-[9px] font-bold text-text-secondary opacity-50 truncate">{{
+                                    <p class="text-[9px] font-bold text-text-secondary opacity-80 truncate">{{
                                         doc.fileName }}</p>
                                 </div>
                             </div>
@@ -659,7 +654,7 @@
                         <div class="space-y-3">
                             <div class="space-y-1">
                                 <label
-                                    class="text-[9px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60">Document
+                                    class="text-[9px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-90">Document
                                     Type</label>
                                 <div class="relative group/select">
                                     <select [(ngModel)]="newDocument.documentType" [ngModelOptions]="{standalone: true}"
@@ -672,17 +667,13 @@
                                     </select>
                                     <div
                                         class="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400 group-hover/select:text-primary transition-colors">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"
-                                            fill="currentColor" viewBox="0 0 16 16">
-                                            <path
-                                                d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
-                                        </svg>
+                                        <app-icon name="chevron-down"></app-icon>
                                     </div>
                                 </div>
                             </div>
                             <div class="space-y-1">
                                 <label
-                                    class="text-[9px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60">Choose
+                                    class="text-[9px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-90">Choose
                                     File</label>
                                 <input type="file" (change)="onFileSelected($event)" accept=".pdf,.png,.jpg,.jpeg"
                                     class="input-premium py-2 text-[9px]" />
@@ -706,3 +697,4 @@
 
 </div>
 }
+

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AppIcon } from '../../../shared/components/app-icon/app-icon';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/services/auth';
@@ -9,7 +10,7 @@ import { ResetPasswordDto } from '../../../core/models/auth.model';
 @Component({
     selector: 'app-forgot-password',
     standalone: true,
-    imports: [CommonModule, FormsModule, RouterLink],
+    imports: [CommonModule, FormsModule, RouterLink, AppIcon],
     templateUrl: './forgot-password.html',
     styleUrl: './forgot-password.css'
 })

@@ -4,9 +4,7 @@
         <div class="flex items-center gap-6">
             <button [routerLink]="['/app']"
                 class="h-12 w-12 flex items-center justify-center text-text-secondary hover:text-primary transition-all rounded-2xl bg-white dark:bg-slate-900 border border-theme-border/10 dark:border-slate-800 shadow-sm hover:shadow-md active:scale-90">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-                </svg>
+                <app-icon name="arrow-right" className="rotate-180"></app-icon>
             </button>
             <div>
                 <h1 class="text-4xl font-black text-text-primary dark:text-white tracking-tightest">
@@ -20,7 +18,7 @@
         <button (click)="toggleEdit()" 
             class="btn-premium px-8 !py-3 flex items-center gap-3 text-[10px] font-black uppercase tracking-widest"
             [class.!bg-slate-500]="editing">
-            {{ editing ? 'ⓧ Cancel Edit' : '✎ Edit Profile' }}
+            <app-icon [name]="editing ? 'cross' : 'edit'"></app-icon> {{ editing ? 'Cancel Edit' : 'Edit Profile' }}
         </button>
         }
     </div>
@@ -55,11 +53,11 @@
                         <span class="text-[9px] font-black text-primary uppercase tracking-[0.2em] bg-primary/5 px-3 py-1 rounded-full border border-primary/10">{{ user.role }} Account</span>
                         
                         <div class="mt-8 pt-8 border-t border-theme-border/5 flex flex-col gap-4">
-                            <div class="flex items-center justify-between text-[10px] uppercase font-black tracking-widest text-text-secondary opacity-60 px-2">
+                            <div class="flex items-center justify-between text-[10px] uppercase font-black tracking-widest text-text-secondary opacity-90 px-2">
                                 <span>Account Status</span>
                                 <span class="text-emerald-500">{{ user.isActive ? 'Active' : 'Inactive' }}</span>
                             </div>
-                            <div class="flex items-center justify-between text-[10px] uppercase font-black tracking-widest text-text-secondary opacity-60 px-2">
+                            <div class="flex items-center justify-between text-[10px] uppercase font-black tracking-widest text-text-secondary opacity-90 px-2">
                                 <span>Member Since</span>
                                 <span>{{ user.createdAt | date:'MMM yyyy' | uppercase }}</span>
                             </div>
@@ -74,10 +72,10 @@
                         <a routerLink="/app/change-password" 
                            class="flex items-center justify-between p-4 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-theme-border/5 hover:border-primary/20 hover:bg-primary/[0.02] transition-all group">
                             <div class="flex items-center gap-3">
-                                <span class="text-lg opacity-40">🔒</span>
+                                <app-icon name="lock" className="text-lg opacity-80"></app-icon>
                                 <span class="text-[10px] font-black uppercase tracking-widest text-text-secondary group-hover:text-primary transition-colors">Change Password</span>
                             </div>
-                            <span class="text-xs opacity-20">→</span>
+                            <span class="text-xs opacity-70">→</span>
                         </a>
                     </div>
                 </div>
@@ -98,19 +96,19 @@
                     @if (!editing) {
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-12">
                             <div class="flex flex-col gap-2 relative group/item">
-                                <label class="text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40">Full Name</label>
+                                <label class="text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-80">Full Name</label>
                                 <p class="text-sm font-black text-text-primary dark:text-white uppercase tracking-tight">{{ user.fullName }}</p>
                             </div>
                             <div class="flex flex-col gap-2">
-                                <label class="text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40">Email Address</label>
+                                <label class="text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-80">Email Address</label>
                                 <p class="text-sm font-black text-slate-400 dark:text-slate-500 italic">{{ user.email }}</p>
                             </div>
                             <div class="flex flex-col gap-2">
-                                <label class="text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40">Phone Number</label>
+                                <label class="text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-80">Phone Number</label>
                                 <p class="text-sm font-black text-text-primary dark:text-white tracking-tight">{{ user.phoneNumber || 'Not Provided' }}</p>
                             </div>
                             <div class="flex flex-col gap-2">
-                                <label class="text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40">Date of Birth</label>
+                                <label class="text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-80">Date of Birth</label>
                                 <p class="text-sm font-black text-text-primary dark:text-white uppercase tracking-tight">
                                     {{ (user.dateOfBirth | date:'yyyy-MM-dd') === '0001-01-01' ? 'Not Provided' : (user.dateOfBirth | date:'longDate') }}
                                 </p>
@@ -119,19 +117,19 @@
                     } @else {
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                             <div class="flex flex-col gap-2.5">
-                                <label class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Full Name</label>
+                                <label class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Full Name</label>
                                 <input type="text" [(ngModel)]="editForm.fullName" class="input-premium py-3.5" placeholder="Your full name">
                             </div>
-                            <div class="flex flex-col gap-2.5 opacity-60 grayscale cursor-not-allowed">
-                                <label class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Email (Non-editable)</label>
+                            <div class="flex flex-col gap-2.5 opacity-90 grayscale cursor-not-allowed">
+                                <label class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Email (Non-editable)</label>
                                 <input type="text" [value]="user.email" disabled class="input-premium py-3.5 bg-slate-100/5 dark:bg-slate-800/20">
                             </div>
                             <div class="flex flex-col gap-2.5">
-                                <label class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Phone Number</label>
+                                <label class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Phone Number</label>
                                 <input type="tel" [(ngModel)]="editForm.phoneNumber" class="input-premium py-3.5" placeholder="10-digit mobile">
                             </div>
                             <div class="flex flex-col gap-2.5">
-                                <label class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Date of Birth</label>
+                                <label class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Date of Birth</label>
                                 <input type="date" [(ngModel)]="editForm.dateOfBirth" [max]="today" class="input-premium py-3.5 h-[50px] block">
                             </div>
                         </div>
@@ -143,40 +141,40 @@
                     <div class="flex justify-between items-center mb-10 pb-4 border-b border-theme-border/5">
                         <h3 class="text-[10px] font-black uppercase tracking-[0.4em] text-primary">Bank Payout Details</h3>
                         @if (editing) {
-                            <span class="text-[9px] font-bold text-primary opacity-60 uppercase tracking-widest">Required for settlements</span>
+                            <span class="text-[9px] font-bold text-primary opacity-90 uppercase tracking-widest">Required for settlements</span>
                         }
                     </div>
                     
                     @if (!editing) {
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-12">
                             <div class="flex flex-col gap-2 md:col-span-2">
-                                <label class="text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40">Account Holder Name</label>
+                                <label class="text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-80">Account Holder Name</label>
                                 <p class="text-sm font-black text-text-primary dark:text-white uppercase tracking-tight">{{ user.bankAccountName || 'Not configured' }}</p>
                             </div>
                             <div class="flex flex-col gap-2">
-                                <label class="text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40">Account Number</label>
+                                <label class="text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-80">Account Number</label>
                                 <p class="text-sm font-mono font-black text-text-primary dark:text-white tracking-widest">
                                     {{ user.bankAccountNumber ? 'XXXX-XXXX-' + user.bankAccountNumber.slice(-4) : '●●●●-●●●●' }}
                                 </p>
                             </div>
                             <div class="flex flex-col gap-2">
-                                <label class="text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40">IFSC Code</label>
+                                <label class="text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-80">IFSC Code</label>
                                 <p class="text-sm font-black text-text-primary dark:text-white uppercase tracking-tight">{{ user.bankIfscCode || 'Not configured' }}</p>
                             </div>
                         </div>
                     } @else {
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                             <div class="flex flex-col gap-2.5 md:col-span-2">
-                                <label class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Bank Account Holder Name</label>
+                                <label class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Bank Account Holder Name</label>
                                 <input type="text" [(ngModel)]="editForm.bankAccountName" class="input-premium py-3.5" placeholder="Name as per bank records">
                             </div>
                             <div class="flex flex-col gap-2.5">
-                                <label class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Bank Account Number</label>
+                                <label class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Bank Account Number</label>
                                 <input type="text" [(ngModel)]="editForm.bankAccountNumber" class="input-premium py-3.5" placeholder="Full account number">
                             </div>
                             <div class="flex flex-col gap-2.5">
-                                <label class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">IFSC Code</label>
-                                <input type="text" [(ngModel)]="editForm.bankIfscCode" class="input-premium py-3.5" placeholder="11-character code">
+                                <label class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">IFSC Code</label>
+                                <input type="text" [(ngModel)]="editForm.bankIfscCode" (ngModelChange)="editForm.bankIfscCode = $event.toUpperCase()" class="input-premium py-3.5 uppercase" placeholder="11-character code" maxlength="11">
                             </div>
                         </div>
                     }
@@ -200,3 +198,5 @@
         </div>
     }
 </div>
+
+

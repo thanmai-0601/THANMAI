@@ -9,8 +9,11 @@
   <div class="w-full max-w-md relative z-10 animate-in fade-in zoom-in-95 duration-700">
     <!-- Logo node -->
     <div class="text-center mb-10">
-      <a routerLink="/" class="inline-flex items-center gap-3 transition-transform hover:scale-105 duration-300">
-        <span class="text-3xl">🏦</span>
+      <a routerLink="/" class="inline-flex items-center gap-3 transition-transform hover:scale-105 duration-300 group">
+        <div class="relative w-10 h-10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+          <div class="absolute inset-0 bg-primary/20 blur-lg rounded-full animate-pulse"></div>
+          <app-icon name="shield" className="text-4xl relative z-10 text-primary drop-shadow-[0_0_8px_rgba(249,115,22,0.5)]"></app-icon>
+        </div>
         <span class="text-3xl font-black text-gradient tracking-tighter uppercase">NexaLife</span>
       </a>
     </div>
@@ -20,13 +23,12 @@
       <div class="text-center mb-8">
         <h1 class="text-2xl font-black text-text-primary dark:text-white mb-2 tracking-tight uppercase">Sign In
         </h1>
-        <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50 italic">Sign in to
-          access your dashboard</p>
+        <p class="text-xs font-black uppercase tracking-[0.2em] text-text-secondary opacity-80 italic">Your Life, Our Promise</p>
       </div>
 
       <form (ngSubmit)="onSubmit()" class="space-y-6">
         <div class="space-y-1.5">
-          <label class="text-[9px] font-black uppercase tracking-[0.3em] text-text-secondary opacity-60 ml-1">Email
+          <label class="text-xs font-black uppercase tracking-[0.3em] text-text-secondary opacity-90 ml-1">Email
             Address</label>
           <div class="relative group">
             <input type="email" name="email" [(ngModel)]="form.email" required placeholder="protocol@nexalife.net"
@@ -37,9 +39,9 @@
         <div class="space-y-1.5">
           <div class="flex justify-between items-center px-1">
             <label
-              class="text-[9px] font-black uppercase tracking-[0.3em] text-text-secondary opacity-60">Password</label>
+              class="text-xs font-black uppercase tracking-[0.3em] text-text-secondary opacity-90">Password</label>
             <a routerLink="/forgot-password"
-              class="text-[9px] font-black uppercase tracking-widest text-primary hover:underline transition-all">Forgot
+              class="text-xs font-black uppercase tracking-widest text-primary hover:underline transition-all">Forgot
               Password</a>
           </div>
           <div class="relative group">
@@ -48,20 +50,15 @@
           </div>
         </div>
 
-        <button type="submit" [disabled]="loading"
-          class="btn-premium w-full h-14 mt-4 font-black text-[11px] tracking-[0.2em] shadow-[0_8px_30px_rgb(59,130,246,0.3)]">
-          <span *ngIf="!loading" class="flex items-center justify-center gap-2">SIGN IN <span
-              class="text-lg">→</span></span>
-          <span *ngIf="loading" class="flex items-center justify-center gap-2 italic">
-            <span class="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
-            SIGNING IN...
-          </span>
+        <button type="submit"
+          class="btn-premium w-full py-4 text-sm font-black uppercase tracking-widest shadow-xl shadow-primary/30">
+          Secure Sign In
         </button>
       </form>
 
       <!-- Secondary actions -->
       <div class="mt-10 pt-8 border-t border-theme-border/5 text-center">
-        <p class="text-[10px] font-bold text-text-secondary opacity-60 uppercase tracking-widest">
+        <p class="text-[10px] font-bold text-text-secondary opacity-90 uppercase tracking-widest">
           Don't have an account?
           <a routerLink="/register" class="text-primary font-black ml-1 hover:underline">Create Account</a>
         </p>
@@ -69,7 +66,7 @@
     </div>
 
     <!-- Footer metadata -->
-    <p class="mt-8 text-center text-[9px] font-black uppercase tracking-[0.4em] text-text-secondary opacity-30">
+    <p class="mt-8 text-center text-[9px] font-black uppercase tracking-[0.4em] text-text-secondary opacity-70">
       &copy; 2026 NEXALIFE CORE · ALL RIGHTS RESERVED
     </p>
   </div>

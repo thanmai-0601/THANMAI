@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppIcon } from '../../../shared/components/app-icon/app-icon';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ApiService } from '../../../core/services/api';
@@ -8,7 +9,7 @@ import { LoadingSpinner } from '../../../shared/components/loading-spinner/loadi
 
 @Component({
   selector: 'app-agent-dashboard', standalone: true,
-  imports: [CommonModule, RouterLink, StatCard, LoadingSpinner],
+  imports: [CommonModule, RouterLink, StatCard, LoadingSpinner, AppIcon],
   templateUrl: './agent-dashboard.html', styleUrl: './agent-dashboard.css'
 })
 export class AgentDashboard implements OnInit {

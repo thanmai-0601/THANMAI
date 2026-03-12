@@ -3,11 +3,7 @@
     <div class="flex items-center gap-6 mb-12">
         <button routerLink="/app/my-claims"
             class="h-12 w-12 flex items-center justify-center text-text-secondary hover:text-primary transition-all rounded-2xl bg-white dark:bg-slate-900 border border-theme-border/20 dark:border-slate-800 shadow-sm hover:shadow-md active:scale-90">
-            <svg class="w-5 h-5 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor"
-                viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18">
-                </path>
-            </svg>
+            <app-icon name="arrow-right" className="rotate-180 text-lg"></app-icon>
         </button>
         <div>
             <h1 class="text-4xl font-black text-text-primary dark:text-white tracking-tightest">Submit a <span
@@ -24,9 +20,9 @@
             class="premium-card p-16 text-center border-dashed border-amber-500/30 bg-amber-500/[0.02]">
             <div
                 class="h-20 w-20 bg-amber-100 dark:bg-amber-900/30 rounded-full flex items-center justify-center text-3xl mx-auto mb-6">
-                ⚠️</div>
+                <app-icon name="alert"></app-icon></div>
             <p class="text-xl font-black text-amber-800 dark:text-amber-200 tracking-tight">No Active Policies</p>
-            <p class="text-xs font-bold text-amber-700 dark:text-amber-400 mt-2 uppercase tracking-widest opacity-60">
+            <p class="text-xs font-bold text-amber-700 dark:text-amber-400 mt-2 uppercase tracking-widest opacity-90">
                 You need an active policy to submit a claim.</p>
             <button routerLink="/app/my-policies"
                 class="mt-8 btn-premium px-8 !py-3 bg-amber-600 !shadow-amber-500/20 text-[10px] uppercase tracking-[0.2em]">
@@ -48,7 +44,7 @@
                     </h2>
                     <div class="flex flex-col gap-3">
                         <label
-                            class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50 ml-1">Target
+                            class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80 ml-1">Target
                             Policy <span class="text-primary">*</span></label>
                         <div class="relative group/select">
                             <select formControlName="policyNumber" (change)="onPolicyChange()" required
@@ -61,11 +57,7 @@
                                 </option>
                             </select>
                             <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
-                                    viewBox="0 0 16 16">
-                                    <path
-                                        d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
-                                </svg>
+                                <app-icon name="chevron-down"></app-icon>
                             </div>
                         </div>
                     </div>
@@ -83,19 +75,19 @@
                     <div class="flex flex-col gap-8">
                         <div class="flex flex-col gap-3">
                             <label
-                                class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50 ml-1">Date
+                                class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80 ml-1">Date
                                 of Death <span class="text-primary">*</span></label>
                             <input type="date" formControlName="dateOfDeath" required [attr.min]="minDeathDate"
                                 class="input-premium px-4" />
                             <p *ngIf="minDeathDate"
-                                class="text-[9px] font-bold text-text-secondary opacity-40 uppercase tracking-widest ml-1">
+                                class="text-[9px] font-bold text-text-secondary opacity-80 uppercase tracking-widest ml-1">
                                 Must be after policy start: {{ selectedPolicy?.activeFrom | date:'mediumDate' }}
                             </p>
                         </div>
 
                         <div class="flex flex-col gap-3">
                             <label
-                                class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50 ml-1">Describe
+                                class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80 ml-1">Describe
                                 the Cause of Death <span class="text-primary">*</span></label>
                             <textarea formControlName="causeOfDeath" required rows="3"
                                 placeholder="Tell us what happened in detail..."
@@ -113,26 +105,26 @@
                         Nominee Details
                     </h2>
                     <p
-                        class="text-[10px] font-bold text-text-secondary uppercase tracking-[0.1em] mb-8 ml-12 opacity-50">
+                        class="text-[10px] font-bold text-text-secondary uppercase tracking-[0.1em] mb-8 ml-12 opacity-80">
                         Please provide the nominee's details exactly as registered</p>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
                         <div class="flex flex-col gap-3">
                             <label
-                                class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50 ml-1">Full
+                                class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80 ml-1">Full
                                 Name <span class="text-primary">*</span></label>
                             <input type="text" formControlName="nomineeName" required class="input-premium px-4" />
                         </div>
                         <div class="flex flex-col gap-3">
                             <label
-                                class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50 ml-1">Relationship
+                                class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80 ml-1">Relationship
                                 to You <span class="text-primary">*</span></label>
                             <input type="text" formControlName="nomineeRelationship" required placeholder="e.g. Sister"
                                 class="input-premium px-4" />
                         </div>
                         <div class="flex flex-col gap-3 sm:col-span-2">
                             <label
-                                class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50 ml-1">Nominee AADHAR Number (12 digits) <span class="text-primary">*</span></label>
+                                class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80 ml-1">Nominee AADHAR Number (12 digits) <span class="text-primary">*</span></label>
                             <input type="text" formControlName="nomineeIdNumber" required minlength="12" maxlength="12" placeholder="12-digit numeric Aadhar (Must match record)"
                                 class="input-premium px-4" />
                         </div>
@@ -148,13 +140,13 @@
                         Bank Details
                     </h2>
                     <p
-                        class="text-[10px] font-bold text-text-secondary uppercase tracking-[0.1em] mb-8 ml-12 opacity-50">
+                        class="text-[10px] font-bold text-text-secondary uppercase tracking-[0.1em] mb-8 ml-12 opacity-80">
                         The claim amount will be transferred to this bank account</p>
 
                     <div class="flex flex-col gap-8">
                         <div class="flex flex-col gap-3">
                             <label
-                                class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50 ml-1">Account
+                                class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80 ml-1">Account
                                 Holder Name <span class="text-primary">*</span></label>
                             <input type="text" formControlName="bankAccountName" required
                                 placeholder="Name as per bank records" class="input-premium px-4" />
@@ -162,7 +154,7 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
                             <div class="flex flex-col gap-3">
                                 <label
-                                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50 ml-1">Account
+                                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80 ml-1">Account
                                     Number <span class="text-primary">*</span></label>
                                 <input type="text" formControlName="bankAccountNumber" required
                                     placeholder="Bank account number" class="input-premium px-4" />
@@ -176,12 +168,13 @@
 
                             <div class="flex flex-col gap-3">
                                 <label
-                                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50 ml-1">
+                                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80 ml-1">
                                     IFSC Code <span class="text-primary">*</span>
                                 </label>
 
                                 <input type="text" formControlName="bankIfscCode" placeholder="Bank branch IFSC code"
-                                    maxlength="11" required class="input-premium px-4 uppercase" />
+                                    maxlength="11" required class="input-premium px-4 uppercase"
+                                    (input)="claimForm.patchValue({bankIfscCode: $any($event.target).value.toUpperCase()})" />
 
                                 <p *ngIf="claimForm.get('bankIfscCode')?.invalid && claimForm.get('bankIfscCode')?.touched"
                                     class="text-[9px] font-bold text-red-500 uppercase tracking-widest ml-1">
@@ -201,7 +194,7 @@
                         Document Evidence
                     </h2>
                     <p
-                        class="text-[10px] font-bold text-text-secondary uppercase tracking-[0.1em] mb-8 ml-12 opacity-50">
+                        class="text-[10px] font-bold text-text-secondary uppercase tracking-[0.1em] mb-8 ml-12 opacity-80">
                         Upload death certificate as proof of claim</p>
 
                     <div class="flex flex-col gap-6">
@@ -213,7 +206,7 @@
                                     class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" />
                                 <div
                                     class="input-premium min-h-[100px] flex flex-col items-center justify-center gap-2 border-dashed border-primary/30 group-hover/file:border-primary/60 transition-colors">
-                                    <span class="text-2xl opacity-40">{{ deathCertificate ? '📄' : '📤' }}</span>
+                                    <app-icon [name]="deathCertificate ? 'folder' : 'upload'" className="text-2xl opacity-80"></app-icon>
                                     <span
                                         class="text-[10px] font-black uppercase tracking-widest text-text-secondary group-hover/file:text-primary transition-colors">
                                         {{ deathCertificate ? deathCertificate.fileName : 'Select Death Certificate
@@ -230,7 +223,7 @@
                                     class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" />
                                 <div
                                     class="input-premium min-h-[100px] flex flex-col items-center justify-center gap-2 border-dashed border-primary/30 group-hover/file:border-primary/60 transition-colors">
-                                    <span class="text-2xl opacity-40">{{ nomineeIdProof ? '🆔' : '📤' }}</span>
+                                    <app-icon [name]="nomineeIdProof ? 'user' : 'upload'" className="text-2xl opacity-80"></app-icon>
                                     <span
                                         class="text-[10px] font-black uppercase tracking-widest text-text-secondary group-hover/file:text-primary transition-colors">
                                         {{ nomineeIdProof ? nomineeIdProof.fileName : 'Select Nominee ID Proof (Aadhar/Passport/etc.)' }}
@@ -259,7 +252,7 @@
                 <div *ngIf="!selectedPolicy"
                     class="premium-card p-12 border-dashed flex flex-col items-center justify-center gap-4 text-center">
                     <p
-                        class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-40 leading-relaxed italic">
+                        class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80 leading-relaxed italic">
                         Select a policy to view its details here</p>
                 </div>
 
@@ -272,20 +265,20 @@
                             <p class="text-2xl font-black text-text-primary dark:text-white tracking-tight mt-1">{{
                                 selectedPolicy.policyNumber }}</p>
                             <p
-                                class="text-[10px] font-black text-text-secondary uppercase tracking-[0.2em] opacity-40 mt-1">
+                                class="text-[10px] font-black text-text-secondary uppercase tracking-[0.2em] opacity-80 mt-1">
                                 {{ selectedPolicy.planName }}</p>
                         </div>
                         <div class="p-8 flex flex-col gap-6">
                             <div class="flex justify-between items-end">
                                 <span
-                                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50">Sum
+                                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80">Sum
                                     Assured</span>
                                 <span class="text-lg font-black text-emerald-500 tracking-tight">₹{{
                                     selectedPolicy.sumAssured | number }}</span>
                             </div>
                             <div class="flex justify-between items-end">
                                 <span
-                                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50">Annual
+                                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80">Annual
                                     Premium</span>
                                 <span
                                     class="text-sm font-black text-text-primary dark:text-white tracking-widest uppercase">₹{{
@@ -293,7 +286,7 @@
                             </div>
                             <div class="flex justify-between items-end">
                                 <span
-                                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50">Risk
+                                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80">Risk
                                     Category</span>
                                 <span
                                     class="text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full border border-theme-border/10"
@@ -304,7 +297,7 @@
                             <div class="h-px w-full bg-theme-border/5"></div>
                             <div class="flex justify-between items-end">
                                 <span
-                                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50">Start
+                                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80">Start
                                     Date</span>
                                 <span
                                     class="text-[10px] font-black text-text-primary dark:text-white uppercase tracking-widest">{{
@@ -312,7 +305,7 @@
                             </div>
                             <div class="flex justify-between items-end">
                                 <span
-                                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50">End
+                                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80">End
                                     Date</span>
                                 <span
                                     class="text-[10px] font-black text-text-primary dark:text-white uppercase tracking-widest">{{

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppIcon } from '../../../shared/components/app-icon/app-icon';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { ErrorService, ErrorDetails } from '../../../core/services/error';
@@ -6,7 +7,7 @@ import { ErrorService, ErrorDetails } from '../../../core/services/error';
 @Component({
     selector: 'app-global-error',
     standalone: true,
-    imports: [CommonModule],
+    imports: [CommonModule, AppIcon],
     templateUrl: './global-error.html'
 })
 export class GlobalError implements OnInit {

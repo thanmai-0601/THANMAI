@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { DecimalPipe } from '@angular/common';
 import { ThemeToggle } from '../../shared/components/theme-toggle/theme-toggle';
+import { AppIcon } from '../../shared/components/app-icon/app-icon';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, DecimalPipe, ThemeToggle],
+  imports: [RouterLink, DecimalPipe, ThemeToggle, AppIcon],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
@@ -18,12 +19,12 @@ export class Home implements OnInit {
   ];
 
   features = [
-    { icon: '🛡️', title: 'Trusted Security', desc: 'Your details are safe with high-level security.' },
-    { icon: '⚡', title: 'Fast Claims', desc: 'Claims handled within 48 hours with clear status updates.' },
-    { icon: '📱', title: 'Digital First', desc: 'Handle your plans, payments, and claims all from one app.' },
-    { icon: '🤝', title: 'Expert Help', desc: 'Helpful experts to guide you through every step of your plan.' },
-    { icon: '💰', title: 'Best Prices', desc: 'Great prices with custom costs based on your details.' },
-    { icon: '📊', title: 'Full Clearness', desc: 'Live screens with full control over all your plans.' }
+    { icon: 'shield', title: 'Trusted Security', desc: 'Your details are safe with high-level security.' },
+    { icon: 'bolt', title: 'Fast Claims', desc: 'Claims handled within 48 hours with clear status updates.' },
+    { icon: 'phone', title: 'Digital First', desc: 'Handle your plans, payments, and claims all from one app.' },
+    { icon: 'handshake', title: 'Expert Help', desc: 'Helpful experts to guide you through every step of your plan.' },
+    { icon: 'money', title: 'Best Prices', desc: 'Great prices with custom costs based on your details.' },
+    { icon: 'dashboard', title: 'Full Clearness', desc: 'Live screens with full control over all your plans.' }
   ];
 
   ngOnInit(): void {

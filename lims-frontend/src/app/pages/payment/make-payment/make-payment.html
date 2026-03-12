@@ -1,10 +1,7 @@
 <div class="max-w-md mx-auto relative pt-4">
     <button routerLink=".."
         class="absolute -left-16 top-4 p-2 text-text-secondary hover:text-text-secondary dark:hover:text-slate-200 transition-colors rounded-lg hover:bg-theme-bg dark:hover:bg-slate-800 hidden md:block">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18">
-            </path>
-        </svg>
+        <app-icon name="arrow-right" className="rotate-180"></app-icon>
     </button>
 
     <div class="mb-8">
@@ -47,30 +44,26 @@
                 <div class="relative">
                     <select [(ngModel)]="paymentMethod" name="paymentMethod" required
                         class="w-full px-4 py-3.5 rounded-xl bg-theme-bg dark:bg-slate-800 border border-theme-border dark:border-slate-700 text-text-primary dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all appearance-none">
-                        <option value="Card">💳 Credit / Debit Card</option>
-                        <option value="UPI">📱 UPI / Mobile Wallet</option>
-                        <option value="NetBanking">🏦 Net Banking</option>
+                        <option value="Card">Credit / Debit Card</option>
+                        <option value="UPI">UPI / Mobile Wallet</option>
+                        <option value="NetBanking">Net Banking</option>
                     </select>
                     <div
                         class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400 group-hover/select:text-primary transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
-                            viewBox="0 0 16 16">
-                            <path
-                                d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
-                        </svg>
+                        <app-icon name="chevron-down"></app-icon>
                     </div>
                 </div>
             </div>
 
             <button type="submit" [disabled]="loading || !invoice"
-                class="mt-4 w-full flex justify-center items-center gap-2 py-4 rounded-xl font-bold text-white bg-primary hover:bg-primary-hover disabled:opacity-60 transition-all shadow-lg shadow-primary/20 hover:-translate-y-0.5">
+                class="mt-4 w-full flex justify-center items-center gap-2 py-4 rounded-xl font-bold text-white bg-primary hover:bg-primary-hover disabled:opacity-90 transition-all shadow-lg shadow-primary/20 hover:-translate-y-0.5">
                 <span *ngIf="loading"
                     class="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
                 {{ loading ? 'Processing...' : 'Pay ₹' + (invoice?.amountDue || 0) }}
             </button>
 
             <p class="text-xs text-center text-text-secondary mt-2 flex items-center justify-center gap-1">
-                <span>🔒</span>
+                <app-icon name="lock" className="text-xs"></app-icon>
                 Secure 256-bit encrypted checkout</p>
         </form>
     </div>

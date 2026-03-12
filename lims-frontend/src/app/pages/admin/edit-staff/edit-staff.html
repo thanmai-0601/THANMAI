@@ -2,10 +2,7 @@
     <div class="flex items-center gap-6 mb-12">
         <button routerLink="/app/admin/users"
             class="h-12 w-12 flex items-center justify-center text-text-secondary hover:text-primary transition-all rounded-2xl bg-white dark:bg-slate-900 border border-theme-border/20 dark:border-slate-800 shadow-sm hover:shadow-md active:scale-90">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18">
-                </path>
-            </svg>
+            <app-icon name="arrow-right" className="rotate-180 text-lg"></app-icon>
         </button>
         <div>
             <h1 class="text-4xl font-black text-text-primary dark:text-white tracking-tightest">Edit <span
@@ -30,7 +27,7 @@
             <div>
                 <h2 class="text-2xl font-black text-text-primary dark:text-white tracking-tight">{{ user.fullName }}
                 </h2>
-                <p class="text-sm font-bold text-text-secondary opacity-60">User ID: #{{ user.userId }}</p>
+                <p class="text-sm font-bold text-text-secondary opacity-90">User ID: #{{ user.userId }}</p>
             </div>
         </div>
 
@@ -39,7 +36,7 @@
                 <!-- Full Name -->
                 <div class="flex flex-col gap-2.5">
                     <label
-                        class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Full
+                        class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Full
                         Name</label>
                     <div class="relative group/input">
                         <input type="text" formControlName="fullName" placeholder="Legal full name"
@@ -53,7 +50,7 @@
                 <!-- Email Address -->
                 <div class="flex flex-col gap-2.5">
                     <label
-                        class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Email
+                        class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Email
                         Address</label>
                     <div class="relative group/input">
                         <input type="email" formControlName="email" placeholder="professional@nexalife.com"
@@ -67,7 +64,7 @@
                 <!-- Phone Number -->
                 <div class="flex flex-col gap-2.5">
                     <label
-                        class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Phone
+                        class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Phone
                         Number</label>
                     <div class="relative group/input">
                         <input type="tel" formControlName="phoneNumber" placeholder="Enter 10 digit number"
@@ -81,18 +78,14 @@
                 <!-- Role -->
                 <div class="flex flex-col gap-2.5">
                     <label
-                        class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Role</label>
+                        class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Role</label>
                     <div class="relative group/input">
                         <select formControlName="role" class="input-premium pl-4 appearance-none">
                             <option value="Agent">Field Agent</option>
                             <option value="ClaimsOfficer">Claims Officer</option>
                         </select>
                         <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                viewBox="0 0 16 16">
-                                <path
-                                    d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
-                            </svg>
+                            <app-icon name="chevron-down" className="text-xs"></app-icon>
                         </div>
                     </div>
                 </div>
@@ -101,10 +94,7 @@
             <!-- Notice for password -->
             <div class="p-5 rounded-2xl bg-blue-500/5 border border-blue-500/10 flex gap-4 items-start">
                 <div class="h-8 w-8 rounded-full bg-blue-500/10 flex items-center justify-center shrink-0">
-                    <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
+                    <app-icon name="alert" className="text-blue-500"></app-icon>
                 </div>
                 <div>
                     <p class="text-[10px] font-black uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-1">
@@ -117,18 +107,11 @@
             <div
                 class="flex items-center justify-end gap-6 pt-10 border-t border-theme-border/10 dark:border-slate-800">
                 <button type="button" routerLink="/app/admin/users" [disabled]="submitting"
-                    class="text-[10px] font-black uppercase tracking-widest text-text-secondary hover:text-primary transition-all disabled:opacity-50">
+                    class="text-[10px] font-black uppercase tracking-widest text-text-secondary hover:text-primary transition-all disabled:opacity-80">
                     Cancel
                 </button>
                 <button type="submit" [disabled]="submitting" class="btn-premium px-10 flex items-center gap-3">
-                    <svg *ngIf="submitting" class="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
-                        </circle>
-                        <path class="opacity-75" fill="currentColor"
-                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                        </path>
-                    </svg>
+                    <span *ngIf="submitting" class="animate-spin h-4 w-4 border-2 border-white/30 border-t-white rounded-full"></span>
                     {{ submitting ? 'Saving...' : 'Save Changes' }}
                 </button>
             </div>
@@ -136,7 +119,7 @@
     </div>
 
     <div *ngIf="!loading && !user" class="text-center py-24 premium-card">
-        <div class="text-4xl mb-4">🚫</div>
+        <div class="text-4xl mb-4"><app-icon name="cross"></app-icon></div>
         <p class="text-xl font-black text-text-primary dark:text-white">User Not Found</p>
         <p class="text-sm font-medium text-text-secondary mt-2">The user does not exist.</p>
         <button routerLink="/app/admin/users" class="mt-8 btn-premium">Back to Users</button>

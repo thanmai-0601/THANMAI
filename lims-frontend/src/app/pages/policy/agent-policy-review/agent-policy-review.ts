@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppIcon } from '../../../shared/components/app-icon/app-icon';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
@@ -11,7 +12,7 @@ import { StatusBadge } from '../../../shared/components/status-badge/status-badg
 @Component({
   selector: 'app-agent-policy-review',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink, LoadingSpinner, StatusBadge],
+  imports: [CommonModule, FormsModule, RouterLink, LoadingSpinner, StatusBadge, AppIcon],
   templateUrl: './agent-policy-review.html',
   styleUrl: './agent-policy-review.css'
 })

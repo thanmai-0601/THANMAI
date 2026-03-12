@@ -3,7 +3,7 @@
         <div>
             <h1 class="text-3xl font-black text-text-primary dark:text-white tracking-tighter uppercase">My Payments
             </h1>
-            <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50 mt-1 italic">
+            <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80 mt-1 italic">
                 Manage your transaction history and download invoices
             </p>
         </div>
@@ -14,7 +14,7 @@
     <div *ngIf="!loading" class="premium-card p-0 overflow-hidden">
         <div class="p-6 bg-primary/[0.03] border-b border-theme-border/10 flex justify-between items-center">
             <h2 class="text-[10px] font-black text-primary uppercase tracking-[0.3em] flex items-center gap-3">
-                <span class="text-lg">💳</span> Transaction History
+                <app-icon name="money"></app-icon> Transaction History
             </h2>
         </div>
         <div class="overflow-x-auto">
@@ -22,31 +22,31 @@
                 <thead>
                     <tr class="bg-primary/[0.01]">
                         <th
-                            class="px-8 py-5 text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40 border-b border-theme-border/5">
+                            class="px-8 py-5 text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-80 border-b border-theme-border/5">
                             Policy Number
                         </th>
                         <th
-                            class="px-8 py-5 text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40 border-b border-theme-border/5">
+                            class="px-8 py-5 text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-80 border-b border-theme-border/5">
                             Transaction Ref
                         </th>
                         <th
-                            class="px-8 py-5 text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40 border-b border-theme-border/5">
+                            class="px-8 py-5 text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-80 border-b border-theme-border/5">
                             Amount Paid
                         </th>
                         <th
-                            class="px-8 py-5 text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40 border-b border-theme-border/5">
+                            class="px-8 py-5 text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-80 border-b border-theme-border/5">
                             Payment Date
                         </th>
                         <th
-                            class="px-8 py-5 text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40 border-b border-theme-border/5">
+                            class="px-8 py-5 text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-80 border-b border-theme-border/5">
                             Method
                         </th>
                         <th
-                            class="px-8 py-5 text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40 border-b border-theme-border/5">
+                            class="px-8 py-5 text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-80 border-b border-theme-border/5">
                             Status
                         </th>
                         <th
-                            class="px-8 py-5 text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40 border-b border-theme-border/5 text-right">
+                            class="px-8 py-5 text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-80 border-b border-theme-border/5 text-right">
                             Action
                         </th>
                     </tr>
@@ -61,7 +61,7 @@
                             </p>
                         </td>
                         <td class="px-8 py-6">
-                            <p class="text-[10px] font-bold text-text-secondary opacity-60">
+                            <p class="text-[10px] font-bold text-text-secondary opacity-90">
                                 {{ pay.transactionReference || 'N/A' }}
                             </p>
                         </td>
@@ -72,13 +72,13 @@
                         </td>
                         <td class="px-8 py-6">
                             <p
-                                class="text-[10px] font-black text-text-secondary opacity-60 uppercase tracking-widest italic">
+                                class="text-[10px] font-black text-text-secondary opacity-90 uppercase tracking-widest italic">
                                 {{ pay.paymentDate | date:'mediumDate' }}
                             </p>
                         </td>
                         <td class="px-8 py-6">
                             <p
-                                class="text-[9px] font-black text-text-secondary opacity-40 uppercase tracking-widest group-hover:opacity-80 transition-opacity">
+                                class="text-[9px] font-black text-text-secondary opacity-80 uppercase tracking-widest group-hover:opacity-80 transition-opacity">
                                 {{ pay.paymentMethod }}
                             </p>
                         </td>
@@ -94,8 +94,8 @@
                     </tr>
                     <tr *ngIf="payments.length === 0">
                         <td colspan="7" class="px-8 py-20 text-center">
-                            <div class="flex flex-col items-center gap-3 opacity-20 group">
-                                <span class="text-4xl group-hover:scale-110 transition-transform duration-500">💳</span>
+                            <div class="flex flex-col items-center gap-3 opacity-70 group">
+                                <app-icon name="money" className="text-4xl group-hover:scale-110 transition-transform duration-500"></app-icon>
                                 <p class="text-[10px] font-black uppercase tracking-[0.3em] text-text-secondary italic">
                                     No transaction history found
                                 </p>
@@ -107,3 +107,4 @@
         </div>
     </div>
 </div>
+

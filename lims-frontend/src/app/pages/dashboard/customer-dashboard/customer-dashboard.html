@@ -7,21 +7,21 @@
         <div>
             <h1 class="text-3xl font-black text-text-primary dark:text-white tracking-tighter uppercase">My
                 Dashboard</h1>
-            <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50 mt-1 italic">
+            <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80 mt-1 italic">
                 View and manage your insurance policies</p>
         </div>
         <a routerLink="/app/plans"
             class="btn-premium px-8 h-12 flex items-center justify-center text-[10px] font-black uppercase tracking-widest shadow-xl shadow-primary/20">
-            Explore New Plans <span class="ml-2 text-lg">⊕</span>
+            Explore New Plans <app-icon name="plus" className="ml-2 text-lg"></app-icon>
         </a>
     </div>
 
     <!-- Analytics Matrix -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-        <app-stat-card label="Active Policies" [value]="data.activePolicies" icon="🛡️" color="#10B981" />
-        <app-stat-card label="Total Paid" [value]="data.totalPaidAmount | number" icon="💸" color="#3B82F6"
+        <app-stat-card label="Active Policies" [value]="data.activePolicies" icon="shield" color="#10B981" />
+        <app-stat-card label="Total Paid" [value]="data.totalPaidAmount | number" icon="money" color="#3B82F6"
             prefix="₹" />
-        <app-stat-card label="Settled Claims" [value]="data.settledClaims" icon="✅" color="#8B5CF6" />
+        <app-stat-card label="Settled Claims" [value]="data.settledClaims" icon="check" color="#8B5CF6" />
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -29,7 +29,7 @@
         <div class="lg:col-span-2 premium-card p-0 overflow-hidden">
             <div class="p-6 bg-primary/[0.03] border-b border-theme-border/10">
                 <h2 class="text-[10px] font-black text-primary uppercase tracking-[0.3em] flex items-center gap-3">
-                    <span class="text-lg">📈</span> Recent Activity
+                    <app-icon name="chart" className="text-lg"></app-icon> Recent Activity
                 </h2>
             </div>
             <div class="p-10">
@@ -47,7 +47,7 @@
                                 <p class="text-sm font-black text-text-primary dark:text-white tracking-tight">{{
                                     act.description }}</p>
                                 <span
-                                    class="text-[9px] font-black text-text-secondary opacity-40 uppercase tracking-widest">{{
+                                    class="text-[9px] font-black text-text-secondary opacity-80 uppercase tracking-widest">{{
                                     act.date | date:'shortTime' }}</span>
                             </div>
                             <div class="flex items-center gap-3">
@@ -55,7 +55,7 @@
                                     class="text-[9px] font-black text-primary uppercase tracking-[0.2em] px-2 py-0.5 rounded bg-primary/5">
                                     {{ act.type }}</p>
                                 <p
-                                    class="text-[9px] font-bold text-text-secondary opacity-40 uppercase tracking-[0.1em]">
+                                    class="text-[9px] font-bold text-text-secondary opacity-80 uppercase tracking-[0.1em]">
                                     {{ act.date | date:'mediumDate' }}</p>
                             </div>
                         </div>
@@ -64,7 +64,7 @@
                 </div>
                 } @else {
                 <div class="text-center py-20">
-                    <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-30 italic">
+                    <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-70 italic">
                         No recent activity found</p>
                 </div>
                 }
@@ -76,27 +76,27 @@
             <div class="premium-card p-0 overflow-hidden">
                 <div class="p-6 bg-primary/[0.03] border-b border-theme-border/10">
                     <h2 class="text-[10px] font-black text-primary uppercase tracking-[0.3em] flex items-center gap-3">
-                        <span class="text-lg">⚡</span> Quick Actions
+                        <app-icon name="bolt" className="text-lg"></app-icon> Quick Actions
                     </h2>
                 </div>
                 <div class="p-8 grid grid-cols-2 gap-4">
                     <a routerLink="/app/my-policies"
                         class="flex flex-col items-center p-6 rounded-2xl bg-primary/[0.02] border border-theme-border/10 hover:bg-primary/5 hover:border-primary/30 transition-all group">
-                        <span class="text-2xl mb-3 group-hover:scale-110 transition-transform">📑</span>
+                        <app-icon name="policies" className="text-2xl mb-3 group-hover:scale-110 transition-transform"></app-icon>
                         <span
                             class="text-[9px] font-black text-text-secondary group-hover:text-primary uppercase tracking-widest text-center">My
                             Policies</span>
                     </a>
                     <a routerLink="/app/my-claims"
                         class="flex flex-col items-center p-6 rounded-2xl bg-primary/[0.02] border border-theme-border/10 hover:bg-primary/5 hover:border-primary/30 transition-all group">
-                        <span class="text-2xl mb-3 group-hover:scale-110 transition-transform">🏥</span>
+                        <app-icon name="claims" className="text-2xl mb-3 group-hover:scale-110 transition-transform"></app-icon>
                         <span
                             class="text-[9px] font-black text-text-secondary group-hover:text-primary uppercase tracking-widest text-center">My
                             Claims</span>
                     </a>
                     <a routerLink="/app/raise-claim"
                         class="flex flex-col items-center p-6 rounded-2xl bg-amber-500/[0.02] border border-amber-500/10 hover:bg-amber-500/5 hover:border-amber-500/30 transition-all group">
-                        <span class="text-2xl mb-3 group-hover:scale-110 transition-transform">⚠️</span>
+                        <app-icon name="alert" className="text-2xl mb-3 group-hover:scale-110 transition-transform"></app-icon>
                         <span
                             class="text-[9px] font-black text-text-secondary group-hover:text-amber-500 uppercase tracking-widest text-center">Submit
                             a
@@ -104,7 +104,7 @@
                     </a>
                     <a routerLink="/app/endorsement/request"
                         class="flex flex-col items-center p-6 rounded-2xl bg-indigo-500/[0.02] border border-indigo-500/10 hover:bg-indigo-500/5 hover:border-indigo-500/30 transition-all group">
-                        <span class="text-2xl mb-3 group-hover:scale-110 transition-transform">✏️</span>
+                        <app-icon name="edit" className="text-2xl mb-3 group-hover:scale-110 transition-transform"></app-icon>
                         <span
                             class="text-[9px] font-black text-text-secondary group-hover:text-indigo-500 uppercase tracking-widest text-center">Make
                             a
@@ -122,10 +122,10 @@
         class="mt-10 premium-card p-0 overflow-hidden animate-in fade-in slide-in-from-bottom-6 duration-1000 delay-300">
         <div class="p-6 bg-primary/[0.03] border-b border-theme-border/10 flex justify-between items-center">
             <h2 class="text-[10px] font-black text-primary uppercase tracking-[0.3em] flex items-center gap-3">
-                <span class="text-lg">💰</span> Recent Payments
+                <app-icon name="money" className="text-lg"></app-icon> Recent Payments
             </h2>
             <a routerLink="/app/my-payments"
-                class="text-[9px] font-black text-primary uppercase tracking-[0.3em] hover:underline opacity-60 hover:opacity-100 transition-all">View
+                class="text-[9px] font-black text-primary uppercase tracking-[0.3em] hover:underline opacity-90 hover:opacity-100 transition-all">View
                 All Transactions</a>
         </div>
         <div class="overflow-x-auto">
@@ -133,22 +133,22 @@
                 <thead>
                     <tr class="bg-primary/[0.01]">
                         <th
-                            class="px-8 py-5 text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40 border-b border-theme-border/5">
+                            class="px-8 py-5 text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-80 border-b border-theme-border/5">
                             Policy Number</th>
                         <th
-                            class="px-8 py-5 text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40 border-b border-theme-border/5">
+                            class="px-8 py-5 text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-80 border-b border-theme-border/5">
                             Amount Paid</th>
                         <th
-                            class="px-8 py-5 text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40 border-b border-theme-border/5">
+                            class="px-8 py-5 text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-80 border-b border-theme-border/5">
                             Processing Date</th>
                         <th
-                            class="px-8 py-5 text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40 border-b border-theme-border/5">
+                            class="px-8 py-5 text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-80 border-b border-theme-border/5">
                             Channel</th>
                         <th
-                            class="px-8 py-5 text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40 border-b border-theme-border/5 text-center">
+                            class="px-8 py-5 text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-80 border-b border-theme-border/5 text-center">
                             Verification</th>
                         <th
-                            class="px-8 py-5 text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-40 border-b border-theme-border/5 text-right">
+                            class="px-8 py-5 text-[9px] font-black uppercase tracking-widest text-text-secondary opacity-80 border-b border-theme-border/5 text-right">
                             Action</th>
                     </tr>
                 </thead>
@@ -166,12 +166,12 @@
                         </td>
                         <td class="px-8 py-6">
                             <p
-                                class="text-[10px] font-black text-text-secondary opacity-60 uppercase tracking-widest italic">
+                                class="text-[10px] font-black text-text-secondary opacity-90 uppercase tracking-widest italic">
                                 {{ pay.paymentDate | date:'mediumDate' }}</p>
                         </td>
                         <td class="px-8 py-6">
                             <p
-                                class="text-[9px] font-black text-text-secondary opacity-40 uppercase tracking-widest group-hover:opacity-80 transition-opacity">
+                                class="text-[9px] font-black text-text-secondary opacity-80 uppercase tracking-widest group-hover:opacity-80 transition-opacity">
                                 {{ pay.paymentMethod }}</p>
                         </td>
                         <td class="px-8 py-6 text-center">
@@ -196,8 +196,8 @@
                     @if (data.recentPayments.length === 0) {
                     <tr>
                         <td colspan="5" class="px-8 py-20 text-center">
-                            <div class="flex flex-col items-center gap-3 opacity-20 group">
-                                <span class="text-4xl group-hover:scale-110 transition-transform duration-500">📪</span>
+                            <div class="flex flex-col items-center gap-3 opacity-70 group">
+                                <app-icon name="mail" className="text-4xl group-hover:scale-110 transition-transform duration-500"></app-icon>
                                 <p class="text-[10px] font-black uppercase tracking-[0.3em] text-text-secondary italic">
                                     No recent transactions found</p>
                             </div>
@@ -210,11 +210,12 @@
     </div>
 </div>
 } @else {
-<div class="flex flex-col items-center justify-center py-20 opacity-40">
-    <span class="text-6xl mb-6">🏜️</span>
+<div class="flex flex-col items-center justify-center py-20 opacity-80">
+    <app-icon name="cloud-off" className="text-6xl mb-6"></app-icon>
     <p class="text-[10px] font-black uppercase tracking-[0.3em]">Communication failure in NexaLink matrix</p>
     <button (click)="ngOnInit()"
         class="mt-6 text-[9px] font-black text-primary uppercase tracking-widest border-b border-primary/20 hover:border-primary transition-all">Retry
         Synchronization</button>
 </div>
 }
+

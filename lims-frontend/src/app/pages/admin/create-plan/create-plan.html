@@ -2,10 +2,7 @@
     <div class="flex items-center gap-6 mb-12">
         <button routerLink=".."
             class="h-12 w-12 flex items-center justify-center text-text-secondary hover:text-primary transition-all rounded-2xl bg-white dark:bg-slate-900 border border-theme-border/20 dark:border-slate-800 shadow-sm hover:shadow-md active:scale-90">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18">
-                </path>
-            </svg>
+            <app-icon name="arrow-right" className="rotate-180 text-lg"></app-icon>
         </button>
         <div>
             <h1 class="text-4xl font-black text-text-primary dark:text-white tracking-tightest">Create <span
@@ -26,7 +23,7 @@
             <!-- Plan Name -->
             <div class="flex flex-col gap-2.5 md:col-span-2">
                 <label
-                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Plan
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Plan
                     Name</label>
                 <div class="relative group/input">
                     <input type="text" formControlName="planName" placeholder="e.g. Paramount Shield Plus"
@@ -40,7 +37,7 @@
             <!-- Base Rate -->
             <div class="flex flex-col gap-2.5">
                 <label
-                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Base
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Base
                     Rate</label>
                 <div class="relative group/input">
                     <input type="number" formControlName="baseRatePer1000" step="0.01" placeholder="0.00"
@@ -54,7 +51,7 @@
             <!-- Description -->
             <div class="flex flex-col gap-2.5 md:col-span-3">
                 <label
-                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Plan
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Plan
                     Description</label>
                 <textarea formControlName="description" rows="3" placeholder="Describe this plan's benefits..."
                     class="input-premium !py-4 resize-none min-h-[120px]"></textarea>
@@ -66,7 +63,7 @@
             <!-- Commission -->
             <div class="flex flex-col gap-2.5">
                 <label
-                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Agent
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Agent
                     Commission (%)</label>
                 <div class="relative group/input">
                     <input type="number" formControlName="commissionPercentage" step="0.5" placeholder="0.0"
@@ -77,19 +74,19 @@
             <!-- Capital Range -->
             <div class="flex flex-col gap-2.5">
                 <label
-                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Minimum
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Minimum
                     Sum Assured</label>
                 <input type="number" formControlName="minSumAssured" placeholder="0" class="input-premium">
             </div>
             <div class="flex flex-col gap-2.5">
                 <label
-                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Maximum
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Maximum
                     Sum Assured</label>
                 <input type="number" formControlName="maxSumAssured" placeholder="Max" class="input-premium">
             </div>
             <div class="flex flex-col gap-2.5">
                 <label
-                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Minimum
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Minimum
                     Annual Income</label>
                 <input type="number" formControlName="minAnnualIncome" placeholder="Min Income" class="input-premium">
             </div>
@@ -97,7 +94,7 @@
             <!-- Age Cluster -->
             <div class="flex flex-col gap-2.5">
                 <label
-                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Entry
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Entry
                     Age Bracket</label>
                 <div class="flex gap-3">
                     <input type="number" formControlName="minEntryAge" placeholder="Min"
@@ -111,30 +108,30 @@
             <!-- Tenure -->
             <div class="flex flex-col gap-2.5 md:col-span-2">
                 <label
-                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Available
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Available
                     Terms (Years)</label>
                 <input type="text" formControlName="tenureInput" placeholder="e.g. 5, 10, 20, 30" class="input-premium">
                 <p
-                    class="text-[10px] font-bold text-text-secondary opacity-40 uppercase tracking-widest mt-1 ml-1 leading-relaxed">
+                    class="text-[10px] font-bold text-text-secondary opacity-80 uppercase tracking-widest mt-1 ml-1 leading-relaxed">
                     Discrete years, comma-separated</p>
             </div>
 
             <!-- Risk Profile -->
             <div class="flex flex-col gap-2.5">
-                <label class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Low
+                <label class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Low
                     Risk Factor</label>
                 <input type="number" formControlName="lowRiskMultiplier" step="0.01" class="input-premium text-center">
             </div>
             <div class="flex flex-col gap-2.5">
                 <label
-                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Medium
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Medium
                     Risk Factor</label>
                 <input type="number" formControlName="mediumRiskMultiplier" step="0.01"
                     class="input-premium text-center">
             </div>
             <div class="flex flex-col gap-2.5">
                 <label
-                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">High
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">High
                     Risk Factor</label>
                 <input type="number" formControlName="highRiskMultiplier" step="0.01" class="input-premium text-center">
             </div>
@@ -147,7 +144,7 @@
                     {{ loading ? 'Creating Plan...' : 'Create Plan' }}
                 </button>
                 <p
-                    class="text-[10px] font-bold text-text-secondary text-center mt-6 opacity-40 uppercase tracking-widest">
+                    class="text-[10px] font-bold text-text-secondary text-center mt-6 opacity-80 uppercase tracking-widest">
                     This new plan will be immediately available to all agents and customers.</p>
             </div>
         </form>

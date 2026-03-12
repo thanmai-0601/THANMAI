@@ -1,12 +1,9 @@
-<div class="max-w-4xl mx-auto pt-8 transition-all duration-500 animate-in fade-in slide-in-from-bottom-8">
+<div class="max-w-6xl mx-auto pt-8 transition-all duration-500 animate-in fade-in slide-in-from-bottom-8">
     <div class="flex items-center justify-between gap-6 mb-12">
         <div class="flex items-center gap-6">
             <button routerLink=".."
                 class="h-12 w-12 flex items-center justify-center text-text-secondary hover:text-primary transition-all rounded-2xl bg-white dark:bg-slate-900 border border-theme-border/20 dark:border-slate-800 shadow-sm hover:shadow-md active:scale-90">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18">
-                    </path>
-                </svg>
+                <app-icon name="arrow-right" className="rotate-180 text-lg"></app-icon>
             </button>
             <h1 class="text-4xl font-black text-text-primary dark:text-white tracking-tightest">User <span
                     class="text-gradient">Profile</span></h1>
@@ -25,11 +22,7 @@
             <a [routerLink]="['/app/admin/users/edit', user.userId]" 
                *ngIf="user.role !== 'Customer'"
                class="btn-premium flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                </svg>
+                <app-icon name="edit" className="text-lg"></app-icon>
                 Edit User
             </a>
         </div>
@@ -38,8 +31,10 @@
     <app-loading-spinner *ngIf="loading"></app-loading-spinner>
 
     <div *ngIf="!loading && user" class="space-y-8">
-        <!-- Main Profile Card -->
-        <div class="premium-card p-10 xl:p-12 relative overflow-hidden group">
+        <!-- Top Section: Profile and Security Settings -->
+        <div class="flex flex-col lg:flex-row gap-8 items-stretch">
+            <!-- Main Profile Card (2/3) -->
+            <div class="premium-card p-10 xl:p-12 relative overflow-hidden group flex-grow lg:w-2/3">
             <div
                 class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-32 -mt-32 blur-3xl group-hover:bg-primary/10 transition-all duration-700">
             </div>
@@ -68,7 +63,7 @@
                         class="mt-8 pt-8 border-t border-theme-border/10 dark:border-slate-800 flex flex-wrap justify-center md:justify-start gap-10">
                         <div>
                             <p
-                                class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50 mb-2">
+                                class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80 mb-2">
                                 Account ID</p>
                             <p
                                 class="text-sm font-black text-text-primary dark:text-white font-mono bg-slate-50 dark:bg-slate-800/50 px-3 py-1.5 rounded-lg border border-theme-border/10 dark:border-slate-800">
@@ -76,14 +71,14 @@
                         </div>
                         <div>
                             <p
-                                class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50 mb-2">
+                                class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80 mb-2">
                                 Phone Number</p>
                             <p class="text-sm font-black text-text-primary dark:text-white tracking-tight">{{
                                 user.phoneNumber || 'Data Unavailable' }}</p>
                         </div>
                         <div>
                             <p
-                                class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50 mb-2">
+                                class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80 mb-2">
                                 Joined Date</p>
                             <p class="text-sm font-black text-text-primary dark:text-white tracking-tight">{{
                                 user.createdAt | date:'longDate' }}</p>
@@ -93,129 +88,131 @@
             </div>
         </div>
 
-        <!-- Additional Information Placeholder / Activity -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="premium-card p-8">
-                <h3
-                    class="text-lg font-black text-text-primary dark:text-white mb-6 border-b border-theme-border/10 dark:border-slate-800 pb-4">
-                    Security Settings</h3>
-                <div class="space-y-4">
-                    <div
-                        class="flex justify-between items-center py-2 border-b border-theme-border/5 dark:border-slate-800/50">
-                        <span class="text-xs font-semibold text-text-secondary">Password Rules</span>
-                        <span class="text-xs font-black text-text-primary dark:text-slate-300">Change every 90
-                            days</span>
-                    </div>
-                    <div
-                        class="flex justify-between items-center py-2 border-b border-theme-border/5 dark:border-slate-800/50">
-                        <span class="text-xs font-semibold text-text-secondary">Two-Factor Auth</span>
-                        <span class="text-xs font-black text-emerald-600">Active</span>
-                    </div>
-                    <div class="flex justify-between items-center py-2">
-                        <span class="text-xs font-semibold text-text-secondary">Role</span>
-                        <span class="text-xs font-black text-text-primary dark:text-slate-300">{{ user.role }}</span>
-                    </div>
+        <!-- Security Settings (1/3) -->
+        <div class="premium-card p-8 lg:w-1/3 shrink-0 flex flex-col justify-center">
+            <h3 class="text-lg font-black text-text-primary dark:text-white mb-6 border-b border-theme-border/10 dark:border-slate-800 pb-4">
+                Security Settings</h3>
+            <div class="space-y-4">
+                <div class="flex justify-between items-center py-2 border-b border-theme-border/5 dark:border-slate-800/50">
+                    <span class="text-xs font-semibold text-text-secondary">Password Rules</span>
+                    <span class="text-xs font-black text-text-primary dark:text-slate-300">Change every 90 days</span>
                 </div>
-            </div>
-
-            <div class="premium-card p-8 flex flex-col min-h-[500px]">
-                <div class="flex items-center justify-between mb-8 border-b border-theme-border/10 dark:border-slate-800 pb-4">
-                    <div class="flex items-center gap-3">
-                        <div class="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center text-xl">📄</div>
-                        <div>
-                            <h3 class="text-lg font-black text-text-primary dark:text-white uppercase tracking-tight">Assigned Items</h3>
-                            <p class="text-[9px] font-bold text-text-secondary opacity-50 uppercase tracking-widest">Policies & Claims History</p>
-                        </div>
-                    </div>
-                    <button (click)="user && fetchAssignments(user.userId.toString())" [disabled]="fetchingAssignments"
-                        class="h-8 px-4 rounded-lg bg-slate-50 dark:bg-slate-800 text-[9px] font-black uppercase tracking-widest text-primary hover:bg-primary hover:text-white transition-all disabled:opacity-50">
-                        {{ fetchingAssignments ? 'Updating...' : 'Refresh Lists' }}
-                    </button>
+                <div class="flex justify-between items-center py-2 border-b border-theme-border/5 dark:border-slate-800/50">
+                    <span class="text-xs font-semibold text-text-secondary">Two-Factor Auth</span>
+                    <span class="text-xs font-black text-emerald-600">Active</span>
                 </div>
-
-                <div class="flex-1 overflow-y-auto max-h-[600px] pr-2 custom-scrollbar space-y-10">
-                    
-                    <!-- Policies Section (For Agent or Customer) -->
-                    <div *ngIf="user.role === 'Agent' || user.role === 'Customer'">
-                        <div class="flex items-center gap-3 mb-6">
-                            <span class="h-1 w-8 rounded-full bg-primary/30"></span>
-                            <h4 class="text-[11px] font-black uppercase tracking-[0.2em] text-text-secondary">Related Policies</h4>
-                        </div>
-                        
-                        @if (userPolicies.length > 0) {
-                            <div class="grid gap-4">
-                                @for (p of userPolicies; track p.policyId) {
-                                    <div class="p-5 rounded-3xl bg-slate-50/50 dark:bg-slate-800/30 border border-theme-border/5 group hover:border-primary/30 transition-all">
-                                        <div class="flex justify-between items-start">
-                                            <div>
-                                                <div class="flex items-center gap-3 mb-1">
-                                                    <span class="text-xs font-black text-text-primary dark:text-white font-mono tracking-tighter">#{{ p.policyNumber }}</span>
-                                                    <span class="h-1 w-1 rounded-full bg-slate-300"></span>
-                                                    <span class="text-[10px] font-black text-primary uppercase tracking-wide">{{ p.planName }}</span>
-                                                </div>
-                                                <p class="text-[10px] font-bold text-text-secondary opacity-40 uppercase tracking-widest">Requested on {{ p.requestedAt | date:'mediumDate' }}</p>
-                                            </div>
-                                            <span class="px-3 py-1.5 rounded-xl text-[8px] font-black uppercase tracking-widest border"
-                                                [ngClass]="{
-                                                    'bg-emerald-500/10 text-emerald-600 border-emerald-500/20': p.status === 'Active' || p.status === 'Approved' || p.status === 'Settled',
-                                                    'bg-red-500/10 text-red-600 border-red-500/20': p.status === 'Rejected' || p.status === 'Lapsed' || p.status === 'Cancelled',
-                                                    'bg-amber-500/10 text-amber-600 border-amber-500/20': p.status === 'Submitted' || p.status === 'UnderReview' || p.status === 'DocumentsSubmitted'
-                                                }">{{ p.status }}</span>
-                                        </div>
-                                    </div>
-                                }
-                            </div>
-                        } @else {
-                            <div class="py-8 text-center opacity-30 border-2 border-dashed border-theme-border/10 rounded-3xl">
-                                <p class="text-[9px] font-black uppercase tracking-[0.3em]">No policies found</p>
-                            </div>
-                        }
-                    </div>
-
-                    <!-- Claims Section (For ClaimsOfficer or Customer) -->
-                    <div *ngIf="user.role === 'ClaimsOfficer' || user.role === 'Customer'">
-                        <div class="flex items-center gap-3 mb-6">
-                            <span class="h-1 w-8 rounded-full bg-blue-500/30"></span>
-                            <h4 class="text-[11px] font-black uppercase tracking-[0.2em] text-text-secondary">Assigned Claims</h4>
-                        </div>
-                        
-                        @if (userClaims.length > 0) {
-                            <div class="grid gap-4">
-                                @for (c of userClaims; track c.claimId) {
-                                    <div class="p-5 rounded-3xl bg-blue-50/20 dark:bg-blue-900/10 border border-blue-100/50 dark:border-blue-900/30 group hover:border-blue-500/40 transition-all">
-                                        <div class="flex justify-between items-start">
-                                            <div>
-                                                <div class="flex items-center gap-3 mb-1">
-                                                    <span class="text-xs font-black text-text-primary dark:text-white font-mono tracking-tighter">#{{ c.claimNumber }}</span>
-                                                    <span class="h-1 w-1 rounded-full bg-blue-300"></span>
-                                                    <span class="text-[10px] font-black text-blue-600 uppercase tracking-wide">{{ c.claimType }} Claim</span>
-                                                </div>
-                                                <p class="text-[9px] font-bold text-text-secondary opacity-40 uppercase tracking-widest leading-relaxed">Amount: ₹{{ (c.settledAmount || c.sumAssured || 0) | number }}</p>
-                                            </div>
-                                            <span class="px-3 py-1.5 rounded-xl text-[8px] font-black uppercase tracking-widest border"
-                                                [ngClass]="{
-                                                    'bg-emerald-500/10 text-emerald-600 border-emerald-500/20': c.status === 'Settled' || c.status === 'Approved',
-                                                    'bg-red-500/10 text-red-600 border-red-500/20': c.status === 'Rejected',
-                                                    'bg-blue-500/10 text-blue-600 border-blue-500/20': c.status === 'Submitted' || c.status === 'UnderReview'
-                                                }">{{ c.status }}</span>
-                                        </div>
-                                    </div>
-                                }
-                            </div>
-                        } @else {
-                            <div class="py-8 text-center opacity-30 border-2 border-dashed border-theme-border/10 rounded-3xl">
-                                <p class="text-[9px] font-black uppercase tracking-[0.3em]">No claims assigned</p>
-                            </div>
-                        }
-                    </div>
-
+                <div class="flex justify-between items-center py-2">
+                    <span class="text-xs font-semibold text-text-secondary">Role</span>
+                    <span class="text-xs font-black text-text-primary dark:text-slate-300">{{ user.role }}</span>
                 </div>
             </div>
         </div>
     </div>
 
+        <!-- Additional Information Placeholder / Activity -->
+        <div class="flex flex-col lg:flex-row gap-8 items-start">
+            
+            <!-- Policies Card (For Agent or Customer) -->
+            <div *ngIf="user.role === 'Agent' || user.role === 'Customer'" class="premium-card p-8 flex-1 flex flex-col min-h-[500px] w-full lg:w-1/2">
+                <div class="flex items-center justify-between mb-8 border-b border-theme-border/10 dark:border-slate-800 pb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center text-xl"><app-icon name="shield"></app-icon></div>
+                        <div>
+                            <h3 class="text-lg font-black text-text-primary dark:text-white uppercase tracking-tight">Policies</h3>
+                            <p class="text-[9px] font-bold text-text-secondary opacity-80 uppercase tracking-widest">Related Policies</p>
+                        </div>
+                    </div>
+                    <button (click)="user && fetchAssignments(user.userId.toString())" [disabled]="fetchingAssignments"
+                        class="h-8 px-4 rounded-lg bg-slate-50 dark:bg-slate-800 text-[9px] font-black uppercase tracking-widest text-primary hover:bg-primary hover:text-white transition-all disabled:opacity-80 shadow-sm">
+                        {{ fetchingAssignments ? 'Updating...' : 'Refresh' }}
+                    </button>
+                </div>
+
+                <div class="flex-1 overflow-y-auto max-h-[600px] pr-2 custom-scrollbar">
+                    @if (userPolicies.length > 0) {
+                        <div class="grid gap-4">
+                            @for (p of userPolicies; track p.policyId) {
+                                <div class="p-5 rounded-3xl bg-slate-50/50 dark:bg-slate-800/30 border border-theme-border/5 group hover:border-primary/30 transition-all">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <div class="flex items-center gap-3 mb-1">
+                                                <span class="text-xs font-black text-text-primary dark:text-white font-mono tracking-tighter">#{{ p.policyNumber }}</span>
+                                                <span class="h-1 w-1 rounded-full bg-slate-300"></span>
+                                                <span class="text-[10px] font-black text-primary uppercase tracking-wide">{{ p.planName }}</span>
+                                            </div>
+                                            <p class="text-[10px] font-bold text-text-secondary opacity-80 uppercase tracking-widest">Requested on {{ p.requestedAt | date:'mediumDate' }}</p>
+                                        </div>
+                                        <span class="px-3 py-1.5 rounded-xl text-[8px] font-black uppercase tracking-widest border"
+                                            [ngClass]="{
+                                                'bg-emerald-500/10 text-emerald-600 border-emerald-500/20': p.status === 'Active' || p.status === 'Approved' || p.status === 'Settled',
+                                                'bg-red-500/10 text-red-600 border-red-500/20': p.status === 'Rejected' || p.status === 'Lapsed' || p.status === 'Cancelled',
+                                                'bg-amber-500/10 text-amber-600 border-amber-500/20': p.status === 'Submitted' || p.status === 'UnderReview' || p.status === 'DocumentsSubmitted'
+                                            }">{{ p.status }}</span>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    } @else {
+                        <div class="py-8 text-center opacity-70 border-2 border-dashed border-theme-border/10 rounded-3xl">
+                            <p class="text-[9px] font-black uppercase tracking-[0.3em]">No policies found</p>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <!-- Claims Card (For ClaimsOfficer or Customer) -->
+            <div *ngIf="user.role === 'ClaimsOfficer' || user.role === 'Customer'" class="premium-card p-8 flex-1 flex flex-col min-h-[500px] w-full lg:w-1/2">
+                <div class="flex items-center justify-between mb-8 border-b border-theme-border/10 dark:border-slate-800 pb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="h-10 w-10 rounded-xl bg-blue-500/10 flex items-center justify-center text-xl"><app-icon name="folder"></app-icon></div>
+                        <div>
+                            <h3 class="text-lg font-black text-text-primary dark:text-white uppercase tracking-tight">Claims</h3>
+                            <p class="text-[9px] font-bold text-text-secondary opacity-80 uppercase tracking-widest">Assigned Claims</p>
+                        </div>
+                    </div>
+                    <button (click)="user && fetchAssignments(user.userId.toString())" [disabled]="fetchingAssignments"
+                        class="h-8 px-4 rounded-lg bg-slate-50 dark:bg-slate-800 text-[9px] font-black uppercase tracking-widest text-primary hover:bg-primary hover:text-white transition-all disabled:opacity-80 shadow-sm">
+                        {{ fetchingAssignments ? 'Updating...' : 'Refresh' }}
+                    </button>
+                </div>
+
+                <div class="flex-1 overflow-y-auto max-h-[600px] pr-2 custom-scrollbar">
+                    @if (userClaims.length > 0) {
+                        <div class="grid gap-4">
+                            @for (c of userClaims; track c.claimId) {
+                                <div class="p-5 rounded-3xl bg-blue-50/20 dark:bg-blue-900/10 border border-blue-100/50 dark:border-blue-900/30 group hover:border-blue-500/40 transition-all">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <div class="flex items-center gap-3 mb-1">
+                                                <span class="text-xs font-black text-text-primary dark:text-white font-mono tracking-tighter">#{{ c.claimNumber }}</span>
+                                                <span class="h-1 w-1 rounded-full bg-blue-300"></span>
+                                                <span class="text-[10px] font-black text-blue-600 uppercase tracking-wide">{{ c.claimType }} Claim</span>
+                                            </div>
+                                            <p class="text-[9px] font-bold text-text-secondary opacity-80 uppercase tracking-widest leading-relaxed">Amount: ₹{{ (c.settledAmount || c.sumAssured || 0) | number }}</p>
+                                        </div>
+                                        <span class="px-3 py-1.5 rounded-xl text-[8px] font-black uppercase tracking-widest border"
+                                            [ngClass]="{
+                                                'bg-emerald-500/10 text-emerald-600 border-emerald-500/20': c.status === 'Settled' || c.status === 'Approved',
+                                                'bg-red-500/10 text-red-600 border-red-500/20': c.status === 'Rejected',
+                                                'bg-blue-500/10 text-blue-600 border-blue-500/20': c.status === 'Submitted' || c.status === 'UnderReview'
+                                            }">{{ c.status }}</span>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    } @else {
+                        <div class="py-8 text-center opacity-70 border-2 border-dashed border-theme-border/10 rounded-3xl">
+                            <p class="text-[9px] font-black uppercase tracking-[0.3em]">No claims assigned</p>
+                        </div>
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+
     <div *ngIf="!loading && !user" class="text-center py-24 premium-card">
-        <div class="text-4xl mb-4">🚫</div>
+        <div class="text-4xl mb-4"><app-icon name="cross"></app-icon></div>
         <p class="text-xl font-black text-text-primary dark:text-white">User Not Found</p>
         <p class="text-sm font-medium text-text-secondary mt-2">The user you are looking for does not exist.</p>
         <button routerLink=".." class="mt-8 btn-premium">Back to Users</button>

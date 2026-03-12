@@ -2,10 +2,7 @@
     <div class="flex items-center gap-6 mb-12">
         <button routerLink=".."
             class="h-12 w-12 flex items-center justify-center text-text-secondary hover:text-primary transition-all rounded-2xl bg-white dark:bg-slate-900 border border-theme-border/20 dark:border-slate-800 shadow-sm hover:shadow-md active:scale-90">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18">
-                </path>
-            </svg>
+            <app-icon name="arrow-right" className="rotate-180 text-lg"></app-icon>
         </button>
         <div>
             <h1 class="text-4xl font-black text-text-primary dark:text-white tracking-tightest">Edit <span
@@ -26,12 +23,12 @@
             class="flex items-center gap-6 mb-12 pb-10 border-b border-theme-border/10 dark:border-slate-800 relative z-10">
             <div
                 class="h-20 w-20 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center text-3xl font-black text-primary group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
-                🛡️
+                <app-icon name="shield"></app-icon>
             </div>
             <div>
                 <h2 class="text-2xl font-black text-text-primary dark:text-white tracking-tight">{{
                     planForm.get('planName')?.value }}</h2>
-                <p class="text-sm font-bold text-text-secondary opacity-60 uppercase tracking-widest">Active Plan
+                <p class="text-sm font-bold text-text-secondary opacity-90 uppercase tracking-widest">Active Plan
                     Configuration</p>
             </div>
         </div>
@@ -40,9 +37,9 @@
             class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10 relative z-10">
 
             <!-- Plan Name -->
-            <div class="flex flex-col gap-2.5 md:col-span-2">
+            <div class="flex flex-col gap-2.5">
                 <label
-                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Plan
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Plan
                     Name</label>
                 <div class="relative group/input">
                     <input type="text" formControlName="planName" placeholder="e.g. Paramount Shield Plus"
@@ -53,10 +50,30 @@
                     required</span>
             </div>
 
+            <!-- Plan Type -->
+            <div class="flex flex-col gap-2.5">
+                <label
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Plan
+                    Type</label>
+                <div class="relative group/input">
+                    <select formControlName="planType" class="input-premium px-4 appearance-none">
+                        <option value="TermLife">Term Life</option>
+                        <option value="WholeLife">Whole Life</option>
+                        <option value="Endowment">Endowment</option>
+                    </select>
+                    <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
+                        <app-icon name="chevron-down" className="text-xs"></app-icon>
+                    </div>
+                </div>
+                <span *ngIf="planForm.get('planType')?.touched && planForm.get('planType')?.invalid"
+                    class="text-[10px] font-black uppercase text-red-500 mt-1 ml-1 tracking-wider">Type
+                    required</span>
+            </div>
+
             <!-- Base Rate -->
             <div class="flex flex-col gap-2.5">
                 <label
-                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Base
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Base
                     Rate</label>
                 <div class="relative group/input">
                     <input type="number" formControlName="baseRatePer1000" step="0.01" placeholder="0.00"
@@ -70,7 +87,7 @@
             <!-- Description -->
             <div class="flex flex-col gap-2.5 md:col-span-3">
                 <label
-                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Plan
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Plan
                     Description</label>
                 <textarea formControlName="description" rows="3" placeholder="Describe this plan's benefits..."
                     class="input-premium !py-4 resize-none min-h-[120px]"></textarea>
@@ -82,19 +99,19 @@
             <!-- Sum Assured Range -->
             <div class="flex flex-col gap-2.5">
                 <label
-                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Minimum
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Minimum
                     Sum Assured</label>
                 <input type="number" formControlName="minSumAssured" placeholder="0" class="input-premium">
             </div>
             <div class="flex flex-col gap-2.5">
                 <label
-                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Maximum
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Maximum
                     Sum Assured</label>
                 <input type="number" formControlName="maxSumAssured" placeholder="Max" class="input-premium">
             </div>
             <div class="flex flex-col gap-2.5">
                 <label
-                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Minimum
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Minimum
                     Annual Income</label>
                 <input type="number" formControlName="minAnnualIncome" placeholder="Min Income" class="input-premium">
             </div>
@@ -102,7 +119,7 @@
             <!-- Age Cluster -->
             <div class="flex flex-col gap-2.5">
                 <label
-                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Entry
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Entry
                     Age Bracket</label>
                 <div class="flex gap-3">
                     <input type="number" formControlName="minEntryAge" placeholder="Min"
@@ -116,30 +133,30 @@
             <!-- Tenure -->
             <div class="flex flex-col gap-2.5 md:col-span-2">
                 <label
-                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Available
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Available
                     Terms (Years)</label>
                 <input type="text" formControlName="tenureInput" placeholder="e.g. 5, 10, 20, 30" class="input-premium">
                 <p
-                    class="text-[10px] font-bold text-text-secondary opacity-40 uppercase tracking-widest mt-1 ml-1 leading-relaxed">
+                    class="text-[10px] font-bold text-text-secondary opacity-80 uppercase tracking-widest mt-1 ml-1 leading-relaxed">
                     Discrete years, comma-separated</p>
             </div>
 
             <!-- Risk Profile -->
             <div class="flex flex-col gap-2.5">
-                <label class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Low
+                <label class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Low
                     Risk Factor</label>
                 <input type="number" formControlName="lowRiskMultiplier" step="0.01" class="input-premium text-center">
             </div>
             <div class="flex flex-col gap-2.5">
                 <label
-                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Medium
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Medium
                     Risk Factor</label>
                 <input type="number" formControlName="mediumRiskMultiplier" step="0.01"
                     class="input-premium text-center">
             </div>
             <div class="flex flex-col gap-2.5">
                 <label
-                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">High
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">High
                     Risk Factor</label>
                 <input type="number" formControlName="highRiskMultiplier" step="0.01" class="input-premium text-center">
             </div>
@@ -147,7 +164,7 @@
             <!-- Commission & Status -->
             <div class="flex flex-col gap-2.5">
                 <label
-                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Agent
+                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Agent
                     Commission (%)</label>
                 <div class="relative group/input">
                     <input type="number" formControlName="commissionPercentage" step="0.5" placeholder="0.0"
@@ -157,18 +174,14 @@
 
             <div class="flex flex-col gap-2.5 md:col-span-2">
                 <label class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1
-                    opacity-60">Status</label>
+                    opacity-90">Status</label>
                 <div class="relative group/input">
                     <select formControlName="isActive" class="input-premium px-4 appearance-none">
                         <option [ngValue]="true">Active</option>
                         <option [ngValue]="false">Inactive</option>
                     </select>
                     <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            viewBox="0 0 16 16">
-                            <path
-                                d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
-                        </svg>
+                        <app-icon name="chevron-down" className="text-xs"></app-icon>
                     </div>
                 </div>
             </div>
@@ -181,7 +194,7 @@
                     {{ saving ? 'Saving Changes...' : 'Save Changes' }}
                 </button>
                 <p
-                    class="text-[10px] font-bold text-text-secondary text-center mt-6 opacity-40 uppercase tracking-widest">
+                    class="text-[10px] font-bold text-text-secondary text-center mt-6 opacity-80 uppercase tracking-widest">
                     Changes will affect all new policies created under this plan.</p>
             </div>
         </form>

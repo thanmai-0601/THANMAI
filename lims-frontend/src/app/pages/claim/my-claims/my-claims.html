@@ -1,20 +1,20 @@
 <div class="max-w-6xl mx-auto pt-8 transition-all duration-500 animate-in fade-in slide-in-from-bottom-8">
     <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12">
         <div>
-            <div class="flex items-center gap-3 mb-2 opacity-60">
+            <div class="flex items-center gap-3 mb-2 opacity-90">
                 <span class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary">My Claims</span>
-                <div class="h-px w-8 bg-text-secondary opacity-30"></div>
+                <div class="h-px w-8 bg-text-secondary opacity-70"></div>
             </div>
             <h1 class="text-4xl md:text-5xl font-black text-text-primary dark:text-white tracking-tightest">
                 My <span class="text-gradient">Claims</span>
             </h1>
-            <p class="text-xs font-bold text-text-secondary uppercase tracking-[0.2em] opacity-50 mt-2">Your past and
+            <p class="text-xs font-bold text-text-secondary uppercase tracking-[0.2em] opacity-80 mt-2">Your past and
                 current claims</p>
         </div>
         <div class="flex gap-4">
             <button routerLink="/app/raise-claim"
                 class="btn-premium px-6 !py-3 !rounded-2xl text-[10px] uppercase tracking-widest flex items-center gap-2">
-                <span>➕</span> Submit a Claim
+                <app-icon name="plus"></app-icon> Submit a Claim
             </button>
         </div>
     </div>
@@ -23,8 +23,8 @@
 
     <div *ngIf="!loading && claims.length === 0"
         class="premium-card p-24 border-dashed flex flex-col items-center justify-center gap-6 text-center">
-        <div class="text-5xl opacity-20">📭</div>
-        <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-40">You haven't
+        <div class="text-5xl opacity-70"><app-icon name="mail"></app-icon></div>
+        <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80">You haven't
             submitted any claims yet.</p>
         <button routerLink="/app/raise-claim"
             class="btn-premium px-8 !py-3 text-[10px] uppercase tracking-widest">Submit a Claim</button>
@@ -37,22 +37,22 @@
                 <thead>
                     <tr class="bg-primary/[0.02] border-b border-theme-border/5 dark:border-slate-800/50">
                         <th
-                            class="pl-6 pr-3 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60">
+                            class="pl-6 pr-3 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-90">
                             Claim Number</th>
                         <th
-                            class="px-3 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60">
+                            class="px-3 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-90">
                             Policy Number</th>
                         <th
-                            class="px-3 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60">
+                            class="px-3 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-90">
                             Date Submitted</th>
                         <th
-                            class="px-3 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60 text-right">
+                            class="px-3 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-90 text-right">
                             Claim Amount</th>
                         <th
-                            class="px-3 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60 text-right">
+                            class="px-3 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-90 text-right">
                             Approved Amount</th>
                         <th
-                            class="px-3 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-60 text-center">
+                            class="px-3 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-90 text-center">
                             Status</th>
                         <th class="pl-3 pr-6 py-6"></th>
                     </tr>
@@ -70,13 +70,13 @@
                                 <span
                                     class="text-xs font-bold text-primary uppercase tracking-tight group-hover/link:underline">{{
                                     claim.policyNumber }}</span>
-                                <span class="text-[9px] font-bold text-text-secondary opacity-40 uppercase
+                                <span class="text-[9px] font-bold text-text-secondary opacity-80 uppercase
                                 tracking-widest">Policy
                                     Details</span>
                             </a>
                         </td>
                         <td class="px-3 py-6">
-                            <span class="text-xs font-medium text-text-secondary opacity-60">{{ claim.submittedAt |
+                            <span class="text-xs font-medium text-text-secondary opacity-90">{{ claim.submittedAt |
                                 date:'mediumDate' }}</span>
                         </td>
                         <td class="px-3 py-6 text-right">
@@ -87,7 +87,7 @@
                             <span *ngIf="claim.settledAmount" class="text-xs font-black text-emerald-500">₹{{
                                 claim.settledAmount | number }}</span>
                             <span *ngIf="!claim.settledAmount"
-                                class="text-xs font-black text-text-secondary opacity-40">-</span>
+                                class="text-xs font-black text-text-secondary opacity-80">-</span>
                         </td>
                         <td class="px-3 py-6 text-center">
                             <app-status-badge [status]="claim.status" class="scale-75" />
@@ -104,3 +104,4 @@
         </div>
     </div>
 </div>
+

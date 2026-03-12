@@ -2,14 +2,13 @@
     <div class="flex items-center gap-6 mb-12">
         <button routerLink="/app/plans"
             class="h-12 w-12 flex items-center justify-center text-text-secondary hover:text-primary transition-all rounded-2xl bg-white dark:bg-slate-900 border border-theme-border/20 dark:border-slate-800 shadow-sm hover:shadow-md active:scale-90">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-            </svg>
+            <app-icon name="arrow-right" className="rotate-180 text-lg"></app-icon>
         </button>
         <div>
-            <h1 class="text-4xl font-black text-text-primary dark:text-white tracking-tightest"><span
-                    class="inline-block mr-2 group-hover:rotate-12 transition-transform">🛡️</span>Get <span
-                    class="text-gradient">Insurance</span></h1>
+            <h1 class="text-4xl font-black text-text-primary dark:text-white tracking-tightest">
+                <app-icon name="shield" className="inline-block mr-2 group-hover:rotate-12 transition-transform"></app-icon>
+                Get <span class="text-gradient">Insurance</span>
+            </h1>
             <p class="text-sm font-medium text-text-secondary mt-1 opacity-70">Secure your future with our life
                 insurance plans</p>
         </div>
@@ -23,7 +22,7 @@
                 class="absolute inset-0 flex items-center justify-center text-xs font-black text-primary animate-pulse">
                 LIMS</div>
         </div>
-        <p class="text-[10px] font-black uppercase tracking-[0.3em] text-text-secondary animate-pulse">Loading Form...
+        <p class="text-xs font-black uppercase tracking-[0.3em] text-text-secondary animate-pulse">Loading Form...
         </p>
     </div>
     } @else if (plan) {
@@ -36,7 +35,7 @@
             class="mb-12 p-8 bg-gradient-to-br from-primary/5 to-transparent dark:from-primary/10 rounded-3xl border border-primary/10 relative z-10">
             <div class="flex items-center gap-4 mb-3">
                 <div class="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center text-xl shadow-sm">
-                    📋
+                    <app-icon name="clipboard"></app-icon>
                 </div>
                 <h2 class="text-2xl font-black text-text-primary dark:text-white tracking-tight">{{ plan.planName }}
                 </h2>
@@ -50,20 +49,20 @@
 
             <div class="flex flex-col gap-2.5 md:col-span-2">
                 <label
-                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Total
+                    class="text-xs font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Total
                     Cover Amount (Sum Assured)</label>
                 <input type="number" [(ngModel)]="form.sumAssured" name="sumAssured" required [min]="plan.minSumAssured"
                     [max]="plan.maxSumAssured" class="input-premium pl-4 text-xl font-black tracking-tight">
                 <div class="flex justify-between items-center mt-1 px-1">
                     <span
-                        class="text-[10px] font-bold text-text-secondary opacity-40 uppercase tracking-widest leading-relaxed">Allowed
+                        class="text-xs font-bold text-text-secondary opacity-80 uppercase tracking-widest leading-relaxed">Allowed
                         Range: ₹{{ plan.minSumAssured | number }} — ₹{{ plan.maxSumAssured | number }}</span>
                 </div>
             </div>
 
             <div class="flex flex-col gap-2.5">
                 <label
-                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Terms
+                    class="text-xs font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Terms
                     of Payment (Years)</label>
                 <div class="relative group/select">
                     <select [(ngModel)]="form.tenureYears" name="tenureYears" required
@@ -74,28 +73,24 @@
                     </select>
                     <div
                         class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400 group-hover/select:text-primary transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            viewBox="0 0 16 16">
-                            <path
-                                d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
-                        </svg>
+                        <app-icon name="chevron-down" className="text-xs"></app-icon>
                     </div>
                 </div>
             </div>
 
             <div class="flex flex-col gap-2.5">
-                <label class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60"> ₹
+                <label class="text-xs font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90"> ₹
                     Annual
                     Income</label>
                 <input type="number" [(ngModel)]="form.annualIncome" name="annualIncome" required
                     [min]="plan.minAnnualIncome" class="input-premium pl-4">
-                <span class="text-[10px] font-bold text-text-secondary opacity-40 uppercase tracking-widest mt-1
+                <span class="text-xs font-bold text-text-secondary opacity-80 uppercase tracking-widest mt-1
                 ml-1">Minimum:
                     ₹{{ plan.minAnnualIncome | number }}</span>
             </div>
 
             <div class="flex flex-col gap-2.5">
-                <label class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Job
+                <label class="text-xs font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Job
                     / Occupation</label>
                 <input type="text" [(ngModel)]="form.occupation" name="occupation" required class="input-premium pl-4"
                     placeholder="e.g. Systems Engineer">
@@ -103,12 +98,12 @@
 
             <div class="flex flex-col gap-2.5 md:col-span-2">
                 <label
-                    class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Your
+                    class="text-xs font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Your
                     Address</label>
                 <input type="text" [(ngModel)]="form.address" name="address" required minlength="10"
                     class="input-premium pl-4" placeholder="Verified street address">
                 <p
-                    class="text-[10px] font-bold text-text-secondary opacity-40 uppercase tracking-widest mt-1 ml-1 leading-relaxed">
+                    class="text-xs font-bold text-text-secondary opacity-80 uppercase tracking-widest mt-1 ml-1 leading-relaxed">
                     Please provide your full address
                 </p>
             </div>
@@ -117,7 +112,7 @@
                 <div class="mb-6">
                     <h3 class="text-lg font-black text-text-primary dark:text-white uppercase tracking-tight">
                         Nominee Details</h3>
-                    <p class="text-[10px] font-bold text-text-secondary opacity-50 uppercase tracking-widest mt-1">
+                    <p class="text-xs font-bold text-text-secondary opacity-80 uppercase tracking-widest mt-1">
                         Provide details of the primary beneficiary</p>
                 </div>
 
@@ -126,40 +121,40 @@
                         @if (form.nominee) {
                         <div class="flex flex-col gap-2.5">
                             <label
-                                class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Full
+                                class="text-xs font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Full
                                 Name</label>
                             <input type="text" [(ngModel)]="form.nominee.fullName" name="nomineeName" required
                                 class="input-premium py-3 px-5 text-sm">
                         </div>
                         <div class="flex flex-col gap-2.5">
                             <label
-                                class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Relationship</label>
+                                class="text-xs font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Relationship</label>
                             <input type="text" [(ngModel)]="form.nominee.relationship" name="nomineeRel" required
                                 class="input-premium py-3 px-5 text-sm" placeholder="e.g. Sister">
                         </div>
                         <div class="flex flex-col gap-2.5">
                             <label
-                                class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Age</label>
+                                class="text-xs font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Age</label>
                             <input type="number" [(ngModel)]="form.nominee.age" name="nomineeAge" required
                                 class="input-premium py-3 px-5 text-sm">
                         </div>
                         <div class="flex flex-col gap-2.5">
                             <label
-                                class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Contact Number</label>
+                                class="text-xs font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Contact Number</label>
                             <input type="tel" [(ngModel)]="form.nominee.contactNumber" name="nomineeContact" required
                                 pattern="[0-9]{10}" maxlength="10" minlength="10"
                                 class="input-premium py-3 px-5 text-sm">
                         </div>
                         <div class="flex flex-col gap-2.5 md:col-span-2">
                             <label
-                                class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Nominee AADHAR Number (12 digits)</label>
+                                class="text-xs font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Nominee AADHAR Number (12 digits)</label>
                             <input type="text" [(ngModel)]="form.nominee.idNumber" name="nomineeIdNum" required
                                 pattern="[0-9]{12}" maxlength="12" minlength="12"
                                 class="input-premium py-3 px-5 text-sm" placeholder="12-digit numeric Aadhar">
                         </div>
                         <div class="flex flex-col gap-2.5 md:col-span-2">
                             <label
-                                class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-60">Nominee Email</label>
+                                class="text-xs font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Nominee Email</label>
                             <input type="email" [(ngModel)]="form.nominee.email" name="nomineeEmail" required
                                 class="input-premium py-3 px-5 text-sm" placeholder="For settlement confirmation">
                         </div>
@@ -173,14 +168,14 @@
                 <h3 class="text-lg font-black text-text-primary dark:text-white uppercase tracking-tight mb-2">
                     Required
                     Documents</h3>
-                <p class="text-[10px] font-bold text-text-secondary opacity-50 uppercase tracking-widest mb-6">
+                <p class="text-xs font-bold text-text-secondary opacity-80 uppercase tracking-widest mb-6">
                     Upload
                     clear scanned copies for agent verification</p>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     @for (type of docTypes; track type) {
                     <div class="flex flex-col gap-2">
-                        <label class="text-[9px] font-black uppercase text-text-secondary opacity-60 ml-1">{{ type
+                        <label class="text-xs font-black uppercase text-text-secondary opacity-90 ml-1">{{ type
                             }}</label>
                         <div class="relative overflow-hidden">
                             <input type="file" (change)="onFileSelected($event, type)" [id]="'file_'+type"
@@ -192,21 +187,13 @@
                                     selectedDocs[type]?.name }}</div>
                                 <div class="flex items-center gap-3">
                                     <button type="button" (click)="viewDocument(type)"
-                                        class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary/10 text-primary text-[9px] font-black uppercase tracking-widest hover:bg-primary hover:text-white transition-all">
-                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                        </svg>
+                                        class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary/10 text-primary text-xs font-black uppercase tracking-widest hover:bg-primary hover:text-white transition-all">
+                                        <app-icon name="check"></app-icon>
                                         View
                                     </button>
                                     <label [for]="'file_'+type"
-                                        class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500/10 text-amber-600 text-[9px] font-black uppercase tracking-widest hover:bg-amber-500 hover:text-white transition-all cursor-pointer">
-                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
-                                        </svg>
+                                        class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500/10 text-amber-600 text-xs font-black uppercase tracking-widest hover:bg-amber-500 hover:text-white transition-all cursor-pointer">
+                                        <app-icon name="plus"></app-icon>
                                         Replace
                                     </label>
                                 </div>
@@ -215,7 +202,7 @@
                             <label [for]="'file_'+type"
                                 class="flex flex-col items-center justify-center p-6 border-2 border-dashed border-primary/20 rounded-2xl hover:bg-primary/5 hover:border-primary/40 transition-all cursor-pointer">
                                 <div
-                                    class="text-[10px] font-black uppercase tracking-widest text-text-secondary opacity-60">
+                                    class="text-xs font-black uppercase tracking-widest text-text-secondary opacity-90">
                                     Choose File</div>
                             </label>
                             }
@@ -229,16 +216,16 @@
                     class="btn-premium w-full !py-5 uppercase tracking-[0.3em] flex justify-center items-center gap-4 text-sm">
                     {{ submitting ? 'Submitting...' : 'Submit Application' }}
                 </button>
-                <p class="text-[9px] font-black text-text-secondary/40 text-center uppercase tracking-[0.2em] mt-6">
+                <p class="text-xs font-black text-text-secondary/40 text-center uppercase tracking-[0.2em] mt-6">
                     By submitting, you agree to our terms and conditions</p>
             </div>
         </form>
     </div>
     } @else {
     <div class="premium-card p-24 text-center">
-        <div class="text-4xl mb-6">🚫</div>
+        <div class="text-4xl mb-6"><app-icon name="cloud-off"></app-icon></div>
         <p class="text-xl font-black text-text-primary dark:text-white uppercase tracking-tightest">Plan Not Found</p>
-        <p class="text-sm font-medium text-text-secondary mt-2 opacity-60">We couldn't find the plan you're looking for.
+        <p class="text-sm font-medium text-text-secondary mt-2 opacity-90">We couldn't find the plan you're looking for.
         </p>
         <button routerLink="/app/plans" class="mt-10 btn-premium px-10">Back to Plans</button>
     </div>

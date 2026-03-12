@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppIcon } from '../../../shared/components/app-icon/app-icon';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ApiService } from '../../../core/services/api';
@@ -9,7 +10,7 @@ import { StatusBadge } from '../../../shared/components/status-badge/status-badg
 @Component({
   selector: 'app-officer-claims',
   standalone: true,
-  imports: [CommonModule, RouterLink, LoadingSpinner, StatusBadge],
+  imports: [CommonModule, RouterLink, LoadingSpinner, StatusBadge, AppIcon],
   templateUrl: './officer-claims.html',
   styleUrl: './officer-claims.css'
 })

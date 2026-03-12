@@ -1,8 +1,9 @@
 import { Component, Input } from '@angular/core';
+import { AppIcon } from '../app-icon/app-icon';
 
 @Component({
   selector: 'app-stat-card',
-  imports: [],
+  imports: [AppIcon],
   templateUrl: './stat-card.html',
   styleUrl: './stat-card.css'
 })

@@ -8,15 +8,15 @@
   <div
     class="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl shadow-sm group-hover:scale-110 group-hover:rotate-3 transition-all duration-500"
     [style.background-color]="color + '15'" [style.color]="color">
-    {{ icon }}
+    <app-icon [name]="icon"></app-icon>
   </div>
 
   <div class="flex flex-col gap-0.5 relative z-10">
     <span
-      class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-50 group-hover:opacity-100 transition-opacity">{{
+      class="text-xs font-black uppercase tracking-[0.2em] text-text-secondary opacity-80 group-hover:opacity-100 transition-opacity"> {{
       label }}</span>
     <div class="flex items-baseline gap-1">
-      <span class="text-xs font-black text-text-secondary opacity-40">{{ prefix }}</span>
+      <span class="text-sm font-black text-text-secondary opacity-70">{{ prefix }}</span>
       <span
         class="text-3xl font-black text-text-primary dark:text-white tracking-tightest group-hover:text-primary transition-colors duration-300">{{
         value }}</span>
@@ -24,6 +24,6 @@
   </div>
 
   <!-- Subtle accent line -->
-  <div class="absolute bottom-0 left-0 h-1 w-0 group-hover:w-full transition-all duration-700 opacity-50"
+  <div class="absolute bottom-0 left-0 h-1 w-0 group-hover:w-full transition-all duration-700 opacity-80"
     [style.background-color]="color"></div>
 </div>

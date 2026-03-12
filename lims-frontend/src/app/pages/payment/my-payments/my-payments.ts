@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppIcon } from '../../../shared/components/app-icon/app-icon';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ApiService } from '../../../core/services/api';
@@ -10,7 +11,7 @@ import { ToastService } from '../../../core/services/toast';
 @Component({
   selector: 'app-my-payments',
   standalone: true,
-  imports: [CommonModule, LoadingSpinner, StatusBadge],
+  imports: [CommonModule, LoadingSpinner, StatusBadge, AppIcon],
   templateUrl: './my-payments.html',
   styleUrl: './my-payments.css'
 })
