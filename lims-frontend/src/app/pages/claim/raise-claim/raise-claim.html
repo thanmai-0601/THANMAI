@@ -1,15 +1,11 @@
 <div class="max-w-5xl mx-auto pt-8 transition-all duration-500 animate-in fade-in slide-in-from-bottom-8">
     <!-- Header -->
-    <div class="flex items-center gap-6 mb-12">
-        <button routerLink="/app/my-claims"
-            class="h-12 w-12 flex items-center justify-center text-text-secondary hover:text-primary transition-all rounded-2xl bg-white dark:bg-slate-900 border border-theme-border/20 dark:border-slate-800 shadow-sm hover:shadow-md active:scale-90">
-            <app-icon name="arrow-right" className="rotate-180 text-lg"></app-icon>
-        </button>
-        <div>
-            <h1 class="text-4xl font-black text-text-primary dark:text-white tracking-tightest">Submit a <span
-                    class="text-gradient">Claim</span></h1>
-            <p class="text-sm font-medium text-text-secondary mt-1 opacity-70">Submit a claim for an active policy</p>
-        </div>
+    <div class="flex items-center gap-4 mb-8 mt-4">
+        <a [routerLink]="dashboardRoute"
+            class="w-10 h-10 flex items-center justify-center rounded-xl bg-theme-card dark:bg-theme-sidebar border border-theme-border/20 hover:border-primary/50 text-text-secondary hover:text-primary transition-all shadow-sm">
+            <app-icon name="arrow-left" className="w-5 h-5"></app-icon>
+        </a>
+        <h1 class="text-3xl font-extrabold text-text-primary dark:text-white tracking-tight">Submit a Claim</h1>
     </div>
 
     <app-loading-spinner *ngIf="loadingPolicies" />
@@ -31,6 +27,8 @@
         </div>
 
         <div *ngIf="policies.length > 0" class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+
+
             <!-- LEFT: Form -->
             <form [formGroup]="claimForm" (ngSubmit)="submit()" class="lg:col-span-2 flex flex-col gap-10">
 
@@ -48,7 +46,8 @@
                             Policy <span class="text-primary">*</span></label>
                         <div class="relative group/select">
                             <select formControlName="policyNumber" (change)="onPolicyChange()" required
-                                class="input-premium pl-4 pr-10 appearance-none">
+                                class="input-premium pl-4 pr-10 appearance-none"
+                                [ngClass]="{'border-red-500/50 bg-red-500/[0.02]': claimForm.get('policyNumber')?.invalid && claimForm.get('policyNumber')?.touched}">
                                 <option value="">— Select a Policy —</option>
                                 <option *ngFor="let p of policies" [value]="p.policyNumber"
                                     [disabled]="hasClaim(p.policyNumber)">
@@ -56,10 +55,14 @@
                                     {{ hasClaim(p.policyNumber) ? '(Claim Pending)' : '' }}
                                 </option>
                             </select>
-                            <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
+                             <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
                                 <app-icon name="chevron-down"></app-icon>
                             </div>
                         </div>
+                        <p *ngIf="claimForm.get('policyNumber')?.invalid && claimForm.get('policyNumber')?.touched"
+                            class="text-[9px] font-bold text-red-500 uppercase tracking-widest ml-1 animate-in fade-in slide-in-from-top-1">
+                            Policy selection is required
+                        </p>
                     </div>
                 </div>
 
@@ -78,20 +81,31 @@
                                 class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80 ml-1">Date
                                 of Death <span class="text-primary">*</span></label>
                             <input type="date" formControlName="dateOfDeath" required [attr.min]="minDeathDate"
-                                class="input-premium px-4" />
-                            <p *ngIf="minDeathDate"
+                                class="input-premium px-4"
+                                [ngClass]="{'border-red-500/50 bg-red-500/[0.02]': claimForm.get('dateOfDeath')?.invalid && claimForm.get('dateOfDeath')?.touched}" />
+                              <p *ngIf="minDeathDate"
                                 class="text-[9px] font-bold text-text-secondary opacity-80 uppercase tracking-widest ml-1">
                                 Must be after policy start: {{ selectedPolicy?.activeFrom | date:'mediumDate' }}
+                            </p>
+
+                            <p *ngIf="claimForm.get('dateOfDeath')?.invalid && claimForm.get('dateOfDeath')?.touched"
+                                class="text-[9px] font-bold text-red-500 uppercase tracking-widest ml-1 animate-in fade-in slide-in-from-top-1">
+                                Date of death is required
                             </p>
                         </div>
 
                         <div class="flex flex-col gap-3">
-                            <label
+                             <label
                                 class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80 ml-1">Describe
                                 the Cause of Death <span class="text-primary">*</span></label>
                             <textarea formControlName="causeOfDeath" required rows="3"
                                 placeholder="Tell us what happened in detail..."
-                                class="input-premium px-4 resize-none min-h-[120px]"></textarea>
+                                class="input-premium px-4 resize-none min-h-[120px]"
+                                [ngClass]="{'border-red-500/50 bg-red-500/[0.02]': claimForm.get('causeOfDeath')?.invalid && claimForm.get('causeOfDeath')?.touched}"></textarea>
+                            <p *ngIf="claimForm.get('causeOfDeath')?.invalid && claimForm.get('causeOfDeath')?.touched"
+                                class="text-[9px] font-bold text-red-500 uppercase tracking-widest ml-1 animate-in fade-in slide-in-from-top-1">
+                                Detailed cause is required
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -106,27 +120,51 @@
                     </h2>
                     <p
                         class="text-[10px] font-bold text-text-secondary uppercase tracking-[0.1em] mb-8 ml-12 opacity-80">
-                        Please provide the nominee's details exactly as registered</p>
+                        Please provide the nominee's details (Aadhar & ID Proof must match record)</p>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                        <div class="flex flex-col gap-3">
+                         <div class="flex flex-col gap-3">
                             <label
                                 class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80 ml-1">Full
                                 Name <span class="text-primary">*</span></label>
-                            <input type="text" formControlName="nomineeName" required class="input-premium px-4" />
+                            <input type="text" formControlName="nomineeName" required class="input-premium px-4"
+                                [ngClass]="{'border-red-500/50 bg-red-500/[0.02]': claimForm.get('nomineeName')?.invalid && claimForm.get('nomineeName')?.touched}" />
+                            <p *ngIf="claimForm.get('nomineeName')?.invalid && claimForm.get('nomineeName')?.touched"
+                                class="text-[9px] font-bold text-red-500 uppercase tracking-widest ml-1">
+                                Nominee name is required
+                            </p>
                         </div>
-                        <div class="flex flex-col gap-3">
+                         <div class="flex flex-col gap-3">
                             <label
                                 class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80 ml-1">Relationship
                                 to You <span class="text-primary">*</span></label>
                             <input type="text" formControlName="nomineeRelationship" required placeholder="e.g. Sister"
-                                class="input-premium px-4" />
+                                class="input-premium px-4"
+                                [ngClass]="{'border-red-500/50 bg-red-500/[0.02]': claimForm.get('nomineeRelationship')?.invalid && claimForm.get('nomineeRelationship')?.touched}" />
+                            <p *ngIf="claimForm.get('nomineeRelationship')?.invalid && claimForm.get('nomineeRelationship')?.touched"
+                                class="text-[9px] font-bold text-red-500 uppercase tracking-widest ml-1">
+                                Relationship is required
+                            </p>
                         </div>
-                        <div class="flex flex-col gap-3 sm:col-span-2">
+                         <div class="flex flex-col gap-3 sm:col-span-2">
                             <label
                                 class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80 ml-1">Nominee AADHAR Number (12 digits) <span class="text-primary">*</span></label>
                             <input type="text" formControlName="nomineeIdNumber" required minlength="12" maxlength="12" placeholder="12-digit numeric Aadhar (Must match record)"
-                                class="input-premium px-4" />
+                                class="input-premium px-4"
+                                [ngClass]="{'border-red-500/30 bg-red-500/[0.01]': (claimForm.get('nomineeIdNumber')?.invalid && claimForm.get('nomineeIdNumber')?.touched) || nomineeAadharMatchError}" />
+                            
+                            <!-- Real-time specific mismatch error -->
+                            <p *ngIf="nomineeAadharMatchError"
+                                class="text-[9px] font-black text-red-500 uppercase tracking-widest ml-1 bg-red-500/10 p-2 rounded-lg animate-in fade-in slide-in-from-left-2">
+                                <app-icon name="alert" className="inline mr-1"></app-icon>
+                                {{ nomineeAadharMatchError }}
+                            </p>
+
+                            <!-- Format error -->
+                            <p *ngIf="claimForm.get('nomineeIdNumber')?.errors?.['pattern'] && claimForm.get('nomineeIdNumber')?.touched"
+                                class="text-[9px] font-bold text-red-500 uppercase tracking-widest ml-1">
+                                Invalid format: Must be exactly 12 numeric digits
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -148,19 +186,29 @@
                             <label
                                 class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80 ml-1">Account
                                 Holder Name <span class="text-primary">*</span></label>
-                            <input type="text" formControlName="bankAccountName" required
-                                placeholder="Name as per bank records" class="input-premium px-4" />
+                             <input type="text" formControlName="bankAccountName" required
+                                placeholder="Name as per bank records" class="input-premium px-4"
+                                [ngClass]="{'border-red-500/50 bg-red-500/[0.02]': claimForm.get('bankAccountName')?.invalid && claimForm.get('bankAccountName')?.touched}" />
+                            <p *ngIf="claimForm.get('bankAccountName')?.invalid && claimForm.get('bankAccountName')?.touched"
+                                class="text-[9px] font-bold text-red-500 uppercase tracking-widest ml-1">
+                                Account holder name is required
+                            </p>
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
                             <div class="flex flex-col gap-3">
                                 <label
                                     class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80 ml-1">Account
                                     Number <span class="text-primary">*</span></label>
-                                <input type="text" formControlName="bankAccountNumber" required
-                                    placeholder="Bank account number" class="input-premium px-4" />
+                                 <input type="text" formControlName="bankAccountNumber" required
+                                    placeholder="Bank account number" class="input-premium px-4"
+                                    [ngClass]="{'border-red-500/50 bg-red-500/[0.02]': claimForm.get('bankAccountNumber')?.invalid && claimForm.get('bankAccountNumber')?.touched}" />
                                 <p *ngIf="claimForm.get('bankAccountNumber')?.errors?.['pattern'] && claimForm.get('bankAccountNumber')?.touched"
                                     class="text-[9px] font-bold text-red-500 uppercase tracking-widest ml-1">
                                     Invalid account number (9-20 digits)
+                                </p>
+                                <p *ngIf="claimForm.get('bankAccountNumber')?.errors?.['required'] && claimForm.get('bankAccountNumber')?.touched"
+                                    class="text-[9px] font-bold text-red-500 uppercase tracking-widest ml-1">
+                                    Account number is required
                                 </p>
                             </div>
 
@@ -172,13 +220,14 @@
                                     IFSC Code <span class="text-primary">*</span>
                                 </label>
 
-                                <input type="text" formControlName="bankIfscCode" placeholder="Bank branch IFSC code"
+                                 <input type="text" formControlName="bankIfscCode" placeholder="Bank branch IFSC code"
                                     maxlength="11" required class="input-premium px-4 uppercase"
-                                    (input)="claimForm.patchValue({bankIfscCode: $any($event.target).value.toUpperCase()})" />
-
+                                    (input)="claimForm.patchValue({bankIfscCode: $any($event.target).value.toUpperCase()})"
+                                    [ngClass]="{'border-red-500/50 bg-red-500/[0.02]': claimForm.get('bankIfscCode')?.invalid && claimForm.get('bankIfscCode')?.touched}" />
+ 
                                 <p *ngIf="claimForm.get('bankIfscCode')?.invalid && claimForm.get('bankIfscCode')?.touched"
                                     class="text-[9px] font-bold text-red-500 uppercase tracking-widest ml-1">
-                                    IFSC code must be exactly 11 characters
+                                    IFSC code must be exactly 11 characters (ABCD0123456)
                                 </p>
                             </div>
                         </div>
@@ -202,34 +251,48 @@
                             <label class="text-[10px] font-black uppercase tracking-[0.2em] text-primary ml-1">Death
                                 Certificate <span class="text-primary">*</span></label>
                             <div class="relative group/file">
-                                <input type="file" (change)="onFileSelected($event, 'death')" accept=".pdf,.jpg,.jpeg,.png"
+                                <input type="file" (change)="onFileSelected($event, 'death')" accept=".pdf"
                                     class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" />
-                                <div
-                                    class="input-premium min-h-[100px] flex flex-col items-center justify-center gap-2 border-dashed border-primary/30 group-hover/file:border-primary/60 transition-colors">
-                                    <app-icon [name]="deathCertificate ? 'folder' : 'upload'" className="text-2xl opacity-80"></app-icon>
+                                 <div
+                                    class="input-premium min-h-[100px] flex flex-col items-center justify-center gap-2 border-dashed border-primary/30 group-hover/file:border-primary/60 transition-colors"
+                                    [ngClass]="{'bg-red-500/5 border-red-500/30': !deathCertificate && claimForm.touched}">
+                                     <app-icon [name]="deathCertificate ? 'folder' : 'upload'" className="text-2xl opacity-80"></app-icon>
                                     <span
-                                        class="text-[10px] font-black uppercase tracking-widest text-text-secondary group-hover/file:text-primary transition-colors">
-                                        {{ deathCertificate ? deathCertificate.fileName : 'Select Death Certificate
-                                        (PDF, JPG, PNG)' }}
+                                        class="text-[10px] font-black uppercase tracking-widest text-text-secondary group-hover/file:text-primary transition-colors text-center px-4">
+                                        {{ deathCertificate ? deathCertificate.fileName : 'Select Death Certificate (PDF Only)' }}
                                     </span>
                                 </div>
                             </div>
+
+                            <p *ngIf="!deathCertificate && claimForm.touched" class="text-[9px] font-black text-red-500 uppercase tracking-widest ml-1">
+                                Death certificate is mandatory
+                            </p>
                         </div>
 
                         <div class="flex flex-col gap-3">
                             <label class="text-[10px] font-black uppercase tracking-[0.2em] text-primary ml-1">Nominee ID Proof <span class="text-primary">*</span></label>
                             <div class="relative group/file">
-                                <input type="file" (change)="onFileSelected($event, 'idproof')" accept=".pdf,.jpg,.jpeg,.png"
+                                <input type="file" (change)="onFileSelected($event, 'idproof')" accept=".pdf"
                                     class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" />
-                                <div
-                                    class="input-premium min-h-[100px] flex flex-col items-center justify-center gap-2 border-dashed border-primary/30 group-hover/file:border-primary/60 transition-colors">
+                                 <div
+                                    class="input-premium min-h-[100px] flex flex-col items-center justify-center gap-2 border-dashed border-primary/30 group-hover/file:border-primary/60 transition-colors"
+                                    [ngClass]="{'bg-red-500/5 border-red-500/30': (!nomineeIdProof && claimForm.touched) || nomineeFileMatchError}">
                                     <app-icon [name]="nomineeIdProof ? 'user' : 'upload'" className="text-2xl opacity-80"></app-icon>
                                     <span
-                                        class="text-[10px] font-black uppercase tracking-widest text-text-secondary group-hover/file:text-primary transition-colors">
-                                        {{ nomineeIdProof ? nomineeIdProof.fileName : 'Select Nominee ID Proof (Aadhar/Passport/etc.)' }}
+                                        class="text-[10px] font-black uppercase tracking-widest text-text-secondary group-hover/file:text-primary transition-colors text-center px-4">
+                                        {{ nomineeIdProof ? nomineeIdProof.fileName : 'Select Nominee ID Proof (PDF Only)' }}
                                     </span>
                                 </div>
                             </div>
+                            <!-- Specific Matching Error -->
+                            <p *ngIf="nomineeFileMatchError" class="text-[9px] font-black text-red-500 uppercase tracking-widest ml-1 bg-red-500/10 p-2 rounded-lg animate-in fade-in">
+                                <app-icon name="alert" className="inline mr-1"></app-icon>
+                                {{ nomineeFileMatchError }}
+                            </p>
+                            <!-- General Required Error -->
+                            <p *ngIf="!nomineeIdProof && claimForm.touched" class="text-[9px] font-black text-red-500 uppercase tracking-widest ml-1">
+                                Nominee ID proof is mandatory
+                            </p>
                         </div>
                     </div>
                 </div>

@@ -13,12 +13,14 @@ namespace API.Tests.Controllers;
 public class ClaimControllerTests
 {
     private readonly Mock<IClaimService> _claimServiceMock;
+    private readonly Mock<IPdfValidationService> _pdfValidationMock;
     private readonly ClaimController _controller;
 
     public ClaimControllerTests()
     {
         _claimServiceMock = new Mock<IClaimService>();
-        _controller = new ClaimController(_claimServiceMock.Object);
+        _pdfValidationMock = new Mock<IPdfValidationService>();
+        _controller = new ClaimController(_claimServiceMock.Object, _pdfValidationMock.Object);
 
         var user = new ClaimsPrincipal(new ClaimsIdentity(new Claim[]
         {

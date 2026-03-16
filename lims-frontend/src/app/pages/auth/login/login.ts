@@ -23,17 +23,38 @@ export class Login {
   };
 
   loading = false;
+  showPassword = false;
+  captchaText = '';
+  userInputCaptcha = '';
 
   constructor(
     private auth: AuthService,
     private toast: ToastService,
     private router: Router
-  ) { }
+  ) { 
+    this.generateCaptcha();
+  }
+
+  generateCaptcha(): void {
+    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+    let result = '';
+    for (let i = 0; i < 6; i++) {
+      result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    this.captchaText = result;
+    this.userInputCaptcha = '';
+  }
 
   onSubmit(): void {
 
     if (!this.form.email || !this.form.password) {
       this.toast.error('Please enter email and password');
+      return;
+    }
+
+    if (this.userInputCaptcha.toUpperCase() !== this.captchaText) {
+      this.toast.error('Invalid CAPTCHA code. Please try again.');
+      this.generateCaptcha();
       return;
     }
 
@@ -51,6 +72,7 @@ export class Login {
       error: (err) => {
         this.loading = false;
         this.toast.error(ApiService.getErrorMessage(err));
+        this.generateCaptcha();
       }
     });
   }

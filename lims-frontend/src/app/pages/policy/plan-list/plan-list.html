@@ -1,7 +1,40 @@
-```
 <div>
-    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
-        <h1 class="text-3xl font-extrabold text-text-primary dark:text-white tracking-tight">Browse Insurance Plans</h1>
+    <!-- Customer Header Style -->
+    <div *ngIf="role === 'Customer'" class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12 mt-4">
+        <div>
+            <div class="flex items-center gap-3 mb-2 opacity-90">
+                <span class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary">My Dashboard</span>
+                <div class="h-px w-8 bg-text-secondary opacity-70"></div>
+            </div>
+            <div class="flex items-center gap-4">
+                <button *ngIf="!hideBackButton" (click)="goBack()"
+                    class="w-10 h-10 flex items-center justify-center rounded-xl bg-theme-bg dark:bg-slate-800 border border-theme-border/20 hover:border-primary/50 text-text-secondary hover:text-primary transition-all shadow-sm">
+                    <app-icon name="arrow-left" className="w-5 h-5"></app-icon>
+                </button>
+                <h1 class="text-4xl md:text-5xl font-black text-text-primary dark:text-white tracking-tightest">
+                    Browse <span class="text-gradient">Plans</span>
+                </h1>
+            </div>
+            <p class="text-xs font-bold text-text-secondary uppercase tracking-[0.2em] opacity-80 mt-2 ml-14">Explore our variety of insurance models</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+            <div class="relative w-full sm:w-72">
+                <app-icon name="search" className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary opacity-80"></app-icon>
+                <input type="text" [(ngModel)]="searchTerm" (keyup)="search()" placeholder="Search plans..."
+                    class="w-full pl-10 pr-4 py-2.5 outline-none rounded-xl bg-theme-card dark:bg-theme-sidebar border border-theme-border dark:border-theme-border text-text-primary dark:text-white focus:outline-none focus:ring-2 focus:ring-primary/20 shadow-sm transition-all text-sm">
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin/Other Header Style -->
+    <div *ngIf="role !== 'Customer'" class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8 mt-4">
+        <div class="flex items-center gap-4">
+            <button *ngIf="!hideBackButton" (click)="goBack()" 
+                class="w-10 h-10 flex items-center justify-center rounded-xl bg-theme-card dark:bg-theme-sidebar border border-theme-border/20 hover:border-primary/50 text-text-secondary hover:text-primary transition-all shadow-sm">
+                <app-icon name="arrow-left" className="w-5 h-5"></app-icon>
+            </button>
+            <h1 class="text-3xl font-extrabold text-text-primary dark:text-white tracking-tight">Browse Insurance Plans</h1>
+        </div>
         <div class="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
             <div class="relative w-full sm:w-72">
                 <app-icon name="search" className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary opacity-80"></app-icon>

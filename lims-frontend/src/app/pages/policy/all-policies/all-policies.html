@@ -6,9 +6,15 @@
                     Dashboard</span>
                 <div class="h-px w-8 bg-text-secondary opacity-70"></div>
             </div>
-            <h1 class="text-4xl md:text-5xl font-black text-text-primary dark:text-white tracking-tightest">
-                All <span class="text-gradient">Policies</span>
-            </h1>
+            <div class="flex items-center gap-4">
+                <a [routerLink]="dashboardRoute" 
+                    class="w-10 h-10 flex items-center justify-center rounded-xl bg-theme-bg dark:bg-slate-800 border border-theme-border/20 hover:border-primary/50 text-text-secondary hover:text-primary transition-all shadow-sm">
+                    <app-icon name="arrow-left" className="w-5 h-5"></app-icon>
+                </a>
+                <h1 class="text-4xl md:text-5xl font-black text-text-primary dark:text-white tracking-tightest">
+                    All <span class="text-gradient">Policies</span>
+                </h1>
+            </div>
             <p class="text-xs font-bold text-text-secondary uppercase tracking-[0.2em] opacity-80 mt-2">View all active
                 and pending policies</p>
         </div>

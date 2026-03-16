@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AppIcon } from '../../../shared/components/app-icon/app-icon';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { ApiService } from '../../../core/services/api';
+import { ApiService, AuthService } from '../../../core/services';
 import { PlanResponse } from '../../../core/models/policy.model';
 import { LoadingSpinner } from '../../../shared/components/loading-spinner/loading-spinner';
 
@@ -15,18 +15,28 @@ import { LoadingSpinner } from '../../../shared/components/loading-spinner/loadi
   styleUrl: './plan-list.css'
 })
 export class PlanList implements OnInit {
+  @Input() hideBackButton = false;
   plans: PlanResponse[] = [];
   filtered: PlanResponse[] = [];
   loading = true;
   searchTerm = '';
   selectedPlanType = '';
   hasSettledClaim = false;
+  role = '';
 
-  constructor(public api: ApiService) { }
+  constructor(public api: ApiService, private auth: AuthService, private location: Location) { }
+
+  goBack(): void {
+    this.location.back();
+  }
+
+  get dashboardRoute(): string {
+    return this.auth.getDashboardRoute();
+  }
 
   ngOnInit(): void {
-    const user = JSON.parse(localStorage.getItem('NexaLife_user') || '{}');
-    if (user.role === 'Customer') {
+    this.role = this.auth.getUserRole() || '';
+    if (this.role === 'Customer') {
       this.api.get<any>('dashboard/summary').subscribe({
         next: (data) => this.hasSettledClaim = data.hasSettledDeathClaim
       });

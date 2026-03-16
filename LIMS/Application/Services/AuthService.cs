@@ -14,6 +14,8 @@ public class AuthService : IAuthService
     private readonly IPolicyRepository _policyRepo;
     private readonly IClaimRepository _claimRepo;
     private readonly INotificationService _notificationService;
+    private readonly IAgentAssignmentService _agentAssignmentService;
+    private readonly IClaimsOfficerAssignmentService _claimsOfficerAssignmentService;
 
     public AuthService(
         IUserRepository userRepo, 
@@ -21,7 +23,9 @@ public class AuthService : IAuthService
         IPasswordHasher passwordHasher,
         IPolicyRepository policyRepo,
         IClaimRepository claimRepo,
-        INotificationService notificationService)
+        INotificationService notificationService,
+        IAgentAssignmentService agentAssignmentService,
+        IClaimsOfficerAssignmentService claimsOfficerAssignmentService)
     {
         _userRepo = userRepo;
         _jwtService = jwtService;
@@ -29,6 +33,8 @@ public class AuthService : IAuthService
         _policyRepo = policyRepo;
         _claimRepo = claimRepo;
         _notificationService = notificationService;
+        _agentAssignmentService = agentAssignmentService;
+        _claimsOfficerAssignmentService = claimsOfficerAssignmentService;
     }
 
     // ── Public Registration — always Customer ──────────────────────────────
@@ -208,9 +214,95 @@ public class AuthService : IAuthService
         user.DeletedAt = DateTime.UtcNow;
 
         await _userRepo.UpdateAsync(user);
+
+        // Reassign policies/claims if it's a staff member
+        await HandleDeactivationTasksAsync(user);
     }
 
     // ── Admin: Toggle User Status ──────────────────────────────────────────
+
+    private async Task HandleDeactivationTasksAsync(User user)
+    {
+        if (user.Role == UserRole.Agent)
+        {
+            var policies = await _policyRepo.GetByAgentIdAsync(user.Id);
+            var toUpdate = new List<Policy>();
+
+            // If policy is rejected, no new agent assignment takes place (it stays rejected with the old agent)
+            // For all other states, reassignment takes place
+            foreach (var policy in policies.Where(p => p.Status != PolicyStatus.Rejected))
+            {
+                try
+                {
+                    var newAgentId = await _agentAssignmentService.AssignAgentAsync();
+                    policy.AgentId = newAgentId;
+                    policy.AgentAssignedAt = DateTime.UtcNow;
+
+                    toUpdate.Add(policy);
+
+                    await _notificationService.CreateNotificationAsync(
+                        policy.CustomerId,
+                        $"Notice: Your policy '{policy.PolicyNumber}' has been reassigned to a new agent as your previous agent is no longer active."
+                    );
+                }
+                catch (InvalidOperationException)
+                {
+                    // No other active agents available
+                }
+            }
+            if (toUpdate.Any()) await _policyRepo.UpdateRangeAsync(toUpdate);
+        }
+        else if (user.Role == UserRole.ClaimsOfficer)
+        {
+            var claims = await _claimRepo.GetByOfficerIdAsync(user.Id);
+            var toUpdate = new List<Claim>();
+
+            // If the claim is settled then reassignment is not done, in other states it is done
+            foreach (var claim in claims.Where(c => c.Status != ClaimStatus.Settled))
+            {
+                try
+                {
+                    var newOfficerId = await _claimsOfficerAssignmentService.AssignOfficerAsync();
+                    claim.ClaimsOfficerId = newOfficerId;
+                    claim.AssignedAt = DateTime.UtcNow;
+
+                    toUpdate.Add(claim);
+
+                    await _notificationService.CreateNotificationAsync(
+                        claim.CustomerId,
+                        $"Notice: Your claim '{claim.ClaimNumber}' has been reassigned to a new claims officer."
+                    );
+                }
+                catch (InvalidOperationException)
+                {
+                    // No other active officers available
+                }
+            }
+            if (toUpdate.Any()) await _claimRepo.UpdateRangeAsync(toUpdate);
+        }
+        else if (user.Role == UserRole.Customer)
+        {
+            var policies = await _policyRepo.GetByCustomerIdAsync(user.Id);
+            var toUpdatePolicies = new List<Policy>();
+            foreach (var policy in policies.Where(p => p.Status == PolicyStatus.Active || p.Status == PolicyStatus.Submitted || p.Status == PolicyStatus.UnderReview || p.Status == PolicyStatus.DocumentsSubmitted || p.Status == PolicyStatus.Approved))
+            {
+                policy.RejectionReason = $"RECOVERY_CUSTOMER_OFFLINE|{policy.Status}";
+                policy.Status = PolicyStatus.Rejected;
+                toUpdatePolicies.Add(policy);
+            }
+            if (toUpdatePolicies.Any()) await _policyRepo.UpdateRangeAsync(toUpdatePolicies);
+
+            var claims = await _claimRepo.GetByCustomerIdAsync(user.Id);
+            var toUpdateClaims = new List<Claim>();
+            foreach (var claim in claims.Where(c => c.Status == ClaimStatus.Submitted || c.Status == ClaimStatus.UnderReview || c.Status == ClaimStatus.Approved))
+            {
+                claim.RejectionReason = $"RECOVERY_CUSTOMER_OFFLINE|{claim.Status}";
+                claim.Status = ClaimStatus.Rejected;
+                toUpdateClaims.Add(claim);
+            }
+            if (toUpdateClaims.Any()) await _claimRepo.UpdateRangeAsync(toUpdateClaims);
+        }
+    }
 
     public async Task ToggleUserStatusAsync(int userId)
     {
@@ -229,60 +321,7 @@ public class AuthService : IAuthService
         // If deactivated, handle related policies and claims
         if (!user.IsActive)
         {
-            if (user.Role == UserRole.Agent)
-            {
-                var policies = await _policyRepo.GetByAgentIdAsync(user.Id);
-                var toUpdate = new List<Policy>();
-                foreach (var policy in policies.Where(p => p.Status == PolicyStatus.Active || p.Status == PolicyStatus.Submitted || p.Status == PolicyStatus.UnderReview || p.Status == PolicyStatus.DocumentsSubmitted || p.Status == PolicyStatus.Approved))
-                {
-                    policy.RejectionReason = $"RECOVERY_AGENT_OFFLINE|{policy.Status}";
-                    policy.Status = PolicyStatus.Rejected;
-                    toUpdate.Add(policy);
-                    await _notificationService.CreateNotificationAsync(
-                        policy.CustomerId, 
-                        $"Notice: Your policy '{policy.PolicyNumber}' has been deactivated as your assigned agent is no longer active."
-                    );
-                }
-                if (toUpdate.Any()) await _policyRepo.UpdateRangeAsync(toUpdate);
-            }
-            else if (user.Role == UserRole.ClaimsOfficer)
-            {
-                var claims = await _claimRepo.GetByOfficerIdAsync(user.Id);
-                var toUpdate = new List<Claim>();
-                foreach (var claim in claims.Where(c => c.Status == ClaimStatus.Submitted || c.Status == ClaimStatus.UnderReview || c.Status == ClaimStatus.Approved))
-                {
-                    claim.RejectionReason = $"RECOVERY_OFFICER_OFFLINE|{claim.Status}";
-                    claim.Status = ClaimStatus.Rejected;
-                    toUpdate.Add(claim);
-                    await _notificationService.CreateNotificationAsync(
-                        claim.CustomerId, 
-                        $"Notice: Your claim '{claim.ClaimNumber}' has been rejected as the processing officer is no longer active."
-                    );
-                }
-                if (toUpdate.Any()) await _claimRepo.UpdateRangeAsync(toUpdate);
-            }
-            else if (user.Role == UserRole.Customer)
-            {
-                var policies = await _policyRepo.GetByCustomerIdAsync(user.Id);
-                var toUpdatePolicies = new List<Policy>();
-                foreach (var policy in policies.Where(p => p.Status == PolicyStatus.Active || p.Status == PolicyStatus.Submitted || p.Status == PolicyStatus.UnderReview || p.Status == PolicyStatus.DocumentsSubmitted || p.Status == PolicyStatus.Approved))
-                {
-                    policy.RejectionReason = $"RECOVERY_CUSTOMER_OFFLINE|{policy.Status}";
-                    policy.Status = PolicyStatus.Rejected;
-                    toUpdatePolicies.Add(policy);
-                }
-                if (toUpdatePolicies.Any()) await _policyRepo.UpdateRangeAsync(toUpdatePolicies);
-
-                var claims = await _claimRepo.GetByCustomerIdAsync(user.Id);
-                var toUpdateClaims = new List<Claim>();
-                foreach (var claim in claims.Where(c => c.Status == ClaimStatus.Submitted || c.Status == ClaimStatus.UnderReview || c.Status == ClaimStatus.Approved))
-                {
-                    claim.RejectionReason = $"RECOVERY_CUSTOMER_OFFLINE|{claim.Status}";
-                    claim.Status = ClaimStatus.Rejected;
-                    toUpdateClaims.Add(claim);
-                }
-                if (toUpdateClaims.Any()) await _claimRepo.UpdateRangeAsync(toUpdateClaims);
-            }
+            await HandleDeactivationTasksAsync(user);
         }
         else // Reactivated
         {

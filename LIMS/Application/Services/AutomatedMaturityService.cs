@@ -14,6 +14,8 @@ public class AutomatedMaturityService : IAutomatedMaturityService
     private readonly IUserRepository _userRepo;
     private readonly INotificationService _notificationService;
     private readonly IPremiumCalculationService _premiumCalc;
+    private readonly IEmailService _emailService;
+
     private readonly ILogger<AutomatedMaturityService> _logger;
 
     public AutomatedMaturityService(
@@ -22,7 +24,9 @@ public class AutomatedMaturityService : IAutomatedMaturityService
         IUserRepository userRepo,
         INotificationService notificationService,
         IPremiumCalculationService premiumCalc,
+        IEmailService emailService,
         ILogger<AutomatedMaturityService> logger)
+
     {
         _policyRepo = policyRepo;
         _claimRepo = claimRepo;
@@ -30,7 +34,9 @@ public class AutomatedMaturityService : IAutomatedMaturityService
         _notificationService = notificationService;
         _premiumCalc = premiumCalc;
         _logger = logger;
+        _emailService = emailService;
     }
+
 
     public async Task<int> ProcessMaturitiesAsync()
     {
@@ -113,6 +119,21 @@ public class AutomatedMaturityService : IAutomatedMaturityService
                 var message = $"Congratulations! Your Endowment Policy {policy.PolicyNumber} has matured. " +
                               $"A payout of ₹{maturityBenefit:N0} has been automatically processed and transferred to your account (Ref: {claim.TransferReference}).";
                 await _notificationService.CreateNotificationAsync(customer.Id, message);
+
+                // Send Maturity Email
+                await _emailService.SendCustomerMaturityEmail(
+                    customer.Email,
+                    customer.FullName,
+                    policy.PolicyNumber,
+                    maturityBenefit,
+                    claim.TransferReference,
+                    claim.SettledAt ?? DateTime.UtcNow,
+                    claim.BankAccountName ?? "Registered Bank",
+                    customer.FullName,
+                    claim.BankAccountNumber ?? "XXXX",
+                    claim.BankIfscCode ?? ""
+                );
+
 
                 // Special Feature: After settlements, if ALL policies for this customer are now Settled, deactivate the account.
                 var allCustomerPolicies = await _policyRepo.GetByCustomerIdAsync(customer.Id);

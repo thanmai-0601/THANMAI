@@ -1,40 +1,99 @@
-<div
-    class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-6 animate-in fade-in slide-in-from-bottom-8 duration-500">
-    <div class="flex items-center gap-4">
-        <button [routerLink]="role === 'ClaimsOfficer' ? '/app/officer-claims' : '/app/my-claims'"
-            class="h-12 w-12 flex items-center justify-center text-text-secondary hover:text-primary transition-all rounded-2xl bg-white dark:bg-slate-900 border border-theme-border/20 dark:border-slate-800 shadow-sm hover:shadow-md active:scale-90">
-            <app-icon name="arrow-right" className="rotate-180 text-lg"></app-icon>
+    <div class="flex items-center gap-4 mb-8 mt-4">
+        <button (click)="goBack()"
+            class="w-10 h-10 flex items-center justify-center rounded-xl bg-theme-card dark:bg-theme-sidebar border border-theme-border/20 hover:border-primary/50 text-text-secondary hover:text-primary transition-all shadow-sm">
+            <app-icon name="arrow-left" className="w-5 h-5"></app-icon>
         </button>
-        <div>
-            <div class="flex items-center gap-3 mb-2 opacity-90">
-                <span class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary">Claim Details</span>
-                <div class="h-px w-8 bg-text-secondary opacity-70"></div>
-                <app-status-badge *ngIf="claim" [status]="claim.status" class="scale-90" />
-            </div>
-            <h1 class="text-3xl md:text-4xl font-black text-text-primary dark:text-white tracking-tightest">
-                {{ claim?.claimNumber }}
-            </h1>
-            <p class="text-xs font-bold text-text-secondary uppercase tracking-[0.2em] opacity-80 mt-2">
-                Linked Policy:
-                <a [routerLink]="['/app/policy', claim?.policyId]"
-                    class="text-primary hover:underline font-black tracking-tightest">
-                    {{ claim?.policyNumber }}
-                </a>
+        <div class="flex-1">
+            <h1 class="text-3xl font-extrabold text-text-primary dark:text-white tracking-tight">Claim Details: {{ claim?.claimNumber }}</h1>
+            <p class="text-xs font-bold text-text-secondary uppercase tracking-[0.1em] opacity-80 mt-1">
+                Linked Policy: <a [routerLink]="['/app/policy', claim?.policyId]" class="text-primary hover:underline font-black">{{ claim?.policyNumber }}</a>
             </p>
         </div>
+        <app-status-badge *ngIf="claim" [status]="claim.status" class="scale-90" />
     </div>
-</div>
 <app-loading-spinner *ngIf="loading"></app-loading-spinner>
 
 @if (claim) {
 <div class="space-y-5">
+
+    <div *ngIf="(role === 'ClaimsOfficer' || role === 'Admin') && pdfValidation && pdfValidation.isValidationPerformed" 
+         class="mb-6 animate-in slide-in-from-top-4 duration-500">
+        <div class="premium-card p-0 overflow-hidden border-2 transition-all duration-300" 
+             [ngClass]="pdfValidation.isMatch ? 'border-emerald-500/30' : 'border-red-500/50 shadow-lg shadow-red-500/10 pulse-border-red'">
+            
+            <div class="p-4 flex items-center justify-between" 
+                 [ngClass]="pdfValidation.isMatch ? 'bg-emerald-500/5' : 'bg-red-500/10'">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center transition-transform duration-500" 
+                         [ngClass]="pdfValidation.isMatch ? 'bg-emerald-500/10 text-emerald-500' : 'bg-red-500/20 text-red-600 scale-110'">
+                        <app-icon [name]="pdfValidation.isMatch ? 'check' : 'cross'" className="w-5 h-5"></app-icon>
+                    </div>
+                    <div>
+                        <h3 class="text-xs font-black uppercase tracking-[0.2em]" 
+                            [ngClass]="pdfValidation.isMatch ? 'text-emerald-600' : 'text-red-600'">
+                            PDF Date Validation {{ pdfValidation.isMatch ? 'Successful' : 'Failed' }}
+                        </h3>
+                        <p class="text-[10px] font-bold text-text-secondary opacity-80 uppercase tracking-widest mt-0.5">
+                            {{ pdfValidation.isMatch ? 'All dates are verified and consistent' : 'Critical mismatch detected in document scan' }}
+                        </p>
+                    </div>
+                </div>
+                <!-- Prominent Reject Badge -->
+                <div *ngIf="!pdfValidation.isMatch" class="flex flex-col items-end gap-1">
+                    <div class="px-4 py-1.5 rounded-lg bg-red-600 text-white text-[10px] font-black uppercase tracking-tighter shadow-xl shadow-red-600/30 animate-pulse">
+                        CRITICAL MISMATCH
+                    </div>
+                    <span class="text-[9px] font-black text-red-500 uppercase tracking-widest opacity-80">CLAIM AUTO REJECTED</span>
+                </div>
+            </div>
+
+            <div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-8 items-center border-t border-theme-border/5">
+                <div class="space-y-1 text-center md:text-left">
+                    <p class="text-[9px] font-black uppercase tracking-[0.3em] text-text-secondary opacity-60">System Entry</p>
+                    <p class="text-2xl font-black text-text-primary dark:text-white tracking-tighter">{{ pdfValidation.enteredDate || 'N/A' }}</p>
+                    <p class="text-[8px] font-bold text-text-secondary opacity-50 uppercase">Date provided by claimant</p>
+                </div>
+                
+                <div class="flex flex-col items-center justify-center gap-2">
+                    <div class="flex items-center">
+                        <div class="h-px w-8 bg-theme-border/20 hidden md:block"></div>
+                        <app-icon [name]="pdfValidation.isMatch ? 'arrow-right' : 'cross'" 
+                                 [className]="pdfValidation.isMatch ? 'text-emerald-500 mx-4 hidden md:block w-5 h-5' : 'text-red-500 mx-4 hidden md:block w-5 h-5'">
+                        </app-icon>
+                        <div class="h-px w-8 bg-theme-border/20 hidden md:block"></div>
+                    </div>
+                    <span class="text-[8px] font-black uppercase tracking-[0.4em] opacity-30">Validation</span>
+                </div>
+
+                <div class="space-y-1 text-center md:text-right">
+                    <p class="text-[9px] font-black uppercase tracking-[0.3em] text-text-secondary opacity-60">PDF Extraction</p>
+                    <p class="text-2xl font-black tracking-tighter transition-colors duration-500" 
+                       [ngClass]="pdfValidation.isMatch ? 'text-emerald-500' : 'text-red-600'">
+                        {{ pdfValidation.extractedDate || 'No Date Found' }}
+                    </p>
+                    <p class="text-[8px] font-bold uppercase tracking-tighter" [ngClass]="pdfValidation.isMatch ? 'text-emerald-500/60' : 'text-red-500/60'">
+                        {{ pdfValidation.isMatch ? 'Verified Match' : 'Mismatch Found' }}
+                    </p>
+                </div>
+            </div>
+
+            <div *ngIf="pdfValidation.errorMessage" class="px-6 py-4 bg-theme-border/5 border-t border-theme-border/5">
+                <div class="flex items-center gap-3 justify-center md:justify-start">
+                    <app-icon name="alert" className="text-red-500 w-3 h-3"></app-icon>
+                    <p class="text-[10px] font-bold text-red-600/80 italic">
+                        "{{ pdfValidation.errorMessage }}"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- ══════════════════════════════════════════════════════════════
          ROW 1:  Claim Information (2/3)  |  Officer 1/3 + Status 2/3 (1/3)
          ══════════════════════════════════════════════════════════════ -->
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
 
-        <!-- LEFT: Claim Information (2/3 width, full height) -->
+        <!-- LEFT: Claim Information (2/3 width) -->
         <div class="lg:col-span-2">
             <div class="premium-card p-0 overflow-hidden shadow-2xl shadow-primary/5 h-full">
                 <div
@@ -102,245 +161,107 @@
                     </div>
                 </div>
             </div>
+
         </div>
 
-        <!-- RIGHT: Assigned Officer (1/3 width) -->
-        <div class="flex flex-col h-full">
-            <div *ngIf="claim.claimsOfficerName" class="premium-card p-5 h-full flex flex-col justify-center">
-                <p class="text-[10px] font-black uppercase tracking-[0.3em] text-primary opacity-90 mb-3">Assigned
-                    Officer</p>
-                <div class="flex items-center gap-4">
-                    <div
-                        class="h-14 w-14 rounded-full bg-primary/10 flex items-center justify-center font-black text-primary text-xl">
-                        {{ claim.claimsOfficerName.substring(0, 1) }}
-                    </div>
-                    <div>
-                        <p class="text-base font-black text-text-primary dark:text-white uppercase tracking-wide">{{
-                            claim.claimsOfficerName }}</p>
-                        <p class="text-[10px] font-bold text-text-secondary opacity-80 mt-1">Assigned: {{
-                            claim.assignedAt | date:'mediumDate' }}</p>
-                    </div>
-                </div>
-                <div *ngIf="claim.reviewStartedAt"
-                    class="mt-4 pt-3 border-t border-theme-border/10 text-[10px] font-black uppercase tracking-widest text-text-secondary opacity-80 flex items-center gap-2">
-                    <span class="h-2 w-2 rounded-full bg-primary animate-pulse"></span>
-                    Review started {{ claim.reviewStartedAt | date:'mediumDate' }}
-                </div>
-            </div>
-            <!-- Fallback if no officer assigned yet -->
-            <div *ngIf="!claim.claimsOfficerName"
-                class="premium-card p-5 h-full flex flex-col justify-center items-center text-center opacity-80">
-                <app-icon name="alert" className="text-3xl mb-2"></app-icon>
-                <p class="text-[10px] font-black uppercase tracking-widest">Awaiting Assignment</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- ══════════════════════════════════════════════════════════════
-         SECTION: Resolution & Action (Decision Panel or Status Result)
-         ══════════════════════════════════════════════════════════════ -->
-    <div
-        *ngIf="claim.status === 'Settled' || claim.status === 'Rejected' || (role === 'ClaimsOfficer' && (claim.status === 'Submitted' || claim.status === 'UnderReview'))">
-
-        <!-- Settled Banner -->
-        <div *ngIf="claim.status === 'Settled'"
-            class="premium-card p-5 border-2 border-emerald-500/30 bg-emerald-500/[0.03] animate-in fade-in slide-in-from-bottom-4 duration-700">
-            <div class="flex flex-col lg:flex-row justify-between items-center gap-8">
-                <div class="flex items-center gap-4">
-                    <div
-                        class="h-12 w-12 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-500 text-xl font-black">
-                        ✓</div>
-                    <div>
-                        <h3 class="text-xs font-black text-emerald-500 uppercase tracking-[0.3em]">Claim Approved & Paid
-                        </h3>
-                        <p class="text-[10px] font-bold text-text-secondary opacity-90 mt-1">Payment successfully
-                            processed to beneficiary.</p>
-                    </div>
-                </div>
-                <div class="flex flex-wrap gap-10 items-center justify-center lg:justify-end flex-1">
-                    <div class="text-center md:text-right">
-                        <span
-                            class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-500/60 block mb-1">Total
-                            Settled Amount</span>
-                        <span class="text-2xl font-black text-emerald-500 tracking-tight">₹{{ claim.settledAmount |
-                            number }}</span>
-                    </div>
-                    <div class="min-w-[200px]">
-                        <p class="text-[9px] font-black uppercase tracking-[0.2em] text-emerald-500/60 mb-2">Transaction
-                            Reference</p>
-                        <div
-                            class="px-4 py-2 rounded-xl bg-emerald-500/10 font-mono text-xs font-black text-emerald-500 tracking-tighter">
-                            {{ claim.transferReference }}
+        <!-- RIGHT: Assigned Officer + Status (1/3 width) -->
+        <div class="flex flex-col gap-5">
+            <!-- Officer Card -->
+            <div class="flex flex-col">
+                <div *ngIf="claim.claimsOfficerName" class="premium-card p-5">
+                    <p class="text-[10px] font-black uppercase tracking-[0.3em] text-primary opacity-90 mb-3">Assigned Officer</p>
+                    <div class="flex items-center gap-4">
+                        <div class="h-14 w-14 rounded-full bg-primary/10 flex items-center justify-center font-black text-primary text-xl">
+                            {{ claim.claimsOfficerName.substring(0, 1) }}
+                        </div>
+                        <div>
+                            <p class="text-base font-black text-text-primary dark:text-white uppercase tracking-wide">
+                                {{ claim.claimsOfficerName }}
+                            </p>
+                            <p class="text-[10px] font-bold text-text-secondary opacity-80 mt-1">Assigned: {{ claim.assignedAt | date:'mediumDate' }}</p>
                         </div>
                     </div>
-                    <div class="text-right">
-                        <p class="text-[9px] font-bold text-text-secondary opacity-80 uppercase tracking-widest italic">
-                            Settled On: {{ claim.settledAt | date:'mediumDate' }}</p>
+                    <div *ngIf="claim.reviewStartedAt" class="mt-4 pt-3 border-t border-theme-border/10 text-[10px] font-black uppercase tracking-widest text-text-secondary opacity-80 flex items-center gap-2">
+                        <span class="h-2 w-2 rounded-full bg-primary animate-pulse"></span>
+                        Review started {{ claim.reviewStartedAt | date:'mediumDate' }}
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <!-- Rejected Banner -->
-        <div *ngIf="claim.status === 'Rejected'"
-            class="premium-card p-5 border-2 border-red-500/30 bg-red-500/[0.03] animate-in fade-in slide-in-from-bottom-4 duration-700">
-            <div class="flex flex-col lg:flex-row justify-between items-center gap-8">
-                <div class="flex items-center gap-4">
-                    <div
-                        class="h-12 w-12 rounded-full bg-red-500/20 flex items-center justify-center text-red-500 text-xl font-black">
-                        ✕</div>
-                    <div>
-                        <h3 class="text-xs font-black text-red-500 uppercase tracking-[0.3em]">Claim Rejected</h3>
-                        <p class="text-[10px] font-bold text-text-secondary opacity-90 mt-1">This claim was not accepted
-                            for settlement.</p>
-                    </div>
-                </div>
-                <div class="flex-1 max-w-2xl w-full">
-                    <div class="p-4 rounded-2xl bg-red-500/10 border border-red-500/10">
-                        <p class="text-[9px] font-black uppercase tracking-widest text-red-500/60 mb-2">Decision Remarks
-                            /
-                            Reason</p>
-                        <p class="text-sm font-bold text-red-700 dark:text-red-300 leading-relaxed italic">"{{
-                            claim.rejectionReason }}"</p>
-                    </div>
-                </div>
-                <div class="text-right">
-                    <p class="text-[9px] font-bold text-red-500/40 uppercase tracking-[0.2em]">Decision Date</p>
-                    <p class="text-xs font-black text-red-500 opacity-90 uppercase">{{ claim.rejectedAt | date:'medium'
-                        }}</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Officer Action Panel -->
-        <div *ngIf="role === 'ClaimsOfficer' && (claim.status === 'Submitted' || claim.status === 'UnderReview')"
-            class="premium-card p-0 overflow-hidden border-2 border-primary/20 animate-in fade-in slide-in-from-bottom-4 duration-700">
-            <div class="p-2.5 px-4 bg-primary/[0.03] border-b border-primary/10 flex items-center justify-between">
-                <h2 class="text-[10px] font-black text-primary uppercase tracking-[0.4em] flex items-center gap-3">
-                    <app-icon name="policies"></app-icon> Review Process
-                </h2>
-                <div class="flex items-center gap-3" *ngIf="claim.status === 'UnderReview'">
-                    <span class="h-1.5 w-1.5 rounded-full bg-primary animate-pulse"></span>
-                    <span class="text-[9px] font-black uppercase tracking-widest text-primary/60 italic">Review in
-                        progress</span>
+                <!-- Fallback if no officer assigned yet -->
+                <div *ngIf="!claim.claimsOfficerName" class="premium-card p-5 flex flex-col items-center text-center opacity-80">
+                    <app-icon name="alert" className="text-3xl mb-2"></app-icon>
+                    <p class="text-[10px] font-black uppercase tracking-widest">Awaiting Assignment</p>
                 </div>
             </div>
 
-            <div class="p-4">
-                <!-- Status: Submitted (Start Button) -->
-                <div *ngIf="claim.status === 'Submitted'" class="py-10 text-center max-w-md mx-auto space-y-5">
-                    <div class="w-20 h-20 rounded-3xl bg-primary/5 flex items-center justify-center mx-auto mb-6">
-                        <app-icon name="folder" className="text-3xl"></app-icon>
+            <!-- Resolution & Action Card -->
+            <div *ngIf="claim.status === 'Settled' || claim.status === 'Rejected' || claim.status === 'Approved'" 
+                 class="flex flex-col gap-4">
+                
+
+                <!-- Settled State Content -->
+                <div *ngIf="claim.status === 'Settled'" class="premium-card p-5 border-2 border-emerald-500/30 bg-emerald-500/[0.03] animate-in fade-in flex flex-col gap-5">
+                    <div class="flex items-center gap-4">
+                        <div class="h-10 w-10 shrink-0 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-500 text-lg font-black italic">✓</div>
+                        <div>
+                            <h3 class="text-xs font-black text-emerald-500 uppercase tracking-[0.2em] italic">Claim Settled & Paid</h3>
+                        </div>
                     </div>
-                    <div>
-                        <h3 class="text-sm font-black text-text-primary dark:text-white uppercase tracking-widest mb-2">
-                            New Claim Submission</h3>
-                        <p class="text-xs font-medium text-text-secondary opacity-90 leading-relaxed">This claim is
-                            awaiting review. Click below to begin the investigation and document verification process.
+                    
+                    <div class="space-y-4">
+                        <div class="p-3 rounded-2xl bg-white/5 border border-emerald-500/10">
+                            <span class="text-[9px] font-black uppercase tracking-[0.2em] text-emerald-500/60 block mb-1.5">Total Settled Amount</span>
+                            <span class="text-2xl font-black text-emerald-500 tracking-tight">₹{{ claim.settledAmount | number }}</span>
+                        </div>
+                        
+                        <div class="p-3 rounded-2xl bg-white/5 border border-emerald-500/10">
+                            <p class="text-[9px] font-black uppercase tracking-[0.2em] text-emerald-500/60 mb-1.5">Transaction Reference</p>
+                            <div class="font-mono text-[10px] font-black text-emerald-500 tracking-tighter truncate">{{ claim.transferReference }}</div>
+                        </div>
+
+                        <div class="flex justify-between items-center text-[9px] font-bold text-text-secondary opacity-70 uppercase tracking-widest italic pt-2">
+                             <span>Settled Date:</span>
+                             <span>{{ claim.settledAt | date:'mediumDate' }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Approved (Processing) State Content -->
+                <div *ngIf="claim.status === 'Approved'" class="premium-card p-5 border-2 border-amber-500/30 bg-amber-500/[0.03] animate-in fade-in flex flex-col gap-5">
+                    <div class="flex items-center gap-4">
+                        <div class="h-10 w-10 shrink-0 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-500 text-lg font-black italic">✓</div>
+                        <div>
+                            <h3 class="text-xs font-black text-amber-500 uppercase tracking-[0.2em] italic">Processing Payment</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="p-3 rounded-2xl bg-white/5 border border-amber-500/10">
+                            <span class="text-[9px] font-black uppercase tracking-[0.2em] text-amber-500/60 block mb-1.5">Approved Payout</span>
+                            <span class="text-2xl font-black text-amber-500 tracking-tight">₹{{ claim.settledAmount | number }}</span>
+                        </div>
+                        <p class="text-[10px] font-bold text-text-secondary leading-relaxed italic text-center px-2">
+                            The claim has been approved by the officer. Funds will be transferred to your account shortly.
                         </p>
                     </div>
-                    <button (click)="startReview()" [disabled]="startingReview"
-                        class="btn-premium w-full h-14 text-xs font-black tracking-[0.2em] shadow-xl shadow-primary/20 flex items-center justify-center gap-3 group">
-                        <span *ngIf="startingReview"
-                            class="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
-                        <span *ngIf="!startingReview">Start Review Process</span>
-                        <span *ngIf="!startingReview"
-                            class="text-lg group-hover:translate-x-1 transition-transform">→</span>
-                    </button>
                 </div>
 
-                <!-- Status: UnderReview (Form) -->
-                <div *ngIf="claim.status === 'UnderReview'" class="space-y-6">
-
-                    <!-- Compliance Warning (Officer Only) -->
-                    <div *ngIf="claim.overdueInvoices > 0" 
-                        class="p-4 rounded-2xl bg-red-500/[0.03] border-2 border-red-500/20 flex items-start gap-4 animate-pulse">
-                        <div class="h-10 w-10 shrink-0 rounded-full bg-red-500/10 flex items-center justify-center text-xl"><app-icon name="alert"></app-icon></div>
-                        <div>
-                            <h4 class="text-xs font-black text-red-500 uppercase tracking-widest mb-1.5 underline decoration-red-500/30 underline-offset-4">Critical: Yearly Payment Default</h4>
-                            <p class="text-[11px] font-bold text-red-600/70 leading-relaxed uppercase tracking-tight">
-                                This policy has <span class="text-red-600 font-black">{{ claim.overdueInvoices }} pending yearly premium payments</span>. 
-                                <br>Policy compliance is only <span class="font-black underline">{{ paymentCompliance }}%</span>. Approval is strictly restricted until premium dues are cleared.
-                            </p>
-                        </div>
+                <!-- Rejected State Content -->
+                <div *ngIf="claim.status === 'Rejected'" class="premium-card p-5 border-2 border-red-500/30 bg-red-500/[0.03] animate-in fade-in flex flex-col gap-5">
+                    <div class="flex items-center gap-4">
+                        <div class="h-10 w-10 shrink-0 rounded-full bg-red-500/20 flex items-center justify-center text-red-500 text-lg font-black italic">✕</div>
+                        <h3 class="text-xs font-black text-red-500 uppercase tracking-[0.2em] italic">Claim Rejected</h3>
                     </div>
-
-                    <!-- Form Grid: 3-Column horizontal layout -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        <!-- Amount Section -->
-                        <div class="space-y-2">
-                            <label
-                                class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-90 flex items-center justify-between">
-                                Amount to Pay (₹)
-                                <span class="text-[9px] text-primary/60">Max: ₹{{ claim.claimAmount | number }}</span>
-                            </label>
-                            <div class="relative group">
-                                <span
-                                    class="absolute left-5 top-1/2 -translate-y-1/2 text-lg font-black text-text-secondary group-focus-within:text-primary transition-colors"></span>
-                                <input type="number" [(ngModel)]="decisionForm.settledAmount" name="settledAmount"
-                                    class="input-premium py-2 pl-10 font-black text-2xl tracking-tighter"
-                                    placeholder="0.00" />
-                            </div>
-                        </div>
-
-                        <!-- Officer Remarks -->
-                        <div class="space-y-2">
-                            <label
-                                class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-90">Officer
-                                Review Comments</label>
-                            <textarea [(ngModel)]="decisionForm.remarks" name="remarks" rows="2"
-                                class="input-premium py-2 text-sm italic leading-relaxed"
-                                placeholder="Enter case summary, verification details or observation..."></textarea>
-                        </div>
-
-                        <!-- Rejection Reason -->
-                        <div class="space-y-2">
-                            <label class="text-[10px] font-black uppercase tracking-[0.2em] text-red-500/60">Rejection
-                                Reason (Required if Refused)</label>
-                            <textarea [(ngModel)]="decisionForm.rejectionReason" name="rejectionReason" rows="2"
-                                class="input-premium py-2 text-sm border-red-500/20 focus:border-red-500/50 bg-red-500/[-0.01]"
-                                placeholder="Explain decision if claim is not being approved..."></textarea>
-                        </div>
+                    <div class="p-4 rounded-2xl bg-red-500/10 border border-red-500/10">
+                        <p class="text-[9px] font-black uppercase tracking-widest text-red-500/60 mb-2">Decision Reason</p>
+                        <p class="text-[11px] font-bold text-red-700 dark:text-red-300 leading-relaxed italic">"{{ claim.rejectionReason }}"</p>
                     </div>
-
-                    <!-- Bottom Actions & Bank Info -->
-                    <div
-                        class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 pt-3 border-t border-theme-border/10">
-                        <div
-                            class="flex items-center gap-3 p-2 px-3 rounded-2xl bg-primary/[0.03] border border-primary/10 w-full lg:w-auto">
-                            <div class="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
-                                <app-icon name="money" className="text-2xl"></app-icon>
-                            </div>
-                            <div>
-                                <p class="text-[9px] font-black uppercase tracking-[0.2em] text-primary/60 mb-1">
-                                    Settlement beneficiary Account</p>
-                                <div class="flex items-center gap-3">
-                                    <span class="text-xs font-black text-text-primary uppercase tracking-tight">{{
-                                        claim.bankAccountName }}</span>
-                                    <span
-                                        class="text-[10px] font-mono text-text-secondary opacity-90 tracking-wider">Acct:
-                                        {{ claim.bankAccountNumber }}</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="flex gap-4 w-full lg:w-auto">
-                            <button type="button" (click)="submitDecision('Reject')" [disabled]="submittingDecision"
-                                class="h-12 px-8 rounded-2xl bg-red-500/10 text-red-500 text-xs font-black uppercase tracking-widest hover:bg-red-500 hover:text-white transition-all disabled:opacity-70 active:scale-95">
-                                Reject Claim
-                            </button>
-                            <button type="button" (click)="submitDecision('Approve')" [disabled]="submittingDecision || claim.overdueInvoices > 0"
-                                class="btn-premium h-12 px-10 text-xs bg-emerald-500 hover:bg-emerald-600 border-none shadow-xl shadow-emerald-500/20 active:scale-95 disabled:opacity-70 disabled:grayscale disabled:cursor-not-allowed">
-                                <span *ngIf="submittingDecision"
-                                    class="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
-                                <span *ngIf="!submittingDecision">Approve & Pay</span>
-                            </button>
-                        </div>
-                    </div>
+                    <p class="text-[9px] font-bold text-red-500/50 uppercase tracking-[0.2em] text-right italic">Actioned: {{ claim.rejectedAt | date:'medium' }}</p>
                 </div>
             </div>
         </div>
     </div>
+
+
 
     <!-- ══════════════════════════════════════════════════════════════
          ROW 2:  Policy Details  |  Bank Details  |  Payment History  (3 equal columns)
@@ -412,13 +333,13 @@
         </div>
 
         <!-- Bank Details -->
-        <div class="premium-card p-0 overflow-hidden shadow-sm flex flex-col h-full">
+        <div class="premium-card p-0 overflow-hidden shadow-sm flex flex-col">
             <div class="p-4 bg-primary/[0.03] border-b border-theme-border/10">
                 <h2 class="text-[11px] font-black text-primary uppercase tracking-[0.3em] flex items-center gap-2">
                     <app-icon name="money"></app-icon> Bank Account
                 </h2>
             </div>
-            <div class="p-5 space-y-5 flex-1 content-center">
+            <div class="p-5 space-y-4">
                 <div class="grid grid-cols-2 gap-4 items-center">
                     <p
                         class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80 text-left">
@@ -674,8 +595,8 @@
                             <div class="space-y-1">
                                 <label
                                     class="text-[9px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-90">Choose
-                                    File</label>
-                                <input type="file" (change)="onFileSelected($event)" accept=".pdf,.png,.jpg,.jpeg"
+                                    File (PDF Only)</label>
+                                <input type="file" (change)="onFileSelected($event)" accept=".pdf"
                                     class="input-premium py-2 text-[9px]" />
                             </div>
                             <div class="flex gap-3 pt-2">
@@ -695,6 +616,129 @@
         </div>
     </div>
 
+    <!-- ══════════════════════════════════════════════════════════════
+         ROW 4:  Claims Officer Review Hub (Locker at Bottom)
+         ══════════════════════════════════════════════════════════════ -->
+    <div *ngIf="role === 'ClaimsOfficer' && (claim.status === 'Submitted' || claim.status === 'UnderReview')" 
+         class="animate-in slide-in-from-bottom-5 duration-700">
+        
+        <div class="premium-card p-0 overflow-hidden border-2 border-primary/20 shadow-2xl shadow-primary/5">
+            <div class="p-4 bg-primary/[0.03] border-b border-primary/10 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+                        <app-icon name="shield"></app-icon>
+                    </div>
+                    <h2 class="text-[10px] font-black text-primary uppercase tracking-[0.3em]">Decision Console</h2>
+                </div>
+                <div class="px-3 py-1 rounded-full bg-primary/10 text-primary text-[8px] font-black uppercase tracking-widest">
+                    Officer Review Mode
+                </div>
+            </div>
+
+            <div class="p-8">
+                <!-- Start Investigation UI -->
+                <div *ngIf="claim.status === 'Submitted'" class="max-w-md mx-auto text-center space-y-6">
+                    <div class="space-y-2">
+                        <h3 class="text-xl font-black text-text-primary dark:text-white uppercase tracking-tight">Begin Investigation</h3>
+                        <p class="text-[10px] font-bold text-text-secondary opacity-70 uppercase tracking-widest px-8">
+                            Lock this claim for review to start the assessment process and verify documents.
+                        </p>
+                    </div>
+                    <button (click)="startReview()" 
+                            class="btn-premium w-full py-4 text-[11px] font-black tracking-[0.3em] flex items-center justify-center gap-3 group">
+                        START INVESTIGATION
+                        <app-icon name="arrow-right" className="w-4 h-4 transition-transform group-hover:translate-x-1"></app-icon>
+                    </button>
+                </div>
+
+                <!-- Active Decision Form -->
+                <div *ngIf="claim.status === 'UnderReview'" class="space-y-8">
+                    <!-- Top section: Amount & Compliance Status -->
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                        <div class="lg:col-span-5 space-y-2">
+                            <label class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary flex justify-between">
+                                Amount to Settle 
+                                <span class="text-primary opacity-60 font-black">Max: ₹{{ claim.claimAmount | number }}</span>
+                            </label>
+                            <div class="relative group">
+                                <input type="number" [(ngModel)]="decisionForm.settledAmount" 
+                                       class="input-premium py-5 px-6 font-black text-2xl tracking-tighter bg-primary/[0.02] border-primary/20 hover:border-primary transition-all pr-16" 
+                                       placeholder="0.00" />
+                                <span class="absolute right-6 top-1/2 -translate-y-1/2 font-black text-primary opacity-30 text-xs tracking-widest">INR</span>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-7 flex">
+                            <!-- Compliance Warning (Active) -->
+                            <div *ngIf="claim.overdueInvoices > 0" class="p-6 rounded-2xl bg-red-500/[0.03] border border-red-500/10 flex gap-5 items-center w-full animate-in fade-in zoom-in duration-500">
+                                <div class="w-12 h-12 shrink-0 rounded-2xl bg-red-500/20 flex items-center justify-center text-red-500 shadow-lg shadow-red-500/10">
+                                    <app-icon name="alert"></app-icon>
+                                </div>
+                                <div>
+                                    <h4 class="text-[10px] font-black text-red-600 uppercase tracking-widest">Compliance Blocked</h4>
+                                    <p class="text-xs font-bold text-text-secondary leading-relaxed mt-1">
+                                        Found {{ claim.overdueInvoices }} overdue invoices. Payment processing is restricted until the customer clears all outstanding premiums.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <!-- Compliance Success (Visual filler for blank space) -->
+                            <div *ngIf="claim.overdueInvoices === 0" class="p-6 rounded-2xl bg-emerald-500/[0.03] border border-emerald-500/10 flex gap-5 items-center w-full animate-in fade-in zoom-in duration-500">
+                                <div class="w-12 h-12 shrink-0 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 shadow-lg shadow-emerald-500/10">
+                                    <app-icon name="shield"></app-icon>
+                                </div>
+                                <div>
+                                    <h4 class="text-[10px] font-black text-emerald-600 uppercase tracking-widest">Policy status</h4>
+                                    <p class="text-xs font-bold text-text-secondary leading-relaxed mt-1">
+                                        All premiums are up-to-date. This policy is in excellent standing and eligible for immediate payout.
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- PDF Validation Warning -->
+                            <div *ngIf="pdfValidation && pdfValidation.isValidationPerformed && !pdfValidation.isMatch" 
+                                 class="p-6 rounded-2xl bg-amber-500/[0.03] border border-amber-500/10 flex gap-5 items-center w-full animate-in fade-in zoom-in duration-500 mt-4">
+                                <div class="w-12 h-12 shrink-0 rounded-2xl bg-amber-500/20 flex items-center justify-center text-amber-500 shadow-lg shadow-amber-500/10">
+                                    <app-icon name="alert"></app-icon>
+                                </div>
+                                <div>
+                                    <h4 class="text-[10px] font-black text-amber-600 uppercase tracking-widest">Verification Mismatch</h4>
+                                    <p class="text-xs font-bold text-text-secondary leading-relaxed mt-1">
+                                        {{ pdfValidation.errorMessage }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom section: Remarks & Action Hub -->
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+                        <div class="lg:col-span-8 space-y-2">
+                            <label class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary">Official Decision Context</label>
+                            <textarea [(ngModel)]="decisionForm.remarks" rows="3" 
+                                      class="input-premium p-5 text-sm leading-relaxed min-h-[100px]" 
+                                      placeholder="Provide a professional justification for this claim decision..."></textarea>
+                        </div>
+
+                        <div class="lg:col-span-4 space-y-4">
+                            <button (click)="submitDecision('Approve')" 
+                                    [disabled]="submittingDecision || claim.overdueInvoices > 0 || (pdfValidation && pdfValidation.isValidationPerformed && !pdfValidation.isMatch)" 
+                                    class="w-full py-5 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white text-[11px] font-black uppercase tracking-[0.3em] transition-all shadow-xl shadow-emerald-500/20 flex items-center justify-center gap-3 active:scale-95 disabled:opacity-50 disabled:grayscale">
+                                <app-icon name="check" className="w-4 h-4"></app-icon>
+                                Approve Payout
+                            </button>
+                            <button (click)="submitDecision('Reject')" 
+                                    [disabled]="submittingDecision" 
+                                    class="w-full py-5 rounded-2xl bg-white dark:bg-slate-900 hover:bg-red-50 text-red-500 text-[11px] font-black uppercase tracking-[0.3em] transition-all border border-red-500/20 flex items-center justify-center gap-3 active:scale-95">
+                                <app-icon name="cross" className="w-3 h-3"></app-icon>
+                                Reject Claim
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </div>
 </div>
 }
+
 

@@ -55,10 +55,16 @@ namespace API.Extensions
             services.AddScoped<IEndorsementService, EndorsementService>();
             services.AddScoped<IDashboardService, DashboardService>();
             services.AddScoped<INotificationService, NotificationService>();
+            services.AddScoped<IEmailService, EmailService>();
 
-            // Background services
             services.AddHostedService<GracePeriodBackgroundService>();
+
             services.AddHostedService<MaturityBackgroundService>();
+
+            // =============================
+            // Document Services
+            // =============================
+            services.AddScoped<IPdfValidationService, PdfValidationService>();
 
             // =============================
             // Automated Services

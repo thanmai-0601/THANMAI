@@ -1,4 +1,4 @@
-﻿using System.Security.Claims;
+using System.Security.Claims;
 using Application.DTOs.Claim;
 using Application.Interfaces.Services;
 using Domain.Enums;
@@ -13,10 +13,12 @@ namespace API.Controllers;
 public class ClaimController : ControllerBase
 {
     private readonly IClaimService _claimService;
+    private readonly IPdfValidationService _pdfValidationService;
 
-    public ClaimController(IClaimService claimService)
+    public ClaimController(IClaimService claimService, IPdfValidationService pdfValidationService)
     {
         _claimService = claimService;
+        _pdfValidationService = pdfValidationService;
     }
 
     // ── Customer endpoints ────────────────────────────────────────────────
@@ -93,15 +95,29 @@ public class ClaimController : ControllerBase
 
     // ── Shared ────────────────────────────────────────────────────────────
 
-    // GET api/claim/{claimId}
     [HttpGet("{claimId:int}")]
-    [AllowAnonymous]
     public async Task<IActionResult> GetClaimDetails(int claimId)
     {
         var userId = User.Identity?.IsAuthenticated == true ? GetCurrentUserId() : 0;
         var role = User.Identity?.IsAuthenticated == true ? GetCurrentUserRole() : "Anonymous";
+
+        // Auto-run validation if officer is opening the claim
+        if (role == "ClaimsOfficer")
+        {
+            await _pdfValidationService.ValidateClaimDateAsync(claimId);
+        }
+
         var result = await _claimService
             .GetClaimDetailsAsync(claimId, userId, role);
+        return Ok(result);
+    }
+
+    // GET api/claim/{claimId}/pdf-validation
+    [HttpGet("{claimId:int}/pdf-validation")]
+    [Authorize(Roles = "Admin,ClaimsOfficer")]
+    public async Task<IActionResult> GetPdfValidation(int claimId)
+    {
+        var result = await _pdfValidationService.ValidateClaimDateAsync(claimId);
         return Ok(result);
     }
 

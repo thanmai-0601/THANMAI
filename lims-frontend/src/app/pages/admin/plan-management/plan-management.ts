@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppIcon } from '../../../shared/components/app-icon/app-icon';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { ApiService } from '../../../core/services/api';
-import { ToastService } from '../../../core/services/toast';
+import { ApiService, ToastService, AuthService } from '../../../core/services';
 import { PlanResponse } from '../../../core/models/policy.model';
 import { LoadingSpinner } from '../../../shared/components/loading-spinner/loading-spinner';
 
@@ -24,7 +23,11 @@ export class PlanManagement implements OnInit {
     return this.plans.filter(p => p.planType === this.selectedType);
   }
 
-  constructor(private api: ApiService, private toast: ToastService) { }
+  constructor(private api: ApiService, private toast: ToastService, private auth: AuthService) { }
+
+  get dashboardRoute(): string {
+    return this.auth.getDashboardRoute();
+  }
 
   ngOnInit(): void {
     this.loadPlans();

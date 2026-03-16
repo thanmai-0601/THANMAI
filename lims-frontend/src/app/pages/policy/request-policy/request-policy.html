@@ -1,17 +1,10 @@
 <div class="max-w-4xl mx-auto pt-8 transition-all duration-500 animate-in fade-in slide-in-from-bottom-8">
-    <div class="flex items-center gap-6 mb-12">
-        <button routerLink="/app/plans"
-            class="h-12 w-12 flex items-center justify-center text-text-secondary hover:text-primary transition-all rounded-2xl bg-white dark:bg-slate-900 border border-theme-border/20 dark:border-slate-800 shadow-sm hover:shadow-md active:scale-90">
-            <app-icon name="arrow-right" className="rotate-180 text-lg"></app-icon>
-        </button>
-        <div>
-            <h1 class="text-4xl font-black text-text-primary dark:text-white tracking-tightest">
-                <app-icon name="shield" className="inline-block mr-2 group-hover:rotate-12 transition-transform"></app-icon>
-                Get <span class="text-gradient">Insurance</span>
-            </h1>
-            <p class="text-sm font-medium text-text-secondary mt-1 opacity-70">Secure your future with our life
-                insurance plans</p>
-        </div>
+    <div class="flex items-center gap-4 mb-8 mt-4">
+        <a routerLink="/app/plans"
+            class="w-10 h-10 flex items-center justify-center rounded-xl bg-theme-card dark:bg-theme-sidebar border border-theme-border/20 hover:border-primary/50 text-text-secondary hover:text-primary transition-all shadow-sm">
+            <app-icon name="arrow-left" className="w-5 h-5"></app-icon>
+        </a>
+        <h1 class="text-3xl font-extrabold text-text-primary dark:text-white tracking-tight">Get Insurance</h1>
     </div>
 
     @if (loading) {
@@ -51,8 +44,12 @@
                 <label
                     class="text-xs font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Total
                     Cover Amount (Sum Assured)</label>
-                <input type="number" [(ngModel)]="form.sumAssured" name="sumAssured" required [min]="plan.minSumAssured"
-                    [max]="plan.maxSumAssured" class="input-premium pl-4 text-xl font-black tracking-tight">
+                <input type="number" [(ngModel)]="form.sumAssured" name="sumAssured" #sumAssured="ngModel" required [min]="plan.minSumAssured"
+                    [max]="plan.maxSumAssured" class="input-premium pl-4 text-xl font-black tracking-tight"
+                    [ngClass]="{'border-red-500/50 bg-red-500/[0.01]': sumAssured.invalid && sumAssured.touched}">
+                <p *ngIf="sumAssured.invalid && sumAssured.touched" class="text-[10px] font-bold text-red-500 uppercase tracking-widest ml-1">
+                    Value must be between {{ plan.minSumAssured | number }} and {{ plan.maxSumAssured | number }}
+                </p>
                 <div class="flex justify-between items-center mt-1 px-1">
                     <span
                         class="text-xs font-bold text-text-secondary opacity-80 uppercase tracking-widest leading-relaxed">Allowed
@@ -65,12 +62,16 @@
                     class="text-xs font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Terms
                     of Payment (Years)</label>
                 <div class="relative group/select">
-                    <select [(ngModel)]="form.tenureYears" name="tenureYears" required
-                        class="input-premium pl-4 appearance-none">
+                     <select [(ngModel)]="form.tenureYears" name="tenureYears" #tenure="ngModel" required
+                        class="input-premium pl-4 appearance-none"
+                        [ngClass]="{'border-red-500/50 bg-red-500/[0.01]': tenure.invalid && tenure.touched}">
                         @for (t of plan.tenureOptions; track t) {
                         <option [ngValue]="t">{{ t }} Years</option>
                         }
                     </select>
+                    <p *ngIf="tenure.invalid && tenure.touched" class="text-[10px] font-bold text-red-500 uppercase tracking-widest ml-1">
+                        Tenure is required
+                    </p>
                     <div
                         class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400 group-hover/select:text-primary transition-colors">
                         <app-icon name="chevron-down" className="text-xs"></app-icon>
@@ -82,26 +83,38 @@
                 <label class="text-xs font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90"> ₹
                     Annual
                     Income</label>
-                <input type="number" [(ngModel)]="form.annualIncome" name="annualIncome" required
-                    [min]="plan.minAnnualIncome" class="input-premium pl-4">
+                 <input type="number" [(ngModel)]="form.annualIncome" name="annualIncome" #annualIncome="ngModel" required
+                    [min]="plan.minAnnualIncome" class="input-premium pl-4"
+                    [ngClass]="{'border-red-500/50 bg-red-500/[0.01]': annualIncome.invalid && annualIncome.touched}">
                 <span class="text-xs font-bold text-text-secondary opacity-80 uppercase tracking-widest mt-1
                 ml-1">Minimum:
                     ₹{{ plan.minAnnualIncome | number }}</span>
+                <p *ngIf="annualIncome.invalid && annualIncome.touched" class="text-[10px] font-bold text-red-500 uppercase tracking-widest ml-1">
+                    Minimum annual income must be ₹{{ plan.minAnnualIncome | number }}
+                </p>
             </div>
 
             <div class="flex flex-col gap-2.5">
                 <label class="text-xs font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Job
                     / Occupation</label>
-                <input type="text" [(ngModel)]="form.occupation" name="occupation" required class="input-premium pl-4"
-                    placeholder="e.g. Systems Engineer">
+                 <input type="text" [(ngModel)]="form.occupation" name="occupation" #occupation="ngModel" required class="input-premium pl-4"
+                    placeholder="e.g. Systems Engineer"
+                    [ngClass]="{'border-red-500/50 bg-red-500/[0.01]': occupation.invalid && occupation.touched}">
+                <p *ngIf="occupation.invalid && occupation.touched" class="text-[10px] font-bold text-red-500 uppercase tracking-widest ml-1">
+                    Occupation is required
+                </p>
             </div>
 
             <div class="flex flex-col gap-2.5 md:col-span-2">
                 <label
                     class="text-xs font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Your
                     Address</label>
-                <input type="text" [(ngModel)]="form.address" name="address" required minlength="10"
-                    class="input-premium pl-4" placeholder="Verified street address">
+                 <input type="text" [(ngModel)]="form.address" name="address" #address="ngModel" required minlength="10"
+                    class="input-premium pl-4" placeholder="Verified street address"
+                    [ngClass]="{'border-red-500/50 bg-red-500/[0.01]': address.invalid && address.touched}">
+                <p *ngIf="address.invalid && address.touched" class="text-[10px] font-bold text-red-500 uppercase tracking-widest ml-1">
+                    Minimum 10 characters required for address
+                </p>
                 <p
                     class="text-xs font-bold text-text-secondary opacity-80 uppercase tracking-widest mt-1 ml-1 leading-relaxed">
                     Please provide your full address
@@ -123,40 +136,52 @@
                             <label
                                 class="text-xs font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Full
                                 Name</label>
-                            <input type="text" [(ngModel)]="form.nominee.fullName" name="nomineeName" required
-                                class="input-premium py-3 px-5 text-sm">
+                             <input type="text" [(ngModel)]="form.nominee.fullName" name="nomineeName" #nomineeName="ngModel" required
+                                class="input-premium py-3 px-5 text-sm"
+                                [ngClass]="{'border-red-500/50 bg-red-500/[0.01]': nomineeName.invalid && nomineeName.touched}">
+                            <p *ngIf="nomineeName.invalid && nomineeName.touched" class="text-[10px] font-bold text-red-500 uppercase tracking-widest ml-1">Required</p>
                         </div>
                         <div class="flex flex-col gap-2.5">
                             <label
                                 class="text-xs font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Relationship</label>
-                            <input type="text" [(ngModel)]="form.nominee.relationship" name="nomineeRel" required
-                                class="input-premium py-3 px-5 text-sm" placeholder="e.g. Sister">
+                             <input type="text" [(ngModel)]="form.nominee.relationship" name="nomineeRel" #nomineeRel="ngModel" required
+                                class="input-premium py-3 px-5 text-sm" placeholder="e.g. Sister"
+                                [ngClass]="{'border-red-500/50 bg-red-500/[0.01]': nomineeRel.invalid && nomineeRel.touched}">
+                            <p *ngIf="nomineeRel.invalid && nomineeRel.touched" class="text-[10px] font-bold text-red-500 uppercase tracking-widest ml-1">Required</p>
                         </div>
                         <div class="flex flex-col gap-2.5">
                             <label
                                 class="text-xs font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Age</label>
-                            <input type="number" [(ngModel)]="form.nominee.age" name="nomineeAge" required
-                                class="input-premium py-3 px-5 text-sm">
+                             <input type="number" [(ngModel)]="form.nominee.age" name="nomineeAge" #nomineeAge="ngModel" required
+                                class="input-premium py-3 px-5 text-sm" [min]="1" [max]="120"
+                                [ngClass]="{'border-red-500/50 bg-red-500/[0.01]': nomineeAge.invalid && nomineeAge.touched}">
+                             <p *ngIf="nomineeAge.invalid && nomineeAge.touched" class="text-[10px] font-bold text-red-500 uppercase tracking-widest ml-1">Age 1-120</p>
                         </div>
                         <div class="flex flex-col gap-2.5">
                             <label
                                 class="text-xs font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Contact Number</label>
-                            <input type="tel" [(ngModel)]="form.nominee.contactNumber" name="nomineeContact" required
+                             <input type="tel" [(ngModel)]="form.nominee.contactNumber" name="nomineeContact" #nomineeContact="ngModel" required
                                 pattern="[0-9]{10}" maxlength="10" minlength="10"
-                                class="input-premium py-3 px-5 text-sm">
+                                class="input-premium py-3 px-5 text-sm"
+                                [ngClass]="{'border-red-500/50 bg-red-500/[0.01]': nomineeContact.invalid && nomineeContact.touched}">
+                            <p *ngIf="nomineeContact.invalid && nomineeContact.touched" class="text-[10px] font-bold text-red-500 uppercase tracking-widest ml-1">10 Digits required</p>
                         </div>
                         <div class="flex flex-col gap-2.5 md:col-span-2">
                             <label
                                 class="text-xs font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Nominee AADHAR Number (12 digits)</label>
-                            <input type="text" [(ngModel)]="form.nominee.idNumber" name="nomineeIdNum" required
+                             <input type="text" [(ngModel)]="form.nominee.idNumber" name="nomineeIdNum" #nomineeIdNum="ngModel" required
                                 pattern="[0-9]{12}" maxlength="12" minlength="12"
-                                class="input-premium py-3 px-5 text-sm" placeholder="12-digit numeric Aadhar">
+                                class="input-premium py-3 px-5 text-sm" placeholder="12-digit numeric Aadhar"
+                                [ngClass]="{'border-red-500/50 bg-red-500/[0.01]': nomineeIdNum.invalid && nomineeIdNum.touched}">
+                            <p *ngIf="nomineeIdNum.invalid && nomineeIdNum.touched" class="text-[10px] font-bold text-red-500 uppercase tracking-widest ml-1">Exactly 12 digits required</p>
                         </div>
                         <div class="flex flex-col gap-2.5 md:col-span-2">
                             <label
                                 class="text-xs font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Nominee Email</label>
-                            <input type="email" [(ngModel)]="form.nominee.email" name="nomineeEmail" required
-                                class="input-premium py-3 px-5 text-sm" placeholder="For settlement confirmation">
+                             <input type="email" [(ngModel)]="form.nominee.email" name="nomineeEmail" #nomineeEmail="ngModel" required email
+                                class="input-premium py-3 px-5 text-sm" placeholder="For settlement confirmation"
+                                [ngClass]="{'border-red-500/50 bg-red-500/[0.01]': nomineeEmail.invalid && nomineeEmail.touched}">
+                            <p *ngIf="nomineeEmail.invalid && nomineeEmail.touched" class="text-[10px] font-bold text-red-500 uppercase tracking-widest ml-1">Valid email required</p>
                         </div>
                         }
                     </div>
@@ -179,7 +204,7 @@
                             }}</label>
                         <div class="relative overflow-hidden">
                             <input type="file" (change)="onFileSelected($event, type)" [id]="'file_'+type"
-                                class="hidden" accept=".pdf,.jpg,.jpeg,.png">
+                                class="hidden" accept=".pdf">
                             @if (selectedDocs[type]) {
                             <div
                                 class="flex flex-col items-center justify-center p-6 border-2 border-solid border-emerald-400/30 rounded-2xl bg-emerald-50/50 dark:bg-emerald-900/10 transition-all">

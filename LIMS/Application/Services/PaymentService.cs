@@ -1,4 +1,4 @@
-﻿using Application.DTOs.Payment;
+using Application.DTOs.Payment;
 using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
 using Domain.Entities;
@@ -12,18 +12,23 @@ public class PaymentService : IPaymentService
     private readonly IInvoiceRepository _invoiceRepo;
     private readonly IPolicyRepository _policyRepo;
     private readonly ICommissionRepository _commissionRepo;
+    private readonly IEmailService _emailService;
+
 
     public PaymentService(
         IPaymentRepository paymentRepo,
         IInvoiceRepository invoiceRepo,
         IPolicyRepository policyRepo,
-        ICommissionRepository commissionRepo)
+        ICommissionRepository commissionRepo,
+        IEmailService emailService)
     {
         _paymentRepo = paymentRepo;
         _invoiceRepo = invoiceRepo;
         _policyRepo = policyRepo;
         _commissionRepo = commissionRepo;
+        _emailService = emailService;
     }
+
 
     public async Task<PaymentResponseDto> MakePaymentAsync(
         int customerId, MakePaymentDto dto)
@@ -96,7 +101,22 @@ public class PaymentService : IPaymentService
             await _commissionRepo.UpdateAsync(commission);
         }
 
+        // Send Email Receipt to Customer
+        if (invoice.Policy?.Customer != null)
+        {
+            await _emailService.SendPremiumPaymentEmail(
+                invoice.Policy.Customer.Email,
+                invoice.Policy.Customer.FullName,
+                invoice.Policy.PolicyNumber,
+                payment.AmountPaid,
+                payment.TransactionReference,
+                payment.PaymentDate,
+                payment.PaymentMethod.ToString()
+            );
+        }
+
         return new PaymentResponseDto
+
         {
             PaymentId = payment.Id,
             AmountPaid = payment.AmountPaid,

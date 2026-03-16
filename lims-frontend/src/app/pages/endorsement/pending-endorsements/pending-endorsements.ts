@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { ApiService } from '../../../core/services/api';
+import { ApiService, AuthService } from '../../../core/services';
 import { EndorsementResponse } from '../../../core/models/endorsement.model';
 import { LoadingSpinner } from '../../../shared/components/loading-spinner/loading-spinner';
 import { StatusBadge } from '../../../shared/components/status-badge/status-badge';
+import { AppIcon } from '../../../shared/components/app-icon/app-icon';
 
 @Component({
   selector: 'app-pending-endorsements',
   standalone: true,
-  imports: [CommonModule, RouterLink, LoadingSpinner, StatusBadge],
+  imports: [CommonModule, RouterLink, LoadingSpinner, StatusBadge, AppIcon],
   templateUrl: './pending-endorsements.html',
   styleUrl: './pending-endorsements.css'
 })
@@ -17,7 +18,11 @@ export class PendingEndorsements implements OnInit {
   endorsements: EndorsementResponse[] = [];
   loading = true;
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService, private auth: AuthService) { }
+
+  get dashboardRoute(): string {
+    return this.auth.getDashboardRoute();
+  }
 
   ngOnInit(): void {
     this.api.get<EndorsementResponse[]>('endorsement').subscribe({

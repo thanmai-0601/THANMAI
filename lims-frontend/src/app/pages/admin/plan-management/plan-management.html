@@ -1,14 +1,25 @@
-<div
-    class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-10 transition-all duration-500 animate-in fade-in slide-in-from-bottom-4">
-    <div>
-        <h1 class="text-4xl font-black text-text-primary dark:text-white tracking-tightest">Insurance <span
-                class="text-gradient">Plans</span></h1>
-        <p class="text-sm font-medium text-text-secondary mt-1 opacity-70">Manage and view all life insurance plans</p>
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10 transition-all duration-500 animate-in fade-in slide-in-from-bottom-4">
+        <div>
+            <div class="flex items-center gap-3 mb-2 opacity-90">
+                <span class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary">Admin Dashboard</span>
+                <div class="h-px w-8 bg-text-secondary opacity-70"></div>
+            </div>
+            <div class="flex items-center gap-4">
+                <a [routerLink]="dashboardRoute" 
+                    class="w-10 h-10 flex items-center justify-center rounded-xl bg-theme-bg dark:bg-slate-800 border border-theme-border/20 hover:border-primary/50 text-text-secondary hover:text-primary transition-all shadow-sm">
+                    <app-icon name="arrow-left" className="w-5 h-5"></app-icon>
+                </a>
+                <h1 class="text-4xl font-black text-text-primary dark:text-white tracking-tightest">
+                    Plan <span class="text-gradient">Management</span>
+                </h1>
+            </div>
+            <p class="text-sm font-medium text-text-secondary mt-1 opacity-70 ml-14">Manage and view all life insurance plans</p>
+        </div>
+        <a routerLink="/app/admin/plans/create" class="btn-premium flex items-center gap-2 px-6 h-12 text-[10px] font-black uppercase tracking-widest shadow-xl shadow-primary/20">
+            <app-icon name="plus"></app-icon>
+            Create New Plan
+        </a>
     </div>
-    <a routerLink="/app/admin/plans/create" class="btn-premium flex items-center gap-2">
-        <app-icon name="plus"></app-icon>
-        Create New Plan</a>
-</div>
 
 <app-loading-spinner *ngIf="loading"></app-loading-spinner>
 <div *ngIf="!loading" class="animate-in fade-in slide-in-from-bottom-6 duration-700">

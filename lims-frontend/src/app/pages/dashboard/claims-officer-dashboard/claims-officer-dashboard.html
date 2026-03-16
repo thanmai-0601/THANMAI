@@ -5,10 +5,16 @@
     <!-- Header Section -->
     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-10">
         <div>
-            <h1 class="text-3xl font-black text-text-primary dark:text-white tracking-tighter uppercase">Claims
-                <span class="text-gradient">Dashboard</span>
+            <div class="flex items-center gap-3 mb-2">
+                <span
+                    class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-500 text-[9px] font-black uppercase tracking-[0.2em]">Claims
+                    Portal</span>
+                <span class="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            </div>
+            <h1 class="text-4xl font-black text-text-primary dark:text-white tracking-tightest uppercase">
+                Claims <span class="text-gradient">Dashboard</span>
             </h1>
-            <p class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80 mt-1 italic">
+            <p class="text-[10px] font-bold text-text-secondary mt-2 opacity-80 uppercase tracking-[0.1em]">
                 Review and manage insurance claims</p>
         </div>
         <a routerLink="/app/officer-claims"
@@ -19,7 +25,7 @@
 
     <!-- Analytics Matrix -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-        <app-stat-card label="Pending Claims" [value]="data.totalAssignedClaims" icon="claims" color="#3B82F6" />
+        <app-stat-card label="Total Claims" [value]="data.totalAssignedClaims" icon="claims" color="#3B82F6" />
         <app-stat-card label="Claims Under Review" [value]="data.underReviewClaims" icon="clock" color="#F59E0B" />
         <app-stat-card label="Approved Claims" [value]="data.settledClaims" icon="check" color="#10B981" />
         <app-stat-card label="Rejected Claims" [value]="data.rejectedClaims" icon="cross" color="#EF4444" />

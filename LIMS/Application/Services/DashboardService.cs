@@ -103,10 +103,10 @@ public class DashboardService : IDashboardService
             TotalClaims = claimStats.Sum(c => c.Count),
             SubmittedClaims = claimStats
                 .FirstOrDefault(c => c.Status == ClaimStatus.Submitted)?.Count ?? 0,
-            UnderReviewClaims = claimStats
-                .FirstOrDefault(c => c.Status == ClaimStatus.UnderReview)?.Count ?? 0,
-            SettledClaims = claimStats
-                .FirstOrDefault(c => c.Status == ClaimStatus.Settled)?.Count ?? 0,
+            UnderReviewClaims = (claimStats.FirstOrDefault(c => c.Status == ClaimStatus.Submitted)?.Count ?? 0) +
+                                (claimStats.FirstOrDefault(c => c.Status == ClaimStatus.UnderReview)?.Count ?? 0),
+            SettledClaims = (claimStats.FirstOrDefault(c => c.Status == ClaimStatus.Approved)?.Count ?? 0) +
+                            (claimStats.FirstOrDefault(c => c.Status == ClaimStatus.Settled)?.Count ?? 0),
             RejectedClaims = claimStats
                 .FirstOrDefault(c => c.Status == ClaimStatus.Rejected)?.Count ?? 0,
             TotalSettledAmount = totalSettledAmount,
@@ -310,12 +310,18 @@ public class DashboardService : IDashboardService
         return new ClaimsOfficerDashboardDto
         {
             TotalAssignedClaims = claimStats.Sum(c => c.Count),
+            
             SubmittedClaims = claimStats
                 .FirstOrDefault(c => c.Status == ClaimStatus.Submitted)?.Count ?? 0,
-            UnderReviewClaims = claimStats
-                .FirstOrDefault(c => c.Status == ClaimStatus.UnderReview)?.Count ?? 0,
-            SettledClaims = claimStats
-                .FirstOrDefault(c => c.Status == ClaimStatus.Settled)?.Count ?? 0,
+
+            // Combine Submitted + UnderReview as "Under Review" for the dashboard
+            UnderReviewClaims = (claimStats.FirstOrDefault(c => c.Status == ClaimStatus.Submitted)?.Count ?? 0) +
+                                (claimStats.FirstOrDefault(c => c.Status == ClaimStatus.UnderReview)?.Count ?? 0),
+            
+            // Combine Approved + Settled as "Approved Claims"
+            SettledClaims = (claimStats.FirstOrDefault(c => c.Status == ClaimStatus.Approved)?.Count ?? 0) +
+                            (claimStats.FirstOrDefault(c => c.Status == ClaimStatus.Settled)?.Count ?? 0),
+            
             RejectedClaims = claimStats
                 .FirstOrDefault(c => c.Status == ClaimStatus.Rejected)?.Count ?? 0,
 

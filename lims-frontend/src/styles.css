@@ -35,6 +35,14 @@
   --color-theme-border: #334155;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+[id] {
+  scroll-margin-top: 5.5rem;
+}
+
 @layer base {
   body {
     @apply bg-theme-bg text-text-primary font-sans antialiased transition-colors duration-300;

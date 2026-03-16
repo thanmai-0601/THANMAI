@@ -1,5 +1,5 @@
 <div class="flex items-center gap-3 mb-8">
-    <button routerLink=".."
+    <button (click)="goBack()"
         class="p-2 text-text-secondary hover:text-text-secondary dark:hover:text-slate-200 transition-colors rounded-lg hover:bg-theme-bg dark:hover:bg-slate-800">
         <app-icon name="arrow-right" className="rotate-180"></app-icon>
     </button>
@@ -59,11 +59,18 @@
                             <app-status-badge [status]="s.status" />
                         </td>
                         <td class="px-6 py-4 text-center">
-                            <a *ngIf="s.status === 'Pending' || s.status === 'Overdue' || s.status === 'Pending'"
+                            <a *ngIf="s.status !== 'Paid' && s.invoiceId === nextInvoiceId" 
                                 [routerLink]="['/app/make-payment', s.invoiceId]"
                                 class="inline-flex items-center px-4 py-2 bg-primary hover:bg-primary-hover text-white font-bold rounded-lg text-xs transition-colors shadow-sm focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Pay
                                 Now</a>
-                            <span *ngIf="s.status === 'Paid'" class="text-xs text-text-secondary font-medium">Paid on {{
+                            
+                            <div *ngIf="s.status !== 'Paid' && s.invoiceId !== nextInvoiceId" 
+                                class="flex items-center justify-center gap-2 text-[10px] font-black uppercase tracking-widest text-text-secondary opacity-40">
+                                <app-icon name="lock" className="text-xs"></app-icon>
+                                Locked
+                            </div>
+
+                            <span *ngIf="s.status === 'Paid'" class="text-xs text-text-secondary font-medium italic">Paid on {{
                                 s.paidOn | date:'shortDate' }}</span>
                         </td>
                     </tr>

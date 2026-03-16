@@ -3,9 +3,11 @@ import { AppIcon } from '../app-icon/app-icon';
 
 @Component({
   selector: 'app-stat-card',
+  standalone: true,
   imports: [AppIcon],
   templateUrl: './stat-card.html',
-  styleUrl: './stat-card.css'
+  styleUrl: './stat-card.css',
+  host: { 'class': 'h-full block' }
 })
 export class StatCard {
   @Input() label = '';

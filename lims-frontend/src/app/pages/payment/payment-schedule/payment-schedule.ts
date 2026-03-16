@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppIcon } from '../../../shared/components/app-icon/app-icon';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ApiService } from '../../../core/services/api';
 import { ToastService } from '../../../core/services/toast';
@@ -25,8 +25,13 @@ export class PaymentSchedule implements OnInit {
   constructor(
     private api: ApiService,
     private route: ActivatedRoute,
-    private toast: ToastService
+    private toast: ToastService,
+    private location: Location
   ) { }
+
+  goBack(): void {
+    this.location.back();
+  }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('policyId');
@@ -71,6 +76,10 @@ export class PaymentSchedule implements OnInit {
         this.generating = false;
       }
     });
+  }
+
+  get nextInvoiceId(): number | undefined {
+    return this.invoices.find(i => i.status !== 'Paid')?.invoiceId;
   }
 
   trackByInvoiceId(index: number, invoice: InvoiceResponse): number {

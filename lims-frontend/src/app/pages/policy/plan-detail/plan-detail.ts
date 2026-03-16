@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppIcon } from '../../../shared/components/app-icon/app-icon';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ApiService } from '../../../core/services/api';
 import { AuthService } from '../../../core/services/auth';
@@ -24,8 +24,13 @@ export class PlanDetail implements OnInit {
   constructor(
     private api: ApiService,
     private route: ActivatedRoute,
-    private auth: AuthService
+    private auth: AuthService,
+    private location: Location
   ) { }
+
+  goBack(): void {
+    this.location.back();
+  }
 
   ngOnInit(): void {
     this.isCustomer = this.auth.getUserRole() === 'Customer';

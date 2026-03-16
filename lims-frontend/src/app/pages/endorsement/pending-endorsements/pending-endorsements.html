@@ -1,4 +1,22 @@
-<h1 class="text-3xl font-extrabold text-text-primary dark:text-white tracking-tight mb-8">Pending Endorsements</h1>
+<div class="max-w-7xl mx-auto pt-8 transition-all duration-500 animate-in fade-in slide-in-from-bottom-8">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12">
+        <div>
+            <div class="flex items-center gap-3 mb-2 opacity-90">
+                <span class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary">Agent Dashboard</span>
+                <div class="h-px w-8 bg-text-secondary opacity-70"></div>
+            </div>
+            <div class="flex items-center gap-4">
+                <a [routerLink]="dashboardRoute" 
+                    class="w-10 h-10 flex items-center justify-center rounded-xl bg-theme-bg dark:bg-slate-800 border border-theme-border/20 hover:border-primary/50 text-text-secondary hover:text-primary transition-all shadow-sm">
+                    <app-icon name="arrow-left" className="w-5 h-5"></app-icon>
+                </a>
+                <h1 class="text-4xl md:text-5xl font-black text-text-primary dark:text-white tracking-tightest">
+                    Pending <span class="text-gradient">Endorsements</span>
+                </h1>
+            </div>
+            <p class="text-xs font-bold text-text-secondary uppercase tracking-[0.2em] opacity-80 mt-2 ml-14">Action required on policy change requests</p>
+        </div>
+    </div>
 
 <app-loading-spinner *ngIf="loading"></app-loading-spinner>
 <div *ngIf="!loading">
@@ -42,4 +60,5 @@
             </table>
         </div>
     </div>
+</div>
 </div>

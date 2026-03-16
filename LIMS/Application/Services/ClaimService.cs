@@ -15,6 +15,8 @@ public class ClaimService : IClaimService
     private readonly INotificationService _notificationService;
     private readonly IPremiumCalculationService _premiumCalc;
     private readonly IUserRepository _userRepo;
+    private readonly IEmailService _emailService;
+
 
     public ClaimService(
         IClaimRepository claimRepo,
@@ -23,7 +25,9 @@ public class ClaimService : IClaimService
         IClaimsOfficerAssignmentService officerAssignment,
         INotificationService notificationService,
         IPremiumCalculationService premiumCalc,
-        IUserRepository userRepo)
+        IUserRepository userRepo,
+        IEmailService emailService)
+
     {
         _claimRepo = claimRepo;
         _policyRepo = policyRepo;
@@ -32,7 +36,9 @@ public class ClaimService : IClaimService
         _notificationService = notificationService;
         _premiumCalc = premiumCalc;
         _userRepo = userRepo;
+        _emailService = emailService;
     }
+
 
     // ── Customer: Raise a Claim ────────────────────────────────────────────
 
@@ -102,7 +108,7 @@ public class ClaimService : IClaimService
                 throw new InvalidOperationException("Date of Death and Cause of Death are required for a Death claim.");
 
             claimAmount = policy.SumAssured;
-            claimReason = $"Date of Death: {dto.DateOfDeath.Value:yyyy-MM-dd}. Cause: {dto.CauseOfDeath}";
+            claimReason = $"Date of Death: {dto.DateOfDeath!.Value:yyyy-MM-dd}. Cause: {dto.CauseOfDeath}";
         }
 
         // Auto-assign a claims officer
@@ -306,6 +312,29 @@ public class ClaimService : IClaimService
             await _policyRepo.UpdateAsync(policy);
 
             await _notificationService.CreateNotificationAsync(claim.CustomerId, $"Your claim '{claim.ClaimNumber}' has been approved and settled for ₹{claim.SettledAmount:N0}. Transfer Ref: {claim.TransferReference}");
+
+            // Send Email to Nominee for Death claims
+            if (claim.Status == ClaimStatus.Settled && claim.Type == ClaimType.Death)
+            {
+                var nominee = policy.Nominees.FirstOrDefault(); // Simplified: assuming one nominee for notification
+                if (nominee != null && !string.IsNullOrEmpty(nominee.Email))
+                {
+                    await _emailService.SendNomineePaymentEmail(
+                        nominee.Email,
+                        nominee.FullName,
+                        policy.PolicyNumber,
+                        claim.SettledAmount ?? 0,
+                        claim.TransferReference,
+                        claim.SettledAt ?? DateTime.UtcNow,
+                        claim.BankAccountName ?? "Registered Bank",
+                        nominee.FullName,
+                        claim.BankAccountNumber ?? "XXXX",
+                        claim.BankIfscCode ?? ""
+                    );
+                }
+            }
+
+
 
             // Special Feature: If ALL customer policies are now closed (Settled, Rejected, or Cancelled), deactivate the account.
             var allCustomerPolicies = await _policyRepo.GetByCustomerIdAsync(claim.CustomerId);

@@ -2,16 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { AppIcon } from '../../../shared/components/app-icon/app-icon';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { ApiService } from '../../../core/services/api';
+import { ApiService, AuthService, ToastService } from '../../../core/services';
 import { PaymentResponse } from '../../../core/models/payment.model';
 import { LoadingSpinner } from '../../../shared/components/loading-spinner/loading-spinner';
 import { StatusBadge } from '../../../shared/components/status-badge/status-badge';
-import { ToastService } from '../../../core/services/toast';
 
 @Component({
   selector: 'app-my-payments',
   standalone: true,
-  imports: [CommonModule, LoadingSpinner, StatusBadge, AppIcon],
+  imports: [CommonModule, RouterLink, LoadingSpinner, StatusBadge, AppIcon],
   templateUrl: './my-payments.html',
   styleUrl: './my-payments.css'
 })
@@ -21,8 +20,13 @@ export class MyPayments implements OnInit {
 
   constructor(
     private api: ApiService,
-    private toast: ToastService
+    private toast: ToastService,
+    private auth: AuthService
   ) { }
+
+  get dashboardRoute(): string {
+    return this.auth.getDashboardRoute();
+  }
 
   ngOnInit(): void {
     this.api.get<PaymentResponse[]>('payment/my').subscribe({

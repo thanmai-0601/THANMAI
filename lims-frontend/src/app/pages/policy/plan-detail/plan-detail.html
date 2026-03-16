@@ -3,10 +3,12 @@
 }
 @else if (plan) {
 <div class="max-w-4xl mx-auto">
-    <div class="mb-6">
-        <a routerLink="/app/plans" class="text-sm font-semibold text-primary dark:text-primary hover:underline flex items-center gap-1">
-            <app-icon name="arrow-right" className="rotate-180"></app-icon> Back to Plans
-        </a>
+    <div class="flex items-center gap-4 mb-8 mt-4">
+        <button (click)="goBack()"
+            class="w-10 h-10 flex items-center justify-center rounded-xl bg-theme-card dark:bg-theme-sidebar border border-theme-border/20 hover:border-primary/50 text-text-secondary hover:text-primary transition-all shadow-sm">
+            <app-icon name="arrow-left" className="w-5 h-5"></app-icon>
+        </button>
+        <h1 class="text-3xl font-extrabold text-text-primary dark:text-white tracking-tight">Plan Details: {{ plan.planName }}</h1>
     </div>
 
     <div

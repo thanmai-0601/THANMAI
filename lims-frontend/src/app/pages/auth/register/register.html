@@ -99,7 +99,7 @@
                 <input type="text" formControlName="bankIfscCode" placeholder="IFSC CODE (11 CHARS)" maxlength="11" class="input-premium pl-4 py-3.5 font-bold text-xs tracking-widest uppercase" (input)="registerForm.patchValue({bankIfscCode: $any($event.target).value.toUpperCase()})">
               </div>
               <span *ngIf="registerForm.get('bankIfscCode')?.touched && registerForm.get('bankIfscCode')?.invalid" class="text-[10px] font-black uppercase text-red-500 mt-1 ml-1 tracking-wider italic">
-                invalid IFSC format (must be 11 chars)
+                invalid IFSC format
               </span>
             </div>
 

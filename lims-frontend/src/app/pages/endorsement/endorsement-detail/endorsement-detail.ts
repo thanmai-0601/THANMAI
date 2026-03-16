@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppIcon } from '../../../shared/components/app-icon/app-icon';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { ActivatedRoute, RouterLink, Router } from '@angular/router';
 import { ApiService } from '../../../core/services/api';
 import { AuthService } from '../../../core/services/auth';
@@ -31,8 +31,17 @@ export class EndorsementDetail implements OnInit {
     private route: ActivatedRoute,
     private auth: AuthService,
     private toast: ToastService,
-    private router: Router
+    private router: Router,
+    private location: Location
   ) { }
+
+  goBack(): void {
+    this.location.back();
+  }
+
+  get dashboardRoute(): string {
+    return this.auth.getDashboardRoute();
+  }
 
   ngOnInit(): void {
     this.role = this.auth.getUserRole() || '';

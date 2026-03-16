@@ -13,13 +13,25 @@ public class AdminControllerTests
 {
     private readonly Mock<IAuthService> _authServiceMock;
     private readonly Mock<IPlanService> _planServiceMock;
+    private readonly Mock<INotificationService> _notificationServiceMock;
+    private readonly Mock<IPolicyService> _policyServiceMock;
+    private readonly Mock<IClaimService> _claimServiceMock;
     private readonly AdminController _controller;
 
     public AdminControllerTests()
     {
         _authServiceMock = new Mock<IAuthService>();
         _planServiceMock = new Mock<IPlanService>();
-        _controller = new AdminController(_authServiceMock.Object, _planServiceMock.Object);
+        _notificationServiceMock = new Mock<INotificationService>();
+        _policyServiceMock = new Mock<IPolicyService>();
+        _claimServiceMock = new Mock<IClaimService>();
+
+        _controller = new AdminController(
+            _authServiceMock.Object, 
+            _planServiceMock.Object,
+            _notificationServiceMock.Object,
+            _policyServiceMock.Object,
+            _claimServiceMock.Object);
     }
 
     [Fact]

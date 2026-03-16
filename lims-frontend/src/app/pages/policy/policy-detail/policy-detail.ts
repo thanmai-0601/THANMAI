@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppIcon } from '../../../shared/components/app-icon/app-icon';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ApiService } from '../../../core/services/api';
@@ -33,8 +33,17 @@ export class PolicyDetail implements OnInit {
     private api: ApiService,
     private route: ActivatedRoute,
     private auth: AuthService,
-    private toast: ToastService
+    private toast: ToastService,
+    private location: Location
   ) { }
+
+  goBack(): void {
+    this.location.back();
+  }
+
+  get dashboardRoute(): string {
+    return this.auth.getDashboardRoute();
+  }
 
   ngOnInit(): void {
     this.role = this.auth.getUserRole() || '';
@@ -127,6 +136,12 @@ export class PolicyDetail implements OnInit {
     if (file) {
       if (file.size > 5 * 1024 * 1024) {
         this.toast.show('File is too large. Max size is 5MB.', 'error');
+        event.target.value = '';
+        return;
+      }
+
+      if (!file.name.toLowerCase().endsWith('.pdf')) {
+        this.toast.show('Only PDF files are allowed for upload.', 'error');
         event.target.value = '';
         return;
       }

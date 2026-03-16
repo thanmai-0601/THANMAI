@@ -13,6 +13,7 @@ public class EndorsementServiceTests
     private readonly Mock<IEndorsementRepository> _endorsementRepoMock;
     private readonly Mock<IPolicyRepository> _policyRepoMock;
     private readonly Mock<INomineeRepository> _nomineeRepoMock;
+    private readonly Mock<IClaimRepository> _claimRepoMock;
     private readonly EndorsementService _endorsementService;
 
     public EndorsementServiceTests()
@@ -20,11 +21,13 @@ public class EndorsementServiceTests
         _endorsementRepoMock = new Mock<IEndorsementRepository>();
         _policyRepoMock = new Mock<IPolicyRepository>();
         _nomineeRepoMock = new Mock<INomineeRepository>();
+        _claimRepoMock = new Mock<IClaimRepository>();
 
         _endorsementService = new EndorsementService(
             _endorsementRepoMock.Object,
             _policyRepoMock.Object,
-            _nomineeRepoMock.Object);
+            _nomineeRepoMock.Object,
+            _claimRepoMock.Object);
     }
 
     [Fact]

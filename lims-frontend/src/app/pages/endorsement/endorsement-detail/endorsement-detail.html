@@ -1,13 +1,11 @@
 <app-loading-spinner *ngIf="loading"></app-loading-spinner>
 <div class="max-w-4xl mx-auto flex flex-col gap-6" *ngIf="!loading && end">
-    <div class="flex items-center gap-3 justify-between flex-wrap">
-        <div class="flex items-center gap-3">
-            <button routerLink=".."
-                class="p-2 text-text-secondary hover:text-text-secondary dark:hover:text-slate-200 transition-colors rounded-lg hover:bg-theme-bg dark:hover:bg-slate-800">
-                <app-icon name="arrow-right" className="rotate-180"></app-icon>
-            </button>
-            <h1 class="text-2xl font-extrabold text-text-primary dark:text-white tracking-tight">Review Request</h1>
-        </div>
+    <div class="flex items-center gap-4 mb-8 mt-4">
+        <button (click)="goBack()"
+            class="w-10 h-10 flex items-center justify-center rounded-xl bg-theme-card dark:bg-theme-sidebar border border-theme-border/20 hover:border-primary/50 text-text-secondary hover:text-primary transition-all shadow-sm">
+            <app-icon name="arrow-left" className="w-5 h-5"></app-icon>
+        </button>
+        <h1 class="text-3xl font-extrabold text-text-primary dark:text-white tracking-tight flex-1">Review Request</h1>
         <app-status-badge [status]="end.status"></app-status-badge>
     </div>
 

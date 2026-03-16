@@ -18,7 +18,9 @@ public class ClaimServiceTests
     private readonly Mock<INotificationService> _notificationMock;
     private readonly Mock<IPremiumCalculationService> _premiumCalcMock;
     private readonly Mock<IUserRepository> _userRepoMock;
+    private readonly Mock<IEmailService> _emailServiceMock;
     private readonly ClaimService _claimService;
+
 
     public ClaimServiceTests()
     {
@@ -29,6 +31,8 @@ public class ClaimServiceTests
         _notificationMock = new Mock<INotificationService>();
         _premiumCalcMock = new Mock<IPremiumCalculationService>();
         _userRepoMock = new Mock<IUserRepository>();
+        _emailServiceMock = new Mock<IEmailService>();
+
 
         _claimService = new ClaimService(
             _claimRepoMock.Object,
@@ -37,7 +41,9 @@ public class ClaimServiceTests
             _assignmentMock.Object,
             _notificationMock.Object,
             _premiumCalcMock.Object,
-            _userRepoMock.Object);
+            _userRepoMock.Object,
+            _emailServiceMock.Object);
+
     }
 
     [Fact]

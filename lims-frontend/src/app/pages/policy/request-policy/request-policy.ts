@@ -127,6 +127,11 @@ export class RequestPolicy implements OnInit, OnDestroy {
   onFileSelected(event: any, type: string) {
     const file = event.target.files[0];
     if (file) {
+      if (!file.name.toLowerCase().endsWith('.pdf')) {
+        this.toast.show('Only PDF files are allowed for submission.', 'error');
+        event.target.value = '';
+        return;
+      }
       this.selectedDocs[type] = file;
     }
   }

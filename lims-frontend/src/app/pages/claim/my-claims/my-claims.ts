@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppIcon } from '../../../shared/components/app-icon/app-icon';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { ApiService } from '../../../core/services/api';
+import { ApiService, AuthService } from '../../../core/services';
 import { ClaimResponse } from '../../../core/models/claim.model';
 import { LoadingSpinner } from '../../../shared/components/loading-spinner/loading-spinner';
 import { StatusBadge } from '../../../shared/components/status-badge/status-badge';
@@ -18,7 +18,11 @@ export class MyClaims implements OnInit {
   claims: ClaimResponse[] = [];
   loading = true;
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService, private auth: AuthService) { }
+
+  get dashboardRoute(): string {
+    return this.auth.getDashboardRoute();
+  }
 
   ngOnInit(): void {
     this.api.get<ClaimResponse[]>('claim').subscribe({

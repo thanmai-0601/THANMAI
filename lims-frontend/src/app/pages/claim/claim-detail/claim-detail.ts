@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppIcon } from '../../../shared/components/app-icon/app-icon';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink, Router } from '@angular/router';
 import { ApiService } from '../../../core/services/api';
@@ -33,13 +33,25 @@ export class ClaimDetail implements OnInit {
   submittingDecision = false;
   startingReview = false;
 
+  pdfValidation: any = null;
+  loadingValidation = false;
+
   constructor(
     private api: ApiService,
     private route: ActivatedRoute,
     private auth: AuthService,
     private toast: ToastService,
-    private router: Router
+    private router: Router,
+    private location: Location
   ) { }
+
+  goBack(): void {
+    this.location.back();
+  }
+
+  get dashboardRoute(): string {
+    return this.auth.getDashboardRoute();
+  }
 
   ngOnInit(): void {
     this.role = this.auth.getUserRole() || '';
@@ -65,9 +77,25 @@ export class ClaimDetail implements OnInit {
         if (this.role === 'ClaimsOfficer' && res.claimAmount) {
           this.decisionForm.settledAmount = res.claimAmount;
         }
+
+        if (this.role === 'ClaimsOfficer' || this.role === 'Admin') {
+          this.loadValidation();
+        }
+
         this.loading = false;
       },
       error: () => this.loading = false
+    });
+  }
+
+  loadValidation(): void {
+    this.loadingValidation = true;
+    this.api.get<any>(`claim/${this.claimId}/pdf-validation`).subscribe({
+      next: (res) => {
+        this.pdfValidation = res;
+        this.loadingValidation = false;
+      },
+      error: () => this.loadingValidation = false
     });
   }
 
@@ -84,6 +112,13 @@ export class ClaimDetail implements OnInit {
         event.target.value = '';
         return;
       }
+
+      if (!file.name.toLowerCase().endsWith('.pdf')) {
+        this.toast.show('Only PDF files are allowed for submission.', 'error');
+        event.target.value = '';
+        return;
+      }
+
       this.newDocument.fileName = file.name;
       const reader = new FileReader();
       reader.onload = (e: any) => {
@@ -147,7 +182,13 @@ export class ClaimDetail implements OnInit {
         this.toast.show('Officer remarks are required when approving.', 'warning');
         return;
       }
-    } else {
+    }
+    
+    if (!isApproved) {
+      if (!this.decisionForm.rejectionReason?.trim() && this.decisionForm.remarks?.trim()) {
+        this.decisionForm.rejectionReason = this.decisionForm.remarks;
+      }
+      
       if (!this.decisionForm.rejectionReason?.trim()) {
         this.toast.show('Rejection reason is mandatory.', 'warning');
         return;

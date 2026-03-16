@@ -1,6 +1,8 @@
 using Application.DTOs.Payment;
 using Application.Interfaces.Repositories;
+using Application.Interfaces.Services;
 using Application.Services;
+
 using Domain.Entities;
 using Domain.Enums;
 using Moq;
@@ -14,7 +16,9 @@ public class PaymentServiceTests
     private readonly Mock<IInvoiceRepository> _invoiceRepo;
     private readonly Mock<IPolicyRepository> _policyRepo;
     private readonly Mock<ICommissionRepository> _commissionRepo;
+    private readonly Mock<IEmailService> _emailService;
     private readonly PaymentService _service;
+
 
     public PaymentServiceTests()
     {
@@ -22,8 +26,10 @@ public class PaymentServiceTests
         _invoiceRepo = new Mock<IInvoiceRepository>();
         _policyRepo = new Mock<IPolicyRepository>();
         _commissionRepo = new Mock<ICommissionRepository>();
-        _service = new PaymentService(_paymentRepo.Object, _invoiceRepo.Object, _policyRepo.Object, _commissionRepo.Object);
+        _emailService = new Mock<IEmailService>();
+        _service = new PaymentService(_paymentRepo.Object, _invoiceRepo.Object, _policyRepo.Object, _commissionRepo.Object, _emailService.Object);
     }
+
 
     [Fact]
     public async Task MakePaymentAsync_ShouldSucceed_AndActivatePolicy()

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { ApiService } from '../../../core/services/api';
+import { AuthService } from '../../../core/services/auth';
 import { ToastService } from '../../../core/services/toast';
 import { RaiseClaimDto, ClaimResponse, ClaimDocumentDto } from '../../../core/models/claim.model';
 import { PolicyResponse } from '../../../core/models/policy.model';
@@ -48,7 +49,8 @@ export class RaiseClaim implements OnInit {
     private api: ApiService,
     private toast: ToastService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private auth: AuthService
   ) {
     this.claimForm = this.fb.group({
       policyNumber: ['', Validators.required],
@@ -61,6 +63,10 @@ export class RaiseClaim implements OnInit {
       bankAccountNumber: ['', [Validators.required, Validators.pattern('^[0-9]{9,20}$')]],
       bankIfscCode: ['', [Validators.required, Validators.pattern('^[A-Z]{4}0[A-Z0-9]{6}$')]]
     });
+  }
+
+  get dashboardRoute(): string {
+    return this.auth.getDashboardRoute();
   }
 
   ngOnInit(): void {
@@ -90,8 +96,6 @@ export class RaiseClaim implements OnInit {
       next: (claims: ClaimResponse[]) => {
         claims.forEach(c => {
           // A policy is considered to have a current claim if it's not Rejected AND not already Settled.
-          // If it's settled, the policy itself should ideally be in Settled status and thus hidden,
-          // but we exclude it here as well for robustness.
           if (c.status !== 'Rejected' && c.status !== 'Settled') {
             this.claimedPolicyNumbers.add(c.policyNumber);
           }
@@ -121,6 +125,30 @@ export class RaiseClaim implements OnInit {
     } else {
       this.minDeathDate = '';
     }
+
+    // Reset validations on policy change
+    this.claimForm.get('nomineeIdNumber')?.updateValueAndValidity();
+  }
+
+  get nomineeAadharMatchError(): string | null {
+    if (!this.selectedPolicy || !this.claimForm.get('nomineeIdNumber')?.value) return null;
+    if (this.claimForm.get('nomineeIdNumber')?.value.length < 12) return null;
+    
+    const registeredNominee = this.selectedPolicy.nominees?.[0];
+    if (registeredNominee && this.claimForm.get('nomineeIdNumber')?.value !== registeredNominee.idNumber) {
+      return 'AADHAR number does not match our policy records.';
+    }
+    return null;
+  }
+
+  get nomineeFileMatchError(): string | null {
+    if (!this.selectedPolicy || !this.nomineeIdProof) return null;
+    
+    const registeredIdProof = this.selectedPolicy.documents?.find(d => d.documentType === 'Nominee ID Proof');
+    if (registeredIdProof && this.nomineeIdProof.fileName !== registeredIdProof.fileName) {
+      return 'This file name does not match the Nominee ID Proof registered in your policy.';
+    }
+    return null;
   }
 
   onFileSelected(event: any, type: string): void {
@@ -131,10 +159,17 @@ export class RaiseClaim implements OnInit {
         event.target.value = '';
         return;
       }
+
+      if (!file.name.toLowerCase().endsWith('.pdf')) {
+        this.toast.show('Only PDF files are allowed for submission.', 'error');
+        event.target.value = '';
+        return;
+      }
+
       const reader = new FileReader();
       reader.onload = (e: any) => {
         const doc: ClaimDocumentDto = {
-          documentType: type === 'death' ? 'DeathCertificate' : 'NomineeIdProof',
+          documentType: type === 'death' ? 'DeathCertificate' : 'Nominee ID Proof',
           fileName: file.name,
           fileBase64: e.target.result
         };
@@ -171,9 +206,29 @@ export class RaiseClaim implements OnInit {
       return;
     }
     if (!payload.nomineeName.trim() || !payload.nomineeRelationship.trim()) {
-      this.toast.show('Please provide nominee details exactly as registered.', 'warning');
+      this.toast.show('Please provide nominee details.', 'warning');
       return;
     }
+
+    // New logic: Only aadhar number and ID proof file must match the record
+    if (this.selectedPolicy) {
+      // 1. Check Aadhar Number
+      if (this.selectedPolicy.nominees && this.selectedPolicy.nominees.length > 0) {
+        const registeredNominee = this.selectedPolicy.nominees[0];
+        if (payload.nomineeIdNumber !== registeredNominee.idNumber) {
+          this.toast.show('Nominee Aadhar number does not match our records.', 'error');
+          return;
+        }
+      }
+
+      // 2. Check ID Proof file names (as a proxy for the same document)
+      const registeredIdProof = this.selectedPolicy.documents?.find(d => d.documentType === 'Nominee ID Proof');
+      if (registeredIdProof && payload.nomineeIdProof.fileName !== registeredIdProof.fileName) {
+        this.toast.show('The uploaded Nominee ID Proof must be the same file as registered in your policy.', 'error');
+        return;
+      }
+    }
+
     if (!payload.bankAccountName.trim() || !payload.bankAccountNumber.trim() || !payload.bankIfscCode.trim()) {
       this.toast.show('Please provide complete bank account details for settlement.', 'warning');
       return;

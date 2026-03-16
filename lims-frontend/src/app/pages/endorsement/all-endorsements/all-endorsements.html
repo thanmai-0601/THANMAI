@@ -1,10 +1,11 @@
-<div class="flex items-center gap-4 mb-8">
-    <a routerLink="/app/dashboard/admin" 
-       class="flex items-center justify-center text-2xl text-text-secondary hover:text-primary transition-all rounded-full hover:bg-theme-bg dark:hover:bg-slate-800 p-1 active:scale-90" title="Back to Dashboard">
-        &larr;
-    </a>
-    <h1 class="text-3xl font-extrabold text-text-primary dark:text-white tracking-tight">All System Endorsements</h1>
-</div>
+<div class="max-w-7xl mx-auto pt-8 transition-all duration-500 animate-in fade-in slide-in-from-bottom-8">
+    <div class="flex items-center gap-4 mb-8 mt-4">
+        <a [routerLink]="dashboardRoute"
+            class="w-10 h-10 flex items-center justify-center rounded-xl bg-theme-card dark:bg-theme-sidebar border border-theme-border/20 hover:border-primary/50 text-text-secondary hover:text-primary transition-all shadow-sm">
+            <app-icon name="arrow-left" className="w-5 h-5"></app-icon>
+        </a>
+        <h1 class="text-3xl font-extrabold text-text-primary dark:text-white tracking-tight">All Endorsements</h1>
+    </div>
 
 <app-loading-spinner *ngIf="loading"></app-loading-spinner>
 <div *ngIf="!loading">
@@ -48,4 +49,5 @@
             </table>
         </div>
     </div>
+</div>
 </div>

@@ -17,6 +17,8 @@ public class AuthServiceTests
     private readonly Mock<IPolicyRepository> _policyRepoMock;
     private readonly Mock<IClaimRepository> _claimRepoMock;
     private readonly Mock<INotificationService> _notificationServiceMock;
+    private readonly Mock<IAgentAssignmentService> _agentAssignmentServiceMock;
+    private readonly Mock<IClaimsOfficerAssignmentService> _claimsOfficerAssignmentServiceMock;
     private readonly AuthService _authService;
 
     public AuthServiceTests()
@@ -27,6 +29,8 @@ public class AuthServiceTests
         _policyRepoMock = new Mock<IPolicyRepository>();
         _claimRepoMock = new Mock<IClaimRepository>();
         _notificationServiceMock = new Mock<INotificationService>();
+        _agentAssignmentServiceMock = new Mock<IAgentAssignmentService>();
+        _claimsOfficerAssignmentServiceMock = new Mock<IClaimsOfficerAssignmentService>();
         
         _authService = new AuthService(
             _userRepoMock.Object, 
@@ -34,7 +38,9 @@ public class AuthServiceTests
             _passwordHasherMock.Object,
             _policyRepoMock.Object,
             _claimRepoMock.Object,
-            _notificationServiceMock.Object
+            _notificationServiceMock.Object,
+            _agentAssignmentServiceMock.Object,
+            _claimsOfficerAssignmentServiceMock.Object
         );
     }
 
@@ -98,16 +104,18 @@ public class AuthServiceTests
     }
 
     [Fact]
-    public async Task ToggleUserStatusAsync_ShouldDeactivateAgentAndRejectTheirActivePolicies()
+    public async Task ToggleUserStatusAsync_ShouldDeactivateAgentAndReassignTheirPolicies()
     {
         // Arrange
         var agent = new User { Id = 2, Role = UserRole.Agent, IsActive = true };
         var activePolicy = new Policy { Id = 101, Status = PolicyStatus.Active, AgentId = 2, CustomerId = 3, PolicyNumber = "POL-01" };
         var draftPolicy = new Policy { Id = 102, Status = PolicyStatus.Draft, AgentId = 2, CustomerId = 4, PolicyNumber = "POL-02" };
+        var rejectedPolicy = new Policy { Id = 103, Status = PolicyStatus.Rejected, AgentId = 2, CustomerId = 5, PolicyNumber = "POL-03" };
         
         _userRepoMock.Setup(r => r.GetByIdAsync(2)).ReturnsAsync(agent);
-        _policyRepoMock.Setup(r => r.GetByAgentIdAsync(2)).ReturnsAsync(new List<Policy> { activePolicy, draftPolicy });
-
+        _policyRepoMock.Setup(r => r.GetByAgentIdAsync(2)).ReturnsAsync(new List<Policy> { activePolicy, draftPolicy, rejectedPolicy });
+        _agentAssignmentServiceMock.Setup(s => s.AssignAgentAsync()).ReturnsAsync(10); // New agent
+        
         // Act
         await _authService.ToggleUserStatusAsync(2);
 
@@ -115,16 +123,17 @@ public class AuthServiceTests
         Assert.False(agent.IsActive);
         _userRepoMock.Verify(r => r.UpdateAsync(agent), Times.Once);
         
-        Assert.Equal(PolicyStatus.Rejected, activePolicy.Status);
-        _policyRepoMock.Verify(r => r.UpdateRangeAsync(It.Is<IEnumerable<Policy>>(l => l.Contains(activePolicy))), Times.Once);
+        Assert.Equal(10, activePolicy.AgentId);
+        Assert.Equal(10, draftPolicy.AgentId);
+        Assert.Equal(2, rejectedPolicy.AgentId); // Should not change
+        
+        _policyRepoMock.Verify(r => r.UpdateRangeAsync(It.Is<IEnumerable<Policy>>(l => l.Contains(activePolicy) && l.Contains(draftPolicy))), Times.Once);
         _notificationServiceMock.Verify(n => n.CreateNotificationAsync(3, It.IsAny<string>()), Times.Once);
-
-        Assert.Equal(PolicyStatus.Draft, draftPolicy.Status); // Should not change
-        _policyRepoMock.Verify(r => r.UpdateAsync(draftPolicy), Times.Never);
+        _notificationServiceMock.Verify(n => n.CreateNotificationAsync(4, It.IsAny<string>()), Times.Once);
     }
 
     [Fact]
-    public async Task ToggleUserStatusAsync_ShouldDeactivateClaimsOfficerAndRejectTheirActiveClaims()
+    public async Task ToggleUserStatusAsync_ShouldDeactivateClaimsOfficerAndReassignTheirClaims()
     {
         // Arrange
         var officer = new User { Id = 2, Role = UserRole.ClaimsOfficer, IsActive = true };
@@ -133,6 +142,7 @@ public class AuthServiceTests
         
         _userRepoMock.Setup(r => r.GetByIdAsync(2)).ReturnsAsync(officer);
         _claimRepoMock.Setup(r => r.GetByOfficerIdAsync(2)).ReturnsAsync(new List<Claim> { activeClaim, settledClaim });
+        _claimsOfficerAssignmentServiceMock.Setup(s => s.AssignOfficerAsync()).ReturnsAsync(11); // New officer
 
         // Act
         await _authService.ToggleUserStatusAsync(2);
@@ -141,12 +151,11 @@ public class AuthServiceTests
         Assert.False(officer.IsActive);
         _userRepoMock.Verify(r => r.UpdateAsync(officer), Times.Once);
         
-        Assert.Equal(ClaimStatus.Rejected, activeClaim.Status);
+        Assert.Equal(11, activeClaim.ClaimsOfficerId);
+        Assert.Equal(2, settledClaim.ClaimsOfficerId); // Should not change
+        
         _claimRepoMock.Verify(r => r.UpdateRangeAsync(It.Is<IEnumerable<Claim>>(l => l.Contains(activeClaim))), Times.Once);
         _notificationServiceMock.Verify(n => n.CreateNotificationAsync(3, It.IsAny<string>()), Times.Once);
-
-        Assert.Equal(ClaimStatus.Settled, settledClaim.Status); // Should not change
-        _claimRepoMock.Verify(r => r.UpdateAsync(settledClaim), Times.Never);
     }
     [Fact]
     public async Task ToggleUserStatusAsync_ShouldRestoreAgentPolicies_WhenReactivated()

@@ -159,7 +159,7 @@ public class PolicyService : IPolicyService
 
 
     // ── Customer: View My Policies ─────────────────────────────────────────
-
+    public async Task<List<PolicyResponseDto>> GetMyPoliciesAsync(int customerId)
     {
         var policies = await _policyRepo.GetByCustomerIdAsync(customerId);
         var dtos = new List<PolicyResponseDto>();
@@ -171,7 +171,7 @@ public class PolicyService : IPolicyService
     }
 
     // ── Agent: View Assigned Policies ──────────────────────────────────────
-
+    public async Task<List<PolicyResponseDto>> GetAgentPoliciesAsync(int agentId)
     {
         var policies = await _policyRepo.GetByAgentIdAsync(agentId);
         var dtos = new List<PolicyResponseDto>();
