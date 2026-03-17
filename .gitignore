@@ -29,5 +29,10 @@ yarn-error.log*
 Thumbs.db
 
 # User specific appsettings
+appsettings.json
 appsettings.Development.json
 appsettings.Local.json
+
+# Frontend secrets
+environment.ts
+environment.prod.ts
