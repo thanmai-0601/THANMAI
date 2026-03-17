@@ -80,12 +80,12 @@
                             <label
                                 class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80 ml-1">Date
                                 of Death <span class="text-primary">*</span></label>
-                            <input type="date" formControlName="dateOfDeath" required [attr.min]="minDeathDate"
+                            <input type="date" formControlName="dateOfDeath" required [attr.min]="minDeathDate" [attr.max]="today"
                                 class="input-premium px-4"
                                 [ngClass]="{'border-red-500/50 bg-red-500/[0.02]': claimForm.get('dateOfDeath')?.invalid && claimForm.get('dateOfDeath')?.touched}" />
                               <p *ngIf="minDeathDate"
                                 class="text-[9px] font-bold text-text-secondary opacity-80 uppercase tracking-widest ml-1">
-                                Must be after policy start: {{ selectedPolicy?.activeFrom | date:'mediumDate' }}
+                                Must be between: {{ selectedPolicy?.activeFrom | date:'mediumDate' }} and Today
                             </p>
 
                             <p *ngIf="claimForm.get('dateOfDeath')?.invalid && claimForm.get('dateOfDeath')?.touched"

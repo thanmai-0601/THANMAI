@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppIcon } from '../../../shared/components/app-icon/app-icon';
 import { CommonModule, Location } from '@angular/common';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../../core/services/api';
 import { PaymentResponse } from '../../../core/models/payment.model';
 import { LoadingSpinner } from '../../../shared/components/loading-spinner/loading-spinner';
@@ -10,7 +10,7 @@ import { StatusBadge } from '../../../shared/components/status-badge/status-badg
 @Component({
   selector: 'app-payment-history',
   standalone: true,
-  imports: [CommonModule, RouterLink, LoadingSpinner, StatusBadge, AppIcon],
+  imports: [CommonModule, LoadingSpinner, StatusBadge, AppIcon],
   templateUrl: './payment-history.html',
   styleUrl: './payment-history.css'
 })

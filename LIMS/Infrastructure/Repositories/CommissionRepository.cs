@@ -1,4 +1,4 @@
-﻿using Application.DTOs.Dashboard;
+using Application.DTOs.Dashboard;
 using Application.Interfaces.Repositories;
 using Domain.Entities;
 using Infrastructure.Data;
@@ -25,6 +25,7 @@ public class CommissionRepository : ICommissionRepository
     public async Task<Commission?> GetByPolicyIdAsync(int policyId)
     {
         return await _context.Commissions
+            .Include(c => c.Agent)
             .FirstOrDefaultAsync(c => c.PolicyId == policyId);
     }
 

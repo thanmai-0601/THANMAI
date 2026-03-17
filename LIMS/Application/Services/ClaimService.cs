@@ -254,12 +254,12 @@ public class ClaimService : IClaimService
                 "Decision can only be made on claims that are Under Review.");
 
         // Verify policy is still valid before approving
-        var policy = await _policyRepo.GetByIdAsync(claim.PolicyId)!;
+        var policy = claim.Policy;
 
         if (dto.IsApproved)
         {
             // Verify payment history — cannot settle if policy is lapsed
-            if (policy!.Status == PolicyStatus.Lapsed || policy.Status == PolicyStatus.Suspended)
+            if (policy.Status == PolicyStatus.Lapsed || policy.Status == PolicyStatus.Suspended)
             {
                 throw new InvalidOperationException(
                     "Cannot approve claim — policy is currently Suspended or Lapsed. Yearly premiums must be cleared first.");

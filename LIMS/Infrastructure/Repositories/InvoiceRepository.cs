@@ -1,4 +1,4 @@
-﻿using Application.Interfaces.Repositories;
+using Application.Interfaces.Repositories;
 using Domain.Entities;
 using Domain.Enums;
 using Infrastructure.Data;
@@ -22,6 +22,10 @@ public class InvoiceRepository : IInvoiceRepository
         => await _context.Invoices
             .Include(i => i.Policy)
                 .ThenInclude(p => p.InsurancePlan)
+            .Include(i => i.Policy)
+                .ThenInclude(p => p.Customer)
+            .Include(i => i.Policy)
+                .ThenInclude(p => p.Agent)
             .Include(i => i.Payment)
             .FirstOrDefaultAsync(i => i.Id == invoiceId);
 

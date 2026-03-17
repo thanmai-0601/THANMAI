@@ -1,0 +1,22 @@
+﻿
+> lims-frontend@0.0.0 build
+> ng build
+
+[33mΓ¥»[39m Building...
+[32mΓ£ö[39m Building...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m             [2m | [22m [1mRaw size[22m[2m | [22m[1mEstimated transfer size[22m
+[32mmain-BR4V3TUC.js[39m   [2m | [22m[2mmain[22m              [2m | [22m[36m847.50 kB[39m[2m | [22m              [36m165.20 kB[39m
+[32mstyles-2VTTSQQB.css[39m[2m | [22m[2mstyles[22m            [2m | [22m[36m143.02 kB[39m[2m | [22m               [36m13.28 kB[39m
+[32mchunk-2NFLSA4Y.js[39m  [2m | [22m[2m-[22m                 [2m | [22m[36m449 bytes[39m[2m | [22m              [36m449 bytes[39m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m     [2m | [22m[1m[93m990.97 kB[39m[22m[2m | [22m              [1m178.94 kB[22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m             [2m | [22m [1mRaw size[22m[2m | [22m[1mEstimated transfer size[22m
+[32mchunk-MZNURIF6.js[39m  [2m | [22m[2mapexcharts-ssr-esm[22m[2m | [22m[36m513.12 kB[39m[2m | [22m              [36m113.50 kB[39m
+[32mchunk-OVO43END.js[39m  [2m | [22m[2mapexcharts-esm[22m    [2m | [22m[36m507.80 kB[39m[2m | [22m              [36m112.38 kB[39m
+[32mchunk-IBW4PE65.js[39m  [2m | [22m[2mcore-esm[22m          [2m | [22m[36m328.83 kB[39m[2m | [22m               [36m75.26 kB[39m
+
+Application bundle generation complete. [55.415 seconds] - 2026-03-16T15:45:06.104Z
+
+Output location: C:\Users\DELL\Desktop\thanmai\THANMAI\lims-frontend\dist\lims-frontend
+

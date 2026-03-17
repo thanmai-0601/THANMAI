@@ -7,13 +7,13 @@ import { ApiService } from '../../../core/services/api';
 import { AuthService } from '../../../core/services/auth';
 import { ToastService } from '../../../core/services/toast';
 import { PolicyResponse, AddNomineeDto, UploadDocumentDto } from '../../../core/models/policy.model';
-import { LoadingSpinner } from '../../../shared/components/loading-spinner/loading-spinner';
+
 import { StatusBadge } from '../../../shared/components/status-badge/status-badge';
 
 @Component({
   selector: 'app-policy-detail',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink, StatusBadge, LoadingSpinner, AppIcon],
+  imports: [CommonModule, FormsModule, RouterLink, StatusBadge, AppIcon],
   templateUrl: './policy-detail.html',
   styleUrl: './policy-detail.css'
 })

@@ -2,7 +2,7 @@ namespace Application.Interfaces.Services;
 
 public interface IEmailService
 {
-    Task SendEmailAsync(string toEmail, string toName, string subject, string body);
+    Task SendEmailAsync(string toEmail, string toName, string subject, string body, byte[]? attachment = null, string? attachmentName = null);
     
     Task SendNomineePaymentEmail(
         string email, 
@@ -28,6 +28,15 @@ public interface IEmailService
         string accountNumber,
         string ifscCode);
 
+    Task SendPolicyActivationEmail(
+        string email,
+        string customerName,
+        string policyNumber,
+        string planName,
+        decimal sumAssured,
+        DateTime activeFrom,
+        DateTime? activeTo);
+
     Task SendAgentCommissionEmail(
         string email,
         string agentName,
@@ -47,7 +56,9 @@ public interface IEmailService
         decimal amount,
         string transactionId,
         DateTime paymentDate,
-        string paymentMethod);
+        string paymentMethod,
+        byte[]? invoiceFile = null,
+        string? invoiceFileName = null);
 }
 
 

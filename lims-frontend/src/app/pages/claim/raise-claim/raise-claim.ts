@@ -197,7 +197,12 @@ export class RaiseClaim implements OnInit {
     };
 
     if (this.minDeathDate && payload.dateOfDeath < this.minDeathDate) {
-      this.toast.show('Date of death cannot be before the policy start date.', 'warning');
+      this.toast.show(`Date of death cannot be before the policy start date (${this.minDeathDate}).`, 'warning');
+      return;
+    }
+
+    if (payload.dateOfDeath > this.today) {
+      this.toast.show(`Date of death cannot be in the future (after ${this.today}).`, 'warning');
       return;
     }
 

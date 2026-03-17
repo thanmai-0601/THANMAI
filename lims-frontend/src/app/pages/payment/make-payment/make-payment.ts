@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppIcon } from '../../../shared/components/app-icon/app-icon';
 import { CommonModule, Location } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../../core/services/api';
 import { ToastService } from '../../../core/services/toast';
 import { InvoiceResponse, MakePaymentDto } from '../../../core/models/payment.model';
@@ -11,7 +11,7 @@ import { LoadingSpinner } from '../../../shared/components/loading-spinner/loadi
 @Component({
   selector: 'app-make-payment',
   standalone: true,
-  imports: [CommonModule, FormsModule, LoadingSpinner, AppIcon, RouterLink],
+  imports: [CommonModule, FormsModule, LoadingSpinner, AppIcon],
   templateUrl: './make-payment.html',
   styleUrl: './make-payment.css'
 })
