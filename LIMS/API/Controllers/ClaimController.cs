@@ -104,7 +104,7 @@ public class ClaimController : ControllerBase
         // Auto-run validation if officer is opening the claim
         if (role == "ClaimsOfficer")
         {
-            await _pdfValidationService.ValidateClaimDateAsync(claimId);
+            await _pdfValidationService.ValidateClaimAsync(claimId);
         }
 
         var result = await _claimService
@@ -112,12 +112,21 @@ public class ClaimController : ControllerBase
         return Ok(result);
     }
 
+    // GET api/claim/{claimId}/summary
+    [HttpGet("{claimId:int}/summary")]
+    [Authorize(Roles = "ClaimsOfficer,Admin")]
+    public async Task<IActionResult> GetClaimSummary(int claimId, [FromServices] IClaimSummaryService claimSummaryService)
+    {
+        var summary = await claimSummaryService.GenerateClaimSummaryAsync(claimId);
+        return Ok(new { Summary = summary });
+    }
+
     // GET api/claim/{claimId}/pdf-validation
     [HttpGet("{claimId:int}/pdf-validation")]
     [Authorize(Roles = "Admin,ClaimsOfficer")]
     public async Task<IActionResult> GetPdfValidation(int claimId)
     {
-        var result = await _pdfValidationService.ValidateClaimDateAsync(claimId);
+        var result = await _pdfValidationService.ValidateClaimAsync(claimId);
         return Ok(result);
     }
 

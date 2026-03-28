@@ -27,13 +27,14 @@ export class RequestPolicy implements OnInit, OnDestroy {
     annualIncome: 500000,
     occupation: '',
     address: '',
-    nominee: { fullName: '', relationship: '', age: null, contactNumber: '', idNumber: '', email: '' },
+    hasAlcoholHabit: null,
+    nominee: { fullName: '', relationship: '', contactNumber: '', idNumber: '', email: '' },
     documents: []
   };
 
-  docTypes = ['Address Proof', 'Income Proof', 'Nominee ID Proof'];
+  docTypes = ['Aadhar Card', 'Income Proof', 'Nominee ID Proof'];
   selectedDocs: { [key: string]: File | null } = {
-    'Address Proof': null,
+    'Aadhar Card': null,
     'Income Proof': null,
     'Nominee ID Proof': null
   };
@@ -85,6 +86,11 @@ export class RequestPolicy implements OnInit, OnDestroy {
       return;
     }
 
+    if (this.form.hasAlcoholHabit === null) {
+      this.toast.show('Please specify if you have an alcohol consumption habit.', 'warning');
+      return;
+    }
+
     if (this.plan) {
       if (this.form.sumAssured === null || this.form.sumAssured < this.plan.minSumAssured || this.form.sumAssured > this.plan.maxSumAssured) {
         this.toast.show(`Sum assured must be between ₹${this.plan.minSumAssured} and ₹${this.plan.maxSumAssured}.`, 'error');
@@ -113,8 +119,8 @@ export class RequestPolicy implements OnInit, OnDestroy {
     }
 
     // Validate Documents
-    if (!this.selectedDocs['Address Proof'] || !this.selectedDocs['Income Proof'] || !this.selectedDocs['Nominee ID Proof']) {
-      this.toast.show('Please select all required documents (Address, Income, and Nominee ID Proof).', 'warning');
+    if (!this.selectedDocs['Aadhar Card'] || !this.selectedDocs['Income Proof'] || !this.selectedDocs['Nominee ID Proof']) {
+      this.toast.show('Please select all required documents (Aadhar Card, Income, and Nominee ID Proof).', 'warning');
       return;
     }
 

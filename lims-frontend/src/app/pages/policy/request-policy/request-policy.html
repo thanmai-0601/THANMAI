@@ -19,7 +19,7 @@
         </p>
     </div>
     } @else if (plan) {
-    <div class="premium-card p-10 md:p-14 relative overflow-hidden group">
+    <div class="premium-card p-8 md:p-10 relative overflow-hidden group">
         <div
             class="absolute top-0 left-0 w-64 h-64 bg-primary/5 rounded-full -ml-32 -mt-32 blur-3xl group-hover:bg-primary/10 transition-all duration-700">
         </div>
@@ -38,7 +38,7 @@
         </div>
 
         <form (ngSubmit)="submit(reqForm)" #reqForm="ngForm"
-            class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8 relative z-10">
+            class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-6 relative z-10">
 
             <div class="flex flex-col gap-2.5 md:col-span-2">
                 <label
@@ -105,6 +105,24 @@
                 </p>
             </div>
 
+            <div class="flex flex-col gap-2.5">
+                <label class="text-xs font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">
+                    Alcohol Consumption
+                </label>
+                <div class="flex items-center gap-6 mt-2 ml-1">
+                    <label class="flex items-center gap-2 cursor-pointer group">
+                        <input type="radio" [(ngModel)]="form.hasAlcoholHabit" name="hasAlcoholHabit" [value]="true" required
+                            class="w-5 h-5 accent-primary cursor-pointer">
+                        <span class="text-sm font-bold text-text-primary dark:text-white uppercase tracking-widest group-hover:text-primary transition-colors">Yes</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer group">
+                        <input type="radio" [(ngModel)]="form.hasAlcoholHabit" name="hasAlcoholHabit" [value]="false" required
+                            class="w-5 h-5 accent-primary cursor-pointer">
+                        <span class="text-sm font-bold text-text-primary dark:text-white uppercase tracking-widest group-hover:text-primary transition-colors">No</span>
+                    </label>
+                </div>
+            </div>
+
             <div class="flex flex-col gap-2.5 md:col-span-2">
                 <label
                     class="text-xs font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Your
@@ -121,16 +139,16 @@
                 </p>
             </div>
             <!-- Nominee Section -->
-            <div class=" md:col-span-2 mt-8 pt-8 border-t border-theme-border/10 dark:border-slate-800">
-                <div class="mb-6">
+            <div class=" md:col-span-2 mt-6 pt-6 border-t border-theme-border/10 dark:border-slate-800">
+                <div class="mb-4">
                     <h3 class="text-lg font-black text-text-primary dark:text-white uppercase tracking-tight">
                         Nominee Details</h3>
                     <p class="text-xs font-bold text-text-secondary opacity-80 uppercase tracking-widest mt-1">
                         Provide details of the primary beneficiary</p>
                 </div>
 
-                <div class="p-8 bg-primary/5 rounded-3xl border border-primary/10 relative z-10">
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="p-6 bg-primary/5 rounded-2xl border border-primary/10 relative z-10">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                         @if (form.nominee) {
                         <div class="flex flex-col gap-2.5">
                             <label
@@ -149,14 +167,7 @@
                                 [ngClass]="{'border-red-500/50 bg-red-500/[0.01]': nomineeRel.invalid && nomineeRel.touched}">
                             <p *ngIf="nomineeRel.invalid && nomineeRel.touched" class="text-[10px] font-bold text-red-500 uppercase tracking-widest ml-1">Required</p>
                         </div>
-                        <div class="flex flex-col gap-2.5">
-                            <label
-                                class="text-xs font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Age</label>
-                             <input type="number" [(ngModel)]="form.nominee.age" name="nomineeAge" #nomineeAge="ngModel" required
-                                class="input-premium py-3 px-5 text-sm" [min]="1" [max]="120"
-                                [ngClass]="{'border-red-500/50 bg-red-500/[0.01]': nomineeAge.invalid && nomineeAge.touched}">
-                             <p *ngIf="nomineeAge.invalid && nomineeAge.touched" class="text-[10px] font-bold text-red-500 uppercase tracking-widest ml-1">Age 1-120</p>
-                        </div>
+
                         <div class="flex flex-col gap-2.5">
                             <label
                                 class="text-xs font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Contact Number</label>
@@ -166,7 +177,7 @@
                                 [ngClass]="{'border-red-500/50 bg-red-500/[0.01]': nomineeContact.invalid && nomineeContact.touched}">
                             <p *ngIf="nomineeContact.invalid && nomineeContact.touched" class="text-[10px] font-bold text-red-500 uppercase tracking-widest ml-1">10 Digits required</p>
                         </div>
-                        <div class="flex flex-col gap-2.5 md:col-span-2">
+                        <div class="flex flex-col gap-2.5 md:col-span-2 lg:col-span-2">
                             <label
                                 class="text-xs font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Nominee AADHAR Number (12 digits)</label>
                              <input type="text" [(ngModel)]="form.nominee.idNumber" name="nomineeIdNum" #nomineeIdNum="ngModel" required
@@ -175,7 +186,7 @@
                                 [ngClass]="{'border-red-500/50 bg-red-500/[0.01]': nomineeIdNum.invalid && nomineeIdNum.touched}">
                             <p *ngIf="nomineeIdNum.invalid && nomineeIdNum.touched" class="text-[10px] font-bold text-red-500 uppercase tracking-widest ml-1">Exactly 12 digits required</p>
                         </div>
-                        <div class="flex flex-col gap-2.5 md:col-span-2">
+                        <div class="flex flex-col gap-2.5 md:col-span-2 lg:col-span-1">
                             <label
                                 class="text-xs font-black uppercase tracking-[0.2em] text-text-secondary ml-1 opacity-90">Nominee Email</label>
                              <input type="email" [(ngModel)]="form.nominee.email" name="nomineeEmail" #nomineeEmail="ngModel" required email
@@ -189,15 +200,15 @@
             </div>
 
             <!-- Documents Section -->
-            <div class="md:col-span-2 mt-8 pt-8 border-t border-theme-border/10 dark:border-slate-800">
+            <div class="md:col-span-2 mt-6 pt-6 border-t border-theme-border/10 dark:border-slate-800">
                 <h3 class="text-lg font-black text-text-primary dark:text-white uppercase tracking-tight mb-2">
                     Required
                     Documents</h3>
-                <p class="text-xs font-bold text-text-secondary opacity-80 uppercase tracking-widest mb-6">
+                <p class="text-xs font-bold text-text-secondary opacity-80 uppercase tracking-widest mb-4">
                     Upload
                     clear scanned copies for agent verification</p>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
                     @for (type of docTypes; track type) {
                     <div class="flex flex-col gap-2">
                         <label class="text-xs font-black uppercase text-text-secondary opacity-90 ml-1">{{ type
@@ -236,9 +247,9 @@
                     }
                 </div>
             </div>
-            <div class="md:col-span-2 pt-10 border-t border-theme-border/10 dark:border-slate-800">
+            <div class="md:col-span-2 pt-8 border-t border-theme-border/10 dark:border-slate-800">
                 <button type="submit" [disabled]="submitting"
-                    class="btn-premium w-full !py-5 uppercase tracking-[0.3em] flex justify-center items-center gap-4 text-sm">
+                    class="btn-premium w-full !py-4 uppercase tracking-[0.3em] flex justify-center items-center gap-4 text-sm">
                     {{ submitting ? 'Submitting...' : 'Submit Application' }}
                 </button>
                 <p class="text-xs font-black text-text-secondary/40 text-center uppercase tracking-[0.2em] mt-6">

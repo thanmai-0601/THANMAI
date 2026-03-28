@@ -16,6 +16,7 @@ public class AuthService : IAuthService
     private readonly INotificationService _notificationService;
     private readonly IAgentAssignmentService _agentAssignmentService;
     private readonly IClaimsOfficerAssignmentService _claimsOfficerAssignmentService;
+    private readonly IEmailService _emailService;
 
     public AuthService(
         IUserRepository userRepo, 
@@ -25,7 +26,8 @@ public class AuthService : IAuthService
         IClaimRepository claimRepo,
         INotificationService notificationService,
         IAgentAssignmentService agentAssignmentService,
-        IClaimsOfficerAssignmentService claimsOfficerAssignmentService)
+        IClaimsOfficerAssignmentService claimsOfficerAssignmentService,
+        IEmailService emailService)
     {
         _userRepo = userRepo;
         _jwtService = jwtService;
@@ -35,6 +37,7 @@ public class AuthService : IAuthService
         _notificationService = notificationService;
         _agentAssignmentService = agentAssignmentService;
         _claimsOfficerAssignmentService = claimsOfficerAssignmentService;
+        _emailService = emailService;
     }
 
     // ── Public Registration — always Customer ──────────────────────────────
@@ -65,6 +68,17 @@ public class AuthService : IAuthService
         };
 
         await _userRepo.CreateAsync(user);
+        
+        // Send Welcome Email
+        try 
+        {
+            await _emailService.SendWelcomeEmail(user.Email, user.FullName);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"⚠️ Failed to send welcome email: {ex.Message}");
+        }
+
         return BuildAuthResponse(user);
     }
 
@@ -228,9 +242,9 @@ public class AuthService : IAuthService
             var policies = await _policyRepo.GetByAgentIdAsync(user.Id);
             var toUpdate = new List<Policy>();
 
-            // If policy is rejected, no new agent assignment takes place (it stays rejected with the old agent)
+            // If policy is rejected or settled, no new agent assignment takes place
             // For all other states, reassignment takes place
-            foreach (var policy in policies.Where(p => p.Status != PolicyStatus.Rejected))
+            foreach (var policy in policies.Where(p => p.Status != PolicyStatus.Rejected && p.Status != PolicyStatus.Settled))
             {
                 try
                 {
@@ -240,9 +254,16 @@ public class AuthService : IAuthService
 
                     toUpdate.Add(policy);
 
+                    // Notify Customer
                     await _notificationService.CreateNotificationAsync(
                         policy.CustomerId,
                         $"Notice: Your policy '{policy.PolicyNumber}' has been reassigned to a new agent as your previous agent is no longer active."
+                    );
+
+                    // Notify New Agent
+                    await _notificationService.CreateNotificationAsync(
+                        newAgentId,
+                        $"Notice: You have been assigned a new policy '{policy.PolicyNumber}' following the deactivation of a previous agent."
                     );
                 }
                 catch (InvalidOperationException)
@@ -268,9 +289,16 @@ public class AuthService : IAuthService
 
                     toUpdate.Add(claim);
 
+                    // Notify Customer
                     await _notificationService.CreateNotificationAsync(
                         claim.CustomerId,
                         $"Notice: Your claim '{claim.ClaimNumber}' has been reassigned to a new claims officer."
+                    );
+
+                    // Notify New Claims Officer
+                    await _notificationService.CreateNotificationAsync(
+                        newOfficerId,
+                        $"Notice: You have been assigned a new claim '{claim.ClaimNumber}' following the deactivation of a previous officer."
                     );
                 }
                 catch (InvalidOperationException)
@@ -508,6 +536,21 @@ public class AuthService : IAuthService
 
         user.FullName = dto.FullName;
         user.PhoneNumber = dto.PhoneNumber;
+
+        // ── Custom Email Logic ────────────────────────────────────────────────
+        // Customers CAN change their email. 
+        // Agents and Claims Officers CANNOT (it's managed by Admin).
+        if (user.Role == UserRole.Customer)
+        {
+            if (!string.IsNullOrWhiteSpace(dto.Email) && !dto.Email.Equals(user.Email, StringComparison.OrdinalIgnoreCase))
+            {
+                if (await _userRepo.EmailExistsExcludingUserAsync(dto.Email, userId))
+                    throw new InvalidOperationException("This email is already in use by another account.");
+                
+                user.Email = dto.Email.ToLower().Trim();
+            }
+        }
+        // ──────────────────────────────────────────────────────────────────────
 
         if (dto.DateOfBirth > DateTime.UtcNow)
             throw new InvalidOperationException("Date of Birth cannot be in the future.");

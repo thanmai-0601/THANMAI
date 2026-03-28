@@ -41,6 +41,7 @@ export class RaiseClaim implements OnInit {
   minDeathDate = '';
   deathCertificate: ClaimDocumentDto | null = null;
   nomineeIdProof: ClaimDocumentDto | null = null;
+  nomineeFileMatchError: string | null = null;
 
   claimForm: FormGroup;
   submitting = false;
@@ -59,6 +60,7 @@ export class RaiseClaim implements OnInit {
       nomineeName: ['', Validators.required],
       nomineeRelationship: ['', Validators.required],
       nomineeIdNumber: ['', [Validators.required, Validators.pattern('^[0-9]{12}$')]],
+      nomineeEmail: ['', [Validators.required, Validators.email]],
       bankAccountName: ['', Validators.required],
       bankAccountNumber: ['', [Validators.required, Validators.pattern('^[0-9]{9,20}$')]],
       bankIfscCode: ['', [Validators.required, Validators.pattern('^[A-Z]{4}0[A-Z0-9]{6}$')]]
@@ -141,16 +143,6 @@ export class RaiseClaim implements OnInit {
     return null;
   }
 
-  get nomineeFileMatchError(): string | null {
-    if (!this.selectedPolicy || !this.nomineeIdProof) return null;
-    
-    const registeredIdProof = this.selectedPolicy.documents?.find(d => d.documentType === 'Nominee ID Proof');
-    if (registeredIdProof && this.nomineeIdProof.fileName !== registeredIdProof.fileName) {
-      return 'This file name does not match the Nominee ID Proof registered in your policy.';
-    }
-    return null;
-  }
-
   onFileSelected(event: any, type: string): void {
     const file = event.target.files[0];
     if (file) {
@@ -226,12 +218,20 @@ export class RaiseClaim implements OnInit {
         }
       }
 
-      // 2. Check ID Proof file names (as a proxy for the same document)
-      const registeredIdProof = this.selectedPolicy.documents?.find(d => d.documentType === 'Nominee ID Proof');
-      if (registeredIdProof && payload.nomineeIdProof.fileName !== registeredIdProof.fileName) {
-        this.toast.show('The uploaded Nominee ID Proof must be the same file as registered in your policy.', 'error');
+      // ─────────────────────────────────────────────────────────────
+      // NEW Security Rule: Nominee details cannot be same as customer
+      // ─────────────────────────────────────────────────────────────
+      if (payload.nomineeEmail.toLowerCase() === this.selectedPolicy.customerEmail.toLowerCase()) {
+        this.toast.show('Nominee email cannot be the same as the customer email.', 'error');
         return;
       }
+
+      if (this.selectedPolicy.customerBankAccountNumber && 
+          payload.bankAccountNumber === this.selectedPolicy.customerBankAccountNumber) {
+        this.toast.show('Nominee bank account cannot be the same as the customer’s registered bank account.', 'error');
+        return;
+      }
+      // ─────────────────────────────────────────────────────────────
     }
 
     if (!payload.bankAccountName.trim() || !payload.bankAccountNumber.trim() || !payload.bankIfscCode.trim()) {

@@ -5,6 +5,7 @@ export interface RaiseClaimDto {
   nomineeName: string;
   nomineeRelationship: string;
   nomineeIdNumber: string;
+  nomineeEmail: string;
   bankAccountName: string;
   bankAccountNumber: string;
   bankIfscCode: string;
@@ -38,6 +39,7 @@ export interface ClaimResponse {
   customerEmail: string;
   claimsOfficerId: number | null;
   claimsOfficerName: string | null;
+  nomineeIdNumber: string | null;
   claimReason: string;
   claimAmount: number | null;
   settledAmount: number | null;

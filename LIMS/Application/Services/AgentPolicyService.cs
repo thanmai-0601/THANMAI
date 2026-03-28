@@ -48,7 +48,7 @@ public class AgentPolicyService : IAgentPolicyService
         var plan = policy.InsurancePlan;
 
         return _premiumCalc.Calculate(
-            plan, policy.SumAssured, policy.TenureYears, dto.RiskCategory);
+            plan, policy.SumAssured, policy.TenureYears, dto.RiskCategory, policy.HasAlcoholHabit);
     }
 
 private static List<string> GetPlanBenefits(
@@ -90,7 +90,6 @@ private static List<string> GetPlanBenefits(
             PolicyId = policyId,
             FullName = dto.Nominee.FullName,
             Relationship = dto.Nominee.Relationship,
-            Age = dto.Nominee.Age,
             ContactNumber = dto.Nominee.ContactNumber,
             Email = dto.Nominee.Email ?? string.Empty,
             AllocationPercentage = 100
@@ -180,7 +179,7 @@ private static List<string> GetPlanBenefits(
                 throw new InvalidOperationException("Risk category is required when approving a policy.");
                 
             var calcResult = _premiumCalc.Calculate(
-                policy.InsurancePlan, policy.SumAssured, policy.TenureYears, dto.RiskCategory);
+                policy.InsurancePlan, policy.SumAssured, policy.TenureYears, dto.RiskCategory, policy.HasAlcoholHabit);
                 
             policy.RiskCategory = dto.RiskCategory;
             policy.PremiumAmount = calcResult.AnnualPremium;
@@ -281,7 +280,6 @@ private static List<string> GetPlanBenefits(
         NomineeId = n.Id,
         FullName = n.FullName,
         Relationship = n.Relationship,
-        Age = n.Age,
         ContactNumber = n.ContactNumber
     };
 
@@ -310,6 +308,7 @@ private static List<string> GetPlanBenefits(
         PremiumAmount = p.PremiumAmount,
         AgentRemarks = p.AgentRemarks,
         RejectionReason = p.RejectionReason,
+        HasAlcoholHabit = p.HasAlcoholHabit,
         CreatedAt = p.CreatedAt,
         SubmittedAt = p.SubmittedAt,
         AgentAssignedAt = p.AgentAssignedAt,
@@ -321,7 +320,6 @@ private static List<string> GetPlanBenefits(
             NomineeId = n.Id,
             FullName = n.FullName,
             Relationship = n.Relationship,
-            Age = n.Age,
             ContactNumber = n.ContactNumber,
             Email = n.Email
         }).ToList() ?? new List<NomineeResponseDto>(),

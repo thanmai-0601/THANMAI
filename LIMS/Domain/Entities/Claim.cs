@@ -24,6 +24,7 @@ public class Claim : BaseEntity
 
     public decimal? ClaimAmount { get; set; }       // amount approved for settlement
     public decimal? SettledAmount { get; set; }     // actual amount paid out
+    public string? NomineeIdNumber { get; set; }    // Aadhar number provided at claim request
 
     // ── Claimant bank details for settlement transfer ──────────────────
     public string? BankAccountName { get; set; }

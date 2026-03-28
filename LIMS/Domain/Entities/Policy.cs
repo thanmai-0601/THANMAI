@@ -1,4 +1,4 @@
-﻿using Domain.Common;
+using Domain.Common;
 using Domain.Entities;
 using Domain.Enums;
 
@@ -45,6 +45,7 @@ public class Policy : BaseEntity
     public string? RejectionReason { get; set; }
     public string? AgentRemarks { get; set; }
     public string? CustomerAddress { get; set; }
+    public bool HasAlcoholHabit { get; set; }
 
     // ── Navigation ──────────────────────────────────────────────────
     public ICollection<Nominee> Nominees { get; set; } = new List<Nominee>();

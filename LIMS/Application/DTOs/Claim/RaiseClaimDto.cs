@@ -21,6 +21,9 @@ public class RaiseClaimDto
     [Required]
     [RegularExpression(@"^[0-9]{12}$", ErrorMessage = "Nominee ID must be exactly 12 digits")]
     public string? NomineeIdNumber { get; set; }
+    
+    [EmailAddress]
+    public string? NomineeEmail { get; set; }
 
     // Uploaded ID proof for verification
     public ClaimDocumentDto? NomineeIdProof { get; set; }

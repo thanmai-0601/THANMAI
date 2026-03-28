@@ -6,11 +6,12 @@ import { ApiService } from '../../../core/services/api';
 import { CustomerDashboardDto } from '../../../core/models/dashboard.model';
 import { StatCard } from '../../../shared/components/stat-card/stat-card';
 import { LoadingSpinner } from '../../../shared/components/loading-spinner/loading-spinner';
+import { Chatbot } from '../../../shared/components/chatbot/chatbot';
 
 @Component({
   selector: 'app-customer-dashboard',
   standalone: true,
-  imports: [CommonModule, RouterLink, StatCard, LoadingSpinner, AppIcon],
+  imports: [CommonModule, RouterLink, StatCard, LoadingSpinner, Chatbot, AppIcon],
   templateUrl: './customer-dashboard.html',
   styleUrl: './customer-dashboard.css'
 })

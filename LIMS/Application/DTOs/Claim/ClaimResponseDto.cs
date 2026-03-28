@@ -26,6 +26,7 @@ public class ClaimResponseDto
     // Claims Officer info
     public int? ClaimsOfficerId { get; set; }
     public string? ClaimsOfficerName { get; set; }
+    public string? NomineeIdNumber { get; set; }
 
     // Claim details
     public string ClaimReason { get; set; } = string.Empty;

@@ -19,6 +19,7 @@ public class AuthServiceTests
     private readonly Mock<INotificationService> _notificationServiceMock;
     private readonly Mock<IAgentAssignmentService> _agentAssignmentServiceMock;
     private readonly Mock<IClaimsOfficerAssignmentService> _claimsOfficerAssignmentServiceMock;
+    private readonly Mock<IEmailService> _emailServiceMock;
     private readonly AuthService _authService;
 
     public AuthServiceTests()
@@ -31,6 +32,7 @@ public class AuthServiceTests
         _notificationServiceMock = new Mock<INotificationService>();
         _agentAssignmentServiceMock = new Mock<IAgentAssignmentService>();
         _claimsOfficerAssignmentServiceMock = new Mock<IClaimsOfficerAssignmentService>();
+        _emailServiceMock = new Mock<IEmailService>();
         
         _authService = new AuthService(
             _userRepoMock.Object, 
@@ -40,7 +42,8 @@ public class AuthServiceTests
             _claimRepoMock.Object,
             _notificationServiceMock.Object,
             _agentAssignmentServiceMock.Object,
-            _claimsOfficerAssignmentServiceMock.Object
+            _claimsOfficerAssignmentServiceMock.Object,
+            _emailServiceMock.Object
         );
     }
 

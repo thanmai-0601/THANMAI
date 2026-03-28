@@ -59,6 +59,8 @@ public interface IEmailService
         string paymentMethod,
         byte[]? invoiceFile = null,
         string? invoiceFileName = null);
+
+    Task SendWelcomeEmail(string email, string customerName);
 }
 
 

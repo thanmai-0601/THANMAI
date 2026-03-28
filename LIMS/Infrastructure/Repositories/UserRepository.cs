@@ -1,4 +1,4 @@
-﻿using Application.DTOs.Dashboard;
+using Application.DTOs.Dashboard;
 using Application.Interfaces.Repositories;
 using Domain.Entities;
 using Domain.Enums;
@@ -95,6 +95,24 @@ public class UserRepository : IUserRepository
                 Role = g.Key,
                 Count = g.Count()
             })
+            .ToListAsync();
+    }
+
+    public async Task<List<CustomerDistributionDto>> GetCustomerDistributionAsync()
+    {
+        return await _context.Users
+            .Where(u => u.Role == UserRole.Customer && u.IsActive && !u.IsDeleted)
+            .Select(c => new CustomerDistributionDto
+            {
+                CustomerId = c.Id,
+                CustomerName = c.FullName,
+                TotalPolicies = _context.Policies.Count(p => p.CustomerId == c.Id),
+                TotalClaims = _context.Claims.Count(cl => cl.CustomerId == c.Id)
+            })
+            // Only get customers who have at least one policy or claim for relevance
+            .Where(x => x.TotalPolicies > 0 || x.TotalClaims > 0)
+            .OrderByDescending(x => x.TotalPolicies)
+            .Take(10) // Limit to top 10 for chart readability
             .ToListAsync();
     }
 }

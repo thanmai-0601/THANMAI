@@ -1,4 +1,4 @@
-﻿using Application.DTOs.Dashboard;
+using Application.DTOs.Dashboard;
 using Domain.Entities;
 using Domain.Enums;
 
@@ -16,4 +16,5 @@ public interface IUserRepository
     Task<List<User>> GetActiveAgentsAsync();
     Task<List<User>> GetActiveClaimsOfficersAsync();
     Task<List<UserRoleCountDto>> GetUserRoleCountsAsync();
+    Task<List<CustomerDistributionDto>> GetCustomerDistributionAsync();
 }

@@ -106,6 +106,22 @@
                                 class="text-[9px] font-bold text-red-500 uppercase tracking-widest ml-1 animate-in fade-in slide-in-from-top-1">
                                 Detailed cause is required
                             </p>
+
+                            @if (claimForm.get('causeOfDeath')?.value?.toLowerCase().includes('suicide')) {
+                            <div class="mt-4 p-4 rounded-xl bg-amber-500/10 border border-amber-500/20 animate-in zoom-in-95 duration-300">
+                                <div class="flex items-start gap-3">
+                                    <app-icon name="alert" className="text-amber-600 mt-0.5"></app-icon>
+                                    <div>
+                                        <p class="text-[10px] font-black uppercase tracking-widest text-amber-700">Suicide Clause Notice</p>
+                                        <p class="text-[10px] font-bold text-amber-600/80 mt-1 leading-relaxed">
+                                            If the cause of death is suicide:
+                                            <br>• Within 1 year of policy activation: Only premiums paid will be refunded.
+                                            <br>• After 1 year: Full sum assured will be paid.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -166,6 +182,26 @@
                                 Invalid format: Must be exactly 12 numeric digits
                             </p>
                         </div>
+
+                        <!-- Nominee Email Field -->
+                        <div class="flex flex-col gap-3 sm:col-span-2">
+                            <label class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary opacity-80 ml-1">
+                                Nominee Contact Email <span class="text-primary">*</span>
+                            </label>
+                            <input type="email" formControlName="nomineeEmail" required placeholder="nominee@example.com"
+                                class="input-premium px-4"
+                                [ngClass]="{'border-red-500/30 bg-red-500/[0.01]': (claimForm.get('nomineeEmail')?.invalid && claimForm.get('nomineeEmail')?.touched) || (selectedPolicy && claimForm.get('nomineeEmail')?.value?.toLowerCase() === selectedPolicy.customerEmail.toLowerCase())}" />
+                            
+                            <p *ngIf="claimForm.get('nomineeEmail')?.invalid && claimForm.get('nomineeEmail')?.touched"
+                                class="text-[9px] font-bold text-red-500 uppercase tracking-widest ml-1">
+                                Valid email is required
+                            </p>
+                            <p *ngIf="selectedPolicy && claimForm.get('nomineeEmail')?.value?.toLowerCase() === selectedPolicy.customerEmail.toLowerCase() && claimForm.get('nomineeEmail')?.touched"
+                                class="text-[9px] font-black text-red-500 uppercase tracking-widest ml-1 bg-red-500/10 p-2 rounded-lg">
+                                <app-icon name="alert" className="inline mr-1"></app-icon>
+                                Nominee email cannot be the same as the customer's email
+                            </p>
+                        </div>
                     </div>
                 </div>
 
@@ -201,7 +237,7 @@
                                     Number <span class="text-primary">*</span></label>
                                  <input type="text" formControlName="bankAccountNumber" required
                                     placeholder="Bank account number" class="input-premium px-4"
-                                    [ngClass]="{'border-red-500/50 bg-red-500/[0.02]': claimForm.get('bankAccountNumber')?.invalid && claimForm.get('bankAccountNumber')?.touched}" />
+                                    [ngClass]="{'border-red-500/50 bg-red-500/[0.02]': (claimForm.get('bankAccountNumber')?.invalid && claimForm.get('bankAccountNumber')?.touched) || (selectedPolicy && selectedPolicy.customerBankAccountNumber && claimForm.get('bankAccountNumber')?.value === selectedPolicy.customerBankAccountNumber)}" />
                                 <p *ngIf="claimForm.get('bankAccountNumber')?.errors?.['pattern'] && claimForm.get('bankAccountNumber')?.touched"
                                     class="text-[9px] font-bold text-red-500 uppercase tracking-widest ml-1">
                                     Invalid account number (9-20 digits)
@@ -209,6 +245,11 @@
                                 <p *ngIf="claimForm.get('bankAccountNumber')?.errors?.['required'] && claimForm.get('bankAccountNumber')?.touched"
                                     class="text-[9px] font-bold text-red-500 uppercase tracking-widest ml-1">
                                     Account number is required
+                                </p>
+                                <p *ngIf="selectedPolicy && selectedPolicy.customerBankAccountNumber && claimForm.get('bankAccountNumber')?.value === selectedPolicy.customerBankAccountNumber && claimForm.get('bankAccountNumber')?.touched"
+                                    class="text-[9px] font-black text-red-500 uppercase tracking-widest ml-1 bg-red-500/10 p-2 rounded-lg mt-2">
+                                    <app-icon name="alert" className="inline mr-1"></app-icon>
+                                    Nominee bank account cannot be the same as the customer's account
                                 </p>
                             </div>
 

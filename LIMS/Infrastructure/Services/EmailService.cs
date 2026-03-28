@@ -36,17 +36,24 @@ public class EmailService : IEmailService
             msg.AddAttachment(attachmentName, base64File);
         }
 
-        var response = await _client.SendEmailAsync(msg);
+        try
+        {
+            var response = await _client.SendEmailAsync(msg);
 
-        if (!response.IsSuccessStatusCode)
-        {
-            var error = await response.Body.ReadAsStringAsync();
-            Console.WriteLine($"❌ Failed to send email to {toEmail}: {error}");
-            throw new Exception($"SendGrid failed to send email: {error}");
+            if (!response.IsSuccessStatusCode)
+            {
+                var error = await response.Body.ReadAsStringAsync();
+                Console.WriteLine($"❌ Failed to send email to {toEmail}: {error}");
+                Console.WriteLine("⚠️ Note: SendGrid may block @gmail.com Sender Emails due to DMARC, or your API key may be revoked.");
+            }
+            else
+            {
+                Console.WriteLine($"✅ Email sent successfully to {toEmail}");
+            }
         }
-        else
+        catch (Exception ex)
         {
-            Console.WriteLine($"✅ Email sent successfully to {toEmail}");
+            Console.WriteLine($"❌ SendGrid Exception during email dispatch to {toEmail}: {ex.Message}");
         }
     }
 
@@ -101,7 +108,6 @@ Amount Transferred: ₹{amount:0.00}<br/>
 Transaction ID: {transactionId}<br/>
 Transfer Date: {transferDate:yyyy-MM-dd}<br/><br/>
 Bank Details:<br/>
-Bank Name: {bankName}<br/>
 Account Holder Name: {accountHolderName}<br/>
 Account Number: {accountNumber}<br/>
 IFSC Code: {ifscCode}<br/><br/>
@@ -133,7 +139,6 @@ Amount Credited: ₹{amount:0.00}<br/>
 Transaction ID: {transactionId}<br/>
 Transfer Date: {transferDate:yyyy-MM-dd}<br/><br/>
 Bank Details:<br/>
-Bank Name: {bankName}<br/>
 Account Holder Name: {accountHolderName}<br/>
 Account Number: {accountNumber}<br/>
 IFSC Code: {ifscCode}<br/><br/>
@@ -164,7 +169,6 @@ Commission Amount: ₹{amount:0.00}<br/>
 Transaction ID: {transactionId}<br/>
 Transfer Date: {transferDate:yyyy-MM-dd}<br/><br/>
 Bank Details:<br/>
-Bank Name: {bankName}<br/>
 Account Holder Name: {accountHolderName}<br/>
 Account Number: {accountNumber}<br/>
 IFSC Code: {ifscCode}<br/><br/>
@@ -198,6 +202,20 @@ This email serves as an official receipt for your records.<br/><br/>
 Thank you for choosing NexaLife Insurance.";
 
         await SendEmailAsync(email, customerName, subject, body, invoiceFile, invoiceFileName);
+    }
+
+    public async Task SendWelcomeEmail(string email, string customerName)
+    {
+        var subject = "Welcome to NexaLife Insurance!";
+        var body = $@"
+Dear {customerName},<br/><br/>
+Welcome to NexaLife! We are thrilled to have you with us.<br/><br/>
+Your account has been successfully created. You can now browse our insurance plans, request new policies, and manage your profile directly from your dashboard.<br/><br/>
+If you have any questions, our support team is always here to help.<br/><br/>
+Best regards,<br/>
+The NexaLife Team";
+
+        await SendEmailAsync(email, customerName, subject, body);
     }
 }
 

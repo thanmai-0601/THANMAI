@@ -11,4 +11,12 @@ import { Toast } from './shared/components/toast/toast';
     <app-toast />
   `
 })
-export class AppComponent {}
+export class AppComponent {
+  constructor() {
+    // Purge legacy local storage keys
+    localStorage.removeItem('lims_user');
+    localStorage.removeItem('lims_token');
+    localStorage.removeItem('lims_theme');
+    localStorage.removeItem('user');
+  }
+}

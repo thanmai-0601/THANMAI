@@ -77,7 +77,7 @@ public class AutomatedMaturityService : IAutomatedMaturityService
                 if (customer == null) continue;
 
                 // Calculate the exact payout incorporating the accrued bonus
-                var calcResult = _premiumCalc.Calculate(policy.InsurancePlan!, policy.SumAssured, policy.TenureYears, policy.RiskCategory ?? "Standard");
+                var calcResult = _premiumCalc.Calculate(policy.InsurancePlan!, policy.SumAssured, policy.TenureYears, policy.RiskCategory ?? "Standard", policy.HasAlcoholHabit);
                 var maturityBenefit = calcResult.MaturityBenefit > 0 ? calcResult.MaturityBenefit : policy.SumAssured;
 
                 // Create the Automated Maturity Claim

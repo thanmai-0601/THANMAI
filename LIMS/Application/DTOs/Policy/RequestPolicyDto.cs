@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace Application.DTOs.Policy;
 
@@ -32,10 +32,13 @@ public class RequestPolicyDto
 
     // ── Upfront Nominee and Documents — required for review ──────────
     
+    [Required(ErrorMessage = "Alcohol consumption habit must be specified.")]
+    public bool? HasAlcoholHabit { get; set; }
+
     [Required]
     public AddNomineeDto Nominee { get; set; } = new();
 
     [Required]
-    [MinLength(3, ErrorMessage = "Three major documents are required: Address Proof, Income Proof, Nominee ID Proof.")]
+    [MinLength(3, ErrorMessage = "Three major documents are required: Aadhar Card, Income Proof, Nominee ID Proof.")]
     public List<UploadDocumentDto> Documents { get; set; } = new();
 }

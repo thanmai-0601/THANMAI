@@ -28,9 +28,10 @@
                     <div
                         class="flex justify-between p-4 bg-theme-bg dark:bg-slate-800/50 border-b border-theme-border dark:border-theme-border">
                         <span class="text-text-secondary dark:text-text-secondary font-medium">Coverage Limit</span>
-                        <span class="font-bold text-text-primary dark:text-white">₹{{ plan.minSumAssured | number }} -
-                            ₹{{
-                            plan.maxSumAssured | number }}</span>
+                        <span class="font-bold text-text-primary dark:text-white">
+                            ₹{{ plan.minSumAssured >= 10000000 ? (plan.minSumAssured/10000000 | number:'1.0-2') + ' Cr' : (plan.minSumAssured/100000 | number:'1.0-2') + 'L' }} - 
+                            ₹{{ plan.maxSumAssured >= 10000000 ? (plan.maxSumAssured/10000000 | number:'1.0-2') + ' Cr' : (plan.maxSumAssured/100000 | number:'1.0-2') + 'L' }}
+                        </span>
                     </div>
                     <div
                         class="flex justify-between p-4 bg-theme-card dark:bg-theme-sidebar border-b border-theme-border dark:border-theme-border">

@@ -36,6 +36,9 @@ export class ClaimDetail implements OnInit {
   pdfValidation: any = null;
   loadingValidation = false;
 
+  aiSummary: string | null = null;
+  loadingSummary = false;
+
   constructor(
     private api: ApiService,
     private route: ActivatedRoute,
@@ -96,6 +99,21 @@ export class ClaimDetail implements OnInit {
         this.loadingValidation = false;
       },
       error: () => this.loadingValidation = false
+    });
+  }
+
+  generateSummary(): void {
+    this.loadingSummary = true;
+    this.api.get<any>(`claim/${this.claimId}/summary`).subscribe({
+      next: (res) => {
+        this.aiSummary = res.summary;
+        this.loadingSummary = false;
+        this.toast.show('AI Summary generated successfully!', 'success');
+      },
+      error: () => {
+        this.loadingSummary = false;
+        this.toast.show('Failed to generate AI Summary.', 'error');
+      }
     });
   }
 

@@ -1,4 +1,4 @@
-﻿using Application.DTOs.Dashboard;
+using Application.DTOs.Dashboard;
 using Application.Interfaces.Repositories;
 using Domain.Entities;
 using Domain.Enums;
@@ -233,19 +233,51 @@ public class PolicyRepository : IPolicyRepository
 
     public async Task<List<PlanDistributionDto>> GetPlanDistributionAsync()
     {
-        return await _context.InsurancePlans
-            .Select(plan => new PlanDistributionDto
+        var plans = await _context.InsurancePlans.ToListAsync();
+        var results = new List<PlanDistributionDto>();
+
+        foreach (var plan in plans)
+        {
+            var totalPolicies = await _context.Policies
+                .CountAsync(p => p.InsurancePlanId == plan.Id);
+
+            var activePolicies = await _context.Policies
+                .CountAsync(p => p.InsurancePlanId == plan.Id && 
+                                p.Status == PolicyStatus.Active && 
+                                !p.Claims.Any(c => c.Status == ClaimStatus.Settled));
+
+            var totalSum = await _context.Policies
+                .Where(p => p.InsurancePlanId == plan.Id && 
+                            p.Status == PolicyStatus.Active && 
+                            !p.Claims.Any(c => c.Status == ClaimStatus.Settled))
+                .SumAsync(p => (decimal?)p.SumAssured) ?? 0;
+
+            // ── Explicit Join for Revenue ──────────────────────────────────
+            // We join Payments with Policies to ensure we filter by the correct PlanId
+            // We specifically look for PAID payments where the Policy exists and matches the plan
+            var revenueFromPayments = await (from pay in _context.Payments
+                                           join pol in _context.Policies on pay.PolicyId equals pol.Id
+                                           where pol.InsurancePlanId == plan.Id && pay.Status == PaymentStatus.Paid
+                                           select (decimal?)pay.AmountPaid).SumAsync() ?? 0;
+
+            // Robust fallback: Sum Invoices marked as Paid for this plan
+            var revenueFromInvoices = await (from inv in _context.Invoices
+                                           join pol in _context.Policies on inv.PolicyId equals pol.Id
+                                           where pol.InsurancePlanId == plan.Id && inv.Status == InvoiceStatus.Paid && inv.Payment == null
+                                           select (decimal?)inv.AmountDue).SumAsync() ?? 0;
+
+            results.Add(new PlanDistributionDto
             {
                 PlanId = plan.Id,
                 PlanName = plan.PlanName,
-                TotalPolicies = plan.Policies.Count,
-                ActivePolicies = plan.Policies
-                    .Count(p => p.Status == PolicyStatus.Active && !p.Claims.Any(c => c.Status == ClaimStatus.Settled)),
-                TotalSumAssured = plan.Policies
-                    .Where(p => p.Status == PolicyStatus.Active && !p.Claims.Any(c => c.Status == ClaimStatus.Settled))
-                    .Sum(p => p.SumAssured)
-            })
-            .ToListAsync();
+                TotalPolicies = totalPolicies,
+                ActivePolicies = activePolicies,
+                TotalSumAssured = totalSum,
+                TotalPremiumCollected = revenueFromPayments + revenueFromInvoices
+            });
+        }
+
+        return results;
     }
 
     public async Task<List<RecentActivityDto>>
@@ -263,5 +295,28 @@ public class PolicyRepository : IPolicyRepository
                 Date = p.UpdatedAt ?? p.CreatedAt
             })
             .ToListAsync();
+    }
+
+    public async Task<List<CustomerPolicyFinancialsDto>> GetCustomerPolicyFinancialsAsync(int customerId)
+    {
+        var policies = await _context.Policies
+            .Include(p => p.InsurancePlan)
+            .Include(p => p.Claims)
+            .Where(p => p.CustomerId == customerId && p.Status != PolicyStatus.Rejected)
+            .ToListAsync();
+
+        var policyIds = policies.Select(p => p.Id).ToList();
+
+        var payments = await _context.Payments
+            .Where(p => policyIds.Contains(p.PolicyId) && p.Status == PaymentStatus.Paid)
+            .ToListAsync();
+
+        return policies.Select(p => new CustomerPolicyFinancialsDto
+        {
+            PolicyNumber = p.PolicyNumber,
+            PlanName = p.InsurancePlan?.PlanName ?? "Unknown Plan",
+            TotalPremiumPaid = payments.Where(pmt => pmt.PolicyId == p.Id).Sum(pmt => pmt.AmountPaid),
+            TotalClaimReceived = p.Claims.Where(c => c.Status == ClaimStatus.Settled).Sum(c => c.SettledAmount ?? 0)
+        }).ToList();
     }
 }

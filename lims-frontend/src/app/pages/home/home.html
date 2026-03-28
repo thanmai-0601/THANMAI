@@ -1,279 +1,400 @@
 <div
-  class="min-h-screen bg-theme-bg dark:bg-theme-sidebar text-text-primary dark:text-slate-100 font-sans selection:bg-blue-200 dark:selection:bg-blue-900 transition-colors duration-300">
+  class="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 selection:bg-primary/30 scroll-smooth relative overflow-x-hidden font-sans">
 
-  <!-- Navbar -->
+  <!-- Background specialty patterns -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-slate-50 dark:bg-slate-950 transition-colors">
+    <!-- Top-aligned main glow -->
+    <div
+      class="absolute top-0 left-0 w-full h-[1200px] bg-[radial-gradient(ellipse_at_top,rgba(249,115,22,0.15),transparent_70%)] opacity-60">
+    </div>
+
+    <!-- Animated blobs for depth -->
+    <div
+      class="absolute top-[20%] -right-[10%] w-[800px] h-[800px] bg-primary/10 rounded-full blur-[100px] animate-pulse-slow mix-blend-soft-light selection:bg-transparent">
+    </div>
+    <div
+      class="absolute -bottom-[10%] -left-[10%] w-[600px] h-[600px] bg-primary/10 rounded-full blur-[100px] animate-pulse-slower mix-blend-soft-light">
+    </div>
+    <div
+      class="absolute top-[50%] left-[20%] w-[400px] h-[400px] bg-primary/5 rounded-full blur-[80px] animate-float opacity-50">
+    </div>
+
+    <!-- Fine Pattern overlay -->
+    <div
+      class="absolute inset-0 opacity-[0.02] dark:opacity-[0.04] bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]">
+    </div>
+    
+    <!-- Subtle Grain Effect -->
+    <div class="absolute inset-0 opacity-[0.1] mix-blend-overlay pointer-events-none">
+       <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+         <filter id="noise">
+           <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
+           <feColorMatrix type="saturate" values="0" />
+         </filter>
+         <rect width="100%" height="100%" filter="url(#noise)" />
+       </svg>
+    </div>
+  </div>
+
+  <!-- Navigation Header -->
   <nav
-    class="fixed top-0 inset-x-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200/50 dark:border-white/5 shadow-sm">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-      <a routerLink="/"
-        class="flex items-center gap-3 text-2xl font-black text-slate-900 dark:text-white tracking-tighter uppercase group">
-        <div class="relative w-10 h-10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-          <div class="absolute inset-0 bg-primary/20 blur-lg rounded-full animate-pulse"></div>
-          <app-icon name="shield" className="w-8 h-8 relative z-10 text-primary drop-shadow-[0_0_8px_rgba(249,115,22,0.5)]"></app-icon>
-        </div> 
-        <span class="text-gradient uppercase tracking-tightest">NexaLife</span>
-      </a>
-      <div class="hidden md:flex items-center gap-10">
+    class="fixed top-0 left-0 w-full z-50 transition-all duration-500 glass-panel border-b border-slate-200/50 dark:border-white/5">
+    <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
+      <div class="flex items-center gap-4 group cursor-pointer" routerLink="/">
+        <div class="relative flex items-center justify-center">
+          <app-icon name="shield"
+            className="text-[2.5rem] text-primary drop-shadow-[0_2px_8px_rgba(249,115,22,0.2)] group-hover:scale-105 transition-transform duration-500"></app-icon>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-4xl font-black tracking-tighter text-primary uppercase leading-tight">NEXALIFE</span>
+          <span class="text-[10px] font-black tracking-[0.6em] text-primary uppercase -mt-0.5">Your Life Our
+            Promise</span>
+        </div>
+      </div>
+
+      <div class="hidden lg:flex items-center gap-12">
         <a href="#about"
-          class="text-xs font-black uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-white transition-colors">About</a>
+          class="text-[12px] font-bold uppercase tracking-widest hover:text-primary transition-all relative group">
+          Our Impact
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+        </a>
+        <a href="#process"
+          class="text-[12px] font-bold uppercase tracking-widest hover:text-primary transition-all relative group">
+          Workflow
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+        </a>
         <a href="#features"
-          class="text-xs font-black uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-white transition-colors">Why
-          Us</a>
-        <a href="#stats"
-          class="text-xs font-black uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-white transition-colors">Statistics</a>
-        <a href="#contact"
-          class="text-xs font-black uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-white transition-colors">Contact</a>
-        <div class="w-px h-6 bg-slate-200 dark:bg-slate-800 mx-2"></div>
-        <app-theme-toggle />
+          class="text-[12px] font-bold uppercase tracking-widest hover:text-primary transition-all relative group">
+          System Core
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+        </a>
+        <a href="#ecosystem"
+          class="text-[12px] font-bold uppercase tracking-widest hover:text-primary transition-all relative group">
+          Network
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+        </a>
+        <div class="h-6 w-px bg-slate-200 dark:bg-white/10"></div>
+        <app-theme-toggle></app-theme-toggle>
         <a routerLink="/login"
-          class="text-xs font-black uppercase tracking-widest text-slate-900 dark:text-white hover:text-primary dark:hover:text-primary transition-colors">Login</a>
+          class="text-[12px] font-bold uppercase tracking-widest hover:text-primary transition-all">Member Login</a>
         <a routerLink="/register"
-          class="btn-premium px-8 h-12 flex items-center text-xs font-black uppercase tracking-widest shadow-xl shadow-primary/20">Register</a>
+          class="btn-premium px-10 py-5 text-[11px] font-black uppercase tracking-widest rounded-2xl shadow-xl shadow-primary/20 hover:shadow-primary/40 transition-all">Sign Up</a>
       </div>
     </div>
   </nav>
 
   <!-- Hero Section -->
-  <section
-    class="pt-32 pb-16 px-6 text-center lg:pt-48 lg:pb-32 bg-theme-bg dark:bg-slate-950 relative overflow-hidden">
-    <!-- Fluid background animations -->
-    <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/20 rounded-full blur-[120px] animate-pulse"></div>
-    <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-500/10 rounded-full blur-[120px] animate-pulse"></div>
-    <div class="absolute top-[20%] right-[10%] w-[300px] h-[300px] bg-indigo-500/5 rounded-full blur-[120px]"></div>
+  <section class="relative pt-24 pb-12 lg:pt-28 lg:pb-16 px-6 overflow-hidden">
+    <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-20">
+      <div class="text-left animate-in slide-in-from-left-12 duration-1000">
+        <div
+          class="inline-flex items-center gap-3 px-6 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-black uppercase tracking-widest mb-8 shadow-inner">
+          <span class="flex h-2 w-2 relative">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+          </span>
+          Next-Generation Financial Shield
+        </div>
+        <h1
+          class="text-5xl lg:text-7xl font-black text-slate-900 dark:text-white mb-6 leading-tight uppercase tracking-tight">
+          YOUR LIFE.<br>
+          <span class="text-gradient">OUR PROMISE.</span>
+        </h1>
+        <p class="text-[10px] font-black tracking-[0.6em] text-primary uppercase mb-10 opacity-100">The Absolute
+          Standard of Protection</p>
+        <p class="text-lg text-slate-600 dark:text-slate-400 mb-10 max-w-xl leading-relaxed font-bold">
+          The absolute standard of digital protection. Nexalife provides a transparent, high-performance platform where
+          your family's security is etched into every protocol.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-5 items-center">
+          <a routerLink="/register"
+            class="btn-premium px-10 py-5 text-[11px] font-black uppercase tracking-widest shadow-xl flex items-center justify-center rounded-2xl group transition-all duration-500">
+            Secure Access <span class="ml-3 group-hover:translate-x-2 transition-transform">→</span>
+          </a>
+          <a routerLink="/login"
+            class="px-10 py-5 rounded-2xl text-[11px] font-black uppercase tracking-widest text-slate-800 dark:text-slate-100 bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 hover:border-primary transition-all flex items-center justify-center shadow-lg">
+            Client Portal
+          </a>
+        </div>
+      </div>
 
-    <div class="max-w-5xl mx-auto relative z-10">
-      <div
-        class="inline-flex items-center gap-3 px-6 py-2 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs font-black uppercase tracking-[0.3em] mb-8 animate-in slide-in-from-top-4 duration-1000">
-        <div class="w-6 h-6 rounded-full bg-gradient-to-tr from-emerald-400 to-emerald-600 flex items-center justify-center shadow-lg shadow-emerald-500/30">
-          <app-icon name="chevron-down" className="w-3.5 h-3.5 text-white"></app-icon>
-        </div> Your Life, Our Promise
+      <div class="relative animate-in zoom-in-95 duration-1000 delay-300">
+        <div class="relative z-10 animate-float text-center">
+          <img src="/images/hero_v3.png" alt="Nexalife Shield"
+            class="w-full max-w-2xl h-[450px] drop-shadow-3xl rounded-[3rem] border border-white/10 group-hover:scale-105 transition-transform duration-1000 shadow-2xl">
+        </div>
       </div>
-      <h1
-        class="text-6xl lg:text-8xl font-black tracking-tightest text-slate-900 dark:text-white mb-10 leading-[0.9] uppercase animate-in fade-in slide-in-from-bottom-8 duration-700">
-        Secure Your <span class="text-gradient">Legacy</span> with <span class="block mt-4 lg:inline">NexaLife</span>
-      </h1>
-      <p class="text-lg lg:text-xl text-slate-500 dark:text-slate-400 mb-14 max-w-2xl mx-auto leading-relaxed font-medium animate-in fade-in duration-1000 delay-300">
-        The NEXT generation of life insurance. AI-powered calculations, instant claim cycles, and complete transparency for the modern world.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-6 justify-center items-center animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-500">
-        <a routerLink="/register"
-          class="btn-premium w-full sm:w-auto px-12 py-5 text-sm font-black uppercase tracking-[0.2em] shadow-2xl shadow-primary/40">
-          Initialize Protection <span class="ml-2 text-lg">→</span>
-        </a>
-        <a routerLink="/login"
-          class="w-full sm:w-auto px-12 py-5 rounded-2xl text-sm font-black uppercase tracking-[0.2em] text-slate-900 dark:text-white bg-white/50 dark:bg-slate-900/50 backdrop-blur-md border border-slate-200 dark:border-white/10 hover:bg-white dark:hover:bg-slate-800 transition-all shadow-sm">
-          Access Dashboard
-        </a>
-      </div>
+    </div>
+
+    <!-- Wave Divider -->
+    <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-[0]">
+      <svg class="relative block w-full h-[100px] dark:fill-slate-950 fill-white" data-name="Layer 1"
+        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path
+          d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.43,147.38,128.93,218.27,110.13c51.27-13.6,90.38-40.34,103.12-53.69Z">
+        </path>
+      </svg>
     </div>
   </section>
 
   <!-- About Section -->
-  <section id="about" class="py-16 px-6 max-w-7xl mx-auto relative">
-    <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-6 uppercase tracking-tightest">Engineering <span class="text-gradient">Trust</span></h2>
-      <p class="text-lg text-slate-500 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed font-medium">
-        NexaLife isn't just an insurance provider. We are a technology-first shield for your family's future, reimagining risk management through innovation.
-      </p>
-    </div>
-    <div class="grid md:grid-cols-3 gap-10">
-      <div class="premium-card p-10 text-center group">
+  <div id="about" class="relative -top-32 invisible h-0 pointer-events-none"></div>
+  <section class="py-10 px-6 max-w-7xl mx-auto relative z-10">
+    <div class="flex flex-col lg:flex-row items-center gap-16">
+      <div class="lg:w-1/2 relative group">
         <div
-          class="w-20 h-20 bg-primary/5 dark:bg-primary/10 rounded-[2rem] flex items-center justify-center text-4xl mx-auto mb-8 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
-          <div class="relative w-full h-full flex items-center justify-center">
-            <div class="absolute inset-0 bg-primary/20 blur-xl rounded-full opacity-50"></div>
-            <app-icon name="policies" className="w-10 h-10 text-primary relative z-10"></app-icon>
-          </div>
+          class="absolute -inset-10 bg-primary/20 blur-[100px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
         </div>
-        <h3 class="text-xl font-black text-slate-900 dark:text-white mb-4 uppercase tracking-tighter">Mission</h3>
-        <p class="text-slate-500 dark:text-slate-400 leading-relaxed font-medium">To democratize financial security through transparent, accessible tech-driven insurance solutions.</p>
+        <img src="/images/family_v3.png" alt="Family Security"
+          class="relative z-10 rounded-[3rem] shadow-2xl transition-all duration-700 w-full max-w-lg mx-auto h-auto border border-white/10 group-hover:scale-[1.02] group-hover:-rotate-1">
       </div>
-      <div
-        class="premium-card p-10 text-center group">
-        <div
-          class="w-20 h-20 bg-indigo-500/5 dark:bg-indigo-500/10 rounded-[2rem] flex items-center justify-center text-4xl mx-auto mb-8 group-hover:scale-110 group-hover:-rotate-3 transition-all duration-500">
-          <div class="relative w-full h-full flex items-center justify-center">
-            <div class="absolute inset-0 bg-indigo-500/20 blur-xl rounded-full opacity-50"></div>
-            <app-icon name="view" className="w-10 h-10 text-indigo-500 relative z-10"></app-icon>
-          </div>
+      <div class="lg:w-1/2">
+        <h4 class="text-primary text-[11px] font-black mb-6 uppercase tracking-[0.5em] flex items-center gap-4">
+          <span class="w-12 h-px bg-primary/40"></span>
+          The NEXALIFE Mission
+        </h4>
+        <h2
+          class="text-5xl lg:text-6xl font-black text-slate-900 dark:text-white mb-8 uppercase tracking-tighter leading-tight">
+          A Legacy of <br><span class="text-gradient">Total Devotion.</span></h2>
+        <p
+          class="text-2xl text-slate-700 dark:text-slate-300 mb-10 leading-relaxed font-bold italic border-primary pl-8 border-l-4">
+          "We don't just insure lives; we protect the dreams that drive them."
+        </p>
+        <div class="space-y-6 mb-10">
+          <p class="text-lg text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
+            Founded on the principles of absolute transparency and human-centric innovation, Nexalife has redefined the
+            landscape of financial protection. We believe that security should never be a mystery.
+          </p>
+          <p class="text-lg text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
+            Our proprietary <strong>Nexus Protocol</strong> ensures that claims are processed within hours, not weeks.
+            By blending artisan-level care with enterprise-grade technology, we've created a sanctuary for over 25,000
+            families worldwide.
+          </p>
         </div>
-        <h3 class="text-xl font-black text-slate-900 dark:text-white mb-4 uppercase tracking-tighter">Vision</h3>
-        <p class="text-slate-500 dark:text-slate-400 leading-relaxed font-medium">Building a world where global risk is mitigated by intelligence and absolute reliability.</p>
-      </div>
-      <div
-        class="premium-card p-10 text-center group">
-        <div
-          class="w-20 h-20 bg-emerald-500/5 dark:bg-emerald-500/10 rounded-[2rem] flex items-center justify-center text-4xl mx-auto mb-8 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
-          <div class="relative w-full h-full flex items-center justify-center">
-            <div class="absolute inset-0 bg-emerald-500/20 blur-xl rounded-full opacity-50"></div>
-            <app-icon name="shield" className="w-10 h-10 text-emerald-500 relative z-10"></app-icon>
-          </div>
-        </div>
-        <h3 class="text-xl font-black text-slate-900 dark:text-white mb-4 uppercase tracking-tighter">Values</h3>
-        <p class="text-slate-500 dark:text-slate-400 leading-relaxed font-medium">Radical transparency, zero-friction experience, and user-centric architecture in everything we build.</p>
       </div>
     </div>
   </section>
 
-  <!-- Statistics Section -->
-  <section id="stats"
-    class="py-16 border-y border-theme-border dark:border-theme-border/60 bg-theme-card dark:bg-theme-sidebar/50">
+  <!-- Process Section -->
+  <div id="process" class="relative -top-32 invisible h-0 pointer-events-none"></div>
+  <section class="py-10 text-center relative z-10 transition-colors">
     <div class="max-w-7xl mx-auto px-6">
-      <h2 class="text-center text-3xl font-extrabold text-text-primary dark:text-white mb-12">Life Insurance by the
-        Numbers</h2>
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-        @for (stat of stats; track stat.label) {
-        <div class="text-center flex flex-col items-center">
-          <span
-            class="text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-br from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 mb-3 drop-shadow-sm">
-            {{ stat.value | number }}{{ stat.suffix }}
-          </span>
-          <span
-            class="text-sm lg:text-base font-bold text-text-secondary dark:text-text-secondary uppercase tracking-widest">{{
-            stat.label }}</span>
+      <div class="text-center mb-16">
+        <h4 class="text-primary text-[10px] font-black mb-4 uppercase tracking-[0.4em]">Simple Workflow</h4>
+        <h2
+          class="text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white mb-6 uppercase tracking-tight leading-tight">
+          Three Steps to <span class="text-gradient">Total Security</span></h2>
+        <p class="text-base text-slate-500 dark:text-slate-400 max-w-2xl mx-auto font-medium">Protecting your legacy is
+          easier than ever with our streamlined three-step workflow.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        @for (step of processSteps; track step.id) {
+        <div
+          class="p-8 bg-white dark:bg-slate-950 rounded-3xl text-center border border-slate-200 dark:border-white/5 shadow-sm hover:shadow-xl transition-all duration-500 group">
+          <div
+            class="w-16 h-16 bg-primary/5 rounded-full flex items-center justify-center text-xl font-black text-primary mx-auto mb-6 group-hover:bg-primary group-hover:text-white transition-all">
+            {{ step.id }}
+          </div>
+          <h3 class="text-xl font-extrabold text-slate-900 dark:text-white mb-3 uppercase tracking-tighter">{{
+            step.title }}</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
+            {{ step.desc }}
+          </p>
         </div>
         }
       </div>
     </div>
   </section>
 
-  <!-- Process Section -->
-  <section class="py-16 px-6 bg-slate-50 dark:bg-slate-900/30 overflow-hidden border-y border-theme-border dark:border-white/5">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl font-black text-slate-900 dark:text-white uppercase tracking-tightest mb-4">The <span class="text-gradient">Nexalife</span> Process</h2>
-        <p class="text-slate-500 dark:text-slate-400 font-medium">From registration to claim settlement, we've optimized every millisecond.</p>
+  <!-- Statistics Section -->
+  <div id="statistics" class="relative -top-32 invisible h-0 pointer-events-none"></div>
+  <section class="py-10 text-center relative z-10 transition-colors">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h4 class="text-primary text-[10px] font-black mb-4 uppercase tracking-[0.4em]">Global Impact</h4>
+        <h2 class="text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white uppercase tracking-tight leading-tight">
+          By the <span class="text-gradient">Numbers</span>
+        </h2>
       </div>
-
-      <div class="grid md:grid-cols-3 gap-12 relative">
-        <!-- Connecting Line -->
-        <div class="hidden md:block absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent -translate-y-24"></div>
-
-        <div class="relative text-center group">
-          <div class="w-16 h-16 rounded-full bg-primary text-white flex items-center justify-center text-xl font-black mx-auto mb-8 shadow-xl shadow-primary/30 group-hover:scale-110 transition-transform relative z-10">01</div>
-          <h3 class="text-xl font-black text-slate-900 dark:text-white uppercase mb-4 tracking-tighter">Digital Onboarding</h3>
-          <p class="text-slate-500 dark:text-slate-400 text-base leading-relaxed">Swift electronic registration with immediate identity verification. No paperwork required.</p>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+        @for (stat of stats; track stat.label) {
+        <div
+          class="p-8 bg-white dark:bg-slate-950 rounded-3xl border border-slate-200 dark:border-white/5 hover:border-primary/40 transition-all group">
+          <span
+            class="text-4xl lg:text-5xl font-extrabold text-gradient block mb-2 transition-transform group-hover:scale-105">
+            {{ stat.value | number }}{{ stat.suffix }}
+          </span>
+          <span class="text-[10px] font-black text-slate-500 uppercase tracking-widest">{{ stat.label }}</span>
         </div>
-
-        <div class="relative text-center group">
-          <div class="w-16 h-16 rounded-full bg-indigo-600 text-white flex items-center justify-center text-xl font-black mx-auto mb-8 shadow-xl shadow-indigo-500/30 group-hover:scale-110 transition-transform relative z-10">02</div>
-          <h3 class="text-xl font-black text-slate-900 dark:text-white uppercase mb-4 tracking-tighter">Plan Activation</h3>
-          <p class="text-slate-500 dark:text-slate-400 text-base leading-relaxed">Choose from our AI-curated plans that match your risk profile and financial goals perfectly.</p>
-        </div>
-
-        <div class="relative text-center group">
-          <div class="w-16 h-16 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xl font-black mx-auto mb-8 shadow-xl shadow-emerald-500/30 group-hover:scale-110 transition-transform relative z-10">03</div>
-          <h3 class="text-xl font-black text-slate-900 dark:text-white uppercase mb-4 tracking-tighter">Real-time Shield</h3>
-          <p class="text-slate-500 dark:text-slate-400 text-base leading-relaxed">Your protection starts instantly. Track policies, payments, and claims in real-time from your hub.</p>
-        </div>
+        }
       </div>
     </div>
   </section>
 
-  <!-- Why Choose Us -->
-  <section id="features" class="py-16 px-6 max-w-7xl mx-auto">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-extrabold text-text-primary dark:text-white mb-4">Why Choose NexaLife?</h2>
-      <p class="text-lg text-text-secondary dark:text-text-secondary max-w-2xl mx-auto">Everything you need to handle
-        your life insurance safely, in one nice place.</p>
+  <!-- Capabilities Section -->
+  <div id="features" class="relative -top-32 invisible h-0 pointer-events-none"></div>
+  <section class="py-10 px-6 max-w-7xl mx-auto relative z-10">
+    <div class="max-w-3xl mb-10 text-left">
+      <h2
+        class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white uppercase tracking-tight mb-4 leading-none">
+        Modern <span class="text-gradient">Capabilities</span></h2>
+      <p class="text-lg text-slate-500 dark:text-slate-400 font-medium">
+        Discover the tools and innovations that make Nexalife the preferred choice for thousands of families worldwide.
+        We bring enterprise-grade security to your personal life.
+      </p>
     </div>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
       @for (feature of features; track feature.title) {
       <div
-        class="p-8 rounded-3xl bg-theme-card dark:bg-theme-sidebar border border-theme-border dark:border-theme-border hover:border-blue-200 dark:hover:border-blue-800/50 transition-colors group">
-        <div
-          class="w-14 h-14 bg-theme-bg dark:bg-slate-800 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:bg-primary/5 dark:group-hover:bg-blue-900/20 transition-colors">
-          <div class="relative group-hover:scale-110 transition-transform duration-500">
-            <app-icon [name]="feature.icon" className="w-8 h-8 drop-shadow-md" [color]="feature.icon === 'bolt' ? '#F59E0B' : feature.icon === 'phone' ? '#6366F1' : feature.icon === 'handshake' ? '#10B981' : feature.icon === 'money' ? '#3B82F6' : feature.icon === 'dashboard' ? '#EC4899' : '#F97316'"></app-icon>
-          </div>
+        class="p-6 border border-slate-200 dark:border-white/10 hover:border-primary/40 transition-all bg-white dark:bg-slate-900/50 rounded-3xl group flex flex-col h-full">
+        <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+          <app-icon [name]="feature.icon" className="w-6 h-6 text-primary"></app-icon>
         </div>
-        <h3 class="text-xl font-bold text-text-primary dark:text-white mb-3">{{ feature.title }}</h3>
-        <p class="text-text-secondary dark:text-text-secondary leading-relaxed text-base">{{ feature.desc }}</p>
+        <h3 class="text-lg font-extrabold text-slate-900 dark:text-white mb-2 uppercase tracking-tighter">{{
+          feature.title }}</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-medium flex-grow">{{ feature.desc }}
+        </p>
       </div>
       }
     </div>
   </section>
 
-  <!-- Call To Action -->
-  <section class="py-12 px-6">
-    <div
-      class="max-w-5xl mx-auto p-12 lg:p-20 text-center rounded-[3rem] bg-gradient-to-br from-blue-600 to-indigo-700 relative overflow-hidden shadow-2xl shadow-blue-900/20">
-      <!-- Decorative circles -->
-      <div class="absolute -top-24 -right-24 w-64 h-64 bg-theme-card/10 rounded-full blur-3xl"></div>
-      <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-indigo-900/40 rounded-full blur-3xl"></div>
+  <!-- Ecosystem Section -->
+  <div id="ecosystem" class="relative -top-32 invisible h-0 pointer-events-none"></div>
+  <section style="scroll-margin-top: 150px !important;"
+    class="py-10 relative z-10 overflow-hidden transition-colors">
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <div class="flex flex-col lg:flex-row items-center gap-16 mb-16">
+        <div class="lg:w-[55%] text-left">
+          <h4 class="text-primary text-[10px] font-black mb-4 uppercase tracking-[0.4em]">Integrated Network</h4>
+          <h2
+            class="text-4xl lg:text-5xl font-black mb-8 uppercase tracking-tightest leading-tight text-slate-900 dark:text-white">
+            A PLATFORM OF <br><span class="text-gradient">TOTAL TRUST.</span>
+          </h2>
+          <div class="space-y-6 max-w-2xl">
+            <div class="flex gap-4">
+              <div class="flex-shrink-0 w-1 bg-primary rounded-full"></div>
+              <p class="text-lg text-slate-600 dark:text-slate-400 font-bold leading-relaxed">
+                The Nexalife Ecosystem is a digital world where customers, agents, and administrators interact with
+                absolute speed and fairness.
+              </p>
+            </div>
+            <p class="text-base text-slate-500 dark:text-slate-400 font-medium leading-relaxed pl-5">
+              By centralizing every document and payment into a high-performance cloud mesh, we eliminate traditional
+              bottlenecks for millions of policies.
+            </p>
+            <div class="flex gap-8 pl-5 pt-2">
+              <div>
+                <p class="text-2xl font-black text-slate-900 dark:text-white">50K+</p>
+                <p class="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Active Nodes</p>
+              </div>
+              <div>
+                <p class="text-2xl font-black text-slate-900 dark:text-white">100ms</p>
+                <p class="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Latency Peak</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="lg:w-[45%] relative group text-right">
+          <img src="/images/ecosystem_new.png" alt="Nexalife Network Layout"
+            class="w-full max-w-md h-[400px] rounded-3xl shadow-xl border border-slate-200 dark:border-white/10 group-hover:scale-[1.02] transition-all duration-700 ml-auto">
+        </div>
+      </div>
 
-      <div class="relative z-10">
-        <h2 class="text-4xl lg:text-5xl font-extrabold text-white mb-6">Ready to Protect Your Future?</h2>
-        <p class="text-xl text-blue-100 mb-10 max-w-2xl mx-auto">Join thousands of families who trust NexaLife for their
-          life insurance needs. It takes less than 3 minutes to register.</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        @for (node of ecosystemNodes; track node.role) {
+        <div
+          class="flex flex-col p-8 rounded-3xl bg-white dark:bg-slate-950 border border-slate-200/50 dark:border-white/5 hover:border-primary transition-all duration-500 premium-card group h-full">
+          <div
+            class="w-16 h-16 bg-primary/5 dark:bg-white/5 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-primary group-hover:scale-105 transition-all duration-500">
+            <app-icon [name]="node.icon"
+              className="w-8 h-8 text-primary group-hover:text-white transition-colors"></app-icon>
+          </div>
+          <h3 class="text-xl font-black mb-4 uppercase tracking-tight text-slate-900 dark:text-white">{{ node.role }}
+          </h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-medium mb-8">
+            {{ node.desc }}
+          </p>
+          <div class="mt-auto flex items-center gap-2 text-[9px] font-black text-primary uppercase tracking-widest">
+            Verified Nexus Role
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-8 px-6 z-10 relative">
+    <div
+      class="max-w-5xl mx-auto p-10 lg:p-14 rounded-3xl bg-slate-950 dark:bg-primary/5 border border-white/5 relative overflow-hidden shadow-2xl">
+      <div class="absolute -top-40 -right-40 w-96 h-96 bg-primary/10 rounded-full blur-[120px]"></div>
+      <div class="relative z-10 text-center max-w-2xl mx-auto">
+        <h2 class="text-3xl lg:text-4xl font-extrabold text-white mb-6 uppercase">Ready to <span
+            class="text-gradient">Secure</span> Your Future?</h2>
+        <p class="text-base text-slate-400 mb-8 font-medium">Join over 25,000 satisfied families. Fast, digital, and
+          secure.</p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <a routerLink="/register"
-            class="px-8 py-4 rounded-2xl text-base font-bold text-blue-700 bg-theme-card hover:bg-theme-bg transition-colors shadow-lg shadow-black/10">
-            Create Free Account
-          </a>
+            class="btn-premium px-8 py-4 text-[11px] font-black uppercase tracking-widest shadow-xl flex items-center justify-center rounded-xl">Register
+            Account</a>
           <a routerLink="/login"
-            class="px-8 py-4 rounded-2xl text-base font-bold text-white border-2 border-white/20 hover:bg-theme-card/10 transition-colors backdrop-blur-sm">
-            Already have an account?
-          </a>
+            class="px-8 py-4 rounded-xl text-[11px] font-black uppercase tracking-widest text-white border border-white/20 hover:bg-white/5 transition-all flex items-center justify-center">Sign
+            In</a>
         </div>
       </div>
     </div>
   </section>
 
-  <footer id="contact" class="bg-slate-950 text-slate-400 pt-20 pb-12 relative overflow-hidden">
-    <!-- Footer Glow -->
-    <div class="absolute bottom-0 right-0 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[120px] pointer-events-none"></div>
-
-    <div class="max-w-7xl mx-auto px-8 relative z-10">
+  <!-- Footer -->
+  <footer id="contact"
+    class="bg-slate-950 text-slate-400 pt-20 pb-12 relative overflow-hidden border-t border-white/5 z-10 scroll-mt-32">
+    <div class="max-w-7xl mx-auto px-6 relative z-20">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
         <div class="lg:col-span-2">
-          <h3 class="flex items-center gap-3 text-3xl font-black text-white mb-6 uppercase tracking-tightest group">
-            <div class="relative w-12 h-12 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-              <div class="absolute inset-0 bg-primary/20 blur-xl rounded-full opacity-40"></div>
-              <app-icon name="shield" className="w-10 h-10 relative z-10 text-primary drop-shadow-[0_0_12px_rgba(249,115,22,0.5)]"></app-icon>
-            </div> 
-            <span class="text-gradient font-black uppercase tracking-tightest">NexaLife</span>
+          <h3 class="flex items-center gap-4 text-2xl font-black text-white mb-6 uppercase tracking-tightest">
+            <app-icon name="shield"
+              className="w-8 h-8 text-primary drop-shadow-[0_4px_10px_rgba(249,115,22,0.3)]"></app-icon>
+            <span class="text-gradient">NEXALIFE</span>
           </h3>
-          <p class="leading-relaxed max-w-sm text-slate-300 font-semibold text-lg">
-            Your Life, Our Promise. Infrastructure for modern protection and radical transparency.
-          </p>
+          <p class="max-w-xs text-slate-400 font-medium text-base">Next generation financial security built with honesty
+            and modern technology.</p>
         </div>
-
         <div>
-          <h4 class="text-white text-sm font-black mb-6 uppercase tracking-[0.2em] text-primary">Intelligence</h4>
-          <ul class="space-y-4">
-            <li><a routerLink="/" class="text-base font-bold uppercase tracking-widest hover:text-white transition-all">Home Node</a></li>
-            <li><a routerLink="/login" class="text-base font-bold uppercase tracking-widest hover:text-white transition-all">Authentication</a></li>
-            <li><a routerLink="/register" class="text-base font-bold uppercase tracking-widest hover:text-white transition-all">Registration</a></li>
+          <h4 class="text-primary text-[10px] font-black mb-6 uppercase tracking-[0.4em]">Resources</h4>
+          <ul class="space-y-3">
+            <li><a routerLink="/"
+                class="text-[11px] font-bold uppercase tracking-widest hover:text-white transition-all">Home Hub</a>
+            </li>
+            <li><a routerLink="/login"
+                class="text-[11px] font-bold uppercase tracking-widest hover:text-white transition-all">Login</a></li>
+            <li><a routerLink="/register"
+                class="text-[11px] font-bold uppercase tracking-widest hover:text-white transition-all">Register</a>
+            </li>
           </ul>
         </div>
-
         <div>
-          <h4 class="text-white text-sm font-black mb-6 uppercase tracking-[0.2em] text-primary">Connect</h4>
-          <ul class="space-y-5">
-            <li class="flex items-center gap-4 group">
-              <div class="w-8 h-8 rounded-lg bg-slate-900 border border-white/5 flex items-center justify-center group-hover:border-primary/50 transition-colors shadow-sm">
-                <app-icon name="mail" className="w-4 h-4 text-primary"></app-icon>
-              </div> 
-              <span class="text-base font-bold uppercase tracking-widest group-hover:text-white transition-colors">support&#64;nexalife.net</span>
+          <h4 class="text-primary text-[10px] font-black mb-6 uppercase tracking-[0.4em]">Contact</h4>
+          <ul class="space-y-3">
+            <li class="flex items-center gap-3 text-[11px] font-bold uppercase tracking-widest text-slate-500">
+              <app-icon name="mail" className="w-4 h-4 text-primary"></app-icon>
+              <span>support&#64;nexalife.net</span>
             </li>
-            <li class="flex items-center gap-4 group">
-              <div class="w-8 h-8 rounded-lg bg-slate-900 border border-white/5 flex items-center justify-center group-hover:border-primary/50 transition-colors shadow-sm">
-                <app-icon name="phone" className="w-4 h-4 text-primary"></app-icon>
-              </div> 
-              <span class="text-base font-bold uppercase tracking-widest group-hover:text-white transition-colors">+91 98765 43210</span>
+            <li class="flex items-center gap-3 text-[11px] font-bold uppercase tracking-widest text-slate-500">
+              <app-icon name="phone" className="w-4 h-4 text-primary"></app-icon>
+              <span>+91 98765 43210</span>
             </li>
           </ul>
         </div>
       </div>
-
       <div
-        class="pt-10 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6 text-sm font-black uppercase tracking-[0.2em]">
-        <p class="text-slate-500">&copy; 2026 NEXALIFE CORE. ALL RIGHTS RESERVED.</p>
-        <div class="flex items-center gap-10">
-          <a href="#" class="text-slate-500 hover:text-primary transition-all">Privacy</a>
-          <a href="#" class="text-slate-500 hover:text-primary transition-all">Access</a>
+        class="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6 text-[10px] font-black uppercase tracking-[0.3em]">
+        <p class="text-slate-700">&copy; 2026 NEXALIFE. ALL RIGHTS RESERVED.</p>
+        <div class="flex gap-8 text-slate-700">
+          <span>ISO 27001 Certified</span>
+          <span>GDPR Compliant</span>
         </div>
       </div>
     </div>

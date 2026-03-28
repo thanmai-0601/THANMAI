@@ -1,4 +1,4 @@
-﻿using Application.DTOs.Policy;
+using Application.DTOs.Policy;
 using Application.Interfaces.Services;
 using Application.Services;
 using Domain.Enums;
@@ -15,15 +15,17 @@ public class PolicyController : ControllerBase
 {
     private readonly IPlanService _planService;
     private readonly IPolicyService _policyService;
-    private readonly IAgentPolicyService 
-        _agentPolicyService;
+    private readonly IAgentPolicyService _agentPolicyService;
+    private readonly IPdfValidationService _pdfValidationService;
 
     public PolicyController(IPlanService planService, IPolicyService policyService,
-        IAgentPolicyService agentPolicyService)
+        IAgentPolicyService agentPolicyService,
+        IPdfValidationService pdfValidationService)
     {
         _planService = planService;
         _policyService = policyService;
         _agentPolicyService = agentPolicyService;
+        _pdfValidationService = pdfValidationService;
     }
 
     // ── Plans (browsing) ────────────────────────────────────────────────────
@@ -229,7 +231,21 @@ public class PolicyController : ControllerBase
         return Ok(result);
     }
 
+    [HttpGet("{policyId:int}/summary")]
+    [Authorize(Roles = "Admin,Agent")]
+    public async Task<IActionResult> GetPolicySummary(int policyId, [FromServices] IPolicySummaryService policySummaryService)
+    {
+        var summary = await policySummaryService.GeneratePolicySummaryAsync(policyId);
+        return Ok(new { Summary = summary });
+    }
 
+    [HttpGet("{policyId:int}/pdf-validation")]
+    [Authorize(Roles = "Admin,Agent")]
+    public async Task<IActionResult> GetPdfValidation(int policyId)
+    {
+        var result = await _pdfValidationService.ValidatePolicyAsync(policyId);
+        return Ok(result);
+    }
 
     // ── Helpers ─────────────────────────────────────────────────────────────
 

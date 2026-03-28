@@ -6,10 +6,11 @@ import { ApiService } from '../../../core/services/api';
 import { AgentDashboardDto } from '../../../core/models/dashboard.model';
 import { StatCard } from '../../../shared/components/stat-card/stat-card';
 import { LoadingSpinner } from '../../../shared/components/loading-spinner/loading-spinner';
+import { Chatbot } from '../../../shared/components/chatbot/chatbot';
 
 @Component({
   selector: 'app-agent-dashboard', standalone: true,
-  imports: [CommonModule, RouterLink, StatCard, LoadingSpinner, AppIcon],
+  imports: [CommonModule, RouterLink, StatCard, LoadingSpinner, Chatbot, AppIcon],
   templateUrl: './agent-dashboard.html', styleUrl: './agent-dashboard.css'
 })
 export class AgentDashboard implements OnInit {

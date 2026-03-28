@@ -67,6 +67,7 @@ export interface RequestPolicyDto {
   annualIncome: number | null;
   occupation: string;
   address: string;
+  hasAlcoholHabit: boolean | null;
   nominee?: AddNomineeDto;
   documents?: UploadDocumentDto[];
 }
@@ -83,6 +84,7 @@ export interface PolicyResponse {
   customerId: number;
   customerName: string;
   customerEmail: string;
+  customerBankAccountNumber?: string;
   agentId: number | null;
   agentName: string | null;
   agentEmail: string | null;
@@ -93,6 +95,7 @@ export interface PolicyResponse {
   premiumAmount: number | null;
   agentRemarks: string | null;
   rejectionReason: string | null;
+  hasAlcoholHabit: boolean | null;
   createdAt: string;
   submittedAt: string | null;
   agentAssignedAt: string | null;
@@ -124,7 +127,6 @@ export interface NomineeResponse {
   nomineeId: number;
   fullName: string;
   relationship: string;
-  age: number;
   contactNumber: string;
   idNumber: string;
   email: string;
@@ -134,7 +136,6 @@ export interface NomineeResponse {
 export interface AddNomineeDto {
   fullName: string;
   relationship: string;
-  age: number | null;
   contactNumber: string;
   idNumber: string;
   email: string;

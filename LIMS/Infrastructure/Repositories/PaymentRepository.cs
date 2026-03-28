@@ -1,4 +1,4 @@
-﻿using Application.DTOs.Dashboard;
+using Application.DTOs.Dashboard;
 using Application.Interfaces.Repositories;
 using Domain.Entities;
 using Domain.Enums;
@@ -37,9 +37,15 @@ public class PaymentRepository : IPaymentRepository
                 p.Status == Domain.Enums.PaymentStatus.Paid);
     public async Task<decimal> GetTotalPremiumCollectedAsync()
     {
-        return await _context.Payments
+        var fromPayments = await _context.Payments
             .Where(p => p.Status == PaymentStatus.Paid)
             .SumAsync(p => p.AmountPaid);
+
+        var fromInvoices = await _context.Invoices
+            .Where(i => i.Status == InvoiceStatus.Paid && i.Payment == null)
+            .SumAsync(i => i.AmountDue);
+
+        return fromPayments + fromInvoices;
     }
 
     public async Task<decimal> GetTotalPaidByCustomerAsync(int customerId)

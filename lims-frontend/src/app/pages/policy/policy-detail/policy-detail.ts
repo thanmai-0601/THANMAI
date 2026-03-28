@@ -27,7 +27,11 @@ export class PolicyDetail implements OnInit {
   showNomineeForm = false;
   submittingNominee = false;
 
-  newNominee: AddNomineeDto = { fullName: '', relationship: '', age: null, contactNumber: '', idNumber: '', email: '' };
+  newNominee: AddNomineeDto = { fullName: '', relationship: '', contactNumber: '', idNumber: '', email: '' };
+
+  aiSummary: string | null = null;
+  loadingSummary = false;
+  policyValidation: any = null;
 
   constructor(
     private api: ApiService,
@@ -51,6 +55,9 @@ export class PolicyDetail implements OnInit {
     if (id !== null) {
       this.policyId = +id;
       this.loadPolicy();
+      if (this.role === 'Agent' || this.role === 'Admin') {
+        this.loadValidation();
+      }
     } else {
       this.loading = false;
     }
@@ -67,12 +74,34 @@ export class PolicyDetail implements OnInit {
     });
   }
 
+  loadValidation(): void {
+    this.api.get<any>(`policy/${this.policyId}/pdf-validation`).subscribe({
+      next: (v) => this.policyValidation = v,
+      error: () => {}
+    });
+  }
+
+  generateSummary(): void {
+    this.loadingSummary = true;
+    this.api.get<any>(`policy/${this.policyId}/summary`).subscribe({
+      next: (res) => {
+        this.aiSummary = res.summary;
+        this.loadingSummary = false;
+        this.toast.show('AI Summary generated successfully!', 'success');
+      },
+      error: () => {
+        this.loadingSummary = false;
+        this.toast.show('Failed to generate AI Summary.', 'error');
+      }
+    });
+  }
+
   get canPay(): boolean {
     if (!this.policy) return false;
     const hasNominees = this.policy.nominees && this.policy.nominees.length > 0;
 
     const docs = this.policy.documents || [];
-    const hasAddressProof = docs.some(d => d.documentType === 'Address Proof');
+    const hasAddressProof = docs.some(d => d.documentType === 'Aadhar Card' || d.documentType === 'Address Proof');
     const hasIncomeProof = docs.some(d => d.documentType === 'Income Proof');
     const hasNomineeId = docs.some(d => d.documentType === 'Nominee ID Proof');
 
@@ -85,13 +114,12 @@ export class PolicyDetail implements OnInit {
         this.newNominee = {
           fullName: existing.fullName,
           relationship: existing.relationship,
-          age: existing.age,
           contactNumber: existing.contactNumber,
           idNumber: existing.idNumber,
           email: existing.email
         };
       } else {
-        this.newNominee = { fullName: '', relationship: '', age: null, contactNumber: '', idNumber: '', email: '' };
+        this.newNominee = { fullName: '', relationship: '', contactNumber: '', idNumber: '', email: '' };
       }
     }
     this.showNomineeForm = !this.showNomineeForm;
@@ -99,7 +127,7 @@ export class PolicyDetail implements OnInit {
 
   addNominee(): void {
     if (!this.newNominee.fullName || !this.newNominee.relationship || !this.newNominee.contactNumber || !this.newNominee.idNumber || !this.newNominee.email) {
-      this.toast.show('Please fill all nominee fields (Full Name, Relationship, Age, Contact, Email and ID Number)', 'warning');
+      this.toast.show('Please fill all nominee fields (Full Name, Relationship, Contact, Email and ID Number)', 'warning');
       return;
     }
 

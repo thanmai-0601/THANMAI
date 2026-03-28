@@ -1,4 +1,4 @@
-﻿namespace Application.DTOs.Dashboard;
+namespace Application.DTOs.Dashboard;
 
 public class AdminDashboardDto
 {
@@ -43,4 +43,7 @@ public class AdminDashboardDto
 
     // ── Recent Payments ───────────────────────────────────────
     public List<Payment.PaymentResponseDto> RecentPayments { get; set; } = new();
+
+    // ── Customer Distribution ─────────────────────────────────
+    public List<CustomerDistributionDto> CustomerDistribution { get; set; } = new();
 }

@@ -11,7 +11,8 @@ public class PremiumCalculationService : IPremiumCalculationService
         InsurancePlan plan,
         decimal sumAssured,
         int tenureYears,
-        string riskCategory)
+        string riskCategory,
+        bool hasAlcoholHabit)
     {
         // Step 1 — Pick the correct risk multiplier
         var multiplier = riskCategory.ToLower() switch
@@ -26,6 +27,12 @@ public class PremiumCalculationService : IPremiumCalculationService
         // Step 2 — Core premium formula (common to all plan types)
         // Annual Premium = (SumAssured / 1000) × BaseRatePer1000 × RiskMultiplier
         var annualPremium = (sumAssured / 1000m) * plan.BaseRatePer1000 * multiplier;
+
+        // Apply 10% surcharge for alcohol habit
+        if (hasAlcoholHabit)
+        {
+            annualPremium *= 1.10m;
+        }
 
         // Endowment plans have higher premiums due to savings component
         // The higher BaseRatePer1000 already accounts for this, so no extra multiplier needed

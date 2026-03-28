@@ -41,6 +41,23 @@ export interface AdminDashboardDto {
 
   // Payments
   recentPayments: PaymentResponse[];
+
+  // Customer Distribution
+  customerDistribution: CustomerDistribution[];
+}
+
+export interface CustomerDistribution {
+  customerId: number;
+  customerName: string;
+  totalPolicies: number;
+  totalClaims: number;
+}
+
+export interface CustomerPolicyFinancials {
+  policyNumber: string;
+  planName: string;
+  totalPremiumPaid: number;
+  totalClaimReceived: number;
 }
 
 export interface MonthlyRevenue {
@@ -69,6 +86,7 @@ export interface PlanDistribution {
   totalPolicies: number;
   activePolicies: number;
   totalSumAssured: number;
+  totalPremiumCollected: number;
 }
 
 export interface AgentDashboardDto {

@@ -22,6 +22,7 @@ export class Profile implements OnInit {
   
   editForm: any = {
     fullName: '',
+    email: '',
     phoneNumber: '',
     dateOfBirth: '',
     bankAccountName: '',
@@ -59,6 +60,7 @@ export class Profile implements OnInit {
     const rawDob = this.user.dateOfBirth ? this.user.dateOfBirth.split('T')[0] : '';
     this.editForm = {
       fullName: this.user.fullName,
+      email: this.user.email,
       phoneNumber: this.user.phoneNumber,
       dateOfBirth: rawDob === '0001-01-01' ? '' : rawDob,
       bankAccountName: this.user.bankAccountName || '',

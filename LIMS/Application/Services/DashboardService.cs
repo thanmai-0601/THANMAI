@@ -74,6 +74,7 @@ public class DashboardService : IDashboardService
 
         var agentPerformance = await _policyRepo.GetAgentPerformanceAsync();
         var planDistribution = await _policyRepo.GetPlanDistributionAsync();
+        var customerDistribution = await _userRepo.GetCustomerDistributionAsync();
 
         var totalEndorsements = await _endorsementRepo.GetTotalCountAsync();
         var pendingEndorsements =
@@ -125,9 +126,10 @@ public class DashboardService : IDashboardService
             TotalClaimsOfficers = userStats
                 .FirstOrDefault(u => u.Role == UserRole.ClaimsOfficer)?.Count ?? 0,
 
-            // Performance
+            // Performance & Distribution
             AgentPerformance = agentPerformance,
             PlanDistribution = planDistribution,
+            CustomerDistribution = customerDistribution,
 
             // Endorsements
             TotalEndorsements = totalEndorsements,
@@ -328,5 +330,10 @@ public class DashboardService : IDashboardService
             TotalSettledAmount = totalSettled,
             ThisMonthSettledAmount = thisMonthSettled
         };
+    }
+
+    public async Task<List<CustomerPolicyFinancialsDto>> GetCustomerPolicyFinancialsAsync(int customerId)
+    {
+        return await _policyRepo.GetCustomerPolicyFinancialsAsync(customerId);
     }
 }

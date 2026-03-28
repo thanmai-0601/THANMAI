@@ -1,4 +1,4 @@
-﻿using Application.DTOs.Policy;
+using Application.DTOs.Policy;
 using Domain.Entities;
 
 namespace Application.Interfaces.Services;
@@ -9,5 +9,6 @@ public interface IPremiumCalculationService
         InsurancePlan plan,
         decimal sumAssured,
         int tenureYears,
-        string riskCategory);
+        string riskCategory,
+        bool hasAlcoholHabit);
 }

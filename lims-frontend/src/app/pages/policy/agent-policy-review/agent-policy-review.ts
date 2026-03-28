@@ -21,6 +21,25 @@ export class AgentPolicyReview implements OnInit {
   policy: PolicyResponse | null = null;
   loading = true;
 
+  // AI Summarization
+  aiSummary: string | null = null;
+  loadingSummary = false;
+
+  generateSummary(): void {
+    this.loadingSummary = true;
+    this.api.get<any>(`policy/${this.policyId}/summary`).subscribe({
+      next: (res) => {
+        this.aiSummary = res.summary;
+        this.loadingSummary = false;
+        this.toast.show('AI Summary generated successfully!', 'success');
+      },
+      error: () => {
+        this.loadingSummary = false;
+        this.toast.show('Failed to generate AI Summary.', 'error');
+      }
+    });
+  }
+
   // Premium Calc Form
   calcForm: AgentPremiumCalcDto = { riskCategory: 'Standard', remarks: '' };
   calculating = false;

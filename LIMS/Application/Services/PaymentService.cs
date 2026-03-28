@@ -95,25 +95,9 @@ public class PaymentService : IPaymentService
 
             await _policyRepo.UpdateAsync(policy);
 
-            // Send Activation Email to Customer (Ensure Customer and Plan are loaded)
-            if (isInitialActivation)
-            {
-                var customer = policy.Customer;
-                var plan = policy.InsurancePlan;
+            await _policyRepo.UpdateAsync(policy);
 
-                if (customer != null && plan != null)
-                {
-                    await _emailService.SendPolicyActivationEmail(
-                        customer.Email,
-                        customer.FullName,
-                        policy.PolicyNumber,
-                        plan.PlanName,
-                        policy.SumAssured,
-                        policy.ActiveFrom.Value,
-                        policy.ActiveTo
-                    );
-                }
-            }
+            // Redundant activation email removed to prevent duplicates with payment receipt.
         }
 
         // Update commission status and Notify Agent
@@ -226,7 +210,12 @@ public class PaymentService : IPaymentService
 </body>
 </html>";
 
-            var fileBytes = System.Text.Encoding.UTF8.GetBytes(htmlInvoice);
+            byte[] fileBytes;
+            using (var stream = new MemoryStream())
+            {
+                iText.Html2pdf.HtmlConverter.ConvertToPdf(htmlInvoice, stream);
+                fileBytes = stream.ToArray();
+            }
 
             await _emailService.SendPremiumPaymentEmail(
                 invoice.Policy.Customer.Email,
@@ -237,7 +226,7 @@ public class PaymentService : IPaymentService
                 payment.PaymentDate,
                 payment.PaymentMethod.ToString(),
                 fileBytes,
-                $"{invoice.InvoiceNumber}.html"
+                $"{invoice.InvoiceNumber}.pdf"
             );
         }
 

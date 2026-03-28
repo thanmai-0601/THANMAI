@@ -3,10 +3,11 @@ import { AppIcon } from '../../../shared/components/app-icon/app-icon';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ApiService } from '../../../core/services/api';
-import { AdminDashboardDto, AgentPerformance } from '../../../core/models/dashboard.model';
+import { AdminDashboardDto, AgentPerformance, PlanDistribution, CustomerDistribution, CustomerPolicyFinancials } from '../../../core/models/dashboard.model';
 import { StatCard } from '../../../shared/components/stat-card/stat-card';
 import { LoadingSpinner } from '../../../shared/components/loading-spinner/loading-spinner';
 import { PlanList } from '../../policy/plan-list/plan-list';
+import { Chatbot } from '../../../shared/components/chatbot/chatbot';
 import { FormsModule } from '@angular/forms';
 import {
   NgApexchartsModule,
@@ -25,44 +26,39 @@ import {
 } from 'ng-apexcharts';
 
 export type ChartOptions = {
-  series: ApexAxisChartSeries;
+  series: ApexAxisChartSeries | number[];
   chart: ApexChart;
-  xaxis: ApexXAxis;
-  yaxis: ApexYAxis;
-  title: ApexTitleSubtitle;
-  tooltip: ApexTooltip;
-  stroke: ApexStroke;
-  dataLabels: ApexDataLabels;
-  plotOptions: ApexPlotOptions;
-  fill: ApexFill;
-  legend: ApexLegend;
-  grid: ApexGrid;
-  colors: string[];
-  markers: any;
+  xaxis?: ApexXAxis;
+  yaxis?: ApexYAxis | ApexYAxis[];
+  title?: ApexTitleSubtitle;
+  labels?: string[];
+  stroke?: ApexStroke;
+  dataLabels?: ApexDataLabels;
+  plotOptions?: ApexPlotOptions;
+  fill?: ApexFill;
+  tooltip?: ApexTooltip;
+  legend?: ApexLegend;
+  colors?: string[];
+  grid?: ApexGrid;
+  markers?: any;
 };
 
 @Component({
   selector: 'app-admin-dashboard',
   standalone: true,
-  imports: [CommonModule, RouterLink, StatCard, LoadingSpinner, PlanList, FormsModule, NgApexchartsModule, AppIcon],
+  imports: [CommonModule, RouterLink, StatCard, LoadingSpinner, PlanList, Chatbot, FormsModule, NgApexchartsModule, AppIcon],
   templateUrl: './admin-dashboard.html',
   styleUrl: './admin-dashboard.css'
 })
 export class AdminDashboard implements OnInit {
   data: AdminDashboardDto | null = null;
   loading = true;
-  selectedYear: number;
-  availableYears: number[] = [];
 
   public chartOptions: Partial<ChartOptions> = {};
   public agentPerformanceChartOptions: Partial<ChartOptions> = {};
+  public customerChartOptions: Partial<ChartOptions> = {};
 
   constructor(private api: ApiService) {
-    const currentYear = new Date().getFullYear();
-    for (let i = 0; i < 5; i++) {
-      this.availableYears.push(currentYear - i);
-    }
-    this.selectedYear = currentYear;
     this.initChartOptions();
     this.initAgentPerformanceChart();
   }
@@ -73,63 +69,78 @@ export class AdminDashboard implements OnInit {
 
   private initChartOptions(): void {
     this.chartOptions = {
+      series: [],
       chart: {
-        height: 250,
-        type: 'bar',
-        toolbar: { show: false },
+        type: 'donut',
+        height: 350,
         animations: {
           enabled: true,
           speed: 800
         },
         fontFamily: 'Inter, sans-serif'
       },
-      colors: ['#F97316'],
+      labels: [], // Replaces xaxis categories for pie/donut
+      colors: ['#6366F1', '#10B981', '#F59E0B', '#EF4444', '#8B5CF6', '#3B82F6'], // Expanded color palette
       plotOptions: {
-        bar: {
-          columnWidth: '45%',
-          borderRadius: 6,
-          dataLabels: { position: 'top' }
-        }
-      },
-      dataLabels: {
-        enabled: false
-      },
-      grid: {
-        show: false,
-        padding: { left: 0, right: 0 }
-      },
-      xaxis: {
-        categories: [],
-        axisBorder: { show: false },
-        axisTicks: { show: false },
-        labels: {
-          style: {
-            colors: '#94A3B8',
-            fontSize: '10px',
-            fontWeight: 600
+        pie: {
+          donut: {
+            size: '70%',
+            labels: {
+              show: true,
+              name: {
+                show: true,
+                fontSize: '14px',
+                color: '#94A3B8'
+              },
+              value: {
+                show: true,
+                fontSize: '24px',
+                fontWeight: 700,
+                color: '#1E293B',
+                formatter: function (val: any) {
+                  return val + " Policies"
+                }
+              },
+              total: {
+                show: true,
+                showAlways: true,
+                label: 'Total Policies',
+                fontSize: '14px',
+                color: '#94A3B8',
+                formatter: function (w: any) {
+                  return w.globals.seriesTotals.reduce((a: number, b: number) => a + b, 0)
+                }
+              }
+            }
           }
         }
       },
-      yaxis: {
-        show: false
+      dataLabels: {
+        enabled: false // Cleaner to rely on tooltips and the center total
+      },
+      grid: {
+        padding: { top: 0, bottom: 0, left: 0, right: 0 }
       },
       fill: {
-        type: 'gradient',
-        gradient: {
-          shade: 'light',
-          type: 'vertical',
-          shadeIntensity: 0.25,
-          gradientToColors: ['#FB923C'],
-          inverseColors: true,
-          opacityFrom: 1,
-          opacityTo: 1,
-          stops: [50, 0, 100, 100]
-        }
+        opacity: 0.9,
+        type: 'solid'
+      },
+      legend: {
+        show: true,
+        position: 'bottom',
+        offsetY: 8,
+        labels: { colors: '#94A3B8' }
       },
       tooltip: {
         theme: 'dark',
+        shared: true,
+        intersect: false,
+        followCursor: true,
         y: {
-          formatter: (val: number) => `₹${val.toLocaleString()}`
+          formatter: (val: number, { seriesIndex }: any) => {
+            if (seriesIndex === 0) return `${val} Policies`;
+            return `₹${val.toLocaleString('en-IN')}`;
+          }
         }
       } as any
     };
@@ -231,30 +242,155 @@ export class AdminDashboard implements OnInit {
         intersect: false
       }
     };
+
+    this.customerChartOptions = {
+      series: [],
+      chart: {
+        height: 350,
+        type: 'bar',
+        toolbar: { show: false },
+        animations: { enabled: true, speed: 800 },
+        fontFamily: 'Inter, sans-serif'
+      },
+      colors: ['#6366F1', '#EC4899'], // Indigo for Policies, Pink for Claims
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          columnWidth: '55%',
+          borderRadius: 6,
+          dataLabels: { position: 'top' }
+        }
+      },
+      dataLabels: { enabled: false },
+      stroke: { show: true, width: 2, colors: ['transparent'] },
+      xaxis: {
+        categories: [],
+        axisBorder: { show: false },
+        axisTicks: { show: false },
+        labels: {
+          style: { colors: '#94A3B8', fontSize: '10px', fontWeight: 600 }
+        }
+      },
+      yaxis: [
+        {
+          title: { text: 'Count' },
+          min: 0,
+          forceNiceScale: true,
+          labels: {
+            formatter: (val: number) => Math.floor(val).toString()
+          }
+        }
+      ] as any,
+      fill: { opacity: 1 },
+      tooltip: {
+        theme: 'dark',
+        shared: true,
+        intersect: false
+      },
+      legend: {
+        position: 'top',
+        horizontalAlign: 'right',
+        labels: { colors: '#94A3B8' }
+      },
+      grid: {
+        borderColor: 'rgba(148, 163, 184, 0.1)',
+        strokeDashArray: 4,
+        padding: { left: 0, right: 0 }
+      }
+    };
+  }
+
+  private updateCustomerChart(customerDistribution: CustomerDistribution[]): void {
+    const getProp = (obj: any, prop: string) => {
+      const pascal = prop.charAt(0).toUpperCase() + prop.slice(1);
+      return obj[prop] !== undefined ? obj[prop] : obj[pascal];
+    };
+
+    this.customerChartOptions.series = [
+      {
+        name: 'Policies',
+        data: customerDistribution.map(c => getProp(c, 'totalPolicies') || 0)
+      },
+      {
+        name: 'Claims',
+        data: customerDistribution.map(c => getProp(c, 'totalClaims') || 0)
+      }
+    ];
+
+    this.customerChartOptions.xaxis = {
+      ...this.customerChartOptions.xaxis,
+      categories: customerDistribution.map(c => getProp(c, 'customerName') || 'Unknown')
+    };
+  }
+
+  public selectedCustomerId: string = 'all';
+
+  onCustomerSelected(event: Event): void {
+    const target = event.target as HTMLSelectElement;
+    this.selectedCustomerId = target.value;
+    
+    if (this.selectedCustomerId === 'all') {
+      if (this.data?.customerDistribution) {
+        this.updateCustomerChart(this.data.customerDistribution);
+      }
+    } else {
+      this.loadCustomerFinancials(Number(this.selectedCustomerId));
+    }
+  }
+
+  private loadCustomerFinancials(customerId: number): void {
+    this.api.get<CustomerPolicyFinancials[]>(`dashboard/customer-financials/${customerId}`).subscribe({
+      next: (financials) => {
+        const getProp = (obj: any, prop: string) => {
+          const pascal = prop.charAt(0).toUpperCase() + prop.slice(1);
+          return obj[prop] !== undefined ? obj[prop] : obj[pascal];
+        };
+
+        this.customerChartOptions.series = [
+          {
+            name: 'Premium Paid',
+            data: financials.map(f => getProp(f, 'totalPremiumPaid') || 0)
+          },
+          {
+            name: 'Claim Received',
+            data: financials.map(f => getProp(f, 'totalClaimReceived') || 0)
+          }
+        ];
+
+        this.customerChartOptions.xaxis = {
+          ...this.customerChartOptions.xaxis,
+          categories: financials.map(f => `${getProp(f, 'planName')} (${getProp(f, 'policyNumber')})` || 'Unknown Policy')
+        };
+      },
+      error: (err) => {
+        console.error('Failed to load customer financials', err);
+      }
+    });
   }
 
   loadDashboard(): void {
     this.loading = true;
-    this.api.get<AdminDashboardDto>(`dashboard/summary?year=${this.selectedYear}`).subscribe({
+    this.api.get<AdminDashboardDto>(`dashboard/summary`).subscribe({
       next: (res) => {
         this.data = res;
-        this.updateChartSeries(res.monthlyRevenue);
+        this.updateChartSeries(res.planDistribution);
         this.updatePerformanceChart(res.agentPerformance);
+        this.updateCustomerChart(res.customerDistribution);
         this.loading = false;
       },
       error: () => this.loading = false
     });
   }
 
-  private updateChartSeries(revenueData: any[]): void {
-    this.chartOptions.series = [{
-      name: 'Premium Collected',
-      data: revenueData.map(m => m.premiumCollected)
-    }];
-    this.chartOptions.xaxis = {
-      ...this.chartOptions.xaxis,
-      categories: revenueData.map(m => m.monthName.substring(0, 3))
+  private updateChartSeries(planDistribution: PlanDistribution[]): void {
+    const getProp = (obj: any, prop: string) => {
+      const pascal = prop.charAt(0).toUpperCase() + prop.slice(1);
+      return obj[prop] !== undefined ? obj[prop] : obj[pascal];
     };
+
+    // For Donut chart, series must be `number[]` and labels must be `string[]`
+    this.chartOptions.series = planDistribution.map(p => getProp(p, 'totalPolicies') || 0);
+    this.chartOptions.labels = planDistribution.map(p => `${getProp(p, 'planName') || ''}`);
   }
 
   private updatePerformanceChart(performanceData: AgentPerformance[]): void {
@@ -274,10 +410,6 @@ export class AdminDashboard implements OnInit {
       ...this.agentPerformanceChartOptions.xaxis,
       categories: performanceData.map(a => a.agentName)
     };
-  }
-
-  onYearChange(): void {
-    this.loadDashboard();
   }
 
   getMaxRevenue(): number {

@@ -28,7 +28,7 @@ public class PremiumCalculationServiceTests
         var tenure = 20;
 
         // Act
-        var result = _service.Calculate(plan, sumAssured, tenure, "Low");
+        var result = _service.Calculate(plan, sumAssured, tenure, "Low", false);
 
         // Assert
         // (1000000 / 1000) * 1.5 * 1.25 = 1000 * 1.875 = 1875
@@ -44,6 +44,6 @@ public class PremiumCalculationServiceTests
 
         // Act & Assert
         Assert.Throws<InvalidOperationException>(() => 
-            _service.Calculate(plan, 100000, 10, "Invalid"));
+            _service.Calculate(plan, 100000, 10, "Invalid", false));
     }
 }

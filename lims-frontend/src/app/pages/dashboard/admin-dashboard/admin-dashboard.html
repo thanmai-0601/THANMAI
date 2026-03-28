@@ -119,38 +119,63 @@
             </div>
         </div>
 
-        <!-- Revenue Intelligence Trend -->
+        <!-- Plan Distribution Intelligence -->
         <div class="premium-card p-0 overflow-hidden border-white/5 flex flex-col">
             <div class="px-8 py-6 bg-primary/[0.03] border-b border-theme-border/10 flex justify-between items-center">
-                <h2 class="text-[11px] font-black text-primary uppercase tracking-[0.3em]">Revenue Intelligence</h2>
-
+                <h2 class="text-[11px] font-black text-primary uppercase tracking-[0.3em]">Plan Distribution Intelligence</h2>
                 <div class="flex items-center gap-2">
-                    <div class="relative flex items-center group/year">
-                        <select [(ngModel)]="selectedYear" (change)="onYearChange()"
-                            class="bg-transparent border-none text-[10px] font-black text-primary uppercase cursor-pointer outline-none focus:ring-0 appearance-none pr-4">
-                            @for (year of availableYears; track year) {
-                            <option [value]="year">{{ year }}</option>
-                            }
-                        </select>
-                        <div
-                            class="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-primary/70 group-hover/year:text-primary transition-colors">
-                            <app-icon name="chevron-down"></app-icon>
-                        </div>
-                    </div>
                     <span
-                        class="text-[9px] font-black text-primary/70 uppercase px-3 py-1 bg-primary/5 rounded">Trends</span>
+                        class="text-[9px] font-black text-primary/70 uppercase px-3 py-1 bg-primary/5 rounded">All Time</span>
                 </div>
             </div>
             <div class="p-8 flex-1 flex flex-col justify-end">
-                <div class="h-[250px] mb-4">
+                <div class="h-[350px] mb-4 flex justify-center items-center">
                     @if (chartOptions.series) {
-                    <apx-chart [series]="chartOptions.series!" [chart]="chartOptions.chart!"
-                        [xaxis]="chartOptions.xaxis!" [yaxis]="chartOptions.yaxis!" [colors]="chartOptions.colors!"
-                        [plotOptions]="chartOptions.plotOptions!" [dataLabels]="chartOptions.dataLabels!"
-                        [fill]="chartOptions.fill!" [tooltip]="chartOptions.tooltip!"
-                        [grid]="chartOptions.grid!"></apx-chart>
+                    <apx-chart [series]="chartOptions.series!" 
+                        [chart]="chartOptions.chart!"
+                        [labels]="chartOptions.labels!"
+                        [colors]="chartOptions.colors!"
+                        [plotOptions]="chartOptions.plotOptions!" 
+                        [dataLabels]="chartOptions.dataLabels!"
+                        [legend]="chartOptions.legend!"
+                        [grid]="chartOptions.grid!">
+                    </apx-chart>
                     }
                 </div>
+            </div>
+        </div>
+    </div>
+    <!-- Customer Distribution -->
+    <div class="mt-10 premium-card p-0 overflow-hidden border-white/5">
+        <div class="px-8 py-6 bg-pink-500/[0.03] border-b border-theme-border/10 flex justify-between items-center">
+            <h2 class="text-[11px] font-black text-pink-500 uppercase tracking-[0.3em]">Customer Portfolio <span *ngIf="selectedCustomerId !== 'all'" class="text-[9px] text-pink-500/50 ml-2">(Policy Drill-down)</span></h2>
+            <div class="flex items-center gap-4">
+                <select (change)="onCustomerSelected($event)" 
+                        class="bg-black/20 border border-white/10 text-white text-[10px] font-bold uppercase tracking-wider rounded px-3 py-1.5 focus:outline-none focus:border-pink-500/50 appearance-none min-w-[150px]">
+                    <option value="all">Top 10 Customers Overview</option>
+                    @for (customer of data.customerDistribution; track customer.customerId) {
+                        <option [value]="customer.customerId">{{ customer.customerName }}</option>
+                    }
+                </select>
+                <span *ngIf="selectedCustomerId === 'all'" class="text-[9px] font-black text-pink-500/70 uppercase px-3 py-1 bg-pink-500/5 rounded">Aggregate</span>
+            </div>
+        </div>
+        <div class="p-8 flex-1 flex flex-col justify-end">
+            <div class="h-[350px] mb-4">
+                @if (customerChartOptions.series) {
+                <apx-chart [series]="customerChartOptions.series!" 
+                    [chart]="customerChartOptions.chart!"
+                    [xaxis]="customerChartOptions.xaxis!" 
+                    [yaxis]="customerChartOptions.yaxis!"
+                    [colors]="customerChartOptions.colors!" 
+                    [stroke]="customerChartOptions.stroke!"
+                    [dataLabels]="customerChartOptions.dataLabels!" 
+                    [plotOptions]="customerChartOptions.plotOptions!"
+                    [grid]="customerChartOptions.grid!"
+                    [legend]="customerChartOptions.legend!" 
+                    [tooltip]="customerChartOptions.tooltip!">
+                </apx-chart>
+                }
             </div>
         </div>
     </div>
@@ -238,3 +263,5 @@
     </div>
 </div>
 }
+
+<app-chatbot />

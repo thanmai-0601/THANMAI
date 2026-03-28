@@ -98,8 +98,10 @@
             <div class="p-6 flex-1 flex flex-col gap-4 text-sm">
                 <div class="flex justify-between items-center py-1">
                     <span class="text-text-secondary dark:text-text-secondary font-medium">Coverage</span>
-                    <span class="font-bold text-text-primary dark:text-white">₹{{ p.minSumAssured/100000 }}L - ₹{{
-                        p.maxSumAssured/100000 }}L</span>
+                    <span class="font-bold text-text-primary dark:text-white">
+                        ₹{{ p.minSumAssured >= 10000000 ? (p.minSumAssured/10000000 | number:'1.0-2') + ' Cr' : (p.minSumAssured/100000 | number:'1.0-2') + 'L' }} - 
+                        ₹{{ p.maxSumAssured >= 10000000 ? (p.maxSumAssured/10000000 | number:'1.0-2') + ' Cr' : (p.maxSumAssured/100000 | number:'1.0-2') + 'L' }}
+                    </span>
                 </div>
                 <div class="flex justify-between items-center py-1">
                     <span class="text-text-secondary dark:text-text-secondary font-medium">Terms of Payment</span>

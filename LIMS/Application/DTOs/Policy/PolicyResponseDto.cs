@@ -16,6 +16,7 @@ public class PolicyResponseDto
     public int CustomerId { get; set; }
     public string CustomerName { get; set; } = string.Empty;
     public string CustomerEmail { get; set; } = string.Empty;
+    public string? CustomerBankAccountNumber { get; set; } // for raising claim check
 
     // Agent info (null until assigned)
     public int? AgentId { get; set; }
@@ -30,6 +31,7 @@ public class PolicyResponseDto
     public decimal? PremiumAmount { get; set; }
     public string? AgentRemarks { get; set; }
     public string? RejectionReason { get; set; }
+    public bool HasAlcoholHabit { get; set; }
 
     // Dates
     public DateTime CreatedAt { get; set; }

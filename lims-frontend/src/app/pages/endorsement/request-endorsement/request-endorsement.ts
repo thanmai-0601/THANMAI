@@ -39,7 +39,6 @@ export class RequestEndorsement implements OnInit {
       newAddress: ['', [Validators.minLength(10)]],
       nomineeName: ['', [Validators.required]],
       nomineeRelationship: ['', [Validators.required]],
-      nomineeAge: [null, [Validators.required, Validators.min(1), Validators.max(120)]],
       nomineeContact: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
       nomineeIdNumber: ['', [Validators.required, Validators.pattern('^[0-9]{12}$')]],
       nomineeEmail: ['', [Validators.required, Validators.email]]
@@ -70,7 +69,6 @@ export class RequestEndorsement implements OnInit {
       newAddress: 'Address',
       nomineeName: 'Nominee Name',
       nomineeRelationship: 'Relationship',
-      nomineeAge: 'Age',
       nomineeContact: 'Contact',
       nomineeIdNumber: 'Aadhar',
       nomineeEmail: 'Email'
@@ -132,7 +130,7 @@ export class RequestEndorsement implements OnInit {
     let payload: any = { policyId: +formValue.policyId };
 
     if (formValue.endorsementType === 'NomineeUpdate') {
-      if (!formValue.nomineeName || !formValue.nomineeRelationship || !formValue.nomineeAge || !formValue.nomineeContact || !formValue.nomineeIdNumber || !formValue.nomineeEmail) {
+      if (!formValue.nomineeName || !formValue.nomineeRelationship || !formValue.nomineeContact || !formValue.nomineeIdNumber || !formValue.nomineeEmail) {
         this.toast.show('Please complete all nominee fields, including Aadhar and Email.', 'warning');
         return;
       }
@@ -144,7 +142,6 @@ export class RequestEndorsement implements OnInit {
       payload.newNominee = {
         fullName: formValue.nomineeName,
         relationship: formValue.nomineeRelationship,
-        age: +formValue.nomineeAge,
         contactNumber: formValue.nomineeContact,
         idNumber: formValue.nomineeIdNumber,
         email: formValue.nomineeEmail

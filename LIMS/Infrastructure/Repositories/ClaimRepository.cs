@@ -1,4 +1,4 @@
-﻿using Application.DTOs.Dashboard;
+using Application.DTOs.Dashboard;
 using Application.Interfaces.Repositories;
 using Domain.Entities;
 using Domain.Enums;
@@ -25,6 +25,8 @@ public class ClaimRepository : IClaimRepository
                 .ThenInclude(p => p.InsurancePlan)
             .Include(c => c.Policy)
                 .ThenInclude(p => p.Nominees)
+            .Include(c => c.Policy)
+                .ThenInclude(p => p.Documents)
             .Include(c => c.Policy)
                 .ThenInclude(p => p.Invoices)
             .Include(c => c.Customer)

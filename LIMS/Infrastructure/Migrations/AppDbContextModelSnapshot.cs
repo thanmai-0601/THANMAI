@@ -66,6 +66,9 @@ namespace Infrastructure.Migrations
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
+                    b.Property<string>("NomineeIdNumber")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("OfficerRemarks")
                         .HasColumnType("nvarchar(max)");
 
@@ -390,9 +393,6 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("AllocationPercentage")
                         .HasColumnType("decimal(5,2)");
 
@@ -547,6 +547,9 @@ namespace Infrastructure.Migrations
 
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("HasAlcoholHabit")
+                        .HasColumnType("bit");
 
                     b.Property<int>("InsurancePlanId")
                         .HasColumnType("int");

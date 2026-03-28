@@ -6,10 +6,11 @@ import { ApiService } from '../../../core/services/api';
 import { ClaimsOfficerDashboardDto } from '../../../core/models/dashboard.model';
 import { StatCard } from '../../../shared/components/stat-card/stat-card';
 import { LoadingSpinner } from '../../../shared/components/loading-spinner/loading-spinner';
+import { Chatbot } from '../../../shared/components/chatbot/chatbot';
 
 @Component({
   selector: 'app-claims-officer-dashboard', standalone: true,
-  imports: [CommonModule, RouterLink, StatCard, LoadingSpinner, AppIcon],
+  imports: [CommonModule, RouterLink, StatCard, LoadingSpinner, Chatbot, AppIcon],
   templateUrl: './claims-officer-dashboard.html', styleUrl: './claims-officer-dashboard.css'
 })
 export class ClaimsOfficerDashboard implements OnInit {

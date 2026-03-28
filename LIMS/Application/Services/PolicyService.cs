@@ -78,7 +78,11 @@ public class PolicyService : IPolicyService
             throw new InvalidOperationException(
                 $"Minimum annual income of ₹{plan.MinAnnualIncome:N0} required for this plan.");
 
-        // 6. Auto-assign agent
+        // 6. Validate customer and nominee email correlation
+        if (dto.Nominee != null && string.Equals(user.Email, dto.Nominee.Email, StringComparison.OrdinalIgnoreCase))
+            throw new InvalidOperationException("Customer email and nominee email should not be the same. Policy cannot be submitted.");
+
+        // 7. Auto-assign agent
         var agentId = await _agentAssignment.AssignAgentAsync();
         var policyNumber = await _policyRepo.GeneratePolicyNumberAsync();
 
@@ -92,6 +96,7 @@ public class PolicyService : IPolicyService
             SumAssured = dto.SumAssured,
             TenureYears = dto.TenureYears,
             AgentId = agentId,
+            HasAlcoholHabit = dto.HasAlcoholHabit ?? false,
 
             // ← Customer fills these at enrollment now
             CustomerAge = customerAge,
@@ -110,7 +115,6 @@ public class PolicyService : IPolicyService
             {
                 FullName = dto.Nominee.FullName,
                 Relationship = dto.Nominee.Relationship,
-                Age = dto.Nominee.Age,
                 ContactNumber = dto.Nominee.ContactNumber,
                 IdNumber = dto.Nominee.IdNumber,
                 Email = dto.Nominee.Email,
@@ -128,7 +132,7 @@ public class PolicyService : IPolicyService
                 var base64Data = d.FileBase64.Split(',').Last();
                 var fileBytes = Convert.FromBase64String(base64Data);
                 
-                var uploadDir = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads", policy.Id.ToString());
+                var uploadDir = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads", "policies", policy.PolicyNumber);
                 if (!Directory.Exists(uploadDir)) Directory.CreateDirectory(uploadDir);
 
                 var filePath = Path.Combine(uploadDir, d.FileName);
@@ -139,7 +143,7 @@ public class PolicyService : IPolicyService
                     PolicyId = policy.Id,
                     DocumentType = d.DocumentType,
                     FileName = d.FileName,
-                    FilePath = $"/uploads/{policy.Id}/{d.FileName}",
+                    FilePath = $"/uploads/policies/{policy.PolicyNumber}/{d.FileName}",
                     UploadedAt = DateTime.UtcNow,
                     Status = DocumentStatus.Submitted
                 };
@@ -247,10 +251,12 @@ public class PolicyService : IPolicyService
             CustomerAge = p.CustomerAge,
             AnnualIncome = p.AnnualIncome,
             Occupation = p.Occupation,
+            CustomerBankAccountNumber = p.Customer?.BankAccountNumber, // populated for raising claim check
             RiskCategory = p.RiskCategory,
             PremiumAmount = p.PremiumAmount,
             AgentRemarks = p.AgentRemarks,
             RejectionReason = p.RejectionReason,
+            HasAlcoholHabit = p.HasAlcoholHabit,
             CreatedAt = p.CreatedAt,
             SubmittedAt = p.SubmittedAt,
             AgentAssignedAt = p.AgentAssignedAt,
@@ -262,7 +268,6 @@ public class PolicyService : IPolicyService
                 NomineeId = n.Id,
                 FullName = n.FullName,
                 Relationship = n.Relationship,
-                Age = n.Age,
                 ContactNumber = n.ContactNumber,
                 IdNumber = n.IdNumber,
                 Email = n.Email
@@ -302,7 +307,7 @@ public class PolicyService : IPolicyService
         var base64Data = fileBase64.Split(',').Last();
         var fileBytes = Convert.FromBase64String(base64Data);
 
-        var uploadDir = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads", policyId.ToString());
+        var uploadDir = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads", "policies", policy.PolicyNumber);
         if (!Directory.Exists(uploadDir))
             Directory.CreateDirectory(uploadDir);
 
@@ -314,7 +319,7 @@ public class PolicyService : IPolicyService
             PolicyId = policyId,
             DocumentType = documentType,
             FileName = fileName,
-            FilePath = $"/uploads/{policyId}/{fileName}",
+            FilePath = $"/uploads/policies/{policy.PolicyNumber}/{fileName}",
             UploadedAt = DateTime.UtcNow,
             Status = DocumentStatus.Submitted
         };
@@ -343,6 +348,10 @@ public class PolicyService : IPolicyService
         if (policy.Status == PolicyStatus.Settled || policy.Status == PolicyStatus.Cancelled || policy.Status == PolicyStatus.Rejected)
             throw new InvalidOperationException($"Cannot change nominees for a policy with status {policy.Status}.");
 
+        var customer = await _userRepo.GetByIdAsync(customerId);
+        if (customer != null && string.Equals(customer.Email, dto.Nominee.Email, StringComparison.OrdinalIgnoreCase))
+            throw new InvalidOperationException("Customer email and nominee email should not be the same. Policy cannot be submitted with identical emails.");
+
         // Clear existing nominees and re-add (allows resubmission)
         await _policyRepo.RemoveNomineesAsync(policyId);
 
@@ -351,7 +360,6 @@ public class PolicyService : IPolicyService
             PolicyId = policyId,
             FullName = dto.Nominee.FullName,
             Relationship = dto.Nominee.Relationship,
-            Age = dto.Nominee.Age,
             ContactNumber = dto.Nominee.ContactNumber ?? string.Empty,
             IdNumber = dto.Nominee.IdNumber ?? string.Empty,
             Email = dto.Nominee.Email ?? string.Empty,

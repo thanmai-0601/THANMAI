@@ -1,4 +1,4 @@
-﻿using Application.DTOs.Dashboard;
+using Application.DTOs.Dashboard;
 
 namespace Application.Interfaces.Services;
 
@@ -8,4 +8,5 @@ public interface IDashboardService
     Task<AgentDashboardDto> GetAgentDashboardAsync(int agentId);
     Task<CustomerDashboardDto> GetCustomerDashboardAsync(int customerId);
     Task<ClaimsOfficerDashboardDto> GetClaimsOfficerDashboardAsync(int officerId);
+    Task<List<CustomerPolicyFinancialsDto>> GetCustomerPolicyFinancialsAsync(int customerId);
 }

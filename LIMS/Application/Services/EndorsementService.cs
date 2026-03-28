@@ -67,7 +67,6 @@ public class EndorsementService : IEndorsementService
         {
             n.FullName,
             n.Relationship,
-            n.Age,
             AllocationPercentage = 100
         });
 
@@ -258,7 +257,6 @@ public class EndorsementService : IEndorsementService
                     PolicyId = endorsement.PolicyId,
                     FullName = newNominee.FullName,
                     Relationship = newNominee.Relationship,
-                    Age = newNominee.Age,
                     ContactNumber = newNominee.ContactNumber,
                     Email = newNominee.Email ?? string.Empty,
                     IdNumber = newNominee.IdNumber ?? string.Empty,

@@ -22,6 +22,7 @@ namespace Application.DTOs.Auth
     public class UpdateProfileDto
     {
         public string FullName { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty; // Added to allow customers to update their own email
         public string PhoneNumber { get; set; } = string.Empty;
         public DateTime DateOfBirth { get; set; }
         

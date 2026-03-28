@@ -13,10 +13,6 @@ public class AddNomineeDto
     public string Relationship { get; set; } = string.Empty;
 
     [Required]
-    [Range(1, 100)]
-    public int Age { get; set; }
-
-    [Required]
     [RegularExpression(@"^[0-9]{10}$", ErrorMessage = "Contact number must be exactly 10 digits")]
     public string ContactNumber { get; set; } = string.Empty;
 

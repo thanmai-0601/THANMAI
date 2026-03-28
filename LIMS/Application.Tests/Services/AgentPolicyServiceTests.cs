@@ -83,7 +83,7 @@ public class AgentPolicyServiceTests
             PremiumAmount = 10000
         };
         _policyRepoMock.Setup(r => r.GetByIdWithDetailsAsync(1)).ReturnsAsync(policy);
-        _premiumCalcMock.Setup(p => p.Calculate(It.IsAny<InsurancePlan>(), It.IsAny<decimal>(), It.IsAny<int>(), It.IsAny<string>()))
+        _premiumCalcMock.Setup(p => p.Calculate(It.IsAny<InsurancePlan>(), It.IsAny<decimal>(), It.IsAny<int>(), It.IsAny<string>(), It.IsAny<bool>()))
             .Returns(new PremiumCalculationResultDto { AnnualPremium = 10000 });
         
         var dto = new PolicyDecisionDto { IsApproved = true, RiskCategory = "Low" };

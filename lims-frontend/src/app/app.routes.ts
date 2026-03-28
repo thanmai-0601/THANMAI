@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth-guard';
 import { roleGuard } from './core/guards/role-guard';
+import { guestGuard } from './core/guards/guest-guard';
 
 import { Home } from './pages/home/home';
 import { Layout } from './pages/layout/layout';
@@ -56,10 +57,10 @@ import { EditPlan } from './pages/admin/edit-plan/edit-plan';
 
 export const routes: Routes = [
   // ───────── Public Routes ─────────
-  { path: '', component: Home },
-  { path: 'login', component: Login },
-  { path: 'register', component: Register },
-  { path: 'forgot-password', component: ForgotPassword },
+  { path: '', component: Home, canActivate: [guestGuard] },
+  { path: 'login', component: Login, canActivate: [guestGuard] },
+  { path: 'register', component: Register, canActivate: [guestGuard] },
+  { path: 'forgot-password', component: ForgotPassword, canActivate: [guestGuard] },
 
   // ───────── Authenticated Routes ─────────
   {

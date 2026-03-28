@@ -1,4 +1,4 @@
-﻿
+
 using System.ComponentModel.DataAnnotations;
 
 namespace Application.DTOs.Policy;
@@ -6,7 +6,7 @@ namespace Application.DTOs.Policy;
 public class UploadDocumentDto
 {
     [Required]
-    [RegularExpression("^(Address Proof|Income Proof|Nominee ID Proof)$",
+    [RegularExpression("^(Aadhar Card|Income Proof|Nominee ID Proof)$",
         ErrorMessage = "Invalid Document Type.")]
     public string DocumentType { get; set; } = string.Empty;
 

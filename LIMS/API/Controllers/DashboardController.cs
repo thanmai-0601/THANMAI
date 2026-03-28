@@ -1,4 +1,4 @@
-﻿using System.Security.Claims;
+using System.Security.Claims;
 using Application.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -47,6 +47,15 @@ public class DashboardController : ControllerBase
             default:
                 return Forbid();
         }
+    }
+
+    // GET api/dashboard/customer-financials/{customerId}
+    [HttpGet("customer-financials/{customerId}")]
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> GetCustomerFinancials(int customerId)
+    {
+        var result = await _dashboardService.GetCustomerPolicyFinancialsAsync(customerId);
+        return Ok(result);
     }
 
     private int GetCurrentUserId()

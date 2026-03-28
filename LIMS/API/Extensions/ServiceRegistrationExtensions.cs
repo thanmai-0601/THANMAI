@@ -56,6 +56,9 @@ namespace API.Extensions
             services.AddScoped<IDashboardService, DashboardService>();
             services.AddScoped<INotificationService, NotificationService>();
             services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<IClaimSummaryService, ClaimSummaryService>();
+            services.AddScoped<IPolicySummaryService, PolicySummaryService>();
+            services.AddHttpClient<IChatService, ChatService>();
 
             services.AddHostedService<GracePeriodBackgroundService>();
 

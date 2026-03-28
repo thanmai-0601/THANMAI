@@ -30,6 +30,32 @@
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
         <div class="lg:col-span-2 flex flex-col gap-6">
+            <!-- Agent AI Summary Engine -->
+            <div class="p-8 rounded-2xl bg-gradient-to-r from-violet-500/[0.05] to-fuchsia-500/[0.05] border border-violet-500/20 shadow-lg shadow-violet-500/5">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 shrink-0 rounded-2xl bg-violet-500/10 flex items-center justify-center text-violet-500 shadow-sm border border-violet-500/10">
+                            <app-icon name="zap" className="w-6 h-6"></app-icon>
+                        </div>
+                        <div class="min-w-0">
+                            <h3 class="text-sm font-black uppercase tracking-[0.2em] bg-clip-text text-transparent bg-gradient-to-r from-violet-500 to-fuchsia-500">Vertex AI Policy Summary</h3>
+                            <p class="text-[10px] font-bold text-text-secondary opacity-70 uppercase tracking-widest mt-1 truncate">Gemini 2.5 Policy & Nominee Context</p>
+                        </div>
+                    </div>
+                    <button *ngIf="!aiSummary && !loadingSummary" (click)="generateSummary()" 
+                            class="shrink-0 px-6 py-3.5 rounded-xl bg-violet-500 hover:bg-violet-600 text-white text-xs font-black uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-2 active:scale-95 shadow-lg shadow-violet-500/20">
+                        <app-icon name="zap" className="w-5 h-5"></app-icon> Generate Overview
+                    </button>
+                    <button *ngIf="loadingSummary" disabled 
+                            class="shrink-0 px-6 py-3.5 rounded-xl bg-violet-500/50 text-white text-xs font-black uppercase tracking-[0.2em] flex items-center justify-center gap-2 cursor-not-allowed">
+                        <span class="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span> Processing...
+                    </button>
+                </div>
+                
+                <div *ngIf="aiSummary" class="animate-in fade-in duration-500 mt-6 pt-6 border-t border-violet-500/10">
+                    <p class="text-sm leading-relaxed text-violet-900 dark:text-violet-100 whitespace-pre-wrap">{{ aiSummary }}</p>
+                </div>
+            </div>
             <!-- Applicant Information -->
             <div class="premium-card p-0 overflow-hidden group">
                 <div class="px-10 py-6 border-b border-theme-border/10 dark:border-slate-800 bg-primary/[0.02]">
@@ -81,6 +107,16 @@
                         <span class="text-base font-black text-text-primary dark:text-white tracking-tight">{{
                             policy.customerAge }} <span
                                 class="text-xs opacity-80 uppercase tracking-widest ml-1">Years</span></span>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <span class="text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary
+                        opacity-80">Alcohol Consumption</span>
+                        <div class="flex items-center gap-2">
+                            <span class="h-2 w-2 rounded-full" [ngClass]="policy.hasAlcoholHabit ? 'bg-amber-500' : 'bg-emerald-500'"></span>
+                            <span class="text-base font-black tracking-tight" [ngClass]="policy.hasAlcoholHabit ? 'text-amber-600 dark:text-amber-400' : 'text-emerald-600 dark:text-emerald-400'">
+                                {{ policy.hasAlcoholHabit ? 'YES (10% Surcharge Applied)' : 'NO' }}
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -157,14 +193,10 @@
                                     <h4
                                         class="text-xs font-black text-text-primary dark:text-white uppercase tracking-wider truncate">
                                         {{ n.fullName }}</h4>
-                                    <div class="flex items-center gap-2 mt-0.5">
+                                    <div class="flex items-center mt-0.5">
                                         <span
                                             class="text-[10px] font-bold text-primary uppercase tracking-widest">{{
                                             n.relationship }}</span>
-                                        <span class="h-1 w-1 rounded-full bg-slate-300"></span>
-                                        <span
-                                            class="text-[10px] font-bold text-text-secondary uppercase tracking-widest opacity-90">Age
-                                            {{ n.age }}</span>
                                     </div>
                                 </div>
                             </div>

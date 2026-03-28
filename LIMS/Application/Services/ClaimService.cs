@@ -78,7 +78,7 @@ public class ClaimService : IClaimService
             if (policy.ActiveTo == null || policy.ActiveTo.Value.Date > DateTime.UtcNow.Date)
                 throw new InvalidOperationException("This policy has not matured yet.");
 
-            var calcResult = _premiumCalc.Calculate(policy.InsurancePlan, policy.SumAssured, policy.TenureYears, policy.RiskCategory ?? "Standard");
+            var calcResult = _premiumCalc.Calculate(policy.InsurancePlan, policy.SumAssured, policy.TenureYears, policy.RiskCategory ?? "Standard", policy.HasAlcoholHabit);
             claimAmount = calcResult.MaturityBenefit > 0 ? calcResult.MaturityBenefit : policy.SumAssured;
             claimReason = "Policy Maturity Payout";
         }
@@ -92,7 +92,7 @@ public class ClaimService : IClaimService
             var isNomineeValid = policy.Nominees != null && policy.Nominees.Any(n => 
                 n.FullName.Equals(dto.NomineeName, StringComparison.OrdinalIgnoreCase) &&
                 n.Relationship.Equals(dto.NomineeRelationship, StringComparison.OrdinalIgnoreCase) &&
-                n.IdNumber.Equals(dto.NomineeIdNumber, StringComparison.OrdinalIgnoreCase));
+                (n.IdNumber ?? "").Equals(dto.NomineeIdNumber, StringComparison.OrdinalIgnoreCase));
 
             if (!isNomineeValid)
             {
@@ -104,11 +104,49 @@ public class ClaimService : IClaimService
                 throw new InvalidOperationException("Nominee ID Proof document is required for a Death claim.");
             }
 
+            // ── New Security Requirement: Nominee and Customer details must differ ─────────────────
+            var customer = policy.Customer;
+            if (!string.IsNullOrEmpty(dto.NomineeEmail) && customer != null &&
+                dto.NomineeEmail.Equals(customer.Email, StringComparison.OrdinalIgnoreCase))
+            {
+                throw new InvalidOperationException("Nominee email cannot be the same as the customer's email.");
+            }
+
+            if (!string.IsNullOrEmpty(dto.BankAccountNumber) && customer != null &&
+                !string.IsNullOrEmpty(customer.BankAccountNumber) &&
+                dto.BankAccountNumber == customer.BankAccountNumber)
+            {
+                throw new InvalidOperationException("Nominee bank account cannot be the same as the customer's registered bank account.");
+            }
+            // ───────────────────────────────────────────────────────────────────────────────────────
+
             if (dto.DateOfDeath == null || string.IsNullOrWhiteSpace(dto.CauseOfDeath))
                 throw new InvalidOperationException("Date of Death and Cause of Death are required for a Death claim.");
 
-            claimAmount = policy.SumAssured;
-            claimReason = $"Date of Death: {dto.DateOfDeath!.Value:yyyy-MM-dd}. Cause: {dto.CauseOfDeath}";
+            // Suicide Clause Implementation
+            bool isSuicide = dto.CauseOfDeath.Contains("suicide", StringComparison.OrdinalIgnoreCase);
+            if (isSuicide)
+            {
+                var policyActivationDate = policy.ActiveFrom ?? policy.CreatedAt;
+                var duration = dto.DateOfDeath.Value - policyActivationDate;
+                
+                if (duration.TotalDays < 365)
+                {
+                    var invoices = await _invoiceRepo.GetByPolicyIdAsync(policy.Id);
+                    claimAmount = invoices.Where(i => i.Status == InvoiceStatus.Paid).Sum(i => i.AmountDue);
+                    claimReason = $"Date of Death: {dto.DateOfDeath!.Value:yyyy-MM-dd}. Cause: {dto.CauseOfDeath}. [SUICIDE CLAUSE: < 1 Year - Premium Refund Only]";
+                }
+                else
+                {
+                    claimAmount = policy.SumAssured;
+                    claimReason = $"Date of Death: {dto.DateOfDeath!.Value:yyyy-MM-dd}. Cause: {dto.CauseOfDeath}. [SUICIDE CLAUSE: > 1 Year - Full Payout]";
+                }
+            }
+            else
+            {
+                claimAmount = policy.SumAssured;
+                claimReason = $"Date of Death: {dto.DateOfDeath!.Value:yyyy-MM-dd}. Cause: {dto.CauseOfDeath}";
+            }
         }
 
         // Auto-assign a claims officer
@@ -125,6 +163,7 @@ public class ClaimService : IClaimService
             Type = claimType,
             ClaimReason = claimReason,
             ClaimAmount = claimAmount,
+            NomineeIdNumber = dto.NomineeIdNumber,
             // Bank details provided by claimant for settlement transfer
             BankAccountName = dto.BankAccountName,
             BankAccountNumber = dto.BankAccountNumber,
@@ -188,13 +227,16 @@ public class ClaimService : IClaimService
             var base64Data = dto.FileBase64.Split(',').Last();
             var fileBytes = Convert.FromBase64String(base64Data);
 
-            var uploadDir = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads", "claims", claimId.ToString());
+            var policy = claim.Policy;
+            var policyNumber = policy?.PolicyNumber ?? "Unknown";
+
+            var uploadDir = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads", "claims", policyNumber);
             if (!Directory.Exists(uploadDir))
                 Directory.CreateDirectory(uploadDir);
 
             var filePath = Path.Combine(uploadDir, dto.FileName);
             await File.WriteAllBytesAsync(filePath, fileBytes);
-            document.FilePath = $"/uploads/claims/{claimId}/{dto.FileName}";
+            document.FilePath = $"/uploads/claims/{policyNumber}/{dto.FileName}";
         }
 
         await _claimRepo.AddDocumentAsync(document);
@@ -459,6 +501,7 @@ public class ClaimService : IClaimService
             CustomerEmail = c.Customer?.Email ?? string.Empty,
             ClaimsOfficerId = c.ClaimsOfficerId,
             ClaimsOfficerName = c.ClaimsOfficer?.FullName,
+            NomineeIdNumber = c.NomineeIdNumber,
             ClaimReason = c.ClaimReason,
             ClaimAmount = c.ClaimAmount,
             SettledAmount = c.SettledAmount,
@@ -472,7 +515,6 @@ public class ClaimService : IClaimService
             {
                 FullName = n.FullName,
                 Relationship = n.Relationship,
-                Age = n.Age,
                 ContactNumber = n.ContactNumber,
                 Email = n.Email
             }).ToList() ?? new List<ClaimNomineeDto>(),

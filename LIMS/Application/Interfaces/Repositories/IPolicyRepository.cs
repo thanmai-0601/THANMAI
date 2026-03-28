@@ -1,4 +1,4 @@
-﻿using Application.DTOs.Dashboard;
+using Application.DTOs.Dashboard;
 using Domain.Entities;
 using Domain.Enums;
 namespace Application.Interfaces.Repositories;
@@ -24,6 +24,7 @@ public interface IPolicyRepository
     Task<int> GetActiveWithSettledClaimCountAsync();
     Task<List<PolicyStatusCountDto>> GetPolicyStatusCountsByAgentAsync(int agentId);
     Task<List<PolicyStatusCountDto>> GetPolicyStatusCountsByCustomerAsync(int customerId);
+    Task<List<CustomerPolicyFinancialsDto>> GetCustomerPolicyFinancialsAsync(int customerId);
 
     Task<List<AgentPerformanceDto>> GetAgentPerformanceAsync();
     Task<List<PlanDistributionDto>> GetPlanDistributionAsync();

@@ -1,4 +1,4 @@
-﻿using System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 using API.Extensions;
 using API.Middleware;
 using Application.Interfaces.Services;
@@ -33,7 +33,7 @@ namespace API
             {
                 options.AddPolicy("AllowAngular", policy =>
                 {
-                    policy.WithOrigins("http://localhost:4200")
+                    policy.WithOrigins("http://localhost:4200", "https://localhost:4200")
                           .AllowAnyHeader()
                           .AllowAnyMethod();
                 });
@@ -57,6 +57,8 @@ namespace API
             }
 
             app.UseCors("AllowAngular");
+
+            app.UseHttpsRedirection();
 
             app.UseStaticFiles();
 
